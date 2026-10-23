@@ -18,6 +18,7 @@ The bundled course is **MAT1903 Differential Calculus** (`src/data/packs/mat1903
 The build output in `dist/` is a fully static site. It uses relative paths and hash routing, so it needs no server rewrites.
 
 * **Node 20.19+ is required** (Vite 8). The repo pins Node 22 through `.node-version`, `.nvmrc` and `engines`, so Render and similar hosts pick it up automatically.
+* **GitHub Pages:** `.github/workflows/pages.yml` builds every PR as a check, and deploys `main` to `https://nguyenchris190-collab.github.io/new/`. One-time setup: in the repo, go to **Settings → Pages → Source** and select **GitHub Actions**.
 * **Render static site settings:**
   * Build command: `npm ci && npm run build`
   * Publish directory: `dist`
