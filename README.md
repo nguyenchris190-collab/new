@@ -13,6 +13,16 @@ npm run validate:packs   # KaTeX + schema check for src/data/packs/*.json
 
 The bundled course is **MAT1903 Differential Calculus** (`src/data/packs/mat1903-calc.json`): 20 exam-style, calculator-free questions, 8 conceptual and 12 multi-step. Every distractor is built from a classic exam slip-up.
 
+## Deploying (Render, GitHub Pages, any static host)
+
+The build output in `dist/` is a fully static site. It uses relative paths and hash routing, so it needs no server rewrites.
+
+* **Node 20.19+ is required** (Vite 8). The repo pins Node 22 through `.node-version`, `.nvmrc` and `engines`, so Render and similar hosts pick it up automatically.
+* **Render static site settings:**
+  * Build command: `npm ci && npm run build`
+  * Publish directory: `dist`
+* Serve it over HTTPS: the service worker and the install prompt need a secure origin.
+
 ## Architecture
 
 | Area | Files |
