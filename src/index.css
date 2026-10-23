@@ -174,6 +174,34 @@
   border-top: 2px solid currentColor;
 }
 
+/*
+ * High Contrast has no colour channel (accent, success and danger are all black),
+ * so wrong choices get a non-colour cue: a heavy dashed border plus a struck label.
+ * Correct choices keep their solid border and check icon; selected ones stay solid.
+ */
+[data-theme='contrast'] [data-choice='wrong'] {
+  border-width: 2px;
+  border-style: dashed;
+  border-color: rgb(var(--ink));
+  box-shadow: none;
+}
+[data-theme='contrast'] [data-choice='wrong'] .choice-label {
+  position: relative;
+  display: inline-block;
+}
+[data-theme='contrast'] [data-choice='wrong'] .choice-label::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  border-top: 2px solid currentColor;
+}
+[data-theme='contrast'] [data-choice='correct'] {
+  border-width: 3px;
+  border-style: solid;
+}
+
 /* Long-press friendly choices */
 .no-callout {
   -webkit-touch-callout: none;

@@ -1,6 +1,6 @@
 # DrillEngine
 
-A personal, offline-first math practice app. Multiple-choice and step-by-step questions only, so you never type formula syntax. React + Vite + TypeScript + Tailwind, with KaTeX bundled locally (no CDN).
+A personal, offline-first math practice app. Multiple-choice and step-by-step questions only, so you never type formula syntax. React + Vite + TypeScript + Tailwind, with KaTeX bundled locally (no CDN). It is an installable PWA: after the first visit, the service worker precaches the app and the KaTeX fonts, so it boots and runs with no network. Use "Add to Home Screen" on mobile or the install icon on desktop.
 
 ```bash
 npm install

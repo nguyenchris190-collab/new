@@ -177,7 +177,8 @@ Selection is **deterministic per seed** (session id + question id + step + miss 
 ## 4. Maintenance checklist for future sessions
 
 Before you push:
-- [ ] `npm run build`, which runs the pack validator, then `tsc -b`, then `vite build`. All must pass with zero errors.
+- [ ] `npm run build`, which runs the pack validator, then `tsc -b`, then `vite build` with service-worker generation. All must pass with zero errors.
+- [ ] Work on a feature branch and open PRs against `main`.
 - [ ] In Chromium (Playwright is pre-installed in the cloud environment; use `executablePath` under `/opt/pw-browsers`), at both **1280px** and **375px** widths:
   - [ ] The Hub renders and the MAT1903 card opens the Course Workspace.
   - [ ] **Hint** and **Reveal Full Derivation** work before any wrong attempt.
@@ -185,6 +186,8 @@ Before you push:
   - [ ] Error and streak quotes appear at the expected tiers, standalone (no labels or "Not quite" text around them).
   - [ ] `document.documentElement.scrollWidth <= innerWidth` holds, so there is no page-level horizontal scroll.
   - [ ] There are no `pageerror` or console errors.
+  - [ ] **Offline:** load `vite preview`, reload once so the service worker controls the page, then call `context.setOffline(true)` and reload. The Hub must render, and a session must show KaTeX glyphs.
+  - [ ] **High Contrast:** a wrong pick shows a dashed border with struck text, distinct from a selected option.
 
 UI invariants to preserve:
 - **Strikethrough over KaTeX.** `text-decoration: line-through` does not cross KaTeX boxes. Eliminated options use the `.struck` class in `src/index.css`, which draws an absolutely positioned 2px rule through an inline-block wrapper at reduced opacity. Keep both the wrapper and the rule.
@@ -193,4 +196,6 @@ UI invariants to preserve:
 - **iOS zoom.** All inputs, selects, and textareas use a font size of at least 16px.
 - **Icons** are inline monoline SVGs (1.75px stroke, one accent part through `.ic-accent` or `.ic-fill`). **No emoji** anywhere in the UI.
 - **Themes** are defined only through the RGB tokens in `src/index.css`. Do not hard-code colours in components.
+- **High Contrast needs non-colour cues.** In `contrast`, accent, success and danger are all black. Choice buttons carry `data-choice="wrong|selected|correct"`. In High Contrast, a wrong choice gets a 2px **dashed** border and a struck `.choice-label`, a selected one stays solid, and the correct one gets a 3px solid border plus the check icon. Any new state must stay distinguishable without colour.
+- **Offline (PWA).** `vite-plugin-pwa` (`registerType: 'autoUpdate'`) generates `dist/sw.js` and precaches the HTML, JS, CSS, icons and all KaTeX `.woff2` fonts (the `.woff`/`.ttf` fallbacks are intentionally excluded). If you add an asset type, extend `workbox.globPatterns` in `vite.config.ts`. Icons live in `public/` (`pwa-192x192.png`, `pwa-512x512.png`, `maskable-512x512.png`, `apple-touch-icon.png`, source `icon.svg`).
 - **Store actions** in `StoreContext` are referentially stable. Effects depend on them, and making them unstable once caused a pause/resume render loop.
