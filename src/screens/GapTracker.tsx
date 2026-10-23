@@ -1,5 +1,8 @@
 import { type TopicStat, type TopicStatus } from '../lib/analytics';
 import { Dot } from '../components/icons';
+import { QuoteLine } from '../components/QuoteLine';
+import { gapQuote } from '../lib/quotes';
+import { startOfDay } from '../lib/util';
 
 export const STATUS_META: Record<TopicStatus, { label: string; tone: 'success' | 'warn' | 'muted'; text: string }> = {
   solid: { label: 'Solid', tone: 'success', text: 'text-success' },
@@ -17,9 +20,12 @@ export function StatusPill({ status }: { status: TopicStatus }) {
   );
 }
 
-export function GapTracker({ stats, median }: { stats: TopicStat[]; median: number }) {
+export function GapTracker({ stats, median, seed }: { stats: TopicStat[]; median: number; seed: string }) {
   const order: Record<TopicStatus, number> = { 'needs-work': 0, unexplored: 1, solid: 2 };
   const rows = stats.slice().sort((a, b) => order[a.status] - order[b.status] || a.topic.localeCompare(b.topic));
+  const gaps = rows.filter((r) => r.status !== 'solid');
+  // One gap quote per course per day, so it reads as a note rather than noise.
+  const quote = gaps.length ? gapQuote(`${seed}:${startOfDay(Date.now())}`) : null;
 
   return (
     <section className="card overflow-hidden" aria-labelledby="gap-h">
@@ -29,6 +35,14 @@ export function GapTracker({ stats, median }: { stats: TopicStat[]; median: numb
         </h2>
         <span className="text-xs text-muted">Median volume: {median % 1 ? median.toFixed(1) : median} attempts / topic</span>
       </header>
+      {quote && (
+        <div className="border-b border-border bg-surface/60 px-4 py-3">
+          <p className="mb-1.5 text-xs text-muted">
+            {gaps.length} section{gaps.length > 1 ? 's' : ''} marked Needs Work or Unexplored
+          </p>
+          <QuoteLine quote={quote} />
+        </div>
+      )}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>

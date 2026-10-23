@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { MathText } from '../components/MathText';
 import { IconCheck, IconChevronDown } from '../components/icons';
 import { ChoiceStep } from './ChoiceStep';
-import { SolvedPanel, type QuestionViewProps } from './questionShared';
+import { outcomeOf, SolvedPanel, type QuestionViewProps } from './questionShared';
 
 /**
  * Progressive multi-step question. Only the current step is shown; each
  * verified step collapses into a summary pill and the next one reveals beneath it.
  */
-export function SequentialQuestion({ question, item, disabled, onStepChange, onCheck, onReveal, onConfidence }: QuestionViewProps) {
+export function SequentialQuestion({ question, item, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
   const [expanded, setExpanded] = useState<number | null>(null);
   const total = question.steps.length;
   const current = Math.min(item.step, total - 1);
@@ -31,6 +31,8 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
                   className={`flex w-full min-h-touch items-center gap-2 rounded-full border px-3 py-1.5 text-left text-sm ${
                     st.revealed ? 'border-border bg-surface' : 'border-success/60 bg-success-bg'
                   }`}
+                  data-assisted={st.hintsShown > 0 || st.revealed ? 'true' : undefined}
+                  title={st.revealed ? 'Revealed' : st.hintsShown ? 'Solved with hints' : st.firstTry ? 'Solved first try' : 'Solved after retry'}
                   onClick={() => setExpanded(open ? null : i)}
                   aria-expanded={open}
                 >
@@ -71,7 +73,10 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
                 onCheck={() => onCheck(i)}
                 onReveal={() => onReveal(i)}
                 onConfidence={onConfidence}
+                onSkip={onSkip}
                 checkLabel={i === total - 1 ? 'Check Answer' : 'Check Step'}
+                quoteSeed={`${quoteSeed}:${i}`}
+                priorMisses={item.steps.slice(0, i).reduce((n, x) => n + x.wrong.length, 0)}
               />
             </li>
           );
@@ -79,12 +84,7 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
       </ol>
 
       {item.done && (
-        <SolvedPanel
-          title="All steps verified"
-          revealed={item.steps.every((s) => s.revealed)}
-          firstTry={item.steps.every((s) => s.firstTry && !s.revealed)}
-          solution={question.solution}
-        />
+        <SolvedPanel title="All steps verified" outcome={outcomeOf(item.steps)} solution={question.solution} streak={streak} />
       )}
     </div>
   );

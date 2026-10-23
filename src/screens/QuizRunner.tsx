@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ActiveSession, Confidence, ItemState, StepState } from '../types';
-import { liveElapsed, pacingDropped } from '../lib/analytics';
+import { cleanStreakAt, liveElapsed, pacingDropped } from '../lib/analytics';
+import { DAILY_MILESTONES, fatigueQuote, quoteById, streakQuote } from '../lib/quotes';
 import { formatClock } from '../lib/util';
 import { useStore } from '../state/StoreContext';
 import { ThemeToggle } from '../components/ThemeToggle';
-import { IconChevronLeft, IconChevronRight, IconClose, IconDoc, IconFlag, IconGrid, IconPause, IconPlay, IconWarn } from '../components/icons';
+import { IconChevronLeft, IconChevronRight, IconClose, IconDoc, IconGrid, IconPause, IconPlay, IconWarn, IconWrench } from '../components/icons';
+import { QuoteLine } from '../components/QuoteLine';
+import { ReportModal } from './ReportModal';
 import { CheatSheetDrawer } from './CheatSheetDrawer';
 import { NavigatorDrawer } from './NavigatorDrawer';
 import { SequentialQuestion } from './SequentialQuestion';
@@ -20,6 +23,7 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   const course = active ? courseById(active.courseId) : undefined;
   const [navOpen, setNavOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
   const [review, setReview] = useState<number | null>(null);
   const [now, setNow] = useState(Date.now());
   const topRef = useRef<HTMLDivElement>(null);
@@ -69,6 +73,12 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
     [patchActive],
   );
 
+  // Remember that fatigue fired this session: it gates the "footless bird" streak quote.
+  useEffect(() => {
+    if (!active || active.finished || active.fatigueFired) return;
+    if (liveElapsed(active, now) > BURNOUT_MS || pacingDropped(active)) patchActive((a) => ({ ...a, fatigueFired: true }));
+  }, [active, now, patchActive]);
+
   if (!active || !course) {
     return (
       <div className="mx-auto max-w-md p-8 text-center">
@@ -88,7 +98,15 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   const elapsed = liveElapsed(active, now);
   const doneCount = Object.values(active.items).filter((i) => i.done).length;
   const paused = !active.runningSince && !active.finished;
-  const showWarning = !active.finished && !active.warningDismissed && (elapsed > BURNOUT_MS || pacingDropped(active));
+  const longSession = elapsed > BURNOUT_MS;
+  const fatigued = !active.finished && (longSession || pacingDropped(active));
+  const showWarning = fatigued && !active.warningDismissed;
+  const startQuote = !active.finished && doneCount === 0 && !active.startQuoteDismissed ? quoteById(active.startQuoteId) : undefined;
+  const breakQuote = !active.finished ? quoteById(active.breakQuoteId) : undefined;
+  const quoteSeed = `${active.id}:${qid ?? ''}`;
+  const streakInfo = qid && item?.done ? cleanStreakAt(state.attempts, active.id, qid, DAILY_MILESTONES) : null;
+  const streakQ = streakInfo ? streakQuote(streakInfo.count, streakInfo.milestone, !!active.fatigueFired, quoteSeed) : null;
+  const streak = streakInfo && streakQ ? { ...streakQ, count: streakInfo.count } : null;
 
   const setStep = (step: number, patch: Partial<StepState>) => {
     if (!qid) return;
@@ -118,19 +136,22 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
     if (ok && last) completeQuestion(qid);
   };
 
+  /** Voluntary "Reveal Full Derivation": solves this and every remaining step, marked as revealed. */
   const reveal = (stepIdx: number) => {
     if (!qid || !question) return;
-    const last = stepIdx === question.steps.length - 1;
     updateItem(qid, (it) => ({
       ...it,
-      step: last ? it.step : stepIdx + 1,
-      steps: it.steps.map((s, i) => (i === stepIdx ? { ...s, solved: true, revealed: true, firstTry: false, selected: question.steps[i].answer } : s)),
+      step: question.steps.length - 1,
+      steps: it.steps.map((s, i) =>
+        i < stepIdx || s.solved ? s : { ...s, solved: true, revealed: true, firstTry: s.firstTry ?? false, selected: question.steps[i].answer },
+      ),
     }));
-    if (last) completeQuestion(qid);
+    completeQuestion(qid);
   };
 
   const setConfidence = (c: Confidence) => qid && updateItem(qid, (it) => ({ ...it, confidence: c }));
-  const toggleFlag = () => qid && updateItem(qid, (it) => ({ ...it, flagged: !it.flagged }));
+  const markReported = () => qid && updateItem(qid, (it) => ({ ...it, reported: true }));
+  const skip = !active.finished && viewIndex !== null && viewIndex < total - 1 ? () => go(viewIndex + 1) : undefined;
 
   const finish = () => {
     const left = total - doneCount;
@@ -146,7 +167,10 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   };
 
   const isLast = viewIndex === total - 1;
-  const qProps = question && item && qid ? { question, item, disabled: paused || active.finished, onStepChange: setStep, onCheck: check, onReveal: reveal, onConfidence: setConfidence } : null;
+  const qProps =
+    question && item && qid
+      ? { question, item, disabled: paused || active.finished, onStepChange: setStep, onCheck: check, onReveal: reveal, onConfidence: setConfidence, onSkip: skip, quoteSeed, streak }
+      : null;
 
   return (
     <div className="min-h-dvh pb-24 md:pb-8" ref={topRef}>
@@ -198,12 +222,27 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
         ) : (
           <>
             {showWarning && (
-              <div className="mb-4 flex items-center gap-2 rounded-md border border-warn/40 bg-warn-bg pl-3 text-sm text-warn" role="status">
-                <IconWarn size={16} className="shrink-0" />
-                <span className="flex-1 py-2">Notice: High cognitive load detected. Consider a short break.</span>
-                <button className="btn-icon shrink-0" onClick={() => patchActive((a) => ({ ...a, warningDismissed: true }))} aria-label="Dismiss notice">
-                  <IconClose size={16} />
-                </button>
+              <div className="mb-4 rounded-md border border-warn/40 bg-warn-bg pl-3 text-sm" role="status">
+                <div className="flex items-center gap-2 text-warn">
+                  <IconWarn size={16} className="shrink-0" />
+                  <span className="flex-1 py-2">Notice: High cognitive load detected. Consider a short break.</span>
+                  <button className="btn-icon shrink-0" onClick={() => patchActive((a) => ({ ...a, warningDismissed: true }))} aria-label="Dismiss notice">
+                    <IconClose size={16} />
+                  </button>
+                </div>
+                <QuoteLine quote={fatigueQuote(longSession ? 'long-session' : 'pacing')} className="pb-3 pr-3 text-ink" />
+              </div>
+            )}
+
+            {breakQuote && !paused && (
+              <div className="mb-4 rounded-md border border-border bg-surface px-3 py-2.5">
+                <QuoteLine quote={breakQuote} onDismiss={() => patchActive((a) => ({ ...a, breakQuoteId: null }))} />
+              </div>
+            )}
+
+            {startQuote && !paused && (
+              <div className="mb-4 rounded-md border border-border px-3 py-2.5" data-testid="start-quote">
+                <QuoteLine quote={startQuote} onDismiss={() => patchActive((a) => ({ ...a, startQuoteDismissed: true }))} />
               </div>
             )}
 
@@ -228,9 +267,9 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
                   <span className="rounded border border-border px-2 py-0.5 font-medium">{qProps.question.topic}</span>
                   <span className="text-muted">{qProps.question.category === 'theory' ? 'Theory' : 'Practice'}</span>
                   {qProps.question.kind === 'sequential' && <span className="text-muted">· {qProps.question.steps.length} steps</span>}
-                  {qProps.item.flagged && (
+                  {qProps.item.reported && (
                     <span className="ml-auto inline-flex items-center gap-1 font-medium text-accent">
-                      <IconFlag size={14} filled /> Flagged
+                      <IconWrench size={14} /> Reported
                     </span>
                   )}
                 </div>
@@ -245,11 +284,9 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
               <button className="btn" onClick={() => (active.finished ? setReview(Math.max(0, (review ?? 0) - 1)) : go(active.current - 1))} disabled={viewIndex === 0}>
                 <IconChevronLeft size={18} /> Prev
               </button>
-              {!active.finished && (
-                <button className={`btn ${item?.flagged ? 'border-accent text-accent' : ''}`} onClick={toggleFlag} aria-pressed={!!item?.flagged}>
-                  <IconFlag size={18} filled={item?.flagged} /> {item?.flagged ? 'Flagged' : 'Flag'}
-                </button>
-              )}
+              <button className="btn" onClick={() => setReportOpen(true)} disabled={!question}>
+                <IconWrench size={18} /> Report / Fix
+              </button>
               <span className="flex-1" />
               {!active.finished && (
                 <button className={isLast || doneCount === total ? 'btn-primary' : 'btn'} onClick={finish}>
@@ -287,12 +324,11 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
               <IconChevronLeft size={20} /> Prev
             </button>
             <button
-              className={`flex min-h-[56px] items-center justify-center gap-1.5 border-x border-border font-medium disabled:opacity-40 ${item?.flagged ? 'text-accent' : ''}`}
-              onClick={toggleFlag}
-              disabled={active.finished}
-              aria-pressed={!!item?.flagged}
+              className="flex min-h-[56px] items-center justify-center gap-1.5 border-x border-border font-medium disabled:opacity-40"
+              onClick={() => setReportOpen(true)}
+              disabled={!question}
             >
-              <IconFlag size={20} filled={item?.flagged} /> Flag
+              <IconWrench size={20} /> Report / Fix
             </button>
             <button
               className={`flex min-h-[56px] items-center justify-center gap-1 font-medium disabled:opacity-40 ${item?.done && !isLast ? 'bg-accent text-on-accent' : ''}`}
@@ -311,6 +347,9 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
         active={active.finished ? { ...active, current: review ?? -1 } : active}
         onJump={(i) => (active.finished ? setReview(i) : go(i))}
       />
+      {question && (
+        <ReportModal open={reportOpen} onClose={() => setReportOpen(false)} packId={course.id} question={question} onCopied={markReported} />
+      )}
       <CheatSheetDrawer open={sheetOpen} onClose={() => setSheetOpen(false)} sections={course.cheatSheet} title={course.title} />
     </div>
   );

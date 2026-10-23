@@ -155,9 +155,64 @@ function parseQuestion(o: Obj, _index: number, defaultTopic: string): Question |
   return q;
 }
 
-function parseCheatSheet(raw: unknown): CheatSection[] {
-  if (raw === undefined || raw === null) return [];
-  if (typeof raw === 'string') return raw.trim() ? [{ items: raw.split(/\n{2,}/).map((s) => s.trim()).filter(Boolean) }] : [];
+/**
+ * Minimal Markdown → sections: `#` headings start a section, `-`/`*` bullets and
+ * blank-line-separated paragraphs become items, and `$$…$$` blocks may span lines.
+ */
+export function parseMarkdownSheet(md: string): CheatSection[] {
+  const sections: CheatSection[] = [];
+  let cur: CheatSection = { items: [] };
+  let para: string[] = [];
+  let inDisplay = false;
+  const flushPara = () => {
+    const text = para.join(' ').trim();
+    if (text) cur.items.push(text);
+    para = [];
+  };
+  const flushSection = () => {
+    flushPara();
+    if (cur.items.length || cur.title) sections.push(cur);
+  };
+  for (const rawLine of md.replace(/\r\n?/g, '\n').split('\n')) {
+    const line = rawLine.trim();
+    if (inDisplay) {
+      para.push(line);
+      if ((line.match(/\$\$/g) ?? []).length % 2 === 1) {
+        inDisplay = false;
+        flushPara();
+      }
+      continue;
+    }
+    const heading = /^#{1,6}\s+(.*)$/.exec(line);
+    const bullet = /^(?:[-*+]|\d+[.)])\s+(.*)$/.exec(line);
+    if (heading) {
+      flushSection();
+      cur = { title: heading[1].trim(), items: [] };
+    } else if (!line) {
+      flushPara();
+    } else if (bullet) {
+      flushPara();
+      para.push(bullet[1]);
+      flushPara();
+    } else {
+      if (line.startsWith('$$') && para.length) flushPara();
+      para.push(line);
+      if ((line.match(/\$\$/g) ?? []).length % 2 === 1) inDisplay = true;
+      else if (line.startsWith('$$')) flushPara();
+    }
+  }
+  flushSection();
+  return sections.filter((sec) => sec.items.length);
+}
+
+function parseCheatSheet(raw: unknown, markdown?: unknown): CheatSection[] {
+  const fromMd = typeof markdown === 'string' && markdown.trim() ? parseMarkdownSheet(markdown) : [];
+  if (raw === undefined || raw === null) return fromMd;
+  return [...parseCheatSheetValue(raw), ...fromMd];
+}
+
+function parseCheatSheetValue(raw: unknown): CheatSection[] {
+  if (typeof raw === 'string') return raw.trim() ? parseMarkdownSheet(raw) : [];
   if (Array.isArray(raw)) {
     const loose: string[] = [];
     const sections: CheatSection[] = [];
@@ -174,7 +229,7 @@ function parseCheatSheet(raw: unknown): CheatSection[] {
     return sections;
   }
   if (isRecord(raw)) {
-    if (pick(raw, ['sections', 'groups'])) return parseCheatSheet(pick(raw, ['sections', 'groups']));
+    if (pick(raw, ['sections', 'groups'])) return parseCheatSheetValue(pick(raw, ['sections', 'groups']));
     // { "Derivatives": ["...", "..."], "Limits": "..." }
     return Object.entries(raw)
       .map(([title, v]) => ({ title, items: strList(v) }))
@@ -233,7 +288,10 @@ function parseCourse(o: Obj, warnings: string[], fallbackTitle: string): { cours
   const course: CoursePack = {
     id: String(id),
     title,
-    cheatSheet: parseCheatSheet(pick(o, ['cheatSheet', 'cheatsheet', 'cheat_sheet', 'formulas', 'formulaSheet', 'formula_sheet', 'reference'])),
+    cheatSheet: parseCheatSheet(
+      pick(o, ['cheatSheet', 'cheatsheet', 'cheat_sheet', 'formulas', 'formulaSheet', 'formula_sheet', 'reference']),
+      pick(o, ['cheatSheetMarkdown', 'cheatsheetMarkdown', 'cheat_sheet_markdown', 'formulaSheetMarkdown']),
+    ),
     questions,
     installedAt: now,
     updatedAt: now,

@@ -45,7 +45,7 @@ export function pickQuestions(pool: Question[], count: number, attempts: Attempt
 
 export function newItem(q: Question): ItemState {
   return {
-    flagged: false,
+    reported: false,
     step: 0,
     steps: q.steps.map(() => ({ selected: null, struck: [], wrong: [], tries: 0, hintsShown: 0, solved: false, revealed: false, firstTry: null })),
     orders: q.steps.map((s) => shuffle(s.choices.map((_, i) => i))),
@@ -54,6 +54,11 @@ export function newItem(q: Question): ItemState {
     viewedAtMs: null,
     completedAtMs: null,
   };
+}
+
+/** First-try, unassisted solve: no misses, no hints, no reveals on any step. */
+export function isCleanSolve(item: ItemState): boolean {
+  return item.done && item.steps.every((s) => s.firstTry === true && !s.revealed && s.hintsShown === 0);
 }
 
 export function createSession(course: CoursePack, questions: Question[], mode: SessionMode): ActiveSession {

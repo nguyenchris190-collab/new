@@ -366,3 +366,26 @@ export function Dot({ tone, size = 10 }: { tone: 'success' | 'warn' | 'muted' | 
     </svg>
   );
 }
+
+export const IconWrench = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="15.5" cy="8.5" r="4.5" />
+    <path d="M12.3 11.7l-7 7a1.6 1.6 0 0 0 2.2 2.2l7-7" />
+    <path className="ic-accent" d="M15.5 8.5l3.2-3.2" />
+  </Svg>
+);
+
+export const IconClipboard = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="5.5" y="4.5" width="13" height="16" rx="2" />
+    <rect className="ic-fill" x="9" y="3" width="6" height="3.5" rx="1" />
+    <path className="ic-accent" d="M9 12h6M9 15.5h4" />
+  </Svg>
+);
+
+export const IconEye = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+    <circle className="ic-accent ic-fill" cx="12" cy="12" r="2.75" />
+  </Svg>
+);

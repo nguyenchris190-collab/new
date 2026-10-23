@@ -13,7 +13,7 @@ export function CheatSheetDrawer({ open, onClose, sections, title }: { open: boo
             <ul className="space-y-3">
               {sec.items.map((item, j) => (
                 <li key={j} className="leading-relaxed">
-                  <MathText text={item} autoMath />
+                  <MathText text={item} autoMath rich />
                 </li>
               ))}
             </ul>

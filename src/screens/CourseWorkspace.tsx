@@ -87,7 +87,7 @@ export function CourseWorkspace({ courseId, goHub, goSession }: Props) {
         )}
 
         <div className="grid gap-5 lg:grid-cols-[1fr_380px] lg:items-start">
-          <GapTracker stats={stats} median={median} />
+          <GapTracker stats={stats} median={median} seed={course.id} />
           <div className="lg:sticky lg:top-20">
             <SessionConfigurator course={course} config={config} stats={stats} onChange={(p) => setConfig(course.id, p)} onStart={start} />
           </div>

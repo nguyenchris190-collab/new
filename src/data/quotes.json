@@ -1,0 +1,60 @@
+{
+  "fatigue": [
+    { "id": "fatigue-01", "text": "Right now, the five hundred years of life experience was telling him, it was time to stop.", "source": "Chapter 13", "trigger": "45m+ session or high latency" },
+    { "id": "fatigue-02", "text": "Heh, I am still a mortal, I am not an invincible god.", "source": "Chapter 399", "trigger": "sharp latency increase" },
+    { "id": "fatigue-03", "text": "All the worries, all the pressure, all the impatience since the start till now dispersed with the wind.", "source": "Chapter 465", "trigger": "ambient fatigue reset" },
+    { "id": "fatigue-04", "text": "After his rest was over, he activated the steel tendon Gu again without hesitation.", "source": "Chapter 289", "trigger": "break encouragement" }
+  ],
+  "error": {
+    "tier1_first_miss": [
+      { "id": "err-t1-01", "text": "Making mistakes was a normal thing, even rank nine venerables made many mistakes in their lives.", "source": "Chapter 1386" },
+      { "id": "err-t1-02", "text": "After making a mistake, realizing the mistake and correcting it was the behavior of an outstanding person!", "source": "Chapter 1386" },
+      { "id": "err-t1-03", "text": "Hardships and setbacks were the wealth of human life.", "source": "Chapter 1859" }
+    ],
+    "tier2_repeated_misses": [
+      { "id": "err-t2-01", "text": "Failure is fine, just try again several times. Even if I cannot achieve my goals in the end, so what?", "source": "Chapter 1786" },
+      { "id": "err-t2-02", "text": "I had once grieved, gradually, I became able to withstand everything.", "source": "Chapter 1285" },
+      { "id": "err-t2-03", "text": "The most important thing was an unyielding spirit, how could mere success and failure determine his life!", "source": "Chapter 2050" }
+    ],
+    "tier3_stuck": [
+      { "id": "err-t3-01", "text": "Heaven would never seal all of one's paths! There was no absolutely desperate situation in this world, there were only people who despair.", "source": "Chapter 647" },
+      { "id": "err-t3-02", "text": "No matter what setbacks he faces, they would only be firewood that allows the demonic ambitions in his heart to burn even more brightly.", "source": "Chapter 289" },
+      { "id": "err-t3-03", "text": "Even if he failed ten thousand times, a million times, or hundreds of billions of times, as long as there was a chance, Fang Yuan would never give up!", "source": "Chapter 1749" }
+    ]
+  },
+  "streak": {
+    "tier1_clean_solve": [
+      { "id": "strk-t1-01", "text": "Fang Yuan did not become prideful due to victory, his joy lasted a very short moment before he dived into cultivating once again.", "source": "Chapter 1808" },
+      { "id": "strk-t1-02", "text": "Such hard work caused Fang Yuan to improve rapidly. Almost every day, he made great progress.", "source": "Chapter 1168" },
+      { "id": "strk-t1-03", "text": "I had once rejoiced, gradually, I became unmoved by the world.", "source": "Chapter 1285" }
+    ],
+    "tier2_sustained_run": [
+      { "id": "strk-t2-01", "text": "Accumulating in secret, striking at once like a volcano, moving as fast as lightning, achieving one's goal!", "source": "Chapter 1086" },
+      { "id": "strk-t2-02", "text": "All I have left is an expressionless face, my gaze is as tough as a monolith, only perseverance remains in my heart.", "source": "Chapter 1285" },
+      { "id": "strk-t2-03", "text": "A heart of steel forged from countless setbacks, A lifetime of effort to forge one sword.", "source": "Chapter 2212" }
+    ],
+    "tier3_milestone": [
+      { "id": "strk-t3-01", "text": "Because hardships strengthen resolve, the strong-minded will not be lured by worldly affairs. Today I step on grass; later I shall step on mountains and rivers!", "source": "Chapter 291" },
+      { "id": "strk-t3-02", "text": "Because it has no legs, only wings, thus it has no choice but to fly. When it lands, that signifies its destruction.", "source": "Chapter 227" },
+      { "id": "strk-t3-03", "text": "At times, your former achievements would be the greatest obstacle for you to achieve greater success!", "source": "Chapter 867" }
+    ]
+  },
+  "sessionStart": {
+    "same_day": [
+      { "id": "start-sd-01", "text": "After his rest was over, he activated the steel tendon Gu again without hesitation.", "source": "Chapter 289" },
+      { "id": "start-sd-02", "text": "I am a person with a firm will, I do not hesitate, once I decide on a plan, I will execute it without doubt.", "source": "Chapter 644" },
+      { "id": "start-sd-03", "text": "Rather than leaving these issues to the future, he should start resolving them now!", "source": "Chapter 2329" }
+    ],
+    "new_day": [
+      { "id": "start-nd-01", "text": "Let blood boil, let sweat flow, the best moment of life is now…", "source": "Chapter 533" },
+      { "id": "start-nd-02", "text": "But these difficulties are only difficulties, if we are afraid to take action because of difficulties, nothing can be accomplished.", "source": "Chapter 2068" },
+      { "id": "start-nd-03", "text": "Farmers need to farm, but if they don't cultivate the land because they are afraid of drought, there would not even be a single grain of harvest.", "source": "Chapter 2068" }
+    ]
+  },
+  "gaps": [
+    { "id": "gap-01", "text": "What truly stalls a person's success is not talent, but mindset.", "source": "Chapter 127" },
+    { "id": "gap-02", "text": "After all, an unknown enemy was the most troublesome. Know yourself and your enemy, and you will never be defeated!", "source": "Chapter 1085" },
+    { "id": "gap-03", "text": "I am crazy, I am an idiot, I am stubborn and also stupid. But I… still want to do it regardless!", "source": "Chapter 1786" },
+    { "id": "gap-04", "text": "I will never resign myself to fate! Even if I understand there is a wall called fate in front of me, I will charge into it!", "source": "Chapter 1958" }
+  ]
+}

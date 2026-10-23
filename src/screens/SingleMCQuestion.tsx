@@ -1,8 +1,8 @@
 import { MathText } from '../components/MathText';
 import { ChoiceStep } from './ChoiceStep';
-import { SolvedPanel, type QuestionViewProps } from './questionShared';
+import { outcomeOf, SolvedPanel, type QuestionViewProps } from './questionShared';
 
-export function SingleMCQuestion({ question, item, disabled, onStepChange, onCheck, onReveal, onConfidence }: QuestionViewProps) {
+export function SingleMCQuestion({ question, item, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
   const step = question.steps[0];
   const st = item.steps[0];
   return (
@@ -20,9 +20,11 @@ export function SingleMCQuestion({ question, item, disabled, onStepChange, onChe
         onCheck={() => onCheck(0)}
         onReveal={() => onReveal(0)}
         onConfidence={onConfidence}
+        onSkip={onSkip}
         checkLabel="Check Answer"
+        quoteSeed={`${quoteSeed}:0`}
       />
-      {st.solved && <SolvedPanel revealed={st.revealed} firstTry={!!st.firstTry} solution={step.solution} />}
+      {st.solved && <SolvedPanel outcome={outcomeOf(item.steps)} solution={step.solution} streak={streak} />}
     </div>
   );
 }

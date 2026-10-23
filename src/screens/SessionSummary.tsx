@@ -1,6 +1,7 @@
 import type { ActiveSession, Attempt, CoursePack } from '../types';
 import { formatDuration } from '../lib/util';
-import { IconCheck, IconClose, IconFlag } from '../components/icons';
+import { IconCheck, IconClose, IconWrench } from '../components/icons';
+import { isCleanSolve } from '../lib/session';
 
 interface Props {
   active: ActiveSession;
@@ -30,7 +31,7 @@ export function SessionSummary({ active, course, attempts, onReview, onDone }: P
         <p className="label-xs">Session complete</p>
         <p className="mt-2 font-serif text-5xl font-semibold tabular-nums">{acc}%</p>
         <p className="mt-1 text-muted">
-          {correct} of {mine.length} correct on first try · {formatDuration(active.elapsedMs)} active
+          {correct} of {mine.length} clean first-try solves · {formatDuration(active.elapsedMs)} active
         </p>
         {lucky > 0 && (
           <p className="mt-2 text-sm text-warn">
@@ -61,13 +62,13 @@ export function SessionSummary({ active, course, attempts, onReview, onDone }: P
           {active.questionIds.map((id, i) => {
             const it = active.items[id];
             const q = qById.get(id);
-            const ok = it?.done && it.steps.every((s) => s.firstTry && !s.revealed);
+            const ok = !!it && isCleanSolve(it);
             return (
               <li key={id}>
                 <button className="flex w-full min-h-touch items-center gap-3 px-4 py-2 text-left text-sm hover:bg-surface" onClick={() => onReview(i)}>
                   <span className="w-6 tabular-nums text-muted">{i + 1}</span>
                   <span className="min-w-0 flex-1 truncate">{q?.topic ?? 'Removed question'}</span>
-                  {it?.flagged && <IconFlag size={16} filled />}
+                  {it?.reported && <IconWrench size={16} />}
                   {!it?.done ? (
                     <span className="text-xs text-muted">skipped</span>
                   ) : ok ? (

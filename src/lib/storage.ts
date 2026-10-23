@@ -11,7 +11,7 @@ export const initialState = (): AppState => ({
   configs: {},
   active: null,
   sync: { enabled: false, provider: 'supabase', url: '', apiKey: '', syncKey: '', lastSyncedAt: null },
-  seeded: false,
+  bundledVersion: 0,
   removed: [],
   updatedAt: 0,
 });

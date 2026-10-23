@@ -86,7 +86,8 @@ export interface StepState {
 }
 
 export interface ItemState {
-  flagged: boolean;
+  /** A diagnostic "Report / Fix" prompt was copied for this question. */
+  reported: boolean;
   step: number;
   steps: StepState[];
   /** Display order of choices per step (indices into Step.choices). */
@@ -110,6 +111,15 @@ export interface ActiveSession {
   items: Record<string, ItemState>;
   warningDismissed: boolean;
   finished: boolean;
+  /** Quote shown while the session warms up (sessionStart tier). */
+  startQuoteId?: string;
+  startQuoteDismissed?: boolean;
+  /** Set once the burnout/fatigue notice has fired; gates some streak quotes. */
+  fatigueFired?: boolean;
+  /** Epoch ms when the clock was paused, used to detect real breaks. */
+  pausedAt?: number | null;
+  /** Fatigue quote to show after returning from a break. */
+  breakQuoteId?: string | null;
 }
 
 export interface CourseConfig {
@@ -137,7 +147,8 @@ export interface AppState {
   configs: Record<string, CourseConfig>;
   active: ActiveSession | null;
   sync: SyncSettings;
-  seeded: boolean;
+  /** Version of the bundled course packs last installed into this state. */
+  bundledVersion: number;
   /** Ids of courses the user removed, so sync does not resurrect them. */
   removed: string[];
   updatedAt: number;

@@ -121,3 +121,19 @@ export function pacingDropped(active: ActiveSession): boolean {
   const recent = avg(done.slice(-3));
   return early > 0 && recent > early * 2 && recent > 90_000;
 }
+
+/**
+ * Clean (first-try, unassisted) streak ending at this question's attempt in the
+ * session, and whether that attempt hit a Captain's Log daily milestone.
+ */
+export function cleanStreakAt(attempts: Attempt[], sessionId: string, questionId: string, milestones: number[]): { count: number; milestone: boolean } | null {
+  const mine = attempts.filter((a) => a.sessionId === sessionId).sort((a, b) => a.ts - b.ts);
+  const idx = mine.findIndex((a) => a.questionId === questionId);
+  if (idx < 0 || !mine[idx].correct) return null;
+  let count = 0;
+  for (let i = idx; i >= 0 && mine[i].correct; i--) count++;
+  const at = mine[idx].ts;
+  const day = startOfDay(at);
+  const solvedToday = attempts.filter((a) => a.ts <= at && startOfDay(a.ts) === day).length;
+  return { count, milestone: milestones.includes(solvedToday) };
+}

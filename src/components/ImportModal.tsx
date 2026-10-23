@@ -1,7 +1,7 @@
 import { useState, type DragEvent } from 'react';
 import { parseCoursePacks, type ParseReport } from '../lib/parser';
 import { useStore } from '../state/StoreContext';
-import { SAMPLE_COURSE } from '../data/sampleCourse';
+import { BUNDLED_PACKS } from '../data/bundledPacks';
 import { Modal } from './Overlay';
 import { IconImport } from './icons';
 
@@ -101,8 +101,8 @@ export function ImportModal({ open, onClose }: { open: boolean; onClose: () => v
             <button className="btn-primary" disabled={!text.trim()} onClick={() => parseText(text)}>
               Validate
             </button>
-            <button className="btn" onClick={() => setReport(parseCoursePacks(SAMPLE_COURSE))}>
-              Load sample pack
+            <button className="btn" onClick={() => setReport(parseCoursePacks(BUNDLED_PACKS[0]))}>
+              Load bundled MAT1903 pack
             </button>
           </div>
         </div>

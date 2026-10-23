@@ -1,0 +1,768 @@
+{
+  "id": "mat1903-calc",
+  "code": "MAT1903",
+  "title": "Differential Calculus",
+  "icon": "calculus",
+  "version": 1,
+  "description": "Exam-style, calculator-free MAT1903 drills: limits, continuity, the derivative by definition, differentiation rules, and tangent lines.",
+  "cheatSheetMarkdown": "## Limit laws & techniques\n- $\\displaystyle\\lim_{x\\to c}f(x)=L \\iff \\lim_{x\\to c^-}f(x)=\\lim_{x\\to c^+}f(x)=L$\n- **Indeterminate form:** $\\frac00$ is a signal, not an answer. Factor, cancel, or multiply by the conjugate, *then* substitute.\n- Difference of squares: $a^2-b^2=(a-b)(a+b)$\n- Cubes: $a^3-b^3=(a-b)(a^2+ab+b^2)$, $\\;a^3+b^3=(a+b)(a^2-ab+b^2)$\n- Conjugate: $\\left(\\sqrt{A}-B\\right)\\left(\\sqrt{A}+B\\right)=A-B^2$\n- $\\sqrt{x^2}=|x|$, so $|x|=-x$ when $x\\to-\\infty$\n- $\\dfrac{|x-a|}{x-a}=-1$ for $x<a$ and $+1$ for $x>a$\n\n## Asymptotes\n- Vertical $x=a$: $\\displaystyle\\lim_{x\\to a^{\\pm}}f(x)=\\pm\\infty$ (check that the factor does **not** cancel)\n- Horizontal $y=L$: $\\displaystyle\\lim_{x\\to\\pm\\infty}f(x)=L$ (divide by the highest power of $x$ in the denominator)\n\n## Continuity & discontinuities\n- Continuous at $c$: $f(c)$ defined **and** $\\displaystyle\\lim_{x\\to c^-}f=\\lim_{x\\to c^+}f=f(c)$\n- **Removable:** limit exists, but $f(c)$ is undefined or different\n- **Jump:** both one-sided limits are finite but different\n- **Essential / infinite:** a one-sided limit is infinite or does not exist\n\n## Derivative by definition\n$$f'(a)=\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}$$\n- Simplify until the $h$ in the denominator cancels, *then* let $h\\to0$.\n\n## Differentiation rules\n$$\\frac{d}{dx}x^n=nx^{n-1}\\quad(n\\in\\mathbb{Q})$$\n$$(fg)'=f'g+fg' \\qquad \\left(\\frac fg\\right)'=\\frac{f'g-fg'}{g^2}$$\n$$\\frac{d}{dx}f\\big(g(x)\\big)=f'\\big(g(x)\\big)\\,g'(x)$$\n$$\\frac{d}{dx}\\sqrt{u}=\\frac{u'}{2\\sqrt{u}} \\qquad \\frac{d}{dx}\\frac{1}{u}=-\\frac{u'}{u^2}$$\n\n## Tangent & normal lines\n- Tangent at $x_0$: $y-f(x_0)=f'(x_0)(x-x_0)$\n- Normal at $x_0$: $y-f(x_0)=-\\dfrac{1}{f'(x_0)}(x-x_0)$ (when $f'(x_0)\\neq0$)\n- Horizontal tangent: solve $f'(x)=0$, then plug into $f$\n",
+  "questions": [
+    {
+      "id": "mat1903-1a-01",
+      "topic": "1.a Domains, Roots & Asymptotes",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Let $f(x)=\\dfrac{x^2-4}{x^2-5x+6}$. Find every vertical asymptote of $f$.",
+      "steps": [
+        {
+          "prompt": "Factor the numerator and the denominator completely.",
+          "choices": [
+            "$\\dfrac{(x-2)(x+2)}{(x-2)(x-3)}$",
+            "$\\dfrac{(x-2)(x+2)}{(x+2)(x+3)}$",
+            "$\\dfrac{(x-2)^2}{(x-2)(x-3)}$",
+            "$\\dfrac{(x-4)(x+1)}{(x-2)(x-3)}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$x^2-4$ is a difference of squares: $a^2-b^2=(a-b)(a+b)$.",
+            "For $x^2-5x+6$, find two integers with product $6$ and sum $-5$."
+          ],
+          "solution": "$x^2-4=(x-2)(x+2)$ and $x^2-5x+6=(x-2)(x-3)$."
+        },
+        {
+          "prompt": "What happens at $x=2$? Cancel the common factor and take $\\displaystyle\\lim_{x\\to2}f(x)$.",
+          "choices": [
+            "Vertical asymptote $x=2$",
+            "Removable hole at $(2,\\,-4)$",
+            "Removable hole at $(2,\\,4)$",
+            "$f(2)=\\frac{0}{0}$, so $\\displaystyle\\lim_{x\\to 2}f(x)$ does not exist"
+          ],
+          "answer": 1,
+          "hints": [
+            "For $x\\neq2$, $f(x)=\\dfrac{x+2}{x-3}$.",
+            "Evaluate $\\dfrac{2+2}{2-3}$ carefully: the denominator is negative."
+          ],
+          "solution": "$$\\lim_{x\\to2}\\frac{x+2}{x-3}=\\frac{4}{-1}=-4$$ The limit is finite, so $x=2$ is a hole, not an asymptote."
+        },
+        {
+          "prompt": "List the vertical asymptote(s).",
+          "choices": [
+            "$x=2$ and $x=3$",
+            "$x=3$ and $x=-2$",
+            "$x=3$ only",
+            "$x=-3$ only"
+          ],
+          "answer": 2,
+          "hints": [
+            "A vertical asymptote needs a zero of the denominator that survives the simplification."
+          ],
+          "solution": "After cancelling, only $x-3$ remains in the denominator and the numerator is $5\\neq0$ there."
+        }
+      ],
+      "solution": "$$f(x)=\\frac{(x-2)(x+2)}{(x-2)(x-3)}=\\frac{x+2}{x-3}\\quad(x\\neq2)$$ Hole at $(2,-4)$; vertical asymptote $x=3$ since $\\displaystyle\\lim_{x\\to3^{\\pm}}\\frac{x+2}{x-3}=\\pm\\infty$. (Horizontal asymptote: $y=1$.)"
+    },
+    {
+      "id": "mat1903-1a-02",
+      "topic": "1.a Domains, Roots & Asymptotes",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Find the horizontal asymptotes of $f(x)=\\dfrac{3x-1}{\\sqrt{4x^2+5}}$ by computing $\\displaystyle\\lim_{x\\to+\\infty}f(x)$ and $\\displaystyle\\lim_{x\\to-\\infty}f(x)$.",
+      "steps": [
+        {
+          "prompt": "Factor $x^2$ out of the radical: $\\sqrt{4x^2+5}=\\,?$",
+          "choices": [
+            "$x^2\\sqrt{4+\\frac{5}{x^2}}$",
+            "$|x|\\sqrt{4+\\frac{5}{x^2}}$",
+            "$2x+\\sqrt{5}$",
+            "$x\\sqrt{4+5}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\sqrt{x^2}=|x|$, not $x$ and not $x^2$.",
+            "$\\sqrt{a+b}\\neq\\sqrt{a}+\\sqrt{b}$."
+          ],
+          "solution": "$$\\sqrt{4x^2+5}=\\sqrt{x^2\\left(4+\\tfrac{5}{x^2}\\right)}=|x|\\sqrt{4+\\tfrac{5}{x^2}}$$"
+        },
+        {
+          "prompt": "For $x\\to+\\infty$ we have $|x|=x$. Evaluate $\\displaystyle\\lim_{x\\to+\\infty}f(x)$.",
+          "choices": [
+            "$\\dfrac{3}{4}$",
+            "$3$",
+            "$\\dfrac{3}{2}$",
+            "$0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Divide numerator and denominator by $x$: $\\dfrac{3-\\frac1x}{\\sqrt{4+\\frac5{x^2}}}$.",
+            "$\\sqrt{4}=2$, not $4$."
+          ],
+          "solution": "$$\\lim_{x\\to+\\infty}\\frac{3-\\frac1x}{\\sqrt{4+\\frac5{x^2}}}=\\frac{3}{\\sqrt4}=\\frac32$$"
+        },
+        {
+          "prompt": "For $x\\to-\\infty$ we have $|x|=-x$. Evaluate $\\displaystyle\\lim_{x\\to-\\infty}f(x)$.",
+          "choices": [
+            "$\\dfrac{3}{2}$",
+            "$-\\dfrac{3}{4}$",
+            "The limit does not exist",
+            "$-\\dfrac{3}{2}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$\\dfrac{3x-1}{|x|\\sqrt{\\cdots}}=\\dfrac{3x-1}{-x\\sqrt{\\cdots}}$, so a minus sign appears."
+          ],
+          "solution": "$$\\lim_{x\\to-\\infty}\\frac{3x-1}{-x\\sqrt{4+\\frac5{x^2}}}=\\lim_{x\\to-\\infty}\\frac{3-\\frac1x}{-\\sqrt{4+\\frac5{x^2}}}=-\\frac32$$"
+        }
+      ],
+      "solution": "Two horizontal asymptotes: $y=\\dfrac32$ (as $x\\to+\\infty$) and $y=-\\dfrac32$ (as $x\\to-\\infty$). The sign flip comes from $\\sqrt{x^2}=|x|=-x$ for $x<0$."
+    },
+    {
+      "id": "mat1903-1a-03",
+      "topic": "1.a Domains, Roots & Asymptotes",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Let $f(x)=\\dfrac{x+1}{x^2-1}$. Which statement correctly describes $f$ at $x=1$ and $x=-1$?",
+      "choices": [
+        "Vertical asymptotes at both $x=1$ and $x=-1$",
+        "Removable hole at $x=1$; vertical asymptote at $x=-1$",
+        "Vertical asymptote at $x=1$; removable hole at $\\left(-1,\\,-\\frac12\\right)$",
+        "Removable holes at both $x=1$ and $x=-1$"
+      ],
+      "answer": 2,
+      "hints": [
+        "Factor $x^2-1=(x-1)(x+1)$ before deciding anything.",
+        "A zero of the denominator gives an asymptote only if the limit there is infinite."
+      ],
+      "solution": "$$f(x)=\\frac{x+1}{(x-1)(x+1)}=\\frac{1}{x-1}\\quad(x\\neq-1)$$ $\\displaystyle\\lim_{x\\to-1}f(x)=-\\frac12$ (finite, so a hole), while $\\displaystyle\\lim_{x\\to1^{\\pm}}f(x)=\\pm\\infty$ (vertical asymptote)."
+    },
+    {
+      "id": "mat1903-1b-01",
+      "topic": "1.b Indeterminate Limits (0/0)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Evaluate $\\displaystyle\\lim_{x\\to2}\\frac{x^3-8}{x^2-4}$.",
+      "steps": [
+        {
+          "prompt": "What does direct substitution give?",
+          "choices": [
+            "$0$, so the limit equals $0$",
+            "Division by zero, so the limit does not exist",
+            "$\\infty$",
+            "$\\frac{0}{0}$: indeterminate, so the expression must be simplified first"
+          ],
+          "answer": 3,
+          "hints": [
+            "$2^3-8=0$ and $2^2-4=0$."
+          ],
+          "solution": "Both numerator and denominator vanish at $x=2$, so $\\frac00$ is a signal to factor, not an answer."
+        },
+        {
+          "prompt": "Factor the numerator (difference of cubes) and the denominator.",
+          "choices": [
+            "$\\dfrac{(x-2)(x^2+2x+4)}{(x-2)(x+2)}$",
+            "$\\dfrac{(x-2)(x^2-2x+4)}{(x-2)(x+2)}$",
+            "$\\dfrac{(x-2)(x^2+4)}{(x-2)(x+2)}$",
+            "$\\dfrac{(x-2)^3}{(x-2)(x+2)}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$a^3-b^3=(a-b)(a^2+ab+b^2)$; here $a=x$, $b=2$."
+          ],
+          "solution": "$x^3-8=(x-2)(x^2+2x+4)$ and $x^2-4=(x-2)(x+2)$."
+        },
+        {
+          "prompt": "Cancel $(x-2)$ and evaluate the limit.",
+          "choices": [
+            "$1$",
+            "$3$",
+            "$2$",
+            "$0$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\dfrac{x^2+2x+4}{x+2}$ at $x=2$."
+          ],
+          "solution": "$$\\frac{4+4+4}{4}=3$$"
+        }
+      ],
+      "solution": "$$\\lim_{x\\to2}\\frac{(x-2)(x^2+2x+4)}{(x-2)(x+2)}=\\lim_{x\\to2}\\frac{x^2+2x+4}{x+2}=\\frac{12}{4}=3$$"
+    },
+    {
+      "id": "mat1903-1b-02",
+      "topic": "1.b Indeterminate Limits (0/0)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Evaluate $\\displaystyle\\lim_{x\\to4}\\frac{\\sqrt{x+5}-3}{x-4}$.",
+      "steps": [
+        {
+          "prompt": "Multiply numerator and denominator by the conjugate $\\sqrt{x+5}+3$. The result is:",
+          "choices": [
+            "$\\dfrac{x-4}{(x-4)\\left(\\sqrt{x+5}+3\\right)}$",
+            "$\\dfrac{x+5-3}{(x-4)\\left(\\sqrt{x+5}+3\\right)}$",
+            "$\\dfrac{x-4}{(x-4)\\left(\\sqrt{x+5}-3\\right)}$",
+            "$\\dfrac{x+5-9}{x-4}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$(\\sqrt{a}-3)(\\sqrt{a}+3)=a-9$: the $3$ gets squared.",
+            "Whatever multiplies the numerator must also multiply the denominator."
+          ],
+          "solution": "$$\\left(\\sqrt{x+5}-3\\right)\\left(\\sqrt{x+5}+3\\right)=(x+5)-9=x-4$$"
+        },
+        {
+          "prompt": "Cancel the common factor. The simplified expression is:",
+          "choices": [
+            "$\\dfrac{1}{\\sqrt{x+5}-3}$",
+            "$\\dfrac{1}{\\sqrt{x+5}+3}$",
+            "$\\sqrt{x+5}+3$",
+            "$\\dfrac{x-4}{\\sqrt{x+5}+3}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Cancel $x-4$ (valid because $x\\neq4$ inside the limit)."
+          ],
+          "solution": "$\\dfrac{1}{\\sqrt{x+5}+3}$ for $x\\neq4$."
+        },
+        {
+          "prompt": "Evaluate the limit.",
+          "choices": [
+            "$\\dfrac13$",
+            "$6$",
+            "$\\dfrac16$",
+            "$0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\sqrt{4+5}=\\sqrt9=3$."
+          ],
+          "solution": "$$\\frac{1}{3+3}=\\frac16$$"
+        }
+      ],
+      "solution": "$$\\lim_{x\\to4}\\frac{\\sqrt{x+5}-3}{x-4}\\cdot\\frac{\\sqrt{x+5}+3}{\\sqrt{x+5}+3}=\\lim_{x\\to4}\\frac{1}{\\sqrt{x+5}+3}=\\frac16$$"
+    },
+    {
+      "id": "mat1903-1b-03",
+      "topic": "1.b Indeterminate Limits (0/0)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Evaluate $\\displaystyle\\lim_{x\\to3}\\frac{2x^2-5x-3}{x^2-9}$.",
+      "steps": [
+        {
+          "prompt": "Direct substitution gives $\\frac00$. Factor numerator and denominator.",
+          "choices": [
+            "$\\dfrac{(2x-1)(x+3)}{(x-3)(x+3)}$",
+            "$\\dfrac{(2x+1)(x-3)}{(x-3)(x+3)}$",
+            "$\\dfrac{(2x+1)(x-3)}{(x-3)^2}$",
+            "$\\dfrac{(2x+1)(x+3)}{(x-3)(x+3)}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Since $x=3$ is a root of the numerator, $(x-3)$ must be a factor.",
+            "Expand to check: $(2x+1)(x-3)=2x^2-6x+x-3$."
+          ],
+          "solution": "$2x^2-5x-3=(2x+1)(x-3)$ and $x^2-9=(x-3)(x+3)$."
+        },
+        {
+          "prompt": "Cancel and evaluate the limit.",
+          "choices": [
+            "$\\dfrac56$",
+            "$\\dfrac73$",
+            "$\\dfrac76$",
+            "$0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\dfrac{2x+1}{x+3}$ at $x=3$."
+          ],
+          "solution": "$$\\frac{2(3)+1}{3+3}=\\frac76$$"
+        }
+      ],
+      "solution": "$$\\lim_{x\\to3}\\frac{(2x+1)(x-3)}{(x-3)(x+3)}=\\lim_{x\\to3}\\frac{2x+1}{x+3}=\\frac76$$"
+    },
+    {
+      "id": "mat1903-1b-04",
+      "topic": "1.b Indeterminate Limits (0/0)",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Consider $g(x)=\\dfrac{|x-3|}{x-3}$. What are $\\displaystyle\\lim_{x\\to3^-}g(x)$, $\\displaystyle\\lim_{x\\to3^+}g(x)$ and $\\displaystyle\\lim_{x\\to3}g(x)$?",
+      "choices": [
+        "$1$, $1$, and the two-sided limit equals $1$",
+        "$1$, $-1$, and the two-sided limit does not exist",
+        "$-1$, $1$, and the two-sided limit does not exist",
+        "$0$, $0$, and the limit equals $0$ because $|0|=0$"
+      ],
+      "answer": 2,
+      "hints": [
+        "For $x<3$, $x-3<0$, so $|x-3|=-(x-3)$.",
+        "A two-sided limit exists only if both one-sided limits agree."
+      ],
+      "solution": "For $x<3$: $g(x)=\\dfrac{-(x-3)}{x-3}=-1$. For $x>3$: $g(x)=\\dfrac{x-3}{x-3}=1$. Since $-1\\neq1$, $\\displaystyle\\lim_{x\\to3}g(x)$ does not exist (jump)."
+    },
+    {
+      "id": "mat1903-2a-01",
+      "topic": "2.a Continuity & Discontinuities",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Which condition is the complete definition of “$f$ is continuous at $x=c$”?",
+      "choices": [
+        "$f(c)$ is defined and $\\displaystyle\\lim_{x\\to c^-}f(x)=f(c)$",
+        "$\\displaystyle\\lim_{x\\to c}f(x)$ exists",
+        "$f$ is defined on an open interval around $c$",
+        "$f(c)$ is defined and $\\displaystyle\\lim_{x\\to c^-}f(x)=\\lim_{x\\to c^+}f(x)=f(c)$"
+      ],
+      "answer": 3,
+      "hints": [
+        "Three things must hold: the value exists, the limit exists, and they are equal."
+      ],
+      "solution": "Continuity at $c$ requires (1) $f(c)$ defined, (2) $\\displaystyle\\lim_{x\\to c}f(x)$ exists, i.e. both one-sided limits agree, and (3) that limit equals $f(c)$. A one-sided check or an existing limit alone is not enough."
+    },
+    {
+      "id": "mat1903-2a-02",
+      "topic": "2.a Continuity & Discontinuities",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Find $k$ so that $f(x)=\\begin{cases}kx+3 & x<2\\\\ x^2-k & x\\ge2\\end{cases}$ is continuous everywhere.",
+      "steps": [
+        {
+          "prompt": "Compute the left-hand limit $\\displaystyle\\lim_{x\\to2^-}f(x)$.",
+          "choices": [
+            "$2k+3$",
+            "$4-k$",
+            "$2k-3$",
+            "$k+3$"
+          ],
+          "answer": 0,
+          "hints": [
+            "For $x<2$ use the top piece $kx+3$."
+          ],
+          "solution": "$$\\lim_{x\\to2^-}(kx+3)=2k+3$$"
+        },
+        {
+          "prompt": "Compute the right-hand limit, which also equals $f(2)$.",
+          "choices": [
+            "$4+k$",
+            "$4-k$",
+            "$2-k$",
+            "$2k+3$"
+          ],
+          "answer": 1,
+          "hints": [
+            "For $x\\ge2$ use $x^2-k$ and substitute $x=2$."
+          ],
+          "solution": "$$\\lim_{x\\to2^+}(x^2-k)=f(2)=4-k$$"
+        },
+        {
+          "prompt": "Set the two sides equal and solve for $k$.",
+          "choices": [
+            "$k=\\dfrac73$",
+            "$k=1$",
+            "$k=\\dfrac13$",
+            "$k=-\\dfrac13$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$2k+3=4-k \\Rightarrow 3k=1$."
+          ],
+          "solution": "$$2k+3=4-k\\;\\Rightarrow\\;3k=1\\;\\Rightarrow\\;k=\\frac13$$"
+        }
+      ],
+      "solution": "Both pieces are polynomials, so the only possible break is at $x=2$. Continuity there needs $2k+3=4-k$, giving $k=\\dfrac13$ (both sides equal $\\dfrac{11}{3}$)."
+    },
+    {
+      "id": "mat1903-2a-03",
+      "topic": "2.a Continuity & Discontinuities",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Classify the discontinuity at the given point: (A) $\\dfrac{x^2-4}{x-2}$ at $x=2$; (B) $\\dfrac{|x|}{x}$ at $x=0$; (C) $\\dfrac{1}{x^2}$ at $x=0$.",
+      "choices": [
+        "(A) jump, (B) removable, (C) essential (infinite)",
+        "(A) removable, (B) jump, (C) essential (infinite)",
+        "(A) removable, (B) removable, (C) jump",
+        "(A) essential (infinite), (B) jump, (C) removable"
+      ],
+      "answer": 1,
+      "hints": [
+        "Removable: the limit exists but $f$ is undefined or different there.",
+        "Jump: both one-sided limits are finite but different. Infinite: a one-sided limit is $\\pm\\infty$."
+      ],
+      "solution": "(A) $\\dfrac{(x-2)(x+2)}{x-2}\\to4$: the limit exists, so it is removable. (B) The one-sided limits are $-1$ and $1$, so it is a jump. (C) $\\dfrac1{x^2}\\to+\\infty$, so it is an infinite (essential) discontinuity."
+    },
+    {
+      "id": "mat1903-2b-01",
+      "topic": "2.b Derivative by Definition",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Use the definition $f'(a)=\\displaystyle\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}$ to compute $f'(1)$ for $f(x)=\\dfrac{1}{x+1}$.",
+      "steps": [
+        {
+          "prompt": "Set up the difference quotient at $a=1$.",
+          "choices": [
+            "$\\dfrac{\\frac{1}{1+h}-\\frac12}{h}$",
+            "$\\dfrac{\\frac{1}{2+h}+\\frac12}{h}$",
+            "$\\dfrac{\\frac{1}{2+h}-\\frac12}{h}$",
+            "$\\dfrac{1}{2+h}-\\dfrac12$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$f(1+h)=\\dfrac{1}{(1+h)+1}=\\dfrac{1}{2+h}$ and $f(1)=\\dfrac12$."
+          ],
+          "solution": "$$\\frac{f(1+h)-f(1)}{h}=\\frac{\\frac{1}{2+h}-\\frac12}{h}$$"
+        },
+        {
+          "prompt": "Combine the fractions over a common denominator and simplify (for $h\\neq0$).",
+          "choices": [
+            "$\\dfrac{1}{2(2+h)}$",
+            "$\\dfrac{4+h}{2h(2+h)}$",
+            "$\\dfrac{-h}{2(2+h)}$",
+            "$\\dfrac{-1}{2(2+h)}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$\\dfrac{1}{2+h}-\\dfrac12=\\dfrac{2-(2+h)}{2(2+h)}$: distribute the minus sign over both terms.",
+            "Then divide by $h$ and cancel."
+          ],
+          "solution": "$$\\frac{2-(2+h)}{2(2+h)}\\cdot\\frac1h=\\frac{-h}{2h(2+h)}=\\frac{-1}{2(2+h)}$$"
+        },
+        {
+          "prompt": "Take the limit as $h\\to0$.",
+          "choices": [
+            "$-\\dfrac14$",
+            "$\\dfrac14$",
+            "$-\\dfrac12$",
+            "$0$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Substitute $h=0$ only after the $h$ has been cancelled."
+          ],
+          "solution": "$$\\lim_{h\\to0}\\frac{-1}{2(2+h)}=-\\frac14$$"
+        }
+      ],
+      "solution": "$$f'(1)=\\lim_{h\\to0}\\frac{\\frac{1}{2+h}-\\frac12}{h}=\\lim_{h\\to0}\\frac{-1}{2(2+h)}=-\\frac14$$ Check: $f'(x)=-\\dfrac{1}{(x+1)^2}$ gives $f'(1)=-\\dfrac14$."
+    },
+    {
+      "id": "mat1903-2b-02",
+      "topic": "2.b Derivative by Definition",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Use the limit definition to compute $f'(4)$ for $f(x)=\\sqrt{2x+1}$.",
+      "steps": [
+        {
+          "prompt": "Set up the difference quotient at $a=4$.",
+          "choices": [
+            "$\\dfrac{\\sqrt{9+h}-3}{h}$",
+            "$\\dfrac{\\sqrt{9+2h}-9}{h}$",
+            "$\\dfrac{\\sqrt{2h+1}-3}{h}$",
+            "$\\dfrac{\\sqrt{9+2h}-3}{h}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$f(4+h)=\\sqrt{2(4+h)+1}=\\sqrt{9+2h}$ and $f(4)=\\sqrt9=3$."
+          ],
+          "solution": "$$\\frac{f(4+h)-f(4)}{h}=\\frac{\\sqrt{9+2h}-3}{h}$$"
+        },
+        {
+          "prompt": "Multiply by the conjugate $\\sqrt{9+2h}+3$ and cancel $h$.",
+          "choices": [
+            "$\\dfrac{2}{\\sqrt{9+2h}+3}$",
+            "$\\dfrac{2h}{\\sqrt{9+2h}+3}$",
+            "$\\dfrac{1}{\\sqrt{9+2h}+3}$",
+            "$\\dfrac{2}{\\sqrt{9+2h}-3}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Numerator: $(9+2h)-9=2h$.",
+            "Divide the $2h$ by the $h$ in the denominator, leaving $2$."
+          ],
+          "solution": "$$\\frac{(9+2h)-9}{h\\left(\\sqrt{9+2h}+3\\right)}=\\frac{2}{\\sqrt{9+2h}+3}$$"
+        },
+        {
+          "prompt": "Take the limit as $h\\to0$.",
+          "choices": [
+            "$\\dfrac16$",
+            "$\\dfrac13$",
+            "$\\dfrac23$",
+            "$0$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\sqrt9+3=6$."
+          ],
+          "solution": "$$\\lim_{h\\to0}\\frac{2}{\\sqrt{9+2h}+3}=\\frac{2}{6}=\\frac13$$"
+        }
+      ],
+      "solution": "$$f'(4)=\\lim_{h\\to0}\\frac{\\sqrt{9+2h}-3}{h}=\\lim_{h\\to0}\\frac{2}{\\sqrt{9+2h}+3}=\\frac13$$ Check: $f'(x)=\\dfrac{1}{\\sqrt{2x+1}}$ gives $\\dfrac13$."
+    },
+    {
+      "id": "mat1903-2b-03",
+      "topic": "2.b Derivative by Definition",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "The limit $\\displaystyle\\lim_{h\\to0}\\frac{\\sqrt{16+h}-4}{h}$ represents:",
+      "choices": [
+        "$f'(16)$ for $f(x)=\\sqrt{x}$, and equals $\\dfrac18$",
+        "$f'(4)$ for $f(x)=\\sqrt{x}$, and equals $\\dfrac14$",
+        "$f'(16)$ for $f(x)=\\sqrt{x}$, and equals $\\dfrac14$",
+        "$0$, because $\\sqrt{16+0}-4=0$"
+      ],
+      "answer": 0,
+      "hints": [
+        "Match the pattern $\\dfrac{f(a+h)-f(a)}{h}$: what are $f$ and $a$?",
+        "$\\dfrac{d}{dx}\\sqrt{x}=\\dfrac{1}{2\\sqrt{x}}$."
+      ],
+      "solution": "With $f(x)=\\sqrt x$ and $a=16$: $f(a+h)=\\sqrt{16+h}$ and $f(a)=4$. So the limit is $f'(16)=\\dfrac{1}{2\\sqrt{16}}=\\dfrac18$. Plugging in $h=0$ gives $\\frac00$, not $0$."
+    },
+    {
+      "id": "mat1903-3a-01",
+      "topic": "3.a Differentiation Rules",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Let $f(x)=\\left(3x^2-5x+2\\right)^4$. Compute $f'(2)$.",
+      "steps": [
+        {
+          "prompt": "Identify the derivative of the inner function $u=3x^2-5x+2$.",
+          "choices": [
+            "$u'=6x+5$",
+            "$u'=6x-5$",
+            "$u'=3x-5$",
+            "$u'=6x-5+2$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Differentiate term by term; the constant $2$ disappears."
+          ],
+          "solution": "$$u'=6x-5$$"
+        },
+        {
+          "prompt": "Apply the chain rule: $f'(x)=\\,?$",
+          "choices": [
+            "$4\\left(3x^2-5x+2\\right)^3$",
+            "$4(6x-5)^3$",
+            "$4\\left(3x^2-5x+2\\right)^3(6x-5)$",
+            "$4\\left(3x^2-5x+2\\right)^3+(6x-5)$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\dfrac{d}{dx}u^4=4u^3\\cdot u'$: the inner derivative multiplies."
+          ],
+          "solution": "$$f'(x)=4\\left(3x^2-5x+2\\right)^3(6x-5)$$"
+        },
+        {
+          "prompt": "Evaluate $f'(2)$.",
+          "choices": [
+            "$256$",
+            "$448$",
+            "$4352$",
+            "$1792$"
+          ],
+          "answer": 3,
+          "hints": [
+            "At $x=2$: $u=12-10+2=4$ and $u'=7$."
+          ],
+          "solution": "$$f'(2)=4\\cdot4^3\\cdot7=4\\cdot64\\cdot7=1792$$"
+        }
+      ],
+      "solution": "$$f'(x)=4\\left(3x^2-5x+2\\right)^3(6x-5),\\qquad f'(2)=4(4)^3(7)=1792$$"
+    },
+    {
+      "id": "mat1903-3a-02",
+      "topic": "3.a Differentiation Rules",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Let $g(x)=\\sqrt{\\dfrac{x+1}{x-1}}$. Compute $g'\\!\\left(\\tfrac53\\right)$.",
+      "steps": [
+        {
+          "prompt": "Differentiate the inner quotient $\\dfrac{x+1}{x-1}$.",
+          "choices": [
+            "$\\dfrac{2}{(x-1)^2}$",
+            "$0$",
+            "$\\dfrac{-2}{(x-1)^2}$",
+            "$\\dfrac{-2}{x-1}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\left(\\dfrac uv\\right)'=\\dfrac{u'v-uv'}{v^2}$ with $u=x+1$, $v=x-1$.",
+            "$(x-1)-(x+1)$: the minus applies to both terms of $(x+1)$."
+          ],
+          "solution": "$$\\frac{(1)(x-1)-(x+1)(1)}{(x-1)^2}=\\frac{x-1-x-1}{(x-1)^2}=\\frac{-2}{(x-1)^2}$$"
+        },
+        {
+          "prompt": "Apply the chain rule to the square root: $g'(x)=\\,?$",
+          "choices": [
+            "$\\dfrac12\\left(\\dfrac{x+1}{x-1}\\right)^{1/2}\\cdot\\dfrac{-2}{(x-1)^2}$",
+            "$\\dfrac12\\left(\\dfrac{x+1}{x-1}\\right)^{-1/2}$",
+            "$-\\dfrac12\\left(\\dfrac{x+1}{x-1}\\right)^{-3/2}\\cdot\\dfrac{-2}{(x-1)^2}$",
+            "$\\dfrac12\\left(\\dfrac{x+1}{x-1}\\right)^{-1/2}\\cdot\\dfrac{-2}{(x-1)^2}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$\\dfrac{d}{dx}u^{1/2}=\\tfrac12u^{-1/2}\\,u'$."
+          ],
+          "solution": "$$g'(x)=\\frac12\\left(\\frac{x+1}{x-1}\\right)^{-1/2}\\cdot\\frac{-2}{(x-1)^2}$$"
+        },
+        {
+          "prompt": "Evaluate at $x=\\tfrac53$, where $\\dfrac{x+1}{x-1}=4$ and $(x-1)^2=\\tfrac49$.",
+          "choices": [
+            "$-\\dfrac98$",
+            "$\\dfrac98$",
+            "$-\\dfrac94$",
+            "$-\\dfrac92$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$4^{-1/2}=\\tfrac12$ and $\\dfrac{-2}{4/9}=-\\dfrac92$."
+          ],
+          "solution": "$$g'\\!\\left(\\tfrac53\\right)=\\frac12\\cdot\\frac12\\cdot\\left(-\\frac92\\right)=-\\frac98$$"
+        }
+      ],
+      "solution": "$$g'(x)=\\frac12\\left(\\frac{x+1}{x-1}\\right)^{-1/2}\\cdot\\frac{-2}{(x-1)^2},\\qquad g'\\!\\left(\\tfrac53\\right)=\\tfrac12\\cdot\\tfrac12\\cdot\\left(-\\tfrac92\\right)=-\\tfrac98$$"
+    },
+    {
+      "id": "mat1903-3a-03",
+      "topic": "3.a Differentiation Rules",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "For $h(x)=\\dfrac{u(x)}{v(x)}$, which expression is $h'(x)$?",
+      "choices": [
+        "$\\dfrac{uv'-u'v}{v^2}$",
+        "$\\dfrac{u'v+uv'}{v^2}$",
+        "$\\dfrac{u'}{v'}$",
+        "$\\dfrac{u'v-uv'}{v^2}$"
+      ],
+      "answer": 3,
+      "hints": [
+        "Mnemonic: “low d-high minus high d-low, over low squared”.",
+        "Swapping the order of the numerator flips the sign of the whole answer."
+      ],
+      "solution": "$$\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2}$$ The order matters because subtraction does not commute. $\\dfrac{u'}{v'}$ is never the quotient rule."
+    },
+    {
+      "id": "mat1903-3a-04",
+      "topic": "3.a Differentiation Rules",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Differentiate $f(x)=\\dfrac{4}{\\sqrt[3]{x}}$.",
+      "choices": [
+        "$-\\dfrac43x^{-4/3}$",
+        "$-\\dfrac43x^{-2/3}$",
+        "$\\dfrac43x^{-2/3}$",
+        "$12x^{2/3}$"
+      ],
+      "answer": 0,
+      "hints": [
+        "Rewrite first: $\\dfrac{4}{\\sqrt[3]{x}}=4x^{-1/3}$.",
+        "Power rule: subtract $1$ from the exponent: $-\\tfrac13-1=-\\tfrac43$."
+      ],
+      "solution": "$$f(x)=4x^{-1/3}\\;\\Rightarrow\\;f'(x)=4\\cdot\\left(-\\tfrac13\\right)x^{-4/3}=-\\frac43x^{-4/3}$$ (Differentiating only the denominator, $4\\big/\\left(\\tfrac13x^{-2/3}\\right)=12x^{2/3}$, is not a valid rule.)"
+    },
+    {
+      "id": "mat1903-3b-01",
+      "topic": "3.b Tangent & Normal Lines",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Find the equation of the tangent line to $f(x)=x^3-3x^2+2$ at $x=1$.",
+      "steps": [
+        {
+          "prompt": "Find the point of tangency $(x_0,y_0)$.",
+          "choices": [
+            "$(1,\\,2)$",
+            "$(1,\\,0)$",
+            "$(1,\\,-3)$",
+            "$(0,\\,2)$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$y_0=f(1)$, not $f'(1)$."
+          ],
+          "solution": "$$f(1)=1-3+2=0\\;\\Rightarrow\\;(1,0)$$"
+        },
+        {
+          "prompt": "Find the slope $m=f'(1)$.",
+          "choices": [
+            "$3$",
+            "$0$",
+            "$-3$",
+            "$-1$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$f'(x)=3x^2-6x$."
+          ],
+          "solution": "$$f'(1)=3-6=-3$$"
+        },
+        {
+          "prompt": "Write the tangent line $y-y_0=m(x-x_0)$ in slope-intercept form.",
+          "choices": [
+            "$y=-3x-3$",
+            "$y=3x-3$",
+            "$y=-3x$",
+            "$y=-3x+3$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$y-0=-3(x-1)$: distribute $-3$ over both terms."
+          ],
+          "solution": "$$y=-3(x-1)=-3x+3$$"
+        }
+      ],
+      "solution": "Point $(1,0)$, slope $f'(1)=-3$: $$y-0=-3(x-1)\\;\\Rightarrow\\;y=-3x+3$$"
+    },
+    {
+      "id": "mat1903-3b-02",
+      "topic": "3.b Tangent & Normal Lines",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Find all points where $f(x)=x^3-6x^2+9x+1$ has a horizontal tangent line.",
+      "steps": [
+        {
+          "prompt": "Solve $f'(x)=0$.",
+          "choices": [
+            "$x=-1$ and $x=-3$",
+            "$x=0$ and $x=4$",
+            "$x=1$ and $x=3$",
+            "$x=1$ only"
+          ],
+          "answer": 2,
+          "hints": [
+            "$f'(x)=3x^2-12x+9=3\\left(x^2-4x+3\\right)$.",
+            "$x^2-4x+3=(x-1)(x-3)$."
+          ],
+          "solution": "$$3(x-1)(x-3)=0\\;\\Rightarrow\\;x=1,\\;x=3$$"
+        },
+        {
+          "prompt": "Find the corresponding points on the curve.",
+          "choices": [
+            "$(1,\\,0)$ and $(3,\\,0)$",
+            "$(1,\\,4)$ and $(3,\\,0)$",
+            "$(5,\\,1)$ and $(1,\\,3)$",
+            "$(1,\\,5)$ and $(3,\\,1)$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Substitute into $f$, not $f'$, and keep the $+1$."
+          ],
+          "solution": "$$f(1)=1-6+9+1=5,\\qquad f(3)=27-54+27+1=1$$"
+        }
+      ],
+      "solution": "$f'(x)=3(x-1)(x-3)$ vanishes at $x=1$ and $x=3$, giving horizontal tangents at $(1,5)$ and $(3,1)$."
+    },
+    {
+      "id": "mat1903-3b-03",
+      "topic": "3.b Tangent & Normal Lines",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "The tangent line to a curve at $(2,1)$ is $y=4x-7$. Which is the normal line at that point?",
+      "choices": [
+        "$y-1=4(x-2)$",
+        "$y-1=\\dfrac14(x-2)$",
+        "$y-1=-4(x-2)$",
+        "$y-1=-\\dfrac14(x-2)$"
+      ],
+      "answer": 3,
+      "hints": [
+        "The normal line is perpendicular to the tangent line.",
+        "Perpendicular slopes satisfy $m_1m_2=-1$: take the negative reciprocal."
+      ],
+      "solution": "Tangent slope $m=4$, so the normal slope is $-\\dfrac14$: $$y-1=-\\frac14(x-2)$$ Taking only the reciprocal or only the negative is a classic slip."
+    }
+  ]
+}

@@ -1,16 +1,20 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { ActiveSession, AppState, Attempt, CourseConfig, CoursePack, Question, SessionMode, SessionRecord, SyncSettings } from '../types';
 import { liveElapsed } from '../lib/analytics';
-import { createSession, DEFAULT_CONFIG } from '../lib/session';
+import { createSession, DEFAULT_CONFIG, isCleanSolve } from '../lib/session';
 import { clearState, initialState, loadState, saveState } from '../lib/storage';
 import { merge, pull, push, syncConfigured, toPayload } from '../lib/sync';
 import { uid } from '../lib/util';
-import { SAMPLE_COURSE } from '../data/sampleCourse';
+import { BUNDLED_PACKS, BUNDLED_VERSION, RETIRED_PACKS } from '../data/bundledPacks';
 import { parseCoursePacks } from '../lib/parser';
+import { fatigueQuote, sessionStartQuote } from '../lib/quotes';
 
 export type SyncStatus = 'off' | 'synced' | 'syncing' | 'offline' | 'error';
 
 type Updater = (s: AppState) => AppState;
+
+const SHORT_BREAK_MS = 2 * 60 * 1000;
+const LONG_BREAK_MS = 10 * 60 * 1000;
 
 interface Store {
   state: AppState;
@@ -36,10 +40,32 @@ interface Store {
 
 const Ctx = createContext<Store | null>(null);
 
+/**
+ * Install or refresh the bundled packs when their version is newer than what this
+ * state has seen, and purge retired placeholder packs. Courses the user removed stay removed.
+ */
 function seed(s: AppState): AppState {
-  if (s.seeded) return s;
-  const { courses } = parseCoursePacks(SAMPLE_COURSE);
-  return { ...s, seeded: true, courses: s.courses.length ? s.courses : courses };
+  if ((s.bundledVersion ?? 0) >= BUNDLED_VERSION) return s;
+  const now = Date.now();
+  let courses = s.courses;
+  const removed = new Set(s.removed);
+  for (const r of RETIRED_PACKS) {
+    const c = courses.find((x) => x.id === r.id);
+    if (c && c.questions.some((q) => q.id === r.signature)) {
+      courses = courses.filter((x) => x !== c);
+      removed.add(r.id);
+    }
+  }
+  for (const raw of BUNDLED_PACKS) {
+    for (const pack of parseCoursePacks(raw).courses) {
+      if (removed.has(pack.id)) continue;
+      const i = courses.findIndex((c) => c.id === pack.id);
+      if (i >= 0) courses = courses.map((c, j) => (j === i ? { ...pack, installedAt: c.installedAt, updatedAt: now } : c));
+      else courses = [...courses, pack];
+    }
+  }
+  const active = s.active && courses.some((c) => c.id === s.active?.courseId) ? s.active : null;
+  return { ...s, courses, active, removed: [...removed], bundledVersion: BUNDLED_VERSION };
 }
 
 /** Write the active session's running totals back into its SessionRecord. */
@@ -162,7 +188,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
       startSession: (course, questions, mode) =>
         update((s) => {
-          const active = createSession(course, questions, mode);
+          const lastAt = s.sessions.reduce<number | null>((t, r) => (r.answered > 0 && (t === null || r.endedAt > t) ? r.endedAt : t), null);
+          const created = createSession(course, questions, mode);
+          const active: ActiveSession = { ...created, startQuoteId: sessionStartQuote(lastAt, created.startedAt, created.id).id };
           const record: SessionRecord = {
             id: active.id,
             courseId: course.id,
@@ -194,7 +222,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           if (!a || !q || !item || item.done) return s;
           const now = Date.now();
           const elapsed = liveElapsed(a, now);
-          const correct = item.steps.every((st) => st.firstTry === true && !st.revealed);
+          const correct = isCleanSolve({ ...item, done: true });
           const attempt: Attempt = {
             id: uid('a_'),
             sessionId: a.id,
@@ -210,7 +238,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             durationMs: Math.max(0, elapsed - (item.viewedAtMs ?? elapsed)),
             ts: now,
           };
-          const active: ActiveSession = { ...a, items: { ...a.items, [qid]: { ...item, done: true, completedAtMs: elapsed } } };
+          const active: ActiveSession = { ...a, breakQuoteId: null, items: { ...a.items, [qid]: { ...item, done: true, completedAtMs: elapsed } } };
           const rec = s.sessions.find((r) => r.id === a.id);
           const sessions = syncRecord(s, active, now, {
             answered: (rec?.answered ?? 0) + 1,
@@ -226,10 +254,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           if (!a || a.finished) return s;
           const now = at ?? Date.now();
           if (paused && a.runningSince) {
-            const active = { ...a, elapsedMs: a.elapsedMs + Math.max(0, now - a.runningSince), runningSince: null };
+            const active = { ...a, elapsedMs: a.elapsedMs + Math.max(0, now - a.runningSince), runningSince: null, pausedAt: now };
             return { ...s, active, sessions: syncRecord(s, active, now) };
           }
-          if (!paused && !a.runningSince) return { ...s, active: { ...a, runningSince: Date.now() } };
+          if (!paused && !a.runningSince) {
+            // A real break earns a fatigue-recovery quote on return.
+            const away = a.pausedAt ? now - a.pausedAt : 0;
+            const breakQuoteId = away >= LONG_BREAK_MS ? fatigueQuote('long-break').id : away >= SHORT_BREAK_MS ? fatigueQuote('short-break').id : a.breakQuoteId ?? null;
+            return { ...s, active: { ...a, runningSince: now, pausedAt: null, breakQuoteId } };
+          }
           return s;
         }),
 
@@ -251,10 +284,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
       setSync: (patch) => update((s) => ({ ...s, sync: { ...s.sync, ...patch } }), false),
       syncNow,
-      replaceAll: (next) => update(() => ({ ...initialState(), ...next, seeded: true })),
+      replaceAll: (next) => update(() => ({ ...initialState(), ...next, bundledVersion: BUNDLED_VERSION })),
       resetAll: () => {
         clearState();
-        update(() => ({ ...initialState(), seeded: true }));
+        update(() => seed(initialState()));
       },
     }),
     [update, syncNow],

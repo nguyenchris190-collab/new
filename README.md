@@ -5,8 +5,13 @@ A personal, offline-first math practice app. Multiple-choice and step-by-step qu
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # static output in dist/ (relative paths, so it can be hosted anywhere)
+npm run build      # validates packs, type-checks, then builds static output in dist/
+npm run validate:packs   # KaTeX + schema check for src/data/packs/*.json
 ```
+
+**Read [`AGENT_GUIDELINES.md`](AGENT_GUIDELINES.md) before changing code or authoring packs.** It covers the core principles, the pack schema, the KaTeX escaping rule, distractor design, the quote tiers, and the maintenance checklist.
+
+The bundled course is **MAT1903 Differential Calculus** (`src/data/packs/mat1903-calc.json`): 20 exam-style, calculator-free questions, 8 conceptual and 12 multi-step. Every distractor is built from a classic exam slip-up.
 
 ## Architecture
 
@@ -14,15 +19,18 @@ npm run build      # static output in dist/ (relative paths, so it can be hosted
 | --- | --- |
 | Screens | `src/screens/CentralHub.tsx`, `CaptainsLog.tsx`, `CourseWorkspace.tsx`, `GapTracker.tsx`, `SessionConfigurator.tsx`, `QuizRunner.tsx`, `SingleMCQuestion.tsx`, `SequentialQuestion.tsx`, `ChoiceStep.tsx`, `CheatSheetDrawer.tsx`, `NavigatorDrawer.tsx`, `SessionSummary.tsx` |
 | State | `src/state/StoreContext.tsx` (app state, `localStorage` persistence, scoring, background sync), `src/state/ThemeContext.tsx` |
-| Logic | `src/lib/parser.ts` (permissive pack import), `analytics.ts` (gap tracker, daily activity, pacing), `session.ts` (question selection), `sync.ts`, `storage.ts` |
+| Logic | `src/lib/parser.ts` (permissive pack import), `analytics.ts` (gap tracker, streaks, daily activity, pacing), `session.ts` (question selection, clean-solve rule), `quotes.ts` (tiered quote engine), `report.ts` (Fix-with-Agent prompt), `sync.ts`, `storage.ts` |
+| Content | `src/data/packs/*.json` (bundled packs), `src/data/quotes.json` (quote pool), `src/data/bundledPacks.ts` |
 | UI kit | `src/components/` (KaTeX `MathText`, monoline SVG icons, modal/drawer, import & settings modals) |
 
 All state is stored in `localStorage` under `drillengine:v1`. The theme is stored under `drillengine:theme`. An active session survives a page reload.
 
 ### Scoring
 
-* A question counts as **correct** only if every step was right on the first check, with no reveal. Retrying after a miss is always allowed, but it doesn't change that first result.
-* Hints appear only after a wrong check. After two wrong checks you can use **Reveal answer**.
+* A question counts as **correct** (a clean solve) only if every step was right on the first check, with no hints viewed and no reveal. Retrying after a miss is always allowed, but it doesn't change that first result.
+* Help is voluntary. **Hint** and **Reveal Full Derivation** are available at any moment, and using either marks the attempt as assisted.
+* **Report / Fix** replaces the old flag. It copies a ready-to-paste agent prompt with the question's JSON, so a wrong key or a rendering glitch can be fixed quickly.
+* **Quotes** are tiered by context: misses, clean streaks, session start, fatigue, and topic gaps. The thresholds are in `AGENT_GUIDELINES.md` §3.
 * Each attempt records how many tries it took, how many hints you used, your confidence, and how long it took.
 
 ### Topic statuses (Gap Tracker)
@@ -48,6 +56,7 @@ The parser is permissive. Unknown fields are ignored and missing optional fields
   "title": "Differential Calculus",
   "icon": "calculus",              // calculus | sigma | matrix | graph | geometry | probability | book
   "description": "…",
+  "cheatSheetMarkdown": "## Limits\n- $\\lim_{x\\to0}\\frac{\\sin x}{x}=1$", // Markdown: ## sections, - items, $$ blocks
   "cheatSheet": [                  // or a string, or { "Section": ["…"] }
     { "title": "Derivative rules", "items": ["$$\\frac{d}{dx}x^n = nx^{n-1}$$"] }
   ],

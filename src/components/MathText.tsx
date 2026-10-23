@@ -1,6 +1,6 @@
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, type ReactNode } from 'react';
 
 type Segment = { kind: 'text' | 'inline' | 'display'; value: string };
 
@@ -68,13 +68,30 @@ interface Props {
   className?: string;
   /** Treat undelimited input that looks like LaTeX as inline math (useful for choices). */
   autoMath?: boolean;
+  /** Apply **bold** and *italic* Markdown to the prose parts (math is untouched). */
+  rich?: boolean;
+}
+
+function renderProse(text: string, rich: boolean | undefined, key: string): ReactNode {
+  if (!rich) return text;
+  const out: ReactNode[] = [];
+  const re = /\*\*(.+?)\*\*|\*(.+?)\*/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text))) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    out.push(m[1] !== undefined ? <strong key={`${key}b${m.index}`}>{m[1]}</strong> : <em key={`${key}i${m.index}`}>{m[2]}</em>);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
 }
 
 /**
  * Renders prose with embedded KaTeX. Display equations are wrapped in their
  * own horizontal scroll container so long formulas never widen the page.
  */
-function MathTextImpl({ text, className, autoMath }: Props) {
+function MathTextImpl({ text, className, autoMath, rich }: Props) {
   const segments = useMemo(() => {
     if (autoMath && !text.includes('$') && !text.includes('\\(') && !text.includes('\\[') && LOOKS_LIKE_TEX.test(text)) {
       return [{ kind: 'inline', value: text }] as Segment[];
@@ -91,7 +108,7 @@ function MathTextImpl({ text, className, autoMath }: Props) {
           return lines.map((l, j) => (
             <span key={`${i}-${j}`}>
               {j > 0 && <br />}
-              {l}
+              {renderProse(l, rich, `${i}-${j}`)}
             </span>
           ));
         }
