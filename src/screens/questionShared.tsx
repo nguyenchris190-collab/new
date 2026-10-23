@@ -56,10 +56,6 @@ export function SolvedPanel({
       </p>
       {streak && outcome === 'clean' && (
         <div className="mt-3 border-t border-success/30 pt-3">
-          <p className="label-xs mb-1.5" data-streak-tier={streak.tier}>
-            {streak.count > 1 ? `${streak.count} clean in a row` : 'Clean solve'}
-            {streak.tier > 1 ? ` · tier ${streak.tier}` : ''}
-          </p>
           <QuoteLine quote={streak.quote} />
         </div>
       )}

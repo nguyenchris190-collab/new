@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { Confidence, Step, StepState } from '../types';
 import { MathText } from '../components/MathText';
-import { Dot, IconBulb, IconCheck, IconClose, IconEye } from '../components/icons';
+import { Dot, IconBulb, IconCheck, IconEye } from '../components/icons';
 import { QuoteLine } from '../components/QuoteLine';
 import { errorQuote } from '../lib/quotes';
 
@@ -173,7 +173,7 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
                   }`}
                   aria-hidden="true"
                 >
-                  {correct ? <IconCheck size={16} /> : selected && wrong ? <IconClose size={16} /> : String.fromCharCode(65 + pos)}
+                  {correct ? <IconCheck size={16} /> : String.fromCharCode(65 + pos)}
                 </span>
                 <span className="min-w-0 flex-1 overflow-x-auto py-1">
                   <span className={struck ? 'struck' : undefined}>
@@ -196,27 +196,9 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
         </div>
       )}
 
-      {!state.solved && stepMisses > 0 && (
-        <div className="mt-4 space-y-3 rounded-md border border-danger/50 bg-danger-bg px-4 py-3 animate-reveal" role="status">
-          <p className="flex items-center gap-2 font-semibold text-danger">
-            <IconClose size={18} /> {isWrong ? 'Not quite. Try another option.' : `${misses} miss${misses > 1 ? 'es' : ''} on this question. Check your next choice.`}
-          </p>
-          {err && <QuoteLine quote={err.quote} />}
-          {err?.tier === 3 && (
-            <div className="border-t border-danger/30 pt-3 text-sm">
-              <p className="mb-2">Stuck for a while? Stepping back is part of the method. Read the full derivation, or skip ahead and return later.</p>
-              <div className="flex flex-wrap gap-2">
-                <button className="btn" onClick={onReveal}>
-                  <IconEye size={18} /> Reveal Full Derivation
-                </button>
-                {onSkip && (
-                  <button className="btn border-transparent text-muted" onClick={onSkip}>
-                    Skip for now
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+      {!state.solved && err && (
+        <div className="mt-4 animate-reveal" role="status">
+          <QuoteLine quote={err.quote} />
         </div>
       )}
 
@@ -236,9 +218,12 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
                 <IconBulb size={18} /> {state.hintsShown ? `Show Hint ${state.hintsShown + 1}` : 'Hint'}
               </button>
             )}
-            {err?.tier !== 3 && (
-              <button className="btn border-transparent text-muted" onClick={onReveal}>
-                <IconEye size={18} /> Reveal Full Derivation
+            <button className={err?.tier === 3 ? 'btn' : 'btn border-transparent text-muted'} onClick={onReveal}>
+              <IconEye size={18} /> Reveal Full Derivation
+            </button>
+            {err?.tier === 3 && onSkip && (
+              <button className="btn border-transparent text-muted" onClick={onSkip}>
+                Skip for now
               </button>
             )}
           </div>

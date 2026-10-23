@@ -157,7 +157,7 @@ Ids are stable, so code may reference them; for example, the guardrail refers to
 | --- | --- | --- |
 | error | 1st failed check on the active question (counted across all its steps) | `tier1_first_miss` |
 | error | 2–3 failed checks | `tier2_repeated_misses` |
-| error | 4+ failed checks | `tier3_stuck`, plus a soft prompt offering **Reveal Full Derivation** or **Skip for now** |
+| error | 4+ failed checks | `tier3_stuck`; **Reveal Full Derivation** is emphasized and **Skip for now** appears |
 | streak | clean streak of 1–4 in this session | `tier1_clean_solve` |
 | streak | clean streak of 5–9 | `tier2_sustained_run` |
 | streak | streak of 10+, or today's solved count reaching 10/25/50/100 (Captain's Log milestone) | `tier3_milestone` |
@@ -182,7 +182,7 @@ Before you push:
   - [ ] The Hub renders and the MAT1903 card opens the Course Workspace.
   - [ ] **Hint** and **Reveal Full Derivation** work before any wrong attempt.
   - [ ] **Report / Fix** copies a prompt that contains valid question JSON.
-  - [ ] Error and streak quotes appear at the expected tiers.
+  - [ ] Error and streak quotes appear at the expected tiers, standalone (no labels or "Not quite" text around them).
   - [ ] `document.documentElement.scrollWidth <= innerWidth` holds, so there is no page-level horizontal scroll.
   - [ ] There are no `pageerror` or console errors.
 
