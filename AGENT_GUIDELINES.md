@@ -12,6 +12,7 @@ This is the permanent developer manual for any AI agent (or human) working on Dr
 > - There are no auth walls, no database migrations, and no backend you have to run.
 > - The parser accepts loose input and must never crash on a missing optional field.
 > - All problems are static, pre-verified JSON. Runtime math generators are forbidden.
+> - MAT1903 derivations use the UdeM intra sentences in §2.6. The student still only taps; the choices are those sentences.
 > - `npm run build` must pass. It runs the pack validator, the type checker, and the bundler.
 
 ---
@@ -66,7 +67,7 @@ This is the permanent developer manual for any AI agent (or human) working on Dr
 2. **Harvest exam patterns.** For each section, collect 3–6 representative exercises from past exams or problem sets. Note the *classic slip-ups* each one invites (see §2.4).
 3. **Decide the format for each problem:**
    - Conceptual or reasoning items become **single multiple choice** with `"category": "theory"`.
-   - Computations become **2–3 step sequential** questions with `"category": "practice"`. Each step is one decision a student makes on paper, such as factoring, choosing a conjugate, or evaluating.
+   - Computations become **2–3 step sequential** questions with `"category": "practice"`. Each step is one decision a student makes on paper. For MAT1903, the decision is a formal corrigé line: the domain, an indeterminate form or a conjugate expansion, then the geometric or continuity conclusion (§2.6).
 4. **Make it calculator-free.** Choose parameters so that every intermediate value is an integer or a simple rational. Roots must be perfect squares (`\sqrt{4}`, `\sqrt{9}`, `\sqrt{16}`, `\sqrt{25}`, `\sqrt{49}`, `\sqrt{64}`, `\sqrt{100}`). Never leave an unresolved surd like `\sqrt{17}/3`.
 5. **Write the distractors** (§2.4), the hints, which should be progressive with the gentlest first, and the per-step `solution` plus a final full-derivation `solution`.
 6. **Verify every answer key independently**, for example with a computer algebra system in a scratch script. Check that no distractor equals the correct value.
@@ -124,21 +125,42 @@ Every wrong option must be a **real student failure mode** that leads to a speci
 - **Chain rule:** dropping the inner derivative, or putting the power on the wrong layer.
 - **One-sided limits:** treating $|x-a|$ as $x-a$ on both sides, or forgetting that $\sqrt{x^2}=|x|=-x$ as $x\to-\infty$.
 - **Power rule** with negative or fractional exponents: subtracting 1 in the wrong direction ($-\tfrac13 \to -\tfrac23$ instead of $-\tfrac43$).
-- **Tangent and normal lines:** using $f'(a)$ as the $y$-coordinate, taking only the reciprocal or only the negative for the normal slope, or a sign slip when distributing $m(x-x_0)$.
+- **Tangent and normal lines:** using $f'(a)$ as the $y$-coordinate, taking only the reciprocal or only the negative for the normal slope, or a sign slip when solving $f(a) = m(a) + b$.
+- **UdeM notation:** writing $\setminus$ instead of the minus sign in $\mathbb{R} - \{a\}$, calling a cancelled factor a vertical asymptote, dropping one of $\lim_{x\to-\infty}$ and $\lim_{x\to+\infty}$, or forgetting « car pour $x < 0$, $\sqrt{x^2} = -x$ ».
+- **Continuity:** computing limits after $a \notin \text{Dom}_f$, or declaring continuity from a single one-sided limit.
 - **Formal definition:** dropping the $h$ in the denominator, or plugging in $h=0$ before cancelling.
 
 ### 2.5 Multi-step accordion decomposition
-- Use 2–3 steps. Each step is one atomic decision whose result the next step builds on, for example: set up, then simplify, then evaluate.
-- A step prompt states what to do ("Multiply by the conjugate…"), not the answer.
-- The step `solution` shows that step's algebra. The question-level `solution` shows the whole derivation in display math.
+- Use 2–3 steps. Each step is one atomic decision whose result the next step builds on.
+- For MAT1903, the three steps are usually: formal domain, intermediate indeterminate form or conjugate expansion, then the formal conclusion sentence (§2.6). The choices are those sentences. The prompt names the step; it does not reveal the line.
+- A step prompt states what to do, not the answer. Official transition phrases are allowed as the prompt, for example « Levons l'indétermination en multipliant par l'expression conjuguée du numérateur ».
+- The step `solution` shows that step's algebra. The question-level `solution` shows the whole derivation in display math, with the headers and conclusion sentences from §2.6.
 - Step $n+1$ stays hidden until step $n$ is verified. Do not write a step that only makes sense if the student can see a later one.
+- The interaction stays tap-only. Do not add a text field so the student can type the sentence. The formal line is one of the choices, and the full write-up is the revealed derivation.
+
+### 2.6 UdeM MAT1903 corrigé contract
+MAT1903 stems, choices, hints, and derivations follow the Université de Montréal intra corrigé. Keep the question ids. Arithmetic stays calculator-free: integer roots and rational values only. French exam sentences below are copied as written; do not paraphrase them back into English shorthand. Guillemets « » stay outside math delimiters, because KaTeX strict mode rejects them inside `\text`.
+
+**Domain.** Header: `Domaine de la fonction f`. Then the slash form $\text{Dom}_f = \{x \in \mathbb{R} \ / \ \text{dénominateur} \neq 0\}$, then the factored condition, then set subtraction with a minus sign: $\text{Dom}_f = \mathbb{R} - \{2, 3\}$. Do not use `\setminus`.
+
+**Vertical asymptotes.** Header: `Recherche des asymptotes verticales :`. A root that gives $0/0$ is written by direct substitution and labeled `forme indéterminée`. After cancelling, state the restriction `pour x ≠ a`. A zero denominator is tagged in parentheses, for example `forme (1/0^+)` or `forme (5/(-2 · 0^+))`. If the line is a vertical asymptote: `La droite d'équation x = 3 est une asymptote verticale à la courbe représentative de la fonction f.` If it is not: `La droite d'équation x = 2 n'est pas asymptote verticale à la courbe représentative de la fonction f.`
+
+**Horizontal asymptotes.** Header: `Recherche des asymptotes horizontales :`. Compute $\lim_{x \to -\infty} f(x)$ and $\lim_{x \to +\infty} f(x)$ as two separate evaluations. Factor the highest power out of the numerator and the denominator before taking the limit; do not jump to a degree shortcut. For a radical, write « car pour $x < 0$, $\sqrt{x^2} = -x$ » on the way to $-\infty$, and « car pour $x > 0$, $\sqrt{x^2} = x$ » on the way to $+\infty$ (the same sentences with $|x^3| = -x^3$ or $|x^3| = x^3$ when the power is a cube). Conclusion: `La droite d'équation y = L est une asymptote horizontale à la courbe représentative de la fonction f en [-∞ / +∞].` Use one side, `[+∞]` or `[-∞]`, when the two limits differ.
+
+**Indeterminate limits.** Use these transitions: `Levons l'indétermination en réduisant au même dénominateur` ; `Levons l'indétermination en multipliant par l'expression conjuguée du numérateur` ; `On distingue 2 cas : lorsque x → a^- et x → a^+`. When the one-sided limits differ: `On a lim_{x → a^-} ≠ lim_{x → a^+}. On conclut que la lim_{x → a} n'existe pas.`
+
+**Continuity, in this order.** (1) $a \in \text{Dom}_f$. If $a$ is not in the domain, stop and write `La fonction f n'est pas définie en x = a donc elle n'est pas continue en x = a.` Do not keep calculating limits inside that continuity proof. A later classification of the discontinuity is a separate limit study. (2) State $f(a)$. (3) Compute the two lateral limits separately. (4) If they equal $L$ and $f(a) = L$, conclude `La fonction f est donc continue en x = a.` If they differ, the two-sided limit does not exist and `La fonction f est discontinue en x = a.` If it is not continuous: `La fonction f n'est pas continue en x = a donc elle n'est pas dérivable en x = a.`
+
+**Derivative by definition at a boundary.** Open with `Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction f en x = a`. Evaluate the left-hand and right-hand difference quotients separately. If they differ: `On a donc lim_{h → 0^-} (f(a+h)-f(a))/h ≠ lim_{h → 0^+} (f(a+h)-f(a))/h. La fonction f n'est pas dérivable en x = a, f'(a) n'existe pas.`
+
+**Rules and tangents.** Before a quotient derivative, write `On utilise la formule : (u/v)' = (u'v - uv')/v^2`. Declare the power or chain formula the same way when that is the rule in use. For a tangent line: `La pente de la droite tangente au graphe de f(x) en x = a est égale à : f'(a) = m`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) est de la forme : y = f'(a)x + b = mx + b`. Then `Sachant que cette tangente passe par le point (a, f(a)), nous avons : f(a) = m(a) + b`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) s'écrit donc : y = mx + b`.
 
 ---
 
 ## 3. Tiered quotes system protocol
 
 ### 3.1 Philosophy
-The quotes are stoic in tone. They are anti-anxiety, focused on process, and non-judgmental. They never praise talent and never shame a mistake. A first slip gets a calm, procedural line. Higher-energy lines are kept for real persistence or milestones, which gives the UI emotional pacing without nagging. Quotes are always quiet and non-blocking. Most are dismissible.
+The quotes are stoic in tone. They are anti-anxiety, focused on process, and non-judgmental. They never praise talent and never shame a mistake. A first slip gets a calm, procedural line. Higher-energy lines are kept for real persistence or milestones, which gives the UI emotional pacing without nagging. Quotes are always quiet and non-blocking. Most are dismissible. Tier 3 also includes `err-t3-04` (Kengan Ashura, Ch. 231), a short challenge line for a student who is stuck. It does not insult them. Do not renumber it.
 
 ### 3.2 Schema (`src/data/quotes.json`)
 ```jsonc
@@ -191,7 +213,7 @@ Before you push:
 
 UI invariants to preserve:
 - **Strikethrough over KaTeX.** `text-decoration: line-through` does not cross KaTeX boxes. Eliminated options use the `.struck` class in `src/index.css`, which draws an absolutely positioned 2px rule through an inline-block wrapper at reduced opacity. Keep both the wrapper and the rule.
-- **Math overflow safety.** Every display equation renders inside `.math-scroll` (`overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; max-width: 100%`), and inline math inside `.math-inline-scroll`. A long formula must never widen the page.
+- **Math overflow safety.** Every display equation renders inside `.math-scroll` (`overflow-x: auto; overflow-y: hidden; max-width: 100%`), and inline math inside `.math-inline-scroll`. A long formula must never widen the page. Do not give KaTeX's `.vlist-s` strut its 2px width back: that empty cell was turning on a scrollbar across formulas that fit. A thin bar is only for a formula that is actually wider than its box, and it sits in the padding under the glyphs.
 - **Touch targets.** Every button, option, and chip is at least **48×48 px**. Use the `min-h-touch` and `min-w-touch` utilities, or `.btn`, `.btn-icon`, `.btn-primary`.
 - **iOS zoom.** All inputs, selects, and textareas use a font size of at least 16px.
 - **Icons** are inline monoline SVGs (1.75px stroke, one accent part through `.ic-accent` or `.ic-fill`). **No emoji** anywhere in the UI.

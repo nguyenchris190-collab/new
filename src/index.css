@@ -137,22 +137,44 @@
 }
 
 /* ---------- Math ---------- */
-.math-scroll {
+/* KaTeX's subscript strut is an empty 2px cell pulled back with a negative
+   margin. The margin does not shrink scrollWidth, so overflow-x: auto was
+   painting a scrollbar across every subscript and fraction. Collapse the
+   strut; a bar then appears only when the formula is actually wider than
+   the box, and the padding keeps that bar under the glyphs. */
+.katex .vlist-s {
+  width: 0;
+  min-width: 0;
+}
+.katex .vlist-t2 {
+  margin-right: 0;
+}
+.math-scroll,
+.math-inline-scroll {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
-  padding: 0.25rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--muted) / 0.45) transparent;
+}
+.math-scroll::-webkit-scrollbar,
+.math-inline-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+.math-scroll::-webkit-scrollbar-thumb,
+.math-inline-scroll::-webkit-scrollbar-thumb {
+  background: rgb(var(--muted) / 0.45);
+  border-radius: 999px;
+}
+.math-scroll {
+  padding: 0.2rem 0 0.55rem;
 }
 .math-scroll .katex-display {
   margin: 0.25rem 0;
 }
 .math-inline-scroll {
   display: inline-block;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   vertical-align: middle;
 }
 .katex {
