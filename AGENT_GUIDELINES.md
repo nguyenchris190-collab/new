@@ -213,7 +213,7 @@ Before you push:
 
 UI invariants to preserve:
 - **Strikethrough over KaTeX.** `text-decoration: line-through` does not cross KaTeX boxes. Eliminated options use the `.struck` class in `src/index.css`, which draws an absolutely positioned 2px rule through an inline-block wrapper at reduced opacity. Keep both the wrapper and the rule.
-- **Math overflow safety.** Every display equation renders inside `.math-scroll` (`overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; max-width: 100%`), and inline math inside `.math-inline-scroll`. A long formula must never widen the page.
+- **Math overflow safety.** Every display equation renders inside `.math-scroll` (`overflow-x: auto; overflow-y: hidden; max-width: 100%`), and inline math inside `.math-inline-scroll`. A long formula must never widen the page. Do not give KaTeX's `.vlist-s` strut its 2px width back: that empty cell was turning on a scrollbar across formulas that fit. A thin bar is only for a formula that is actually wider than its box, and it sits in the padding under the glyphs.
 - **Touch targets.** Every button, option, and chip is at least **48×48 px**. Use the `min-h-touch` and `min-w-touch` utilities, or `.btn`, `.btn-icon`, `.btn-primary`.
 - **iOS zoom.** All inputs, selects, and textareas use a font size of at least 16px.
 - **Icons** are inline monoline SVGs (1.75px stroke, one accent part through `.ic-accent` or `.ic-fill`). **No emoji** anywhere in the UI.

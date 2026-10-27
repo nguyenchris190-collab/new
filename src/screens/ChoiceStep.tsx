@@ -176,7 +176,7 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
                 >
                   {correct ? <IconCheck size={16} /> : String.fromCharCode(65 + pos)}
                 </span>
-                <span className="min-w-0 flex-1 overflow-x-auto py-1">
+                <span className="min-w-0 flex-1 py-1">
                   <span className={`choice-label${struck ? ' struck' : ''}`}>
                     <MathText text={step.choices[idx]} autoMath />
                   </span>
