@@ -67,7 +67,7 @@ This is the permanent developer manual for any AI agent (or human) working on Dr
 2. **Harvest exam patterns.** For each section, collect 3–6 representative exercises from past exams or problem sets. Note the *classic slip-ups* each one invites (see §2.4).
 3. **Decide the format for each problem:**
    - Conceptual or reasoning items become **single multiple choice** with `"category": "theory"`.
-   - Computations become **2–3 step sequential** questions with `"category": "practice"`. Each step is one decision a student makes on paper. For MAT1903, the decision is a formal corrigé line: the domain, an indeterminate form or a conjugate expansion, then the geometric or continuity conclusion (§2.6).
+   - Computations become **2–4 step sequential** questions with `"category": "practice"`. Each step is one decision a student makes on paper. For MAT1903, the decision is a formal corrigé line: the domain, an indeterminate form or a conjugate expansion, then the geometric or continuity conclusion (§2.6).
 4. **Make it calculator-free.** Choose parameters so that every intermediate value is an integer or a simple rational. Roots must be perfect squares (`\sqrt{4}`, `\sqrt{9}`, `\sqrt{16}`, `\sqrt{25}`, `\sqrt{49}`, `\sqrt{64}`, `\sqrt{100}`). Never leave an unresolved surd like `\sqrt{17}/3`.
 5. **Write the distractors** (§2.4), the hints, which should be progressive with the gentlest first, and the per-step `solution` plus a final full-derivation `solution`.
 6. **Verify every answer key independently**, for example with a computer algebra system in a scratch script. Check that no distractor equals the correct value.
@@ -87,8 +87,9 @@ This is the permanent developer manual for any AI agent (or human) working on Dr
   "cheatSheet": [ { "title": "…", "items": ["…"] } ],              // optional alternative
   "questions": [
     {
-      "id": "mat1903-1b-02",         // REQUIRED for authored packs; never reuse or renumber
-      "topic": "1.b Indeterminate Limits (0/0)", // REQUIRED (defaults to "General")
+      "id": "mat1903-p1-07",         // REQUIRED for authored packs; never reuse or renumber
+      "topic": "Pilier 1 · Domaine, asymptotes et limites", // REQUIRED (defaults to "General")
+      "source": "Intra A25 · Q1.3",   // optional: exam reference, shown as a tag in the session
       "category": "theory",          // "theory" | "practice"
       "difficulty": 2,               // optional 1–3
       "question": "…",               // REQUIRED stem
@@ -131,7 +132,7 @@ Every wrong option must be a **real student failure mode** that leads to a speci
 - **Formal definition:** dropping the $h$ in the denominator, or plugging in $h=0$ before cancelling.
 
 ### 2.5 Multi-step accordion decomposition
-- Use 2–3 steps. Each step is one atomic decision whose result the next step builds on.
+- Use 2–4 steps. Each step is one atomic decision whose result the next step builds on. A full asymptote study (domain, each root of the denominator, horizontal asymptotes) uses all 4; most other problems need 2–3.
 - For MAT1903, the three steps are usually: formal domain, intermediate indeterminate form or conjugate expansion, then the formal conclusion sentence (§2.6). The choices are those sentences. The prompt names the step; it does not reveal the line.
 - A step prompt states what to do, not the answer. Official transition phrases are allowed as the prompt, for example « Levons l'indétermination en multipliant par l'expression conjuguée du numérateur ».
 - The step `solution` shows that step's algebra. The question-level `solution` shows the whole derivation in display math, with the headers and conclusion sentences from §2.6.
@@ -139,13 +140,13 @@ Every wrong option must be a **real student failure mode** that leads to a speci
 - The interaction stays tap-only. Do not add a text field so the student can type the sentence. The formal line is one of the choices, and the full write-up is the revealed derivation.
 
 ### 2.6 UdeM MAT1903 corrigé contract
-MAT1903 stems, choices, hints, and derivations follow the Université de Montréal intra corrigé. Keep the question ids. Arithmetic stays calculator-free: integer roots and rational values only. French exam sentences below are copied as written; do not paraphrase them back into English shorthand. Guillemets « » stay outside math delimiters, because KaTeX strict mode rejects them inside `\text`.
+MAT1903 stems, choices, hints, and derivations follow the Université de Montréal intra corrigé. Question ids are stable once published (the v4 pack retired the v1–v3 ids when it moved to the 3-exam blueprint in §2.7). Arithmetic stays calculator-free: integer roots and rational values only. French exam sentences below are copied as written; do not paraphrase them back into English shorthand. Guillemets « » stay outside math delimiters, because KaTeX strict mode rejects them inside `\text`.
 
 **Domain.** Header: `Domaine de la fonction f`. Then the slash form $\text{Dom}_f = \{x \in \mathbb{R} \ / \ \text{dénominateur} \neq 0\}$, then the factored condition, then set subtraction with a minus sign: $\text{Dom}_f = \mathbb{R} - \{2, 3\}$. Do not use `\setminus`.
 
-**Vertical asymptotes.** Header: `Recherche des asymptotes verticales :`. A root that gives $0/0$ is written by direct substitution and labeled `forme indéterminée`. After cancelling, state the restriction `pour x ≠ a`. A zero denominator is tagged in parentheses, for example `forme (1/0^+)` or `forme (5/(-2 · 0^+))`. If the line is a vertical asymptote: `La droite d'équation x = 3 est une asymptote verticale à la courbe représentative de la fonction f.` If it is not: `La droite d'équation x = 2 n'est pas asymptote verticale à la courbe représentative de la fonction f.`
+**Vertical asymptotes.** Header: `Recherche des asymptotes verticales :`. A root that gives $0/0$ is written by direct substitution and labeled `forme indéterminée`. After cancelling, state the restriction `pour x ≠ a`. A zero denominator is tagged in parentheses, for example `forme (1/0^+)` or `forme (5/(-2 · 0^+))`. If the line is a vertical asymptote: `La droite d'équation x = 3 est une asymptote verticale à la courbe représentative de la fonction f.` If it is not: `La droite d'équation x = 2 n'est pas une asymptote verticale à la courbe représentative de la fonction f.`
 
-**Horizontal asymptotes.** Header: `Recherche des asymptotes horizontales :`. Compute $\lim_{x \to -\infty} f(x)$ and $\lim_{x \to +\infty} f(x)$ as two separate evaluations. Factor the highest power out of the numerator and the denominator before taking the limit; do not jump to a degree shortcut. For a radical, write « car pour $x < 0$, $\sqrt{x^2} = -x$ » on the way to $-\infty$, and « car pour $x > 0$, $\sqrt{x^2} = x$ » on the way to $+\infty$ (the same sentences with $|x^3| = -x^3$ or $|x^3| = x^3$ when the power is a cube). Conclusion: `La droite d'équation y = L est une asymptote horizontale à la courbe représentative de la fonction f en [-∞ / +∞].` Use one side, `[+∞]` or `[-∞]`, when the two limits differ.
+**Horizontal asymptotes.** Header: `Recherche des asymptotes horizontales :`. Compute $\lim_{x \to -\infty} f(x)$ and $\lim_{x \to +\infty} f(x)$ as two separate evaluations. Factor the highest power out of the numerator and the denominator before taking the limit; do not jump to a degree shortcut. Canonical form: $\lim_{x \to -\infty} \frac{x\left(1 - \frac{2}{x}\right)}{x^2\left(1 - \frac{5x}{x^2} + \frac{6}{x^2}\right)} = \lim_{x \to -\infty} \frac{1 - \frac{2}{x}}{x\left(1 - \frac{5}{x} + \frac{6}{x^2}\right)}$ pour $x \neq 0$ $= \frac{1 - 0}{-\infty(1 - 0 + 0)} = \frac{1}{-\infty} = 0$. For a radical, write « car pour $x < 0$, $\sqrt{x^2} = -x$ » on the way to $-\infty$, and « car pour $x > 0$, $\sqrt{x^2} = x$ » on the way to $+\infty$ (the same sentences with $|x^3| = -x^3$ or $|x^3| = x^3$ when the power is a cube). Conclusion: `La droite d'équation y = L est une asymptote horizontale à la courbe représentative de la fonction f en [-∞ / +∞].` Use one side, `[+∞]` or `[-∞]`, when the two limits differ.
 
 **Indeterminate limits.** Use these transitions: `Levons l'indétermination en réduisant au même dénominateur` ; `Levons l'indétermination en multipliant par l'expression conjuguée du numérateur` ; `On distingue 2 cas : lorsque x → a^- et x → a^+`. When the one-sided limits differ: `On a lim_{x → a^-} ≠ lim_{x → a^+}. On conclut que la lim_{x → a} n'existe pas.`
 
@@ -153,14 +154,28 @@ MAT1903 stems, choices, hints, and derivations follow the Université de Montré
 
 **Derivative by definition at a boundary.** Open with `Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction f en x = a`. Evaluate the left-hand and right-hand difference quotients separately. If they differ: `On a donc lim_{h → 0^-} (f(a+h)-f(a))/h ≠ lim_{h → 0^+} (f(a+h)-f(a))/h. La fonction f n'est pas dérivable en x = a, f'(a) n'existe pas.`
 
-**Rules and tangents.** Before a quotient derivative, write `On utilise la formule : (u/v)' = (u'v - uv')/v^2`. Declare the power or chain formula the same way when that is the rule in use. For a tangent line: `La pente de la droite tangente au graphe de f(x) en x = a est égale à : f'(a) = m`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) est de la forme : y = f'(a)x + b = mx + b`. Then `Sachant que cette tangente passe par le point (a, f(a)), nous avons : f(a) = m(a) + b`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) s'écrit donc : y = mx + b`.
+**Derivative by definition, rational case.** Compute $f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$ by reducing to a common denominator, then cancelling $h$ « pour $h \neq 0$ ». If the two lateral difference quotients at a junction are equal: `lim_{h → 0^-} … = lim_{h → 0^+} … = m ⟹ f'(a) = m`.
+
+**Rules and tangents.** Before differentiating, declare the rule in use, in full when several apply: `On utilise les formules : (u · v)' = u'v + uv', (u^r)' = r u^{r-1} u' et (u/v)' = (u'v - uv')/v^2`. Constant traps are graded: $(\pi)' = 0$ and $(5^{12})' = 0$, but $(x^{\pi})' = \pi x^{\pi - 1}$. Declare the power or chain formula the same way when that is the rule in use. For a tangent line: `La pente de la droite tangente au graphe de f(x) en x = a est égale à : f'(a) = m`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) est de la forme : y = f'(a)x + b = mx + b`. Then `Sachant que cette tangente passe par le point (a, f(a)), nous avons : f(a) = m(a) + b`. Then `L'équation de la droite tangente au graphe de f(x) au point (a, f(a)) s'écrit donc : y = mx + b`.
+
+### 2.7 MAT1903 3-exam synthesis (H24, A25, H26)
+The three official intras (Hiver 2024, Automne 2025, Hiver 2026) reuse one blueprint, down to the functions, the radical sub-expressions, and the traps. The bundled pack (`mat1903-calc`, version 4, 27 questions) mirrors it as **4 canonical pillars**, one `topic` each, so the Gap Tracker shows exactly these four rows:
+
+| Pillar (`topic`) | Questions | What the exams test | Recurring traps |
+| --- | --- | --- | --- |
+| Pilier 1 · Domaine, asymptotes et limites | 8 (`p1-01`…`p1-08`) | Full study of a rational function: domain, each root of the denominator (hole vs. vertical asymptote), horizontal asymptotes at $-\infty$ and $+\infty$; one complex-fraction limit; two conjugate limits | Simplifying before stating the domain; calling $\frac{0}{0}$ a value; $|x^3|$ and $\sqrt{x^2}$ signs at $-\infty$; swapped one-sided signs |
+| Pilier 2 · Continuité par morceaux | 6 (`p2-01`…`p2-06`) | The 4-step continuity proof at a junction, and an interior point outside the domain | Computing limits when $a \notin \text{Dom}_f$; using the wrong branch for $f(a)$; "continuous ⟹ differentiable" |
+| Pilier 3 · Dérivée par définition et tangentes | 6 (`p3-01`…`p3-06`) | $f'(a)$ by the definition (rational and radical), lateral difference quotients at a junction, tangent line $y = mx + b$ | Forgetting the conjugate's factor; averaging unequal lateral quotients; solving for $b$ with the wrong sign |
+| Pilier 4 · Règles de dérivation | 7 (`p4-01`…`p4-07`) | Product, power and quotient rules on recycled expressions such as $\sqrt[3]{\sqrt{x} + 3x^7}$ and $\left(\frac{x^2 - 1}{x^2 + 1}\right)^6$ | $(\pi)' = 0$ vs. $(x^{\pi})' = \pi x^{\pi - 1}$; dropping the inner derivative; reversing the quotient numerator |
+
+Each question carries a `source` tag (for example `Intra H24 · Q1.a (1)`). Questions marked `Variante calibrée` are calibrated variants of an exam archetype, not verbatim exam items. When a new intra is released: map each of its questions to a pillar, add or update a question with the same corrigé phrasing (§2.6), verify the key with a CAS, bump `BUNDLED_VERSION`, and keep the pillar topics unchanged.
 
 ---
 
 ## 3. Tiered quotes system protocol
 
 ### 3.1 Philosophy
-The quotes are stoic in tone. They are anti-anxiety, focused on process, and non-judgmental. They never praise talent and never shame a mistake. A first slip gets a calm, procedural line. Higher-energy lines are kept for real persistence or milestones, which gives the UI emotional pacing without nagging. Quotes are always quiet and non-blocking. Most are dismissible. Tier 3 also includes `err-t3-04` (Kengan Ashura, Ch. 231), a short challenge line for a student who is stuck. It does not insult them. Do not renumber it.
+The quotes are stoic in tone. They are anti-anxiety, focused on process, and non-judgmental. They never praise talent and never shame a mistake. A first slip gets a calm, procedural line. Higher-energy lines are kept for real persistence or milestones, which gives the UI emotional pacing without nagging. Quotes are always quiet and non-blocking. Most are dismissible. Tier 3 also includes `err-t3-04` (Kengan Ashura, Ch. 231, « I'll ask you one more time... You wanna fight too? »), a reframed existential challenge for a student who is stuck, and `gaps` includes `gap-05` (« You wanna fight too? ») as an invitation to take on an unexplored section. Neither insults the student. Do not renumber them.
 
 ### 3.2 Schema (`src/data/quotes.json`)
 ```jsonc

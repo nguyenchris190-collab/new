@@ -152,6 +152,8 @@ function parseQuestion(o: Obj, _index: number, defaultTopic: string): Question |
   if (sol) q.solution = sol;
   const diff = Number(pick(o, ['difficulty', 'level']));
   if (Number.isFinite(diff)) q.difficulty = diff;
+  const source = str(pick(o, ['source', 'exam', 'ref', 'reference']));
+  if (source) q.source = source;
   return q;
 }
 
