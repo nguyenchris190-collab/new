@@ -10,6 +10,7 @@ export const ISSUE_TYPES = [
 /** Serialize a question back into the canonical pack schema (unshuffled choice order). */
 export function questionToPackJson(q: Question): Record<string, unknown> {
   const base: Record<string, unknown> = { id: q.id, topic: q.topic, category: q.category };
+  if (q.source) base.source = q.source;
   if (q.difficulty !== undefined) base.difficulty = q.difficulty;
   base.question = q.prompt;
   if (q.kind === 'sequential') {

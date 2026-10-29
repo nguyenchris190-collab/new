@@ -3,800 +3,1368 @@
   "code": "MAT1903",
   "title": "Differential Calculus",
   "icon": "calculus",
-  "version": 2,
-  "description": "Calculator-free MAT1903 drills aligned with the Université de Montréal intra corrigé: domains, asymptotes, indeterminate limits, continuity, the derivative by definition, differentiation rules, and tangent lines. Every step stays tap-only; the revealed lines are the formal sentences required on paper.",
-  "cheatSheetMarkdown": "## Domaine de la fonction $f$\n- $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ \\text{dénominateur} \\neq 0\\}$, puis la forme factorisée, puis $\\text{Dom}_f = \\mathbb{R} - \\{\\text{racines}\\}$ avec un signe moins.\n- Si $a \\notin \\text{Dom}_f$, on s'arrête : la fonction n'est pas définie en $x = a$, donc elle n'est pas continue en $x = a$.\n\n## Recherche des asymptotes verticales :\n- Substitution directe : $\\lim_{x \\to a} f(x) = \\frac{0}{0}$ forme indéterminée, puis on réduit pour $x \\neq a$.\n- Forme du quotient : $\\lim_{x \\to a^+} f(x) = +\\infty$ forme $\\left(\\frac{1}{0^+}\\right)$.\n- Si la limite est infinie : « La droite d'équation $x = a$ est une asymptote verticale à la courbe représentative de la fonction $f$. »\n- Si la limite est finie : « La droite d'équation $x = a$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$. »\n\n## Recherche des asymptotes horizontales :\n- Calculer séparément $\\lim_{x \\to -\\infty} f(x)$ et $\\lim_{x \\to +\\infty} f(x)$, en factorisant la puissance dominante. Ne pas sauter au rapport des degrés.\n- « car pour $x < 0$, $\\sqrt{x^2} = -x$ » et « car pour $x > 0$, $\\sqrt{x^2} = x$ ».\n- « La droite d'équation $y = L$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty / +\\infty]$. »\n\n## Limites indéterminées\n- Fractions : « Levons l'indétermination en réduisant au même dénominateur ».\n- Conjugué : « Levons l'indétermination en multipliant par l'expression conjuguée du numérateur ».\n- Côtés : « On distingue 2 cas : lorsque $x \\to a^-$ et $x \\to a^+$. »\n- « On a $\\lim_{x \\to a^-} \\neq \\lim_{x \\to a^+}$. On conclut que la $\\lim_{x \\to a}$ n'existe pas. »\n- $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$ et $(\\sqrt{A} - B)(\\sqrt{A} + B) = A - B^2$.\n\n## Continuité en $x = a$\n- $a \\in \\text{Dom}_f$, puis $f(a)$, puis les deux limites latérales.\n- Si elles valent $L$ et $f(a) = L$ : « La fonction $f$ est donc continue en $x = a$. »\n- Si elles diffèrent : « La fonction $f$ est discontinue en $x = a$. »\n- « La fonction $f$ n'est pas continue en $x = a$ donc elle n'est pas dérivable en $x = a$. »\n\n## Dérivée par définition\n- « Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = a$. »\n- Comparer $\\lim_{h \\to 0^-} \\dfrac{f(a+h) - f(a)}{h}$ et $\\lim_{h \\to 0^+} \\dfrac{f(a+h) - f(a)}{h}$.\n\n## Règles et tangente\n- « On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. »\n- $\\left(x^n\\right)' = nx^{n-1}$ et $\\left(u^n\\right)' = nu^{n-1} u'$.\n- « La pente de la droite tangente au graphe de $f(x)$ en $x = a$ est égale à : $f'(a) = m$. »\n- Forme $y = f'(a)x + b = mx + b$, puis « Sachant que cette tangente passe par le point $(a, f(a))$, nous avons : $f(a) = m(a) + b$. »\n- « L'équation de la droite tangente au graphe de $f(x)$ au point $(a, f(a))$ s'écrit donc : $y = mx + b$. »",
+  "version": 3,
+  "description": "Les quatre piliers des intras de MAT1903 (H24, A25, H26), rédigés selon le corrigé de l'Université de Montréal.",
+  "cheatSheetMarkdown": "## Domaine de la fonction\n- $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ \\text{dénominateur} \\neq 0\\}$, puis la condition factorisée, puis $\\mathbb{R} - \\{a, b\\}$\n- Le domaine se lit **avant** toute simplification.\n- Racine carrée : le radicande doit être $\\geq 0$.\n\n## Recherche des asymptotes verticales\n- Substitution directe : $\\frac{0}{0}$ forme indéterminée, on simplifie **pour** $x \\neq a$.\n- Limite finie : la droite d'équation $x = a$ n'est pas une asymptote verticale.\n- Forme $\\left(\\frac{c}{0^+}\\right)$ ou $\\left(\\frac{c}{0^-}\\right)$ avec $c \\neq 0$ : la droite d'équation $x = a$ est une asymptote verticale.\n\n## Recherche des asymptotes horizontales\n- Calculer $\\displaystyle\\lim_{x \\to -\\infty}$ **et** $\\displaystyle\\lim_{x \\to +\\infty}$ séparément, en factorisant la plus haute puissance.\n- Car pour $x < 0$ : $\\sqrt{x^2} = |x| = -x$ et $|x^3| = -x^3$.\n- Car pour $x > 0$ : $\\sqrt{x^2} = |x| = x$ et $|x^3| = x^3$.\n\n## Lever une indétermination\n- Levons l'indétermination en réduisant au même dénominateur.\n- Levons l'indétermination en multipliant par l'expression conjuguée du numérateur : $\\left(\\sqrt{A} - B\\right)\\left(\\sqrt{A} + B\\right) = A - B^2$\n- On distingue 2 cas : lorsque $x \\to a^-$ et $x \\to a^+$.\n\n## Continuité en $x = a$\n- (1) $a \\in \\text{Dom}_f$ ? Sinon : la fonction $f$ n'est pas définie en $x = a$ donc elle n'est pas continue en $x = a$.\n- (2) $f(a)$. (3) $\\displaystyle\\lim_{x \\to a^-} f(x)$ et $\\displaystyle\\lim_{x \\to a^+} f(x)$. (4) Verdict.\n- Non continue en $x = a$ $\\implies$ non dérivable en $x = a$.\n\n## Dérivée par définition\n$$f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}$$\n- Point de raccord : $\\displaystyle\\lim_{h \\to 0^-}$ et $\\displaystyle\\lim_{h \\to 0^+}$ séparément ; s'ils diffèrent, $f'(a)$ n'existe pas.\n\n## Règles de dérivation\n$$(u \\cdot v)' = u'v + uv' \\qquad (u^r)' = r\\,u^{r - 1}\\,u' \\qquad \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}$$\n- $(\\pi)' = 0$, $(5^{12})' = 0$, mais $(x^{\\pi})' = \\pi x^{\\pi - 1}$.\n\n## Droite tangente en $x = a$\n- Pente : $f'(a) = m$. Forme : $y = mx + b$.\n- Sachant que cette tangente passe par $(a, f(a))$ : $f(a) = m(a) + b$, d'où $b$.\n",
   "questions": [
     {
-      "id": "mat1903-1a-01",
-      "topic": "1.a Domains, Roots & Asymptotes",
+      "id": "mat1903-p1-01",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra H24 · Q1.a (1)",
       "category": "practice",
       "difficulty": 2,
-      "question": "Soit $f(x) = \\dfrac{x^2 - 4}{x^2 - 5x + 6}$. Déterminer le domaine de $f$ et ses asymptotes verticales.",
+      "question": "Soit $f(x) = \\dfrac{x - 2}{x^2 - 5x + 6}$. Déterminer le domaine de $f$, ses asymptotes verticales et ses asymptotes horizontales.",
       "steps": [
         {
-          "prompt": "Domaine de la fonction $f$. Écrire $\\text{Dom}_f$.",
+          "prompt": "Domaine de la fonction $f$.",
           "choices": [
-            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\} = \\mathbb{R} - \\{2, 3\\}$",
-            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x + 2) \\neq 0\\} = \\mathbb{R} - \\{2, -2\\}$",
             "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x + 2)(x + 3) \\neq 0\\} = \\mathbb{R} - \\{-2, -3\\}$",
-            "$\\text{Dom}_f = \\mathbb{R} \\setminus \\{2, 3\\}$"
-          ],
-          "answer": 0,
-          "hints": [
-            "Le domaine est fixé par le dénominateur, pas par le numérateur. Factoriser $x^2 - 5x + 6$.",
-            "Après la condition factorisée, exclure les racines avec un signe moins : $\\mathbb{R} - \\{2, 3\\}$."
-          ],
-          "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x^2 - 5x + 6 \\neq 0\\}$$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\}$$\n$$\\text{Dom}_f = \\mathbb{R} - \\{2, 3\\}$$"
-        },
-        {
-          "prompt": "Recherche des asymptotes verticales : que donne la substitution directe en $x = 2$, une fois l'indétermination levée ?",
-          "choices": [
-            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\dfrac{0}{0} = 0$",
-            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\dfrac{0}{0}$, donc $x = 2$ est une asymptote verticale.",
-            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\dfrac{4 - 4}{4 - 10 + 6} = \\dfrac{0}{0}$ forme indéterminée, puis $\\displaystyle\\lim_{x \\to 2} \\dfrac{x + 2}{x - 3} = -4$ pour $x \\neq 2$.",
-            "$\\displaystyle\\lim_{x \\to 2} \\dfrac{x + 2}{x - 3} = 4$ pour $x \\neq 2$."
-          ],
-          "answer": 2,
-          "hints": [
-            "$2^2 - 4 = 0$ et $2^2 - 5 \\cdot 2 + 6 = 0$ : la forme $\\dfrac{0}{0}$ se lève, elle ne vaut pas $0$.",
-            "Pour $x \\neq 2$, $f(x) = \\dfrac{x + 2}{x - 3}$. En $x = 2$, le dénominateur vaut $-1$."
-          ],
-          "solution": "Recherche des asymptotes verticales :\n$$\\lim_{x \\to 2} \\frac{x^2 - 4}{x^2 - 5x + 6} = \\frac{4 - 4}{4 - 10 + 6} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\n$$= \\lim_{x \\to 2} \\frac{(x - 2)(x + 2)}{(x - 2)(x - 3)} = \\lim_{x \\to 2} \\frac{x + 2}{x - 3} \\quad \\text{pour } x \\neq 2$$\n$$= \\frac{2 + 2}{2 - 3} = \\frac{4}{-1} = -4$$"
-        },
-        {
-          "prompt": "Conclure pour les droites $x = 2$ et $x = 3$.",
-          "choices": [
-            "La droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = 3$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.",
-            "La droite d'équation $x = 2$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
-            "La droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
-            "La droite d'équation $x = 2$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = 3$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$."
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\} = \\mathbb{R} - \\{2, 3\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x - 3 \\neq 0\\} = \\mathbb{R} - \\{3\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x - 2 \\neq 0\\} = \\mathbb{R} - \\{2\\}$"
           ],
           "answer": 1,
           "hints": [
-            "Une limite finie en $x = 2$ exclut l'asymptote verticale.",
-            "En $x = 3^+$, $\\displaystyle\\lim_{x \\to 3^+} \\dfrac{x + 2}{x - 3} = +\\infty$ forme $\\left(\\dfrac{5}{0^+}\\right)$."
+            "Le domaine se lit sur le dénominateur avant toute simplification.",
+            "Deux entiers de produit $6$ et de somme $-5$ : $-2$ et $-3$."
           ],
-          "solution": "Recherche des asymptotes verticales :\n$$\\lim_{x \\to 3^+} f(x) = \\lim_{x \\to 3^+} \\frac{x + 2}{x - 3} = +\\infty \\quad \\text{forme } \\left(\\frac{5}{0^+}\\right)$$\n$$\\lim_{x \\to 3^-} f(x) = \\lim_{x \\to 3^-} \\frac{x + 2}{x - 3} = -\\infty \\quad \\text{forme } \\left(\\frac{5}{0^-}\\right)$$\nLa droite d'équation $x = 2$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$."
-        }
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x^2 - 5x + 6 \\neq 0\\}$$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\}$$\n$$\\text{Dom}_f = \\mathbb{R} - \\{2, 3\\}$$\n\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to 2} \\frac{x^2 - 4}{x^2 - 5x + 6} = \\frac{4 - 4}{4 - 10 + 6} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\n$$= \\lim_{x \\to 2} \\frac{(x - 2)(x + 2)}{(x - 2)(x - 3)} = \\lim_{x \\to 2} \\frac{x + 2}{x - 3} \\quad \\text{pour } x \\neq 2$$\n$$= \\frac{2 + 2}{2 - 3} = \\frac{4}{-1} = -4$$\nLa droite d'équation $x = 2$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\n$$\\lim_{x \\to 3^+} f(x) = \\lim_{x \\to 3^+} \\frac{x + 2}{x - 3} = +\\infty \\quad \\text{forme } \\left(\\frac{5}{0^+}\\right)$$\n$$\\lim_{x \\to 3^-} f(x) = \\lim_{x \\to 3^-} \\frac{x + 2}{x - 3} = -\\infty \\quad \\text{forme } \\left(\\frac{5}{0^-}\\right)$$\nLa droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.\n\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{x^2\\left(1 - \\frac{4}{x^2}\\right)}{x^2\\left(1 - \\frac{5x}{x^2} + \\frac{6}{x^2}\\right)} = \\lim_{x \\to -\\infty} \\frac{1 - \\frac{4}{x^2}}{1 - \\frac{5}{x} + \\frac{6}{x^2}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{1 - 0}{1 - 0 + 0} = 1$$\n$$\\lim_{x \\to +\\infty} \\frac{x^2\\left(1 - \\frac{4}{x^2}\\right)}{x^2\\left(1 - \\frac{5x}{x^2} + \\frac{6}{x^2}\\right)} = \\lim_{x \\to +\\infty} \\frac{1 - \\frac{4}{x^2}}{1 - \\frac{5}{x} + \\frac{6}{x^2}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{1 - 0}{1 - 0 + 0} = 1$$\nLa droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty / +\\infty]$."
-    },
-    {
-      "id": "mat1903-1a-02",
-      "topic": "1.a Domains, Roots & Asymptotes",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Soit $f(x) = \\dfrac{3x - 1}{\\sqrt{4x^2 + 5}}$. Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to +\\infty} f(x)$ et $\\displaystyle\\lim_{x \\to -\\infty} f(x)$.",
-      "steps": [
+          "solution": "$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x^2 - 5x + 6 \\neq 0\\} = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\} = \\mathbb{R} - \\{2, 3\\}$$"
+        },
         {
-          "prompt": "Factoriser la puissance dominante sous le radical.",
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 2$.",
           "choices": [
-            "$\\sqrt{4x^2 + 5} = x^2 \\sqrt{4 + \\dfrac{5}{x^2}}$",
-            "$\\sqrt{4x^2 + 5} = |x| \\sqrt{4 + \\dfrac{5}{x^2}}$",
-            "$\\sqrt{4x^2 + 5} = 2x + \\sqrt{5}$",
-            "$\\sqrt{4x^2 + 5} = x \\sqrt{4 + 5}$"
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ : la limite n'existe pas, donc la droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 2} \\frac{1}{x - 3} = 1$ pour $x \\neq 2$. La droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$2 \\notin \\text{Dom}_f$, donc la droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 2} \\frac{1}{x - 3} = -1$ pour $x \\neq 2$. La droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$."
+          ],
+          "answer": 3,
+          "hints": [
+            "$\\frac{0}{0}$ n'est pas une réponse : c'est une forme indéterminée à lever.",
+            "Pour $x \\neq 2$, $f(x) = \\dfrac{1}{x - 3}$ ; en $x = 2$, le dénominateur vaut $-1$."
+          ],
+          "solution": "$$\\lim_{x \\to 2} \\frac{x - 2}{x^2 - 5x + 6} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$ $$= \\lim_{x \\to 2} \\frac{x - 2}{(x - 2)(x - 3)} = \\lim_{x \\to 2} \\frac{1}{x - 3} \\quad \\text{pour } x \\neq 2$$ $$= \\frac{1}{2 - 3} = -1$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 3$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to 3^-} f(x) = +\\infty$ forme $\\left(\\frac{1}{0^-}\\right)$ et $\\displaystyle\\lim_{x \\to 3^+} f(x) = -\\infty$ forme $\\left(\\frac{1}{0^+}\\right)$. La droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 3^-} f(x) = -\\infty$ forme $\\left(\\frac{1}{0^-}\\right)$ et $\\displaystyle\\lim_{x \\to 3^+} f(x) = +\\infty$ forme $\\left(\\frac{1}{0^+}\\right)$. La droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 3^-} f(x) = \\displaystyle\\lim_{x \\to 3^+} f(x) = +\\infty$ forme $\\left(\\frac{1}{0}\\right)$. La droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 3} f(x) = \\frac{1}{0} = 0$. La droite d'équation $x = 3$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$."
           ],
           "answer": 1,
           "hints": [
-            "$\\sqrt{x^2} = |x|$, et non $x$ ni $x^2$.",
-            "$\\sqrt{4x^2 + 5} = \\sqrt{x^2 \\left(4 + \\dfrac{5}{x^2}\\right)}$."
+            "Pour $x \\neq 2$, $f(x) = \\dfrac{1}{x - 3}$. Quel est le signe de $x - 3$ juste à gauche de $3$ ?"
           ],
-          "solution": "$$\\sqrt{4x^2 + 5} = \\sqrt{x^2\\left(4 + \\frac{5}{x^2}\\right)} = |x| \\sqrt{4 + \\frac{5}{x^2}}$$"
+          "solution": "$$\\lim_{x \\to 3^-} \\frac{1}{x - 3} = -\\infty \\quad \\text{forme } \\left(\\frac{1}{0^-}\\right), \\qquad \\lim_{x \\to 3^+} \\frac{1}{x - 3} = +\\infty \\quad \\text{forme } \\left(\\frac{1}{0^+}\\right)$$"
         },
         {
-          "prompt": "Calculer $\\displaystyle\\lim_{x \\to +\\infty} f(x)$ en factorisant la puissance dominante.",
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to -\\infty} f(x)$ et $\\displaystyle\\lim_{x \\to +\\infty} f(x)$ en factorisant la plus haute puissance.",
           "choices": [
-            "$\\dfrac{3}{4}$ « car pour $x > 0$, $\\sqrt{x^2} = x$ »",
-            "$3$ « car pour $x > 0$, $\\sqrt{x^2} = x^2$ »",
-            "$\\dfrac{3}{2}$ « car pour $x > 0$, $\\sqrt{x^2} = x$ »",
-            "$0$ « car pour $x > 0$, $\\sqrt{x^2} = x$ »"
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\frac{1}{1} = 1$. La droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\pm\\infty$. Il n'y a pas d'asymptote horizontale.",
+            "$\\displaystyle\\lim_{x \\to +\\infty} f(x) = 0$. La droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $+\\infty$ seulement.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} \\frac{x\\left(1 - \\frac{2}{x}\\right)}{x^2\\left(1 - \\frac{5}{x} + \\frac{6}{x^2}\\right)} = \\displaystyle\\lim_{x \\to \\pm\\infty} \\frac{1 - \\frac{2}{x}}{x\\left(1 - \\frac{5}{x} + \\frac{6}{x^2}\\right)} = \\frac{1}{\\pm\\infty} = 0$. La droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$."
+          ],
+          "answer": 3,
+          "hints": [
+            "Le degré du dénominateur ($2$) dépasse celui du numérateur ($1$) : il reste un $x$ au dénominateur après factorisation.",
+            "Les deux limites, en $-\\infty$ et en $+\\infty$, sont à écrire séparément."
+          ],
+          "solution": "$$\\lim_{x \\to -\\infty} \\frac{x\\left(1 - \\frac{2}{x}\\right)}{x^2\\left(1 - \\frac{5x}{x^2} + \\frac{6}{x^2}\\right)} = \\lim_{x \\to -\\infty} \\frac{1 - \\frac{2}{x}}{x\\left(1 - \\frac{5}{x} + \\frac{6}{x^2}\\right)} = \\frac{1 - 0}{-\\infty(1 - 0 + 0)} = \\frac{1}{-\\infty} = 0$$ et de même $\\displaystyle\\lim_{x \\to +\\infty} f(x) = \\frac{1}{+\\infty} = 0$."
+        }
+      ],
+      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)(x - 3) \\neq 0\\} = \\mathbb{R} - \\{2, 3\\}$$\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to 2} f(x) = \\frac{0}{0} \\quad \\text{forme indéterminée} \\quad = \\lim_{x \\to 2} \\frac{1}{x - 3} \\quad \\text{pour } x \\neq 2 \\quad = -1$$\nLa droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.\n$$\\lim_{x \\to 3^-} f(x) = -\\infty \\quad \\text{forme } \\left(\\frac{1}{0^-}\\right), \\qquad \\lim_{x \\to 3^+} f(x) = +\\infty \\quad \\text{forme } \\left(\\frac{1}{0^+}\\right)$$\nLa droite d'équation $x = 3$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{x\\left(1 - \\frac{2}{x}\\right)}{x^2\\left(1 - \\frac{5x}{x^2} + \\frac{6}{x^2}\\right)} = \\lim_{x \\to -\\infty} \\frac{1 - \\frac{2}{x}}{x\\left(1 - \\frac{5}{x} + \\frac{6}{x^2}\\right)} \\quad \\text{pour } x \\neq 0 \\quad = \\frac{1 - 0}{-\\infty(1 - 0 + 0)} = \\frac{1}{-\\infty} = 0$$\n$$\\lim_{x \\to +\\infty} f(x) = \\frac{1 - 0}{+\\infty(1 - 0 + 0)} = \\frac{1}{+\\infty} = 0$$\nLa droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$."
+    },
+    {
+      "id": "mat1903-p1-02",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra H24 · Q1.a (2) · Intra H26 · Q1.a (2)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $g(x) = \\dfrac{|5x^3|}{2x^3 + 4x^2 + 2x}$. Déterminer le domaine de $g$, ses asymptotes verticales et ses asymptotes horizontales.",
+      "steps": [
+        {
+          "prompt": "Domaine de la fonction $g$.",
+          "choices": [
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 2x(x - 1)^2 \\neq 0\\} = \\mathbb{R} - \\{0, 1\\}$",
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ (x + 1)^2 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$",
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 2x(x + 1)^2 \\neq 0\\} = \\mathbb{R} - \\{-1, 0\\}$",
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 2x(x + 1)(x - 1) \\neq 0\\} = \\mathbb{R} - \\{-1, 0, 1\\}$"
           ],
           "answer": 2,
           "hints": [
-            "Pour $x > 0$, $|x| = x$. Le quotient devient $\\dfrac{3 - \\dfrac{1}{x}}{\\sqrt{4 + \\dfrac{5}{x^2}}}$ pour $x \\neq 0$.",
-            "$\\sqrt{4} = 2$, donc la limite vaut $\\dfrac{3}{2}$ et non $\\dfrac{3}{4}$."
+            "Mettre $2x$ en facteur : $2x^3 + 4x^2 + 2x = 2x(x^2 + 2x + 1)$.",
+            "$x^2 + 2x + 1$ est un carré parfait."
           ],
-          "solution": "Recherche des asymptotes horizontales :\n$$\\lim_{x \\to +\\infty} \\frac{x\\left(3 - \\frac{1}{x}\\right)}{|x|\\sqrt{4 + \\frac{5}{x^2}}}$$\n« car pour $x > 0$, $\\sqrt{x^2} = x$ »\n$$= \\lim_{x \\to +\\infty} \\frac{3 - \\frac{1}{x}}{\\sqrt{4 + \\frac{5}{x^2}}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{3 - 0}{\\sqrt{4 + 0}} = \\frac{3}{2}$$"
+          "solution": "$$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 2x^3 + 4x^2 + 2x \\neq 0\\} = \\{x \\in \\mathbb{R} \\ / \\ 2x(x + 1)^2 \\neq 0\\} = \\mathbb{R} - \\{-1, 0\\}$$"
         },
         {
-          "prompt": "Calculer $\\displaystyle\\lim_{x \\to -\\infty} f(x)$ et écrire les conclusions géométriques.",
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 0$. On distingue 2 cas : lorsque $x \\to 0^-$ et $x \\to 0^+$.",
           "choices": [
-            "$\\dfrac{3}{2}$ « car pour $x < 0$, $\\sqrt{x^2} = x$ »\nLa droite d'équation $y = \\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty / +\\infty]$.",
-            "La limite n'existe pas, donc $f$ n'admet aucune asymptote horizontale.",
-            "$-\\dfrac{3}{4}$ « car pour $x < 0$, $\\sqrt{x^2} = -x$ »\nLa droite d'équation $y = \\dfrac{3}{4}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[+\\infty]$.\nLa droite d'équation $y = -\\dfrac{3}{4}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty]$.",
-            "$-\\dfrac{3}{2}$ « car pour $x < 0$, $\\sqrt{x^2} = -x$ »\nLa droite d'équation $y = \\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[+\\infty]$.\nLa droite d'équation $y = -\\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty]$."
-          ],
-          "answer": 3,
-          "hints": [
-            "« car pour $x < 0$, $\\sqrt{x^2} = -x$ », donc $|x| = -x$ et un signe moins apparaît au dénominateur.",
-            "Les deux limites sont finies et distinctes : chaque côté possède sa droite horizontale."
-          ],
-          "solution": "$$\\lim_{x \\to -\\infty} \\frac{x\\left(3 - \\frac{1}{x}\\right)}{|x|\\sqrt{4 + \\frac{5}{x^2}}}$$\n« car pour $x < 0$, $\\sqrt{x^2} = -x$ »\n$$= \\lim_{x \\to -\\infty} \\frac{3 - \\frac{1}{x}}{-\\sqrt{4 + \\frac{5}{x^2}}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{3 - 0}{-\\sqrt{4}} = -\\frac{3}{2}$$\nLa droite d'équation $y = \\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[+\\infty]$.\nLa droite d'équation $y = -\\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty]$."
-        }
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ 4x^2 + 5 > 0\\}$$\nOr $4x^2 + 5 \\ge 5 > 0$ pour tout $x \\in \\mathbb{R}$, donc $\\text{Dom}_f = \\mathbb{R}$. Il n'y a pas d'asymptote verticale.\n\nRecherche des asymptotes horizontales :\n$$\\sqrt{4x^2 + 5} = \\sqrt{x^2\\left(4 + \\frac{5}{x^2}\\right)} = |x|\\sqrt{4 + \\frac{5}{x^2}}$$\n$$\\lim_{x \\to +\\infty} \\frac{x\\left(3 - \\frac{1}{x}\\right)}{|x|\\sqrt{4 + \\frac{5}{x^2}}}$$\n« car pour $x > 0$, $\\sqrt{x^2} = x$ »\n$$= \\lim_{x \\to +\\infty} \\frac{3 - \\frac{1}{x}}{\\sqrt{4 + \\frac{5}{x^2}}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{3 - 0}{\\sqrt{4}} = \\frac{3}{2}$$\n$$\\lim_{x \\to -\\infty} \\frac{x\\left(3 - \\frac{1}{x}\\right)}{|x|\\sqrt{4 + \\frac{5}{x^2}}}$$\n« car pour $x < 0$, $\\sqrt{x^2} = -x$ »\n$$= \\lim_{x \\to -\\infty} \\frac{3 - \\frac{1}{x}}{-\\sqrt{4 + \\frac{5}{x^2}}} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{3 - 0}{-\\sqrt{4}} = -\\frac{3}{2}$$\nLa droite d'équation $y = \\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[+\\infty]$.\nLa droite d'équation $y = -\\dfrac{3}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty]$."
-    },
-    {
-      "id": "mat1903-1a-03",
-      "topic": "1.a Domains, Roots & Asymptotes",
-      "category": "theory",
-      "difficulty": 2,
-      "question": "Soit $f(x) = \\dfrac{x + 1}{x^2 - 1}$. Laquelle des conclusions décrit exactement $f$ en $x = 1$ et en $x = -1$ ?",
-      "choices": [
-        "La droite d'équation $x = 1$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
-        "$\\displaystyle\\lim_{x \\to 1} f(x) = -\\dfrac{1}{2}$ pour $x \\neq 1$, donc\nLa droite d'équation $x = 1$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\n$\\displaystyle\\lim_{x \\to -1^+} f(x) = +\\infty$ forme $\\left(\\dfrac{1}{0^+}\\right)$, donc\nLa droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
-        "$\\displaystyle\\lim_{x \\to -1} f(x) = -\\dfrac{1}{2}$ pour $x \\neq -1$, donc\nLa droite d'équation $x = -1$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\n$\\displaystyle\\lim_{x \\to 1^+} f(x) = +\\infty$ forme $\\left(\\dfrac{1}{0^+}\\right)$, donc\nLa droite d'équation $x = 1$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
-        "Les deux limites sont finies, donc\nLa droite d'équation $x = 1$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\nLa droite d'équation $x = -1$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$."
-      ],
-      "answer": 2,
-      "hints": [
-        "Factoriser $x^2 - 1 = (x - 1)(x + 1)$ avant de conclure.",
-        "En $x = -1$ la substitution donne $\\dfrac{0}{0}$. En $x = 1$, le facteur $x - 1$ ne se simplifie pas."
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x^2 - 1 \\neq 0\\}$$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 1)(x + 1) \\neq 0\\}$$\n$$\\text{Dom}_f = \\mathbb{R} - \\{1, -1\\}$$\n\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to -1} \\frac{x + 1}{x^2 - 1} = \\frac{-1 + 1}{1 - 1} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\n$$= \\lim_{x \\to -1} \\frac{x + 1}{(x - 1)(x + 1)} = \\lim_{x \\to -1} \\frac{1}{x - 1} \\quad \\text{pour } x \\neq -1$$\n$$= \\frac{1}{-1 - 1} = \\frac{1}{-2} = -\\frac{1}{2}$$\nLa droite d'équation $x = -1$ n'est pas asymptote verticale à la courbe représentative de la fonction $f$.\n$$\\lim_{x \\to 1} \\frac{x + 1}{x^2 - 1} = \\frac{1 + 1}{1 - 1} = \\frac{2}{0}$$\n$$\\lim_{x \\to 1^+} f(x) = \\lim_{x \\to 1^+} \\frac{1}{x - 1} = +\\infty \\quad \\text{forme } \\left(\\frac{1}{0^+}\\right)$$\n$$\\lim_{x \\to 1^-} f(x) = \\lim_{x \\to 1^-} \\frac{1}{x - 1} = -\\infty \\quad \\text{forme } \\left(\\frac{1}{0^-}\\right)$$\nLa droite d'équation $x = 1$ est une asymptote verticale à la courbe représentative de la fonction $f$.\n\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{x\\left(1 + \\frac{1}{x}\\right)}{x^2\\left(1 - \\frac{1}{x^2}\\right)} = \\lim_{x \\to -\\infty} \\frac{1 + \\frac{1}{x}}{x\\left(1 - \\frac{1}{x^2}\\right)} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{1 + 0}{-\\infty(1 - 0)} = \\frac{1}{-\\infty} = 0$$\n$$\\lim_{x \\to +\\infty} \\frac{x\\left(1 + \\frac{1}{x}\\right)}{x^2\\left(1 - \\frac{1}{x^2}\\right)} = \\lim_{x \\to +\\infty} \\frac{1 + \\frac{1}{x}}{x\\left(1 - \\frac{1}{x^2}\\right)} \\quad \\text{pour } x \\neq 0$$\n$$= \\frac{1 + 0}{+\\infty(1 - 0)} = \\frac{1}{+\\infty} = 0$$\nLa droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $[-\\infty / +\\infty]$."
-    },
-    {
-      "id": "mat1903-1b-01",
-      "topic": "1.b Indeterminate Limits (0/0)",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Calculer $\\displaystyle\\lim_{x \\to 2} \\dfrac{x^3 - 8}{x^2 - 4}$.",
-      "steps": [
-        {
-          "prompt": "Que donne la substitution directe en $x = 2$ ?",
-          "choices": [
-            "$0$, donc la limite vaut $0$",
-            "Une division par zéro, donc la limite n'existe pas",
-            "$+\\infty$",
-            "$\\dfrac{2^3 - 8}{2^2 - 4} = \\dfrac{0}{0}$ forme indéterminée"
-          ],
-          "answer": 3,
-          "hints": [
-            "$2^3 - 8 = 0$ et $2^2 - 4 = 0$. La forme $\\dfrac{0}{0}$ demande une factorisation."
-          ],
-          "solution": "$$\\lim_{x \\to 2} \\frac{x^3 - 8}{x^2 - 4} = \\frac{8 - 8}{4 - 4} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
-        },
-        {
-          "prompt": "Levons l'indétermination en factorisant le numérateur et le dénominateur. Quelle factorisation est exacte ?",
-          "choices": [
-            "$\\dfrac{(x - 2)(x^2 + 2x + 4)}{(x - 2)(x + 2)}$",
-            "$\\dfrac{(x - 2)(x^2 - 2x + 4)}{(x - 2)(x + 2)}$",
-            "$\\dfrac{(x - 2)(x^2 + 4)}{(x - 2)(x + 2)}$",
-            "$\\dfrac{(x - 2)^3}{(x - 2)(x + 2)}$"
+            "$\\displaystyle\\lim_{x \\to 0} g(x) = \\frac{0}{0}$ forme indéterminée ; $\\displaystyle\\lim_{x \\to 0^-} \\frac{-5x^2}{2(x + 1)^2} = 0$ et $\\displaystyle\\lim_{x \\to 0^+} \\frac{5x^2}{2(x + 1)^2} = 0$. La droite d'équation $x = 0$ n'est pas une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to 0} g(x) = \\frac{0}{0}$ : la limite n'existe pas, donc la droite d'équation $x = 0$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to 0^-} g(x) = -\\frac{5}{2}$ et $\\displaystyle\\lim_{x \\to 0^+} g(x) = \\frac{5}{2}$ : la droite d'équation $x = 0$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to 0^+} g(x) = +\\infty$ forme $\\left(\\frac{5}{2 \\cdot 0^+}\\right)$ : la droite d'équation $x = 0$ est une asymptote verticale à la courbe représentative de la fonction $g$."
           ],
           "answer": 0,
           "hints": [
-            "$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$ avec $a = x$ et $b = 2$ : le terme du milieu est $+2x$, pas $-2x$."
+            "Car pour $x < 0$, $|x^3| = -x^3$ et pour $x > 0$, $|x^3| = x^3$.",
+            "Après simplification par $x$ (pour $x \\neq 0$), il reste $\\pm 5x^2$ au numérateur."
           ],
-          "solution": "$$x^3 - 8 = (x - 2)(x^2 + 2x + 4), \\qquad x^2 - 4 = (x - 2)(x + 2)$$\n$$\\frac{x^3 - 8}{x^2 - 4} = \\frac{(x - 2)(x^2 + 2x + 4)}{(x - 2)(x + 2)}$$"
+          "solution": "Pour $x < 0$ : $g(x) = \\dfrac{-5x^3}{2x(x + 1)^2} = \\dfrac{-5x^2}{2(x + 1)^2} \\to 0$. Pour $x > 0$ : $g(x) = \\dfrac{5x^2}{2(x + 1)^2} \\to 0$."
         },
         {
-          "prompt": "Réduire pour $x \\neq 2$ et calculer la limite.",
+          "prompt": "Recherche des asymptotes verticales : étude en $x = -1$.",
           "choices": [
-            "$1$",
-            "$2$",
+            "$\\displaystyle\\lim_{x \\to -1^{\\pm}} \\frac{5x^2}{2(x + 1)^2} = +\\infty$ forme $\\left(\\frac{5}{2 \\cdot 0^+}\\right)$. La droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to -1^-} g(x) = +\\infty$ et $\\displaystyle\\lim_{x \\to -1^+} g(x) = -\\infty$. La droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "Car pour $x < 0$, $|x^3| = -x^3$ : $\\displaystyle\\lim_{x \\to -1^{\\pm}} \\frac{-5x^2}{2(x + 1)^2} = -\\infty$ forme $\\left(\\frac{5}{-2 \\cdot 0^+}\\right)$. La droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to -1} g(x) = \\frac{5}{0} = 0$. La droite d'équation $x = -1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $g$."
+          ],
+          "answer": 2,
+          "hints": [
+            "Près de $x = -1$, on a $x < 0$ : utiliser $|x^3| = -x^3$.",
+            "$(x + 1)^2 \\to 0^+$ des deux côtés : le signe ne change pas."
+          ],
+          "solution": "$$\\lim_{x \\to -1^{\\pm}} \\frac{-5x^2}{2(x + 1)^2} = -\\infty \\quad \\text{forme } \\left(\\frac{5}{-2 \\cdot 0^+}\\right)$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to -\\infty} g(x)$ et $\\displaystyle\\lim_{x \\to +\\infty} g(x)$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to -\\infty} \\frac{-5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = -\\frac{5}{2}$ et $\\displaystyle\\lim_{x \\to +\\infty} \\frac{5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = \\frac{5}{2}$. La droite $y = -\\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et la droite $y = \\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} g(x) = \\frac{5}{2}$. La droite d'équation $y = \\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} g(x) = -\\frac{5}{2}$. La droite d'équation $y = -\\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} g(x) = 0$. La droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et en $+\\infty$."
+          ],
+          "answer": 0,
+          "hints": [
+            "Car pour $x < 0$, $|x^3| = -x^3$ : le signe du numérateur change en $-\\infty$.",
+            "Factoriser $x^3$ au dénominateur avant de passer à la limite."
+          ],
+          "solution": "$$\\lim_{x \\to -\\infty} \\frac{-5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = \\frac{-5}{2 + 0 + 0} = -\\frac{5}{2}, \\qquad \\lim_{x \\to +\\infty} \\frac{5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = \\frac{5}{2}$$"
+        }
+      ],
+      "solution": "Domaine de la fonction $g$\n$$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 2x(x + 1)^2 \\neq 0\\} = \\mathbb{R} - \\{-1, 0\\}$$\nRecherche des asymptotes verticales : on distingue 2 cas, car pour $x < 0$, $|x^3| = -x^3$ et pour $x > 0$, $|x^3| = x^3$.\n$$\\lim_{x \\to 0} g(x) = \\frac{0}{0} \\quad \\text{forme indéterminée}, \\qquad \\lim_{x \\to 0^-} \\frac{-5x^2}{2(x + 1)^2} = 0 = \\lim_{x \\to 0^+} \\frac{5x^2}{2(x + 1)^2} \\quad \\text{pour } x \\neq 0$$\nLa droite d'équation $x = 0$ n'est pas une asymptote verticale à la courbe représentative de la fonction $g$.\n$$\\lim_{x \\to -1^{\\pm}} \\frac{-5x^2}{2(x + 1)^2} = -\\infty \\quad \\text{forme } \\left(\\frac{5}{-2 \\cdot 0^+}\\right)$$\nLa droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{-5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = \\frac{-5}{2} \\quad \\text{car pour } x < 0, \\ |x^3| = -x^3$$\n$$\\lim_{x \\to +\\infty} \\frac{5x^3}{x^3\\left(2 + \\frac{4}{x} + \\frac{2}{x^2}\\right)} = \\frac{5}{2} \\quad \\text{car pour } x > 0, \\ |x^3| = x^3$$\nLa droite d'équation $y = -\\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$. La droite d'équation $y = \\frac{5}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $+\\infty$."
+    },
+    {
+      "id": "mat1903-p1-03",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra A25 · Q1.1–2 (a)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\dfrac{x^2 - 4x + 4}{x^2 + 2x - 8}$. Déterminer le domaine de $f$, ses asymptotes verticales et ses asymptotes horizontales.",
+      "steps": [
+        {
+          "prompt": "Domaine de la fonction $f$.",
+          "choices": [
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 4)(x + 2) \\neq 0\\} = \\mathbb{R} - \\{4, -2\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x + 4 \\neq 0\\} = \\mathbb{R} - \\{-4\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 2)^2 \\neq 0\\} = \\mathbb{R} - \\{2\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x + 4)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{-4, 2\\}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Deux entiers de produit $-8$ et de somme $2$ : $4$ et $-2$."
+          ],
+          "solution": "$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x^2 + 2x - 8 \\neq 0\\} = \\{x \\in \\mathbb{R} \\ / \\ (x + 4)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{-4, 2\\}$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 2$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ : la droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 2} \\frac{x - 2}{x + 4} = \\frac{0}{6} = 0$ pour $x \\neq 2$. La droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 2} \\frac{x + 2}{x + 4} = \\frac{2}{3}$ pour $x \\neq 2$. La droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = 0$, donc la droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$."
+          ],
+          "answer": 1,
+          "hints": [
+            "Le numérateur est un carré parfait : $x^2 - 4x + 4 = (x - 2)^2$.",
+            "Une limite finie (même nulle) ne donne pas d'asymptote verticale."
+          ],
+          "solution": "$$\\lim_{x \\to 2} \\frac{(x - 2)^2}{(x + 4)(x - 2)} = \\lim_{x \\to 2} \\frac{x - 2}{x + 4} \\quad \\text{pour } x \\neq 2 \\quad = \\frac{0}{6} = 0$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = -4$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to -4^-} f(x) = -\\infty$ forme $\\left(\\frac{36}{0^-}\\right)$ et $\\displaystyle\\lim_{x \\to -4^+} f(x) = +\\infty$ forme $\\left(\\frac{36}{0^+}\\right)$. La droite d'équation $x = -4$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to -4^{\\pm}} f(x) = +\\infty$ forme $\\left(\\frac{36}{0}\\right)$. La droite d'équation $x = -4$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to -4} f(x) = \\frac{36}{0} = 0$. La droite d'équation $x = -4$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to -4^-} f(x) = +\\infty$ forme $\\left(\\frac{36}{0^+}\\right)$ et $\\displaystyle\\lim_{x \\to -4^+} f(x) = -\\infty$ forme $\\left(\\frac{36}{0^-}\\right)$. La droite d'équation $x = -4$ est une asymptote verticale à la courbe représentative de la fonction $f$."
+          ],
+          "answer": 3,
+          "hints": [
+            "Le numérateur tend vers $(-4 - 2)^2 = 36$.",
+            "Le dénominateur s'écrit $(x + 4)(x - 2)$ et $x - 2 \\to -6 < 0$ : il a le signe opposé à celui de $x + 4$."
+          ],
+          "solution": "Pour $x \\to -4^-$ : $(x + 4) \\to 0^-$ et $(x - 2) \\to -6$, donc le dénominateur $\\to 0^+$. Pour $x \\to -4^+$ : le dénominateur $\\to 0^-$."
+        },
+        {
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to -\\infty} f(x)$ et $\\displaystyle\\lim_{x \\to +\\infty} f(x)$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\frac{4}{-8} = -\\frac{1}{2}$. La droite d'équation $y = -\\frac{1}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} \\frac{x^2\\left(1 - \\frac{4}{x} + \\frac{4}{x^2}\\right)}{x^2\\left(1 + \\frac{2}{x} - \\frac{8}{x^2}\\right)} = \\frac{1 - 0 + 0}{1 + 0 - 0} = 1$. La droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = 0$. La droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to +\\infty} f(x) = 1$. La droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $+\\infty$ seulement."
+          ],
+          "answer": 1,
+          "hints": [
+            "Factoriser $x^2$ en haut et en bas : les termes $\\frac{c}{x}$ et $\\frac{c}{x^2}$ tendent vers $0$."
+          ],
+          "solution": "$$\\lim_{x \\to \\pm\\infty} \\frac{x^2\\left(1 - \\frac{4}{x} + \\frac{4}{x^2}\\right)}{x^2\\left(1 + \\frac{2}{x} - \\frac{8}{x^2}\\right)} = \\frac{1}{1} = 1$$"
+        }
+      ],
+      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x + 4)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{-4, 2\\}$$\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to 2} f(x) = \\frac{0}{0} \\quad \\text{forme indéterminée} \\quad = \\lim_{x \\to 2} \\frac{(x - 2)^2}{(x + 4)(x - 2)} = \\lim_{x \\to 2} \\frac{x - 2}{x + 4} \\quad \\text{pour } x \\neq 2 \\quad = 0$$\nLa droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.\n$$\\lim_{x \\to -4^-} f(x) = +\\infty \\quad \\text{forme } \\left(\\frac{36}{0^+}\\right), \\qquad \\lim_{x \\to -4^+} f(x) = -\\infty \\quad \\text{forme } \\left(\\frac{36}{0^-}\\right)$$\nLa droite d'équation $x = -4$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{x^2\\left(1 - \\frac{4}{x} + \\frac{4}{x^2}\\right)}{x^2\\left(1 + \\frac{2}{x} - \\frac{8}{x^2}\\right)} = \\frac{1 - 0 + 0}{1 + 0 - 0} = 1 \\quad \\text{et de même} \\quad \\lim_{x \\to +\\infty} f(x) = 1$$\nLa droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$."
+    },
+    {
+      "id": "mat1903-p1-04",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra A25 · Q1.1–2 (b)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $g(x) = \\dfrac{\\sqrt{4x^2 + 5}}{x + 1}$. Déterminer le domaine de $g$, ses asymptotes verticales et ses asymptotes horizontales.",
+      "steps": [
+        {
+          "prompt": "Domaine de la fonction $g$.",
+          "choices": [
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 4x^2 + 5 \\geq 0 \\text{ et } x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$",
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ x - 1 \\neq 0\\} = \\mathbb{R} - \\{1\\}$",
+            "$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ x + 1 > 0\\} = \\left]-1, +\\infty\\right[$",
+            "$\\text{Dom}_g = \\mathbb{R}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$4x^2 + 5 \\geq 5 > 0$ pour tout réel : la racine ne restreint rien.",
+            "Seul le dénominateur exclut une valeur."
+          ],
+          "solution": "$$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ 4x^2 + 5 \\geq 0 \\text{ et } x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = -1$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to -1^-} g(x) = +\\infty$ et $\\displaystyle\\lim_{x \\to -1^+} g(x) = -\\infty$. La droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to -1} g(x) = \\frac{3}{0} = 0$. La droite d'équation $x = -1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to -1^-} g(x) = -\\infty$ forme $\\left(\\frac{3}{0^-}\\right)$ et $\\displaystyle\\lim_{x \\to -1^+} g(x) = +\\infty$ forme $\\left(\\frac{3}{0^+}\\right)$. La droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.",
+            "$\\displaystyle\\lim_{x \\to -1} g(x) = \\frac{0}{0}$ forme indéterminée. La droite d'équation $x = -1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $g$."
+          ],
+          "answer": 2,
+          "hints": [
+            "Le numérateur tend vers $\\sqrt{4 + 5} = \\sqrt{9} = 3$, il n'y a pas de forme indéterminée."
+          ],
+          "solution": "$$\\lim_{x \\to -1^-} \\frac{\\sqrt{4x^2 + 5}}{x + 1} = -\\infty \\quad \\text{forme } \\left(\\frac{3}{0^-}\\right), \\qquad \\lim_{x \\to -1^+} \\frac{\\sqrt{4x^2 + 5}}{x + 1} = +\\infty \\quad \\text{forme } \\left(\\frac{3}{0^+}\\right)$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to -\\infty} g(x)$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to -\\infty} \\frac{|x|\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = \\lim_{x \\to -\\infty} \\frac{-x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = -2$, car pour $x < 0$, $\\sqrt{x^2} = |x| = -x$.",
+            "$\\displaystyle\\lim_{x \\to -\\infty} \\frac{x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = 2$, car $\\sqrt{x^2} = x$.",
+            "$\\displaystyle\\lim_{x \\to -\\infty} \\frac{-x\\left(4 + \\frac{5}{x^2}\\right)}{x\\left(1 + \\frac{1}{x}\\right)} = -4$, car pour $x < 0$, $\\sqrt{x^2} = -x$.",
+            "$\\displaystyle\\lim_{x \\to -\\infty} g(x) = \\frac{+\\infty}{-\\infty} = -1$."
+          ],
+          "answer": 0,
+          "hints": [
+            "$\\sqrt{4x^2 + 5} = \\sqrt{x^2\\left(4 + \\frac{5}{x^2}\\right)} = |x|\\sqrt{4 + \\frac{5}{x^2}}$.",
+            "Car pour $x < 0$, $\\sqrt{x^2} = |x| = -x$, et $\\sqrt{4} = 2$."
+          ],
+          "solution": "$$\\lim_{x \\to -\\infty} \\frac{-x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = \\frac{-\\sqrt{4 + 0}}{1 + 0} = -2$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to +\\infty} g(x)$ et conclure.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to +\\infty} g(x) = -2$. La droite d'équation $y = -2$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to +\\infty} g(x) = 4$. La droite d'équation $y = 4$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $+\\infty$.",
+            "Car pour $x > 0$, $\\sqrt{x^2} = |x| = x$ : $\\displaystyle\\lim_{x \\to +\\infty} g(x) = 2$. La droite $y = -2$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$ et la droite $y = 2$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to +\\infty} g(x) = +\\infty$. Il n'y a pas d'asymptote horizontale en $+\\infty$."
+          ],
+          "answer": 2,
+          "hints": [
+            "En $+\\infty$, $|x| = x$ : le signe ne change pas."
+          ],
+          "solution": "$$\\lim_{x \\to +\\infty} \\frac{x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = \\frac{\\sqrt{4 + 0}}{1 + 0} = 2$$"
+        }
+      ],
+      "solution": "Domaine de la fonction $g$\n$$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to -1^-} g(x) = -\\infty \\quad \\text{forme } \\left(\\frac{3}{0^-}\\right), \\qquad \\lim_{x \\to -1^+} g(x) = +\\infty \\quad \\text{forme } \\left(\\frac{3}{0^+}\\right)$$\nLa droite d'équation $x = -1$ est une asymptote verticale à la courbe représentative de la fonction $g$.\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{\\sqrt{x^2\\left(4 + \\frac{5}{x^2}\\right)}}{x\\left(1 + \\frac{1}{x}\\right)} = \\lim_{x \\to -\\infty} \\frac{-x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = \\frac{-\\sqrt{4}}{1} = -2 \\quad \\text{car pour } x < 0, \\ \\sqrt{x^2} = |x| = -x$$\n$$\\lim_{x \\to +\\infty} \\frac{x\\sqrt{4 + \\frac{5}{x^2}}}{x\\left(1 + \\frac{1}{x}\\right)} = \\frac{\\sqrt{4}}{1} = 2 \\quad \\text{car pour } x > 0, \\ \\sqrt{x^2} = |x| = x$$\nLa droite d'équation $y = -2$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $-\\infty$. La droite d'équation $y = 2$ est une asymptote horizontale à la courbe représentative de la fonction $g$ en $+\\infty$."
+    },
+    {
+      "id": "mat1903-p1-05",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra H26 · Q1.b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\dfrac{x - 1}{x^2 - 3x + 2}$. Déterminer le domaine de $f$, ses asymptotes verticales et ses asymptotes horizontales.",
+      "steps": [
+        {
+          "prompt": "Domaine de la fonction $f$.",
+          "choices": [
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x + 1)(x + 2) \\neq 0\\} = \\mathbb{R} - \\{-1, -2\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 1)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{1, 2\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x - 2 \\neq 0\\} = \\mathbb{R} - \\{2\\}$",
+            "$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x - 1 \\neq 0\\} = \\mathbb{R} - \\{1\\}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Deux entiers de produit $2$ et de somme $-3$."
+          ],
+          "solution": "$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 1)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{1, 2\\}$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 1$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to 1} f(x) = \\frac{0}{0}$ : la droite d'équation $x = 1$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 1} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 1} \\frac{1}{x - 2} = 1$ pour $x \\neq 1$. La droite d'équation $x = 1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 1} f(x) = -1$, donc la droite d'équation $x = 1$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 1} f(x) = \\frac{0}{0}$ forme indéterminée $= \\displaystyle\\lim_{x \\to 1} \\frac{1}{x - 2} = -1$ pour $x \\neq 1$. La droite d'équation $x = 1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$."
+          ],
+          "answer": 3,
+          "hints": [
+            "Pour $x \\neq 1$, $f(x) = \\dfrac{1}{x - 2}$, et $1 - 2 = -1$."
+          ],
+          "solution": "$$\\lim_{x \\to 1} \\frac{x - 1}{(x - 1)(x - 2)} = \\lim_{x \\to 1} \\frac{1}{x - 2} \\quad \\text{pour } x \\neq 1 \\quad = -1$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes verticales : étude en $x = 2$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = +\\infty$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = -\\infty$. La droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = -\\infty$ forme $\\left(\\frac{1}{0^-}\\right)$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = +\\infty$ forme $\\left(\\frac{1}{0^+}\\right)$. La droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2^{\\pm}} f(x) = +\\infty$. La droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.",
+            "$\\displaystyle\\lim_{x \\to 2} f(x) = \\frac{1}{0} = 0$. La droite d'équation $x = 2$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$."
+          ],
+          "answer": 1,
+          "hints": [
+            "Signe de $x - 2$ à gauche puis à droite de $2$."
+          ],
+          "solution": "$$\\lim_{x \\to 2^-} \\frac{1}{x - 2} = -\\infty \\quad \\text{forme } \\left(\\frac{1}{0^-}\\right), \\qquad \\lim_{x \\to 2^+} \\frac{1}{x - 2} = +\\infty \\quad \\text{forme } \\left(\\frac{1}{0^+}\\right)$$"
+        },
+        {
+          "prompt": "Recherche des asymptotes horizontales : calculer $\\displaystyle\\lim_{x \\to -\\infty} f(x)$ et $\\displaystyle\\lim_{x \\to +\\infty} f(x)$.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = 1$. La droite d'équation $y = 1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = -\\frac{1}{2}$. La droite d'équation $y = -\\frac{1}{2}$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\pm\\infty$. Il n'y a pas d'asymptote horizontale.",
+            "$\\displaystyle\\lim_{x \\to \\pm\\infty} \\frac{1 - \\frac{1}{x}}{x\\left(1 - \\frac{3}{x} + \\frac{2}{x^2}\\right)} = \\frac{1}{\\pm\\infty} = 0$. La droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$."
+          ],
+          "answer": 3,
+          "hints": [
+            "Factoriser $x$ au numérateur et $x^2$ au dénominateur."
+          ],
+          "solution": "$$\\lim_{x \\to \\pm\\infty} \\frac{x\\left(1 - \\frac{1}{x}\\right)}{x^2\\left(1 - \\frac{3}{x} + \\frac{2}{x^2}\\right)} = \\lim_{x \\to \\pm\\infty} \\frac{1 - \\frac{1}{x}}{x\\left(1 - \\frac{3}{x} + \\frac{2}{x^2}\\right)} = \\frac{1}{\\pm\\infty} = 0$$"
+        }
+      ],
+      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x - 1)(x - 2) \\neq 0\\} = \\mathbb{R} - \\{1, 2\\}$$\nRecherche des asymptotes verticales :\n$$\\lim_{x \\to 1} f(x) = \\frac{0}{0} \\quad \\text{forme indéterminée} \\quad = \\lim_{x \\to 1} \\frac{1}{x - 2} \\quad \\text{pour } x \\neq 1 \\quad = -1$$\nLa droite d'équation $x = 1$ n'est pas une asymptote verticale à la courbe représentative de la fonction $f$.\n$$\\lim_{x \\to 2^-} f(x) = -\\infty \\quad \\text{forme } \\left(\\frac{1}{0^-}\\right), \\qquad \\lim_{x \\to 2^+} f(x) = +\\infty \\quad \\text{forme } \\left(\\frac{1}{0^+}\\right)$$\nLa droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.\nRecherche des asymptotes horizontales :\n$$\\lim_{x \\to -\\infty} \\frac{x\\left(1 - \\frac{1}{x}\\right)}{x^2\\left(1 - \\frac{3}{x} + \\frac{2}{x^2}\\right)} = \\frac{1 - 0}{-\\infty(1 - 0 + 0)} = 0, \\qquad \\lim_{x \\to +\\infty} f(x) = \\frac{1 - 0}{+\\infty(1 - 0 + 0)} = 0$$\nLa droite d'équation $y = 0$ est une asymptote horizontale à la courbe représentative de la fonction $f$ en $-\\infty$ et en $+\\infty$."
+    },
+    {
+      "id": "mat1903-p1-06",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra H24 · Q1.b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Calculer $\\displaystyle\\lim_{x \\to -2} \\frac{\\frac{1}{4} + \\frac{x + 1}{x^2}}{(x + 2)^3}$.",
+      "steps": [
+        {
+          "prompt": "Substitution directe en $x = -2$.",
+          "choices": [
+            "$\\dfrac{\\frac{1}{4} + \\frac{1}{4}}{0} = \\dfrac{\\frac{1}{2}}{0}$, donc la limite vaut $\\infty$.",
+            "$\\dfrac{0}{0} = 0$, donc la limite vaut $0$.",
+            "$\\dfrac{\\frac{1}{4} + \\frac{-1}{4}}{0} = \\dfrac{0}{0}$ forme indéterminée.",
+            "$\\dfrac{0}{0}$ : la limite n'existe pas."
+          ],
+          "answer": 2,
+          "hints": [
+            "En $x = -2$ : $x + 1 = -1$ et $x^2 = 4$."
+          ],
+          "solution": "$$\\frac{\\frac{1}{4} + \\frac{-2 + 1}{4}}{(-2 + 2)^3} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
+        },
+        {
+          "prompt": "Levons l'indétermination en réduisant au même dénominateur.",
+          "choices": [
+            "$\\dfrac{x^2 + 4x + 4}{4x^2} \\cdot \\dfrac{1}{(x + 2)^3} = \\dfrac{(x + 2)^2}{4x^2(x + 2)^3} = \\dfrac{1}{4x^2(x + 2)}$ pour $x \\neq -2$",
+            "$\\dfrac{x^2 + 4x + 1}{4x^2} \\cdot \\dfrac{1}{(x + 2)^3}$, qui ne se simplifie pas",
+            "$\\dfrac{x^2 + x + 1}{4x^2} \\cdot \\dfrac{1}{(x + 2)^3}$, qui ne se simplifie pas",
+            "$\\dfrac{(x + 2)^2}{4x^2(x + 2)^3} = \\dfrac{x + 2}{4x^2}$ pour $x \\neq -2$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$\\frac{1}{4} + \\frac{x + 1}{x^2} = \\frac{x^2 + 4(x + 1)}{4x^2}$ : distribuer le $4$ sur les deux termes.",
+            "$x^2 + 4x + 4 = (x + 2)^2$."
+          ],
+          "solution": "$$\\frac{1}{4} + \\frac{x + 1}{x^2} = \\frac{x^2 + 4x + 4}{4x^2} = \\frac{(x + 2)^2}{4x^2}$$"
+        },
+        {
+          "prompt": "On distingue 2 cas : lorsque $x \\to -2^-$ et $x \\to -2^+$. Conclure.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to -2^-} = +\\infty$ et $\\displaystyle\\lim_{x \\to -2^+} = -\\infty$. On conclut que la $\\displaystyle\\lim_{x \\to -2}$ n'existe pas.",
+            "$\\displaystyle\\lim_{x \\to -2} \\frac{1}{4x^2(x + 2)} = \\frac{1}{16 \\cdot 0} = +\\infty$.",
+            "$\\displaystyle\\lim_{x \\to -2^-} \\frac{1}{4x^2(x + 2)} = -\\infty$ forme $\\left(\\frac{1}{16 \\cdot 0^-}\\right)$ et $\\displaystyle\\lim_{x \\to -2^+} \\frac{1}{4x^2(x + 2)} = +\\infty$. On a $\\displaystyle\\lim_{x \\to -2^-} \\neq \\lim_{x \\to -2^+}$. On conclut que la $\\displaystyle\\lim_{x \\to -2}$ n'existe pas.",
+            "$\\displaystyle\\lim_{x \\to -2} \\frac{x + 2}{4x^2} = 0$."
+          ],
+          "answer": 2,
+          "hints": [
+            "$4x^2 \\to 16 > 0$ : le signe vient seulement de $x + 2$."
+          ],
+          "solution": "$$\\lim_{x \\to -2^-} \\frac{1}{4x^2(x + 2)} = -\\infty \\quad \\text{forme } \\left(\\frac{1}{16 \\cdot 0^-}\\right), \\qquad \\lim_{x \\to -2^+} \\frac{1}{4x^2(x + 2)} = +\\infty \\quad \\text{forme } \\left(\\frac{1}{16 \\cdot 0^+}\\right)$$"
+        }
+      ],
+      "solution": "$$\\lim_{x \\to -2} \\frac{\\frac{1}{4} + \\frac{x + 1}{x^2}}{(x + 2)^3} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en réduisant au même dénominateur :\n$$= \\lim_{x \\to -2} \\frac{\\frac{x^2 + 4x + 4}{4x^2}}{(x + 2)^3} = \\lim_{x \\to -2} \\frac{(x + 2)^2}{4x^2(x + 2)^3} = \\lim_{x \\to -2} \\frac{1}{4x^2(x + 2)} \\quad \\text{pour } x \\neq -2$$\nOn distingue 2 cas : lorsque $x \\to -2^-$ et $x \\to -2^+$.\n$$\\lim_{x \\to -2^-} \\frac{1}{4x^2(x + 2)} = -\\infty \\quad \\text{forme } \\left(\\frac{1}{16 \\cdot 0^-}\\right), \\qquad \\lim_{x \\to -2^+} \\frac{1}{4x^2(x + 2)} = +\\infty \\quad \\text{forme } \\left(\\frac{1}{16 \\cdot 0^+}\\right)$$\nOn a $\\displaystyle\\lim_{x \\to -2^-} \\neq \\lim_{x \\to -2^+}$. On conclut que la $\\displaystyle\\lim_{x \\to -2}$ n'existe pas."
+    },
+    {
+      "id": "mat1903-p1-07",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra A25 · Q1.3",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Calculer $\\displaystyle\\lim_{x \\to -3} \\frac{\\sqrt{7 + x^2} - 4}{x + 3}$.",
+      "steps": [
+        {
+          "prompt": "Substitution directe en $x = -3$.",
+          "choices": [
+            "$\\dfrac{\\sqrt{7 - 9} - 4}{0}$ : la racine n'est pas définie, la limite n'existe pas.",
+            "$\\dfrac{0}{0} = 0$, donc la limite vaut $0$.",
+            "$\\dfrac{\\sqrt{7} - 1}{0}$, donc la limite vaut $\\infty$.",
+            "$\\dfrac{\\sqrt{7 + 9} - 4}{-3 + 3} = \\dfrac{4 - 4}{0} = \\dfrac{0}{0}$ forme indéterminée."
+          ],
+          "answer": 3,
+          "hints": [
+            "$(-3)^2 = +9$ : le carré d'un négatif est positif."
+          ],
+          "solution": "$$\\frac{\\sqrt{7 + (-3)^2} - 4}{-3 + 3} = \\frac{\\sqrt{16} - 4}{0} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
+        },
+        {
+          "prompt": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.",
+          "choices": [
+            "$\\dfrac{(7 + x^2) - 4}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\dfrac{x^2 + 3}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)}$",
+            "$\\dfrac{(7 + x^2) - 16}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\dfrac{(x + 3)(x - 3)}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\dfrac{x - 3}{\\sqrt{7 + x^2} + 4}$ pour $x \\neq -3$",
+            "$\\dfrac{(7 + x^2) - 16}{(x + 3)\\left(\\sqrt{7 + x^2} - 4\\right)}$",
+            "$\\dfrac{x^2 + 9}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\left(\\sqrt{7 + x^2} - 4\\right)\\left(\\sqrt{7 + x^2} + 4\\right) = (7 + x^2) - 4^2$.",
+            "$x^2 - 9 = (x + 3)(x - 3)$."
+          ],
+          "solution": "$$\\frac{\\left(\\sqrt{7 + x^2} - 4\\right)\\left(\\sqrt{7 + x^2} + 4\\right)}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\frac{x^2 - 9}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\frac{x - 3}{\\sqrt{7 + x^2} + 4} \\quad \\text{pour } x \\neq -3$$"
+        },
+        {
+          "prompt": "Évaluer la limite.",
+          "choices": [
+            "$\\dfrac{3}{4}$",
+            "$\\dfrac{-6}{4} = -\\dfrac{3}{2}$",
             "$0$",
-            "$\\displaystyle\\lim_{x \\to 2} \\dfrac{x^2 + 2x + 4}{x + 2} = \\dfrac{12}{4} = 3$ pour $x \\neq 2$"
+            "$\\dfrac{-3 - 3}{\\sqrt{16} + 4} = \\dfrac{-6}{8} = -\\dfrac{3}{4}$"
           ],
           "answer": 3,
           "hints": [
-            "Après simplification, substituer $x = 2$ dans $\\dfrac{x^2 + 2x + 4}{x + 2}$."
+            "$\\sqrt{16} + 4 = 8$."
           ],
-          "solution": "$$= \\lim_{x \\to 2} \\frac{x^2 + 2x + 4}{x + 2} \\quad \\text{pour } x \\neq 2$$\n$$= \\frac{4 + 4 + 4}{2 + 2} = \\frac{12}{4} = 3$$"
+          "solution": "$$\\lim_{x \\to -3} \\frac{x - 3}{\\sqrt{7 + x^2} + 4} = \\frac{-6}{4 + 4} = -\\frac{3}{4}$$"
         }
       ],
-      "solution": "$$\\lim_{x \\to 2} \\frac{x^3 - 8}{x^2 - 4} = \\frac{8 - 8}{4 - 4} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en factorisant le numérateur et le dénominateur.\n$$x^3 - 8 = (x - 2)(x^2 + 2x + 4), \\qquad x^2 - 4 = (x - 2)(x + 2)$$\n$$= \\lim_{x \\to 2} \\frac{x^2 + 2x + 4}{x + 2} \\quad \\text{pour } x \\neq 2$$\n$$= \\frac{4 + 4 + 4}{4} = \\frac{12}{4} = 3$$"
+      "solution": "$$\\lim_{x \\to -3} \\frac{\\sqrt{7 + x^2} - 4}{x + 3} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$= \\lim_{x \\to -3} \\frac{(7 + x^2) - 16}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\lim_{x \\to -3} \\frac{(x + 3)(x - 3)}{(x + 3)\\left(\\sqrt{7 + x^2} + 4\\right)} = \\lim_{x \\to -3} \\frac{x - 3}{\\sqrt{7 + x^2} + 4} \\quad \\text{pour } x \\neq -3$$\n$$= \\frac{-6}{8} = -\\frac{3}{4}$$"
     },
     {
-      "id": "mat1903-1b-02",
-      "topic": "1.b Indeterminate Limits (0/0)",
+      "id": "mat1903-p1-08",
+      "topic": "Pilier 1 · Domaine, asymptotes et limites",
+      "source": "Intra H26 · Q1.a (1)",
       "category": "practice",
       "difficulty": 2,
-      "question": "Calculer $\\displaystyle\\lim_{x \\to 4} \\dfrac{\\sqrt{x + 5} - 3}{x - 4}$.",
+      "question": "Calculer $\\displaystyle\\lim_{x \\to 2} \\frac{\\sqrt{x + 2} - 2}{x^2 - 4}$.",
       "steps": [
         {
-          "prompt": "Que donne la substitution directe en $x = 4$ ?",
+          "prompt": "Substitution directe en $x = 2$.",
           "choices": [
-            "$\\dfrac{\\sqrt{4 + 5} - 3}{4 - 4} = \\dfrac{0}{0}$ forme indéterminée",
-            "$0$, donc la limite vaut $0$",
-            "La limite n'existe pas",
-            "$\\dfrac{0}{0} = 1$"
+            "$\\dfrac{\\sqrt{4} - 2}{4 - 4} = \\dfrac{0}{0}$ forme indéterminée.",
+            "$\\dfrac{0}{0} = 0$, donc la limite vaut $0$.",
+            "$\\dfrac{0}{0} = 1$, donc la limite vaut $1$.",
+            "$\\dfrac{0}{0}$ : la limite n'existe pas."
           ],
           "answer": 0,
           "hints": [
-            "$\\sqrt{9} = 3$, donc le numérateur et le dénominateur s'annulent tous les deux."
+            "Une forme $\\frac{0}{0}$ se lève ; elle ne donne aucune valeur directement."
           ],
-          "solution": "$$\\lim_{x \\to 4} \\frac{\\sqrt{x + 5} - 3}{x - 4} = \\frac{\\sqrt{9} - 3}{0} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
+          "solution": "$$\\frac{\\sqrt{2 + 2} - 2}{2^2 - 4} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
         },
         {
-          "prompt": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur. Le quotient devient :",
+          "prompt": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.",
           "choices": [
-            "$\\dfrac{x + 5 - 3}{(x - 4)\\left(\\sqrt{x + 5} + 3\\right)}$",
-            "$\\dfrac{x - 4}{(x - 4)\\left(\\sqrt{x + 5} + 3\\right)}$",
-            "$\\dfrac{x - 4}{(x - 4)\\left(\\sqrt{x + 5} - 3\\right)}$",
-            "$\\dfrac{x + 5 - 9}{x - 4}$"
-          ],
-          "answer": 1,
-          "hints": [
-            "$(\\sqrt{x + 5} - 3)(\\sqrt{x + 5} + 3) = (x + 5) - 9 = x - 4$. Le $3$ est élevé au carré.",
-            "Le conjugué multiplie aussi le dénominateur."
-          ],
-          "solution": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$\\frac{\\sqrt{x + 5} - 3}{x - 4} \\cdot \\frac{\\sqrt{x + 5} + 3}{\\sqrt{x + 5} + 3} = \\frac{(x + 5) - 9}{(x - 4)\\left(\\sqrt{x + 5} + 3\\right)} = \\frac{x - 4}{(x - 4)\\left(\\sqrt{x + 5} + 3\\right)}$$"
-        },
-        {
-          "prompt": "Simplifier pour $x \\neq 4$ et conclure.",
-          "choices": [
-            "$\\dfrac{1}{3}$",
-            "$6$",
-            "$\\displaystyle\\lim_{x \\to 4} \\dfrac{1}{\\sqrt{x + 5} + 3} = \\dfrac{1}{6}$ pour $x \\neq 4$",
-            "$0$"
+            "$\\dfrac{1}{(x - 2)\\left(\\sqrt{x + 2} + 2\\right)}$ pour $x \\neq 2$",
+            "$\\dfrac{(x + 2) - 4}{(x^2 - 4)\\left(\\sqrt{x + 2} - 2\\right)}$",
+            "$\\dfrac{(x + 2) - 4}{(x^2 - 4)\\left(\\sqrt{x + 2} + 2\\right)} = \\dfrac{x - 2}{(x - 2)(x + 2)\\left(\\sqrt{x + 2} + 2\\right)} = \\dfrac{1}{(x + 2)\\left(\\sqrt{x + 2} + 2\\right)}$ pour $x \\neq 2$",
+            "$\\dfrac{1}{\\sqrt{x + 2} + 2}$ pour $x \\neq 2$"
           ],
           "answer": 2,
           "hints": [
-            "$\\sqrt{4 + 5} + 3 = 3 + 3 = 6$."
+            "Numérateur : $(x + 2) - 2^2 = x - 2$.",
+            "$x^2 - 4 = (x - 2)(x + 2)$ : seul $(x - 2)$ se simplifie."
           ],
-          "solution": "$$= \\lim_{x \\to 4} \\frac{1}{\\sqrt{x + 5} + 3} \\quad \\text{pour } x \\neq 4$$\n$$= \\frac{1}{3 + 3} = \\frac{1}{6}$$"
-        }
-      ],
-      "solution": "$$\\lim_{x \\to 4} \\frac{\\sqrt{x + 5} - 3}{x - 4} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$\\frac{(\\sqrt{x + 5} - 3)(\\sqrt{x + 5} + 3)}{(x - 4)(\\sqrt{x + 5} + 3)} = \\frac{(x + 5) - 9}{(x - 4)(\\sqrt{x + 5} + 3)}$$\n$$= \\lim_{x \\to 4} \\frac{1}{\\sqrt{x + 5} + 3} \\quad \\text{pour } x \\neq 4$$\n$$= \\frac{1}{6}$$"
-    },
-    {
-      "id": "mat1903-1b-03",
-      "topic": "1.b Indeterminate Limits (0/0)",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Calculer $\\displaystyle\\lim_{x \\to 3} \\dfrac{2x^2 - 5x - 3}{x^2 - 9}$.",
-      "steps": [
-        {
-          "prompt": "Que donne la substitution directe en $x = 3$ ?",
-          "choices": [
-            "$0$",
-            "La limite n'existe pas",
-            "$\\dfrac{2 \\cdot 9 - 5 \\cdot 3 - 3}{9 - 9} = \\dfrac{0}{0}$ forme indéterminée",
-            "$+\\infty$"
-          ],
-          "answer": 2,
-          "hints": [
-            "$2 \\cdot 9 - 15 - 3 = 0$ et $9 - 9 = 0$."
-          ],
-          "solution": "$$\\lim_{x \\to 3} \\frac{2x^2 - 5x - 3}{x^2 - 9} = \\frac{18 - 15 - 3}{9 - 9} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$"
+          "solution": "$$\\frac{(x + 2) - 4}{(x^2 - 4)\\left(\\sqrt{x + 2} + 2\\right)} = \\frac{x - 2}{(x - 2)(x + 2)\\left(\\sqrt{x + 2} + 2\\right)} = \\frac{1}{(x + 2)\\left(\\sqrt{x + 2} + 2\\right)}$$"
         },
         {
-          "prompt": "Levons l'indétermination en factorisant le numérateur et le dénominateur.",
+          "prompt": "Évaluer la limite.",
           "choices": [
-            "$\\dfrac{(2x + 1)(x - 3)}{(x - 3)(x + 3)}$",
-            "$\\dfrac{(2x - 1)(x + 3)}{(x - 3)(x + 3)}$",
-            "$\\dfrac{(2x + 1)(x - 3)}{(x - 3)^2}$",
-            "$\\dfrac{(2x + 1)(x + 3)}{(x - 3)(x + 3)}$"
+            "$\\dfrac{1}{4 \\cdot (2 + 2)} = \\dfrac{1}{16}$",
+            "$\\dfrac{1}{4}$",
+            "$\\dfrac{1}{8}$",
+            "$\\dfrac{1}{2}$"
           ],
           "answer": 0,
           "hints": [
-            "$x = 3$ est racine du numérateur, donc $x - 3$ est un facteur.",
-            "$(2x + 1)(x - 3) = 2x^2 - 6x + x - 3 = 2x^2 - 5x - 3$."
+            "$x + 2 = 4$ et $\\sqrt{4} + 2 = 4$."
           ],
-          "solution": "$$2x^2 - 5x - 3 = (2x + 1)(x - 3), \\qquad x^2 - 9 = (x - 3)(x + 3)$$"
-        },
-        {
-          "prompt": "Réduire pour $x \\neq 3$ et calculer la limite.",
-          "choices": [
-            "$\\dfrac{5}{6}$",
-            "$\\dfrac{7}{3}$",
-            "$\\displaystyle\\lim_{x \\to 3} \\dfrac{2x + 1}{x + 3} = \\dfrac{7}{6}$ pour $x \\neq 3$",
-            "$0$"
-          ],
-          "answer": 2,
-          "hints": [
-            "$\\dfrac{2 \\cdot 3 + 1}{3 + 3} = \\dfrac{7}{6}$."
-          ],
-          "solution": "$$= \\lim_{x \\to 3} \\frac{2x + 1}{x + 3} \\quad \\text{pour } x \\neq 3$$\n$$= \\frac{2 \\cdot 3 + 1}{3 + 3} = \\frac{7}{6}$$"
+          "solution": "$$\\lim_{x \\to 2} \\frac{1}{(x + 2)\\left(\\sqrt{x + 2} + 2\\right)} = \\frac{1}{4 \\cdot 4} = \\frac{1}{16}$$"
         }
       ],
-      "solution": "$$\\lim_{x \\to 3} \\frac{2x^2 - 5x - 3}{x^2 - 9} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en factorisant le numérateur et le dénominateur.\n$$= \\lim_{x \\to 3} \\frac{(2x + 1)(x - 3)}{(x - 3)(x + 3)} = \\lim_{x \\to 3} \\frac{2x + 1}{x + 3} \\quad \\text{pour } x \\neq 3$$\n$$= \\frac{7}{6}$$"
+      "solution": "$$\\lim_{x \\to 2} \\frac{\\sqrt{x + 2} - 2}{x^2 - 4} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$= \\lim_{x \\to 2} \\frac{(x + 2) - 4}{(x^2 - 4)\\left(\\sqrt{x + 2} + 2\\right)} = \\lim_{x \\to 2} \\frac{x - 2}{(x - 2)(x + 2)\\left(\\sqrt{x + 2} + 2\\right)} = \\lim_{x \\to 2} \\frac{1}{(x + 2)\\left(\\sqrt{x + 2} + 2\\right)} \\quad \\text{pour } x \\neq 2$$\n$$= \\frac{1}{4 \\cdot 4} = \\frac{1}{16}$$"
     },
     {
-      "id": "mat1903-1b-04",
-      "topic": "1.b Indeterminate Limits (0/0)",
+      "id": "mat1903-p2-01",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra H24 · Q2.a",
       "category": "theory",
       "difficulty": 2,
-      "question": "Soit $g(x) = \\dfrac{|x - 3|}{x - 3}$. Déterminer $\\displaystyle\\lim_{x \\to 3^-} g(x)$, $\\displaystyle\\lim_{x \\to 3^+} g(x)$ et $\\displaystyle\\lim_{x \\to 3} g(x)$.",
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{3}{x^2 - 9} & \\text{si } x < 0 \\\\ x + 1 & \\text{si } 0 \\le x < 1 \\\\ \\sqrt{5x - 1} & \\text{si } x \\ge 1 \\end{cases}$. Étudier la continuité de $f$ en $x = -3$.",
       "choices": [
-        "Les deux limites latérales valent $1$, donc $\\displaystyle\\lim_{x \\to 3} g(x) = 1$.",
-        "$\\displaystyle\\lim_{x \\to 3^-} g(x) = 1$ et $\\displaystyle\\lim_{x \\to 3^+} g(x) = -1$. On a $\\displaystyle\\lim_{x \\to 3^-} \\neq \\displaystyle\\lim_{x \\to 3^+}$. On conclut que la $\\displaystyle\\lim_{x \\to 3}$ n'existe pas.",
-        "On distingue 2 cas : lorsque $x \\to 3^-$ et $x \\to 3^+$.\nPour $x < 3$, $g(x) = -1$, donc $\\displaystyle\\lim_{x \\to 3^-} g(x) = -1$.\nPour $x > 3$, $g(x) = 1$, donc $\\displaystyle\\lim_{x \\to 3^+} g(x) = 1$.\nOn a $\\displaystyle\\lim_{x \\to 3^-} \\neq \\displaystyle\\lim_{x \\to 3^+}$. On conclut que la $\\displaystyle\\lim_{x \\to 3}$ n'existe pas.",
-        "$\\displaystyle\\lim_{x \\to 3} g(x) = 0$, car $|0| = 0$."
-      ],
-      "answer": 2,
-      "hints": [
-        "Pour $x < 3$, $x - 3 < 0$, donc $|x - 3| = -(x - 3)$.",
-        "La limite bilatérale existe seulement si les deux limites latérales sont égales."
-      ],
-      "solution": "Domaine de la fonction $g$\n$$\\text{Dom}_g = \\{x \\in \\mathbb{R} \\ / \\ x - 3 \\neq 0\\} = \\mathbb{R} - \\{3\\}$$\n$3 \\notin \\text{Dom}_g$. La fonction $g$ n'est pas définie en $x = 3$ donc elle n'est pas continue en $x = 3$.\n\nOn distingue 2 cas : lorsque $x \\to 3^-$ et $x \\to 3^+$.\nPour $x < 3$, $|x - 3| = -(x - 3)$, donc\n$$g(x) = \\frac{-(x - 3)}{x - 3} = -1 \\quad \\text{pour } x \\neq 3$$\n$$\\lim_{x \\to 3^-} g(x) = -1$$\nPour $x > 3$, $|x - 3| = x - 3$, donc\n$$g(x) = \\frac{x - 3}{x - 3} = 1 \\quad \\text{pour } x \\neq 3$$\n$$\\lim_{x \\to 3^+} g(x) = 1$$\nOn a $\\lim_{x \\to 3^-} \\neq \\lim_{x \\to 3^+}$. On conclut que la $\\lim_{x \\to 3}$ n'existe pas.\nLa fonction $g$ est discontinue en $x = 3$.\nLa fonction $g$ n'est pas continue en $x = 3$ donc elle n'est pas dérivable en $x = 3$."
-    },
-    {
-      "id": "mat1903-2a-01",
-      "topic": "2.a Continuity & Discontinuities",
-      "category": "theory",
-      "difficulty": 2,
-      "question": "Laquelle des propositions est la définition complète de « la fonction $f$ est continue en $x = a$ » ?",
-      "choices": [
-        "$a \\in \\text{Dom}_f$ et $\\displaystyle\\lim_{x \\to a^-} f(x) = f(a)$ seulement.",
-        "$\\displaystyle\\lim_{x \\to a} f(x)$ existe.",
-        "$f$ est définie sur un intervalle ouvert autour de $a$.",
-        "$a \\in \\text{Dom}_f$ et $f(a)$ est explicite.\n$\\displaystyle\\lim_{x \\to a^-} f(x) = \\displaystyle\\lim_{x \\to a^+} f(x) = L$, d'où $\\displaystyle\\lim_{x \\to a} f(x) = L$ et $\\displaystyle\\lim_{x \\to a} f(x) = f(a) = L$.\nLa fonction $f$ est donc continue en $x = a$."
-      ],
-      "answer": 3,
-      "hints": [
-        "Il faut l'appartenance au domaine, la valeur $f(a)$, les deux limites latérales, puis l'égalité avec $f(a)$."
-      ],
-      "solution": "La fonction $f$ est continue en $x = a$ lorsque les quatre étapes suivantes sont satisfaites.\n1. $a \\in \\text{Dom}_f$. Si $a \\notin \\text{Dom}_f$, on s'arrête : la fonction $f$ n'est pas définie en $x = a$ donc elle n'est pas continue en $x = a$.\n2. On écrit $f(a)$ explicitement.\n3. On calcule $\\lim_{x \\to a^-} f(x)$ et $\\lim_{x \\to a^+} f(x)$ séparément.\n4. Si $\\lim_{x \\to a^-} f(x) = \\lim_{x \\to a^+} f(x) = L$, d'où $\\lim_{x \\to a} f(x) = L$ et $\\lim_{x \\to a} f(x) = f(a) = L$, alors la fonction $f$ est donc continue en $x = a$.\nUne seule limite latérale, ou une limite qui existe sans égaler $f(a)$, ne suffit pas."
-    },
-    {
-      "id": "mat1903-2a-02",
-      "topic": "2.a Continuity & Discontinuities",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Déterminer $k$ pour que $f(x) = \\begin{cases} kx + 3 & x < 2 \\\\ x^2 - k & x \\ge 2 \\end{cases}$ soit continue sur $\\mathbb{R}$.",
-      "steps": [
-        {
-          "prompt": "Vérifier que $2 \\in \\text{Dom}_f$ et calculer $f(2)$.",
-          "choices": [
-            "$2 \\notin \\text{Dom}_f$. La fonction $f$ n'est pas définie en $x = 2$ donc elle n'est pas continue en $x = 2$.",
-            "$2 \\in \\text{Dom}_f$ et $f(2) = 4 - k$.",
-            "$2 \\in \\text{Dom}_f$ et $f(2) = 2k + 3$.",
-            "$2 \\in \\text{Dom}_f$ et $f(2) = 4 + k$."
-          ],
-          "answer": 1,
-          "hints": [
-            "Les deux morceaux couvrent $\\mathbb{R}$, donc $\\text{Dom}_f = \\mathbb{R}$ et $2 \\in \\text{Dom}_f$.",
-            "Le morceau $x \\ge 2$ donne $f(2) = 2^2 - k$."
-          ],
-          "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\mathbb{R}$$\ndonc $2 \\in \\text{Dom}_f$.\n$$f(2) = 2^2 - k = 4 - k$$"
-        },
-        {
-          "prompt": "Calculer séparément $\\displaystyle\\lim_{x \\to 2^-} f(x)$ et $\\displaystyle\\lim_{x \\to 2^+} f(x)$.",
-          "choices": [
-            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = 4 - k$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = 2k + 3$",
-            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = 2k - 3$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = 4 - k$",
-            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = 2k + 3$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = 4 - k$",
-            "$\\displaystyle\\lim_{x \\to 2^-} f(x) = k + 3$ et $\\displaystyle\\lim_{x \\to 2^+} f(x) = 2 - k$"
-          ],
-          "answer": 2,
-          "hints": [
-            "Pour $x < 2$, on utilise $kx + 3$. Pour $x > 2$, on utilise $x^2 - k$."
-          ],
-          "solution": "$$\\lim_{x \\to 2^-} f(x) = \\lim_{x \\to 2^-} (kx + 3) = 2k + 3$$\n$$\\lim_{x \\to 2^+} f(x) = \\lim_{x \\to 2^+} (x^2 - k) = 4 - k$$"
-        },
-        {
-          "prompt": "Imposer l'égalité des limites latérales et de $f(2)$, puis conclure.",
-          "choices": [
-            "$k = \\dfrac{7}{3}$. La fonction $f$ est donc continue en $x = 2$.",
-            "$k = 1$. La fonction $f$ est donc continue en $x = 2$.",
-            "$k = -\\dfrac{1}{3}$. La fonction $f$ est discontinue en $x = 2$.",
-            "$2k + 3 = 4 - k$, donc $k = \\dfrac{1}{3}$.\nAlors $\\displaystyle\\lim_{x \\to 2^-} f(x) = \\displaystyle\\lim_{x \\to 2^+} f(x) = \\dfrac{11}{3}$, d'où $\\displaystyle\\lim_{x \\to 2} f(x) = \\dfrac{11}{3}$ et $\\displaystyle\\lim_{x \\to 2} f(x) = f(2) = \\dfrac{11}{3}$.\nLa fonction $f$ est donc continue en $x = 2$."
-          ],
-          "answer": 3,
-          "hints": [
-            "$2k + 3 = 4 - k$ donne $3k = 1$.",
-            "Pour $k = \\dfrac{1}{3}$, les deux côtés valent $\\dfrac{11}{3}$."
-          ],
-          "solution": "$$2k + 3 = 4 - k \\implies 3k = 1 \\implies k = \\frac{1}{3}$$\n$$\\lim_{x \\to 2^-} f(x) = \\lim_{x \\to 2^+} f(x) = \\frac{11}{3} \\implies \\text{d'où : } \\lim_{x \\to 2} f(x) = \\frac{11}{3}$$\net $\\displaystyle\\lim_{x \\to 2} f(x) = f(2) = \\dfrac{11}{3}$.\nLa fonction $f$ est donc continue en $x = 2$.\nLes deux morceaux sont des polynômes, donc $f$ est continue sur $\\mathbb{R}$."
-        }
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\mathbb{R}$$\ndonc $2 \\in \\text{Dom}_f$, et $f(2) = 4 - k$.\n$$\\lim_{x \\to 2^-} f(x) = 2k + 3, \\qquad \\lim_{x \\to 2^+} f(x) = 4 - k$$\n$$2k + 3 = 4 - k \\implies k = \\frac{1}{3}$$\nAlors $\\lim_{x \\to 2^-} f(x) = \\lim_{x \\to 2^+} f(x) = \\dfrac{11}{3}$, d'où $\\lim_{x \\to 2} f(x) = \\dfrac{11}{3}$ et $\\lim_{x \\to 2} f(x) = f(2) = \\dfrac{11}{3}$.\nLa fonction $f$ est donc continue en $x = 2$, et donc continue sur $\\mathbb{R}$."
-    },
-    {
-      "id": "mat1903-2a-03",
-      "topic": "2.a Continuity & Discontinuities",
-      "category": "theory",
-      "difficulty": 2,
-      "question": "Classer la discontinuité au point indiqué. (A) $f(x) = \\dfrac{x^2 - 4}{x - 2}$ en $x = 2$ ; (B) $g(x) = \\dfrac{|x|}{x}$ en $x = 0$ ; (C) $h(x) = \\dfrac{1}{x^2}$ en $x = 0$.",
-      "choices": [
-        "(A) Saut : on a $\\displaystyle\\lim_{x \\to 2^-} \\neq \\displaystyle\\lim_{x \\to 2^+}$.\n(B) Éliminable : $\\displaystyle\\lim_{x \\to 0} g(x) = 4$.\n(C) Infinie : $\\displaystyle\\lim_{x \\to 0} h(x) = +\\infty$.",
-        "(A) La fonction $f$ n'est pas définie en $x = 2$ donc elle n'est pas continue en $x = 2$. Pour $x \\neq 2$, $\\displaystyle\\lim_{x \\to 2} f(x) = 4$ : discontinuité éliminable.\n(B) La fonction $g$ n'est pas définie en $x = 0$ donc elle n'est pas continue en $x = 0$. On a $\\displaystyle\\lim_{x \\to 0^-} \\neq \\displaystyle\\lim_{x \\to 0^+}$. On conclut que la $\\displaystyle\\lim_{x \\to 0}$ n'existe pas : discontinuité par saut.\n(C) La fonction $h$ n'est pas définie en $x = 0$ donc elle n'est pas continue en $x = 0$. $\\displaystyle\\lim_{x \\to 0} h(x) = +\\infty$ forme $\\left(\\dfrac{1}{0^+}\\right)$ : discontinuité infinie.",
-        "(A) Éliminable, car $\\displaystyle\\lim_{x \\to 2} f(x) = 4$ et $f(2) = 4$.\n(B) Éliminable, car $\\displaystyle\\lim_{x \\to 0} g(x) = 1$.\n(C) Saut.",
-        "(A) Infinie : la droite d'équation $x = 2$ est une asymptote verticale à la courbe représentative de la fonction $f$.\n(B) Saut.\n(C) Éliminable, car $\\displaystyle\\lim_{x \\to 0} h(x) = 0$."
+        "$f(-3) = \\dfrac{3}{0} = 0$ et $\\displaystyle\\lim_{x \\to -3} f(x) = 0$. La fonction $f$ est donc continue en $x = -3$.",
+        "$-3 \\notin \\text{Dom}_f$ car $(-3)^2 - 9 = 0$. La fonction $f$ n'est pas définie en $x = -3$ donc elle n'est pas continue en $x = -3$.",
+        "$-3 < 0$, on utilise la branche $\\dfrac{3}{x^2 - 9}$, qui est une fraction rationnelle, donc continue. La fonction $f$ est donc continue en $x = -3$.",
+        "$\\displaystyle\\lim_{x \\to -3^-} f(x) = \\lim_{x \\to -3^+} f(x)$, donc la fonction $f$ est continue en $x = -3$."
       ],
       "answer": 1,
       "hints": [
-        "Si le point n'est pas dans le domaine, la fonction n'est pas continue. On le dit avant d'étudier la limite.",
-        "Éliminable : la limite existe et est finie. Saut : les limites latérales finies diffèrent. Infinie : une limite latérale est infinie."
+        "Première étape de la preuve : vérifier si $-3 \\in \\text{Dom}_f$.",
+        "Une fraction rationnelle est continue sur son domaine seulement."
       ],
-      "solution": "Continuité. Dans chaque cas le point n'appartient pas au domaine, donc on conclut sans calculer de limite :\n(A) $2 \\notin \\text{Dom}_f$. La fonction $f$ n'est pas définie en $x = 2$ donc elle n'est pas continue en $x = 2$.\n(B) $0 \\notin \\text{Dom}_g$. La fonction $g$ n'est pas définie en $x = 0$ donc elle n'est pas continue en $x = 0$.\n(C) $0 \\notin \\text{Dom}_h$. La fonction $h$ n'est pas définie en $x = 0$ donc elle n'est pas continue en $x = 0$.\n\nNature de la discontinuité, par une étude de limite séparée de la preuve de continuité.\n(A) Domaine de la fonction $f$ : $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x - 2 \\neq 0\\} = \\mathbb{R} - \\{2\\}$.\n$$\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\n$$= \\lim_{x \\to 2} (x + 2) \\quad \\text{pour } x \\neq 2$$\n$$= 4$$\nLa limite existe et est finie, mais $f(2)$ n'existe pas : discontinuité éliminable.\nLa fonction $f$ n'est pas continue en $x = 2$ donc elle n'est pas dérivable en $x = 2$.\n(B) On distingue 2 cas : lorsque $x \\to 0^-$ et $x \\to 0^+$.\nPour $x < 0$, $g(x) = -1$. Pour $x > 0$, $g(x) = 1$.\nOn a $\\lim_{x \\to 0^-} \\neq \\lim_{x \\to 0^+}$. On conclut que la $\\lim_{x \\to 0}$ n'existe pas. Discontinuité par saut.\nLa fonction $g$ n'est pas continue en $x = 0$ donc elle n'est pas dérivable en $x = 0$.\n(C) $\\displaystyle\\lim_{x \\to 0^+} \\dfrac{1}{x^2} = +\\infty$ forme $\\left(\\dfrac{1}{0^+}\\right)$ et $\\displaystyle\\lim_{x \\to 0^-} \\dfrac{1}{x^2} = +\\infty$ forme $\\left(\\dfrac{1}{0^+}\\right)$, car $x^2 \\to 0^+$ des deux côtés. Discontinuité infinie.\nLa fonction $h$ n'est pas continue en $x = 0$ donc elle n'est pas dérivable en $x = 0$."
+      "solution": "On vérifie d'abord l'appartenance au domaine : $(-3)^2 - 9 = 0$, donc $-3 \\notin \\text{Dom}_f$.\n\nLa fonction $f$ n'est pas définie en $x = -3$ donc elle n'est pas continue en $x = -3$.\n\n(Aucune limite n'est à calculer : la preuve s'arrête dès la première étape.)"
     },
     {
-      "id": "mat1903-2b-01",
-      "topic": "2.b Derivative by Definition",
-      "category": "practice",
+      "id": "mat1903-p2-02",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra H26 · Q2.a–b",
+      "category": "theory",
       "difficulty": 2,
-      "question": "Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f(x) = \\dfrac{1}{x + 1}$ en $x = 1$.",
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{-2}{x^2 - 1} & \\text{si } x < 0 \\\\ 2 & \\text{si } x = 0 \\\\ \\sqrt{x + 4} & \\text{si } x > 0 \\end{cases}$. Étudier la continuité puis la dérivabilité de $f$ en $x = -1$.",
       "steps": [
         {
-          "prompt": "Écrire les deux quotients différentiels latéraux en $x = 1$.",
+          "prompt": "Continuité en $x = -1$.",
           "choices": [
-            "$\\displaystyle\\lim_{h \\to 0} \\dfrac{\\dfrac{1}{1 + h} - \\dfrac{1}{2}}{h}$",
-            "$\\displaystyle\\lim_{h \\to 0} \\dfrac{\\dfrac{1}{2 + h} + \\dfrac{1}{2}}{h}$",
-            "$\\dfrac{1}{2 + h} - \\dfrac{1}{2}$",
-            "$\\displaystyle\\lim_{h \\to 0^-} \\dfrac{f(1 + h) - f(1)}{h} = \\displaystyle\\lim_{h \\to 0^-} \\dfrac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h}$\net $\\displaystyle\\lim_{h \\to 0^+} \\dfrac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h}$"
+            "$f(-1) = \\dfrac{-2}{0} = 0$ ; la fonction $f$ est donc continue en $x = -1$.",
+            "$-1 < 0$ et $\\dfrac{-2}{x^2 - 1}$ est une fraction rationnelle : la fonction $f$ est donc continue en $x = -1$.",
+            "$-1 \\notin \\text{Dom}_f$ car $(-1)^2 - 1 = 0$. La fonction $f$ n'est pas définie en $x = -1$ donc elle n'est pas continue en $x = -1$.",
+            "$f(-1) = \\sqrt{-1 + 4} = \\sqrt{3}$ ; la fonction $f$ est donc continue en $x = -1$."
           ],
-          "answer": 3,
+          "answer": 2,
           "hints": [
-            "$1 \\in \\text{Dom}_f$ et $f(1) = \\dfrac{1}{2}$. De plus $f(1 + h) = \\dfrac{1}{2 + h}$.",
-            "On étudie $h \\to 0^-$ et $h \\to 0^+$ séparément."
+            "Vérifier d'abord si $-1 \\in \\text{Dom}_f$ ; si non, la preuve s'arrête."
           ],
-          "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$\ndonc $1 \\in \\text{Dom}_f$ et $f(1) = \\dfrac{1}{2}$.\nUtilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 1$.\n$$\\lim_{h \\to 0^-} \\frac{f(1 + h) - f(1)}{h} = \\lim_{h \\to 0^-} \\frac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h}$$\net\n$$\\lim_{h \\to 0^+} \\frac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h}$$"
+          "solution": "$(-1)^2 - 1 = 0$, donc $-1 \\notin \\text{Dom}_f$. La fonction $f$ n'est pas définie en $x = -1$ donc elle n'est pas continue en $x = -1$."
         },
         {
-          "prompt": "Levons l'indétermination en réduisant au même dénominateur. Pour $h \\neq 0$, le quotient vaut :",
+          "prompt": "Dérivabilité en $x = -1$.",
           "choices": [
-            "$\\dfrac{1}{2(2 + h)}$",
-            "$-\\dfrac{1}{2(2 + h)}$",
-            "$\\dfrac{4 + h}{2h(2 + h)}$",
-            "$-\\dfrac{h}{2(2 + h)}$"
-          ],
-          "answer": 1,
-          "hints": [
-            "$\\dfrac{1}{2 + h} - \\dfrac{1}{2} = \\dfrac{2 - (2 + h)}{2(2 + h)} = \\dfrac{-h}{2(2 + h)}$.",
-            "On divise ensuite par $h$ et on simplifie pour $h \\neq 0$."
-          ],
-          "solution": "Levons l'indétermination en réduisant au même dénominateur.\n$$\\frac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h} = \\frac{2 - (2 + h)}{2(2 + h) \\cdot h} = \\frac{-h}{2h(2 + h)} = -\\frac{1}{2(2 + h)} \\quad \\text{pour } h \\neq 0$$"
-        },
-        {
-          "prompt": "Comparer les deux limites latérales du quotient différentiel.",
-          "choices": [
-            "Les deux limites valent $-\\dfrac{1}{4}$. La fonction $f$ est dérivable en $x = 1$ et $f'(1) = -\\dfrac{1}{4}$.",
-            "$-\\dfrac{1}{2}$",
-            "$\\dfrac{1}{4}$",
-            "On a donc $\\displaystyle\\lim_{h \\to 0^-} \\dfrac{f(1 + h) - f(1)}{h} \\neq \\displaystyle\\lim_{h \\to 0^+} \\dfrac{f(1 + h) - f(1)}{h}$. La fonction $f$ n'est pas dérivable en $x = 1$, $f'(1)$ n'existe pas."
+            "La fonction $f$ n'est pas continue en $x = -1$ donc elle n'est pas dérivable en $x = -1$.",
+            "$f'(x) = \\dfrac{4x}{(x^2 - 1)^2}$, donc $f'(-1) = \\dfrac{-4}{0} = 0$ : la fonction $f$ est dérivable en $x = -1$.",
+            "$\\dfrac{-2}{x^2 - 1}$ est dérivable sur sa branche, donc la fonction $f$ est dérivable en $x = -1$.",
+            "On calcule $\\displaystyle\\lim_{h \\to 0} \\frac{f(-1 + h) - f(-1)}{h}$ : elle vaut $0$, donc $f'(-1) = 0$."
           ],
           "answer": 0,
           "hints": [
-            "Substituer $h = 0$ seulement après avoir simplifié le facteur $h$."
+            "La dérivabilité en un point exige la continuité en ce point."
           ],
-          "solution": "$$\\lim_{h \\to 0^-} \\left(-\\frac{1}{2(2 + h)}\\right) = -\\frac{1}{4}, \\qquad \\lim_{h \\to 0^+} \\left(-\\frac{1}{2(2 + h)}\\right) = -\\frac{1}{4}$$\nOn a donc $\\displaystyle\\lim_{h \\to 0^-} \\dfrac{f(1 + h) - f(1)}{h} = \\displaystyle\\lim_{h \\to 0^+} \\dfrac{f(1 + h) - f(1)}{h} = -\\dfrac{1}{4}$.\nLa fonction $f$ est dérivable en $x = 1$ et $f'(1) = -\\dfrac{1}{4}$."
+          "solution": "Dérivable $\\implies$ continue. Par contraposée : la fonction $f$ n'est pas continue en $x = -1$ donc elle n'est pas dérivable en $x = -1$."
         }
       ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$\n$1 \\in \\text{Dom}_f$ et $f(1) = \\dfrac{1}{2}$.\nUtilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 1$.\n$$\\lim_{h \\to 0^-} \\frac{f(1 + h) - f(1)}{h} \\quad \\text{et} \\quad \\lim_{h \\to 0^+} \\frac{f(1 + h) - f(1)}{h}$$\nLevons l'indétermination en réduisant au même dénominateur.\n$$\\frac{\\dfrac{1}{2 + h} - \\dfrac{1}{2}}{h} = -\\frac{1}{2(2 + h)} \\quad \\text{pour } h \\neq 0$$\nLes deux limites latérales valent $-\\dfrac{1}{4}$.\nOn a donc $\\displaystyle\\lim_{h \\to 0^-} \\dfrac{f(1 + h) - f(1)}{h} = \\displaystyle\\lim_{h \\to 0^+} \\dfrac{f(1 + h) - f(1)}{h} = -\\dfrac{1}{4}$. La fonction $f$ est dérivable en $x = 1$ et $f'(1) = -\\dfrac{1}{4}$.\nVérification. On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$ avec $u = 1$ et $v = x + 1$, d'où $f'(x) = -\\dfrac{1}{(x + 1)^2}$ et $f'(1) = -\\dfrac{1}{4}$."
+      "solution": "Continuité : $(-1)^2 - 1 = 0$, donc $-1 \\notin \\text{Dom}_f$.\n\nLa fonction $f$ n'est pas définie en $x = -1$ donc elle n'est pas continue en $x = -1$.\n\nDérivabilité : la fonction $f$ n'est pas continue en $x = -1$ donc elle n'est pas dérivable en $x = -1$."
     },
     {
-      "id": "mat1903-2b-02",
-      "topic": "2.b Derivative by Definition",
-      "category": "practice",
+      "id": "mat1903-p2-03",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra H24 · Q2.b",
+      "category": "theory",
       "difficulty": 2,
-      "question": "Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f(x) = \\sqrt{2x + 1}$ en $x = 4$.",
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{3}{x^2 - 9} & \\text{si } x < 0 \\\\ x + 1 & \\text{si } 0 \\le x < 1 \\\\ \\sqrt{5x - 1} & \\text{si } x \\ge 1 \\end{cases}$. Étudier la continuité de $f$ en $x = 0$.",
       "steps": [
         {
-          "prompt": "Écrire le quotient différentiel en $x = 4$.",
+          "prompt": "Étapes 1 et 2 : appartenance au domaine et valeur de $f(0)$.",
           "choices": [
-            "$\\dfrac{\\sqrt{9 + h} - 3}{h}$",
-            "$\\dfrac{\\sqrt{9 + 2h} - 9}{h}$",
-            "$\\dfrac{\\sqrt{2h + 1} - 3}{h}$",
-            "$\\displaystyle\\lim_{h \\to 0^-} \\dfrac{\\sqrt{9 + 2h} - 3}{h}$ et $\\displaystyle\\lim_{h \\to 0^+} \\dfrac{\\sqrt{9 + 2h} - 3}{h}$"
+            "$0 \\in \\text{Dom}_f$ et $f(0) = \\dfrac{3}{0 - 9} = -\\dfrac{1}{3}$",
+            "$0 \\notin \\text{Dom}_f$",
+            "$0 \\in \\text{Dom}_f$ et $f(0) = \\sqrt{5 \\cdot 0 - 1}$, qui n'est pas défini",
+            "$0 \\in \\text{Dom}_f$ et $f(0) = 0 + 1 = 1$"
           ],
           "answer": 3,
           "hints": [
-            "$f(4 + h) = \\sqrt{2(4 + h) + 1} = \\sqrt{9 + 2h}$ et $f(4) = 3$."
+            "$x = 0$ vérifie $0 \\le x < 1$ : c'est la deuxième branche."
           ],
-          "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ 2x + 1 \\ge 0\\} = \\left[-\\frac{1}{2}, +\\infty\\right)$$\ndonc $4 \\in \\text{Dom}_f$ et $f(4) = 3$.\nUtilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 4$.\n$$\\lim_{h \\to 0^-} \\frac{\\sqrt{9 + 2h} - 3}{h} \\quad \\text{et} \\quad \\lim_{h \\to 0^+} \\frac{\\sqrt{9 + 2h} - 3}{h}$$"
+          "solution": "$0 \\in \\text{Dom}_f$ et $f(0) = 0 + 1 = 1$."
         },
         {
-          "prompt": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur. Pour $h \\neq 0$, le quotient vaut :",
+          "prompt": "Étape 3 : limites latérales.",
           "choices": [
-            "$\\dfrac{2}{\\sqrt{9 + 2h} + 3}$",
-            "$\\dfrac{2h}{\\sqrt{9 + 2h} + 3}$",
-            "$\\dfrac{1}{\\sqrt{9 + 2h} + 3}$",
-            "$\\dfrac{2}{\\sqrt{9 + 2h} - 3}$"
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{3}{x^2 - 9} = \\frac{1}{3}$ et $\\displaystyle\\lim_{x \\to 0^+} (x + 1) = 1$",
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{3}{x^2 - 9} = -\\frac{1}{3}$ et $\\displaystyle\\lim_{x \\to 0^+} (x + 1) = 1$",
+            "$\\displaystyle\\lim_{x \\to 0^-} f(x) = \\lim_{x \\to 0^+} f(x) = 1$",
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{3}{x^2 - 9} = -\\frac{1}{3}$ et $\\displaystyle\\lim_{x \\to 0^+} \\sqrt{5x - 1}$ n'existe pas"
+          ],
+          "answer": 1,
+          "hints": [
+            "À gauche de $0$, $x < 0$ : branche $\\dfrac{3}{x^2 - 9}$. À droite, $0 < x < 1$ : branche $x + 1$."
+          ],
+          "solution": "$$\\lim_{x \\to 0^-} \\frac{3}{x^2 - 9} = \\frac{3}{-9} = -\\frac{1}{3}, \\qquad \\lim_{x \\to 0^+} (x + 1) = 1$$"
+        },
+        {
+          "prompt": "Étape 4 : déduction et verdict.",
+          "choices": [
+            "$\\displaystyle\\lim_{x \\to 0} f(x) = f(0) = 1$. La fonction $f$ est donc continue en $x = 0$.",
+            "$\\displaystyle\\lim_{x \\to 0} f(x) = \\frac{-\\frac{1}{3} + 1}{2} = \\frac{1}{3}$. La fonction $f$ est discontinue en $x = 0$.",
+            "La fonction $f$ est discontinue en $x = 0$, mais elle est dérivable en $x = 0$ car chaque branche est dérivable.",
+            "$\\displaystyle\\lim_{x \\to 0^-} f(x) \\neq \\lim_{x \\to 0^+} f(x) \\implies \\lim_{x \\to 0} f(x)$ n'existe pas. La fonction $f$ est discontinue en $x = 0$. La fonction $f$ n'est pas continue en $x = 0$ donc elle n'est pas dérivable en $x = 0$."
+          ],
+          "answer": 3,
+          "hints": [
+            "La limite (bilatérale) n'existe que si les deux limites latérales sont égales."
+          ],
+          "solution": "$-\\frac{1}{3} \\neq 1$, donc $\\displaystyle\\lim_{x \\to 0} f(x)$ n'existe pas."
+        }
+      ],
+      "solution": "$0 \\in \\text{Dom}_f$ et $f(0) = 0 + 1 = 1$.\n$$\\lim_{x \\to 0^-} \\frac{3}{x^2 - 9} = -\\frac{1}{3}, \\qquad \\lim_{x \\to 0^+} (x + 1) = 1$$\n$$\\lim_{x \\to 0^-} f(x) \\neq \\lim_{x \\to 0^+} f(x) \\implies \\lim_{x \\to 0} f(x) \\text{ n'existe pas}$$\nLa fonction $f$ est discontinue en $x = 0$.\n\nLa fonction $f$ n'est pas continue en $x = 0$ donc elle n'est pas dérivable en $x = 0$."
+    },
+    {
+      "id": "mat1903-p2-04",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra H24 · Q2.b",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{3}{x^2 - 9} & \\text{si } x < 0 \\\\ x + 1 & \\text{si } 0 \\le x < 1 \\\\ \\sqrt{5x - 1} & \\text{si } x \\ge 1 \\end{cases}$. Étudier la continuité de $f$ en $x = 1$.",
+      "steps": [
+        {
+          "prompt": "Étapes 1 et 2 : appartenance au domaine et valeur de $f(1)$.",
+          "choices": [
+            "$1 \\in \\text{Dom}_f$ et $f(1) = \\sqrt{5 \\cdot 1 - 1} = \\sqrt{4} = 2$",
+            "$1 \\in \\text{Dom}_f$ et $f(1) = \\sqrt{5} - 1$",
+            "$1 \\notin \\text{Dom}_f$ car la deuxième branche s'arrête en $x < 1$",
+            "$1 \\in \\text{Dom}_f$ et $f(1) = \\sqrt{5 \\cdot 1} = \\sqrt{5}$"
           ],
           "answer": 0,
           "hints": [
-            "Le numérateur devient $(9 + 2h) - 9 = 2h$.",
-            "On simplifie le facteur $h$ au dénominateur."
+            "$x = 1$ vérifie $x \\ge 1$ : c'est la troisième branche.",
+            "La racine porte sur toute l'expression $5x - 1$."
           ],
-          "solution": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$\\frac{(9 + 2h) - 9}{h\\left(\\sqrt{9 + 2h} + 3\\right)} = \\frac{2}{\\sqrt{9 + 2h} + 3} \\quad \\text{pour } h \\neq 0$$"
+          "solution": "$1 \\in \\text{Dom}_f$ et $f(1) = \\sqrt{5(1) - 1} = \\sqrt{4} = 2$."
         },
         {
-          "prompt": "Comparer les limites lorsque $h \\to 0^-$ et $h \\to 0^+$.",
+          "prompt": "Étape 3 : limites latérales.",
           "choices": [
-            "$\\dfrac{1}{6}$",
-            "$\\dfrac{1}{3}$. La fonction $f$ est dérivable en $x = 4$ et $f'(4) = \\dfrac{1}{3}$.",
-            "$\\dfrac{2}{3}$",
-            "$0$"
-          ],
-          "answer": 1,
-          "hints": [
-            "$\\sqrt{9} + 3 = 6$, et $\\dfrac{2}{6} = \\dfrac{1}{3}$."
-          ],
-          "solution": "$$\\lim_{h \\to 0^-} \\frac{2}{\\sqrt{9 + 2h} + 3} = \\frac{2}{6} = \\frac{1}{3}$$\n$$\\lim_{h \\to 0^+} \\frac{2}{\\sqrt{9 + 2h} + 3} = \\frac{1}{3}$$\nOn a donc $\\displaystyle\\lim_{h \\to 0^-} \\dfrac{f(4 + h) - f(4)}{h} = \\displaystyle\\lim_{h \\to 0^+} \\dfrac{f(4 + h) - f(4)}{h} = \\dfrac{1}{3}$.\nLa fonction $f$ est dérivable en $x = 4$ et $f'(4) = \\dfrac{1}{3}$."
-        }
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\left\\{x \\in \\mathbb{R} \\ / \\ 2x + 1 \\ge 0\\right\\} = \\left[-\\frac{1}{2}, +\\infty\\right)$$\n$4 \\in \\text{Dom}_f$ et $f(4) = 3$.\nUtilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 4$.\nLa substitution directe donne $\\dfrac{0}{0}$ forme indéterminée.\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$\\frac{\\sqrt{9 + 2h} - 3}{h} = \\frac{2}{\\sqrt{9 + 2h} + 3} \\quad \\text{pour } h \\neq 0$$\nLes deux limites latérales valent $\\dfrac{1}{3}$. La fonction $f$ est dérivable en $x = 4$ et $f'(4) = \\dfrac{1}{3}$.\nVérification. On utilise la formule : $\\left(u^{1/2}\\right)' = \\dfrac{1}{2} u^{-1/2} u'$ avec $u = 2x + 1$, d'où $f'(x) = \\dfrac{1}{\\sqrt{2x + 1}}$ et $f'(4) = \\dfrac{1}{3}$."
-    },
-    {
-      "id": "mat1903-2b-03",
-      "topic": "2.b Derivative by Definition",
-      "category": "theory",
-      "difficulty": 2,
-      "question": "La limite $\\displaystyle\\lim_{h \\to 0} \\dfrac{\\sqrt{16 + h} - 4}{h}$ représente :",
-      "choices": [
-        "$f'(16)$ pour $f(x) = \\sqrt{x}$, et cette limite vaut $\\dfrac{1}{8}$.",
-        "$f'(4)$ pour $f(x) = \\sqrt{x}$, et cette limite vaut $\\dfrac{1}{4}$.",
-        "$f'(16)$ pour $f(x) = \\sqrt{x}$, et cette limite vaut $\\dfrac{1}{4}$.",
-        "$0$, car la substitution directe de $h = 0$ donne $\\sqrt{16} - 4 = 0$."
-      ],
-      "answer": 0,
-      "hints": [
-        "Comparer à $\\dfrac{f(a + h) - f(a)}{h}$ : ici $f(a) = 4$ et $f(a + h) = \\sqrt{16 + h}$.",
-        "On utilise la formule : $\\left(\\sqrt{x}\\right)' = \\dfrac{1}{2\\sqrt{x}}$. La substitution directe donne $\\dfrac{0}{0}$ forme indéterminée, pas $0$."
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x \\ge 0\\} = [0, +\\infty)$$\navec $f(x) = \\sqrt{x}$. Donc $16 \\in \\text{Dom}_f$ et $f(16) = 4$.\nUtilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 16$.\n$$\\lim_{h \\to 0} \\frac{\\sqrt{16 + h} - 4}{h} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$= \\lim_{h \\to 0} \\frac{1}{\\sqrt{16 + h} + 4} \\quad \\text{pour } h \\neq 0$$\n$$= \\frac{1}{8}$$\nLes limites $h \\to 0^-$ et $h \\to 0^+$ valent toutes deux $\\dfrac{1}{8}$.\nDonc cette limite est $f'(16)$ pour $f(x) = \\sqrt{x}$, et $f'(16) = \\dfrac{1}{8}$.\nVérification. On utilise la formule : $\\left(x^{1/2}\\right)' = \\dfrac{1}{2} x^{-1/2}$, d'où $f'(16) = \\dfrac{1}{2\\sqrt{16}} = \\dfrac{1}{8}$."
-    },
-    {
-      "id": "mat1903-3a-01",
-      "topic": "3.a Differentiation Rules",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Soit $f(x) = \\left(3x^2 - 5x + 2\\right)^4$. Calculer $f'(2)$.",
-      "steps": [
-        {
-          "prompt": "On utilise la formule : $\\left(u^n\\right)' = n u^{n-1} u'$. Pour $u = 3x^2 - 5x + 2$, quelle est $u'$ ?",
-          "choices": [
-            "$u' = 6x + 5$",
-            "$u' = 6x - 5$",
-            "$u' = 3x - 5$",
-            "$u' = 6x - 5 + 2$"
-          ],
-          "answer": 1,
-          "hints": [
-            "On dérive terme à terme. La constante $2$ disparaît, et $(3x^2)' = 6x$."
-          ],
-          "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$, donc $2 \\in \\text{Dom}_f$.\nOn utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$u' = 6x - 5$$"
-        },
-        {
-          "prompt": "Écrire $f'(x)$ en appliquant la formule déclarée.",
-          "choices": [
-            "$4\\left(3x^2 - 5x + 2\\right)^3$",
-            "$4(6x - 5)^3$",
-            "$4\\left(3x^2 - 5x + 2\\right)^3(6x - 5)$",
-            "$4\\left(3x^2 - 5x + 2\\right)^3 + (6x - 5)$"
+            "$\\displaystyle\\lim_{x \\to 1^-} (x + 1) = 2$ et $\\displaystyle\\lim_{x \\to 1^+} \\sqrt{5x - 1} = \\sqrt{5} - 1$",
+            "$\\displaystyle\\lim_{x \\to 1^-} \\frac{3}{x^2 - 9} = -\\frac{3}{8}$ et $\\displaystyle\\lim_{x \\to 1^+} \\sqrt{5x - 1} = 2$",
+            "$\\displaystyle\\lim_{x \\to 1^-} (x + 1) = 2$ et $\\displaystyle\\lim_{x \\to 1^+} \\sqrt{5x - 1} = 2$",
+            "$\\displaystyle\\lim_{x \\to 1^-} (x + 1) = 1$ et $\\displaystyle\\lim_{x \\to 1^+} \\sqrt{5x - 1} = 2$"
           ],
           "answer": 2,
           "hints": [
-            "La dérivée intérieure $u'$ multiplie $4u^3$. Elle ne s'additionne pas et ne remplace pas $u$."
+            "À gauche de $1$ (avec $0 \\le x < 1$) : branche $x + 1$."
           ],
-          "solution": "$$f'(x) = 4\\left(3x^2 - 5x + 2\\right)^3(6x - 5)$$"
+          "solution": "$$\\lim_{x \\to 1^-} (x + 1) = 2, \\qquad \\lim_{x \\to 1^+} \\sqrt{5x - 1} = \\sqrt{4} = 2$$"
         },
         {
-          "prompt": "Calculer $f'(2)$.",
+          "prompt": "Étape 4 : déduction et verdict.",
           "choices": [
-            "$256$",
-            "$448$",
-            "$4352$",
-            "$1792$"
-          ],
-          "answer": 3,
-          "hints": [
-            "En $x = 2$, $u = 12 - 10 + 2 = 4$ et $u' = 12 - 5 = 7$.",
-            "$4 \\cdot 4^3 \\cdot 7 = 4 \\cdot 64 \\cdot 7$."
-          ],
-          "solution": "$$f'(2) = 4 \\cdot 4^3 \\cdot 7 = 4 \\cdot 64 \\cdot 7 = 1792$$"
-        }
-      ],
-      "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$, donc $2 \\in \\text{Dom}_f$.\nOn utilise la formule : $\\left(u^n\\right)' = n u^{n-1} u'$, avec $u = 3x^2 - 5x + 2$ et $u' = 6x - 5$.\n$$f'(x) = 4\\left(3x^2 - 5x + 2\\right)^3(6x - 5)$$\n$$f'(2) = 4 \\cdot 4^3 \\cdot 7 = 1792$$"
-    },
-    {
-      "id": "mat1903-3a-02",
-      "topic": "3.a Differentiation Rules",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Soit $g(x) = \\sqrt{\\dfrac{x + 1}{x - 1}}$. Calculer $g'\\!\\left(\\dfrac{5}{3}\\right)$.",
-      "steps": [
-        {
-          "prompt": "On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$, avec $u = x + 1$ et $v = x - 1$. La dérivée du quotient intérieur est :",
-          "choices": [
-            "$\\dfrac{2}{(x - 1)^2}$",
-            "$0$",
-            "$\\dfrac{-2}{(x - 1)^2}$",
-            "$\\dfrac{-2}{x - 1}$"
-          ],
-          "answer": 2,
-          "hints": [
-            "$(x - 1) - (x + 1) = x - 1 - x - 1 = -2$. Le signe moins s'applique aux deux termes de $x + 1$."
-          ],
-          "solution": "On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n$$\\frac{(1)(x - 1) - (x + 1)(1)}{(x - 1)^2} = \\frac{x - 1 - x - 1}{(x - 1)^2} = \\frac{-2}{(x - 1)^2}$$"
-        },
-        {
-          "prompt": "On utilise la formule : $\\left(u^{1/2}\\right)' = \\dfrac{1}{2} u^{-1/2} u'$. Écrire $g'(x)$.",
-          "choices": [
-            "$\\dfrac{1}{2}\\left(\\dfrac{x + 1}{x - 1}\\right)^{-1/2}\\cdot\\dfrac{-2}{(x - 1)^2}$",
-            "$\\dfrac{1}{2}\\left(\\dfrac{x + 1}{x - 1}\\right)^{1/2}\\cdot\\dfrac{-2}{(x - 1)^2}$",
-            "$\\dfrac{1}{2}\\left(\\dfrac{x + 1}{x - 1}\\right)^{-1/2}$",
-            "$-\\dfrac{1}{2}\\left(\\dfrac{x + 1}{x - 1}\\right)^{-3/2}\\cdot\\dfrac{-2}{(x - 1)^2}$"
+            "$\\displaystyle\\lim_{x \\to 1^-} f(x) = \\lim_{x \\to 1^+} f(x) = 2$, d'où : $\\displaystyle\\lim_{x \\to 1} f(x) = 2$ et $\\displaystyle\\lim_{x \\to 1} f(x) = f(1) = 2$. La fonction $f$ est donc continue en $x = 1$.",
+            "La fonction $f$ est continue en $x = 1$, donc elle est dérivable en $x = 1$.",
+            "La fonction $f$ change de formule en $x = 1$, donc elle est discontinue en $x = 1$.",
+            "$\\displaystyle\\lim_{x \\to 1} f(x) = 2$, mais $f(1)$ n'est pas défini : la fonction $f$ est discontinue en $x = 1$."
           ],
           "answer": 0,
           "hints": [
-            "L'exposant $-\\dfrac{1}{2}$ reste sur le quotient, et on multiplie par la dérivée intérieure déjà obtenue."
+            "Continue ne veut pas dire dérivable (voir le Pilier 3 pour ce même point)."
           ],
-          "solution": "$$g'(x) = \\frac{1}{2}\\left(\\frac{x + 1}{x - 1}\\right)^{-1/2}\\cdot\\frac{-2}{(x - 1)^2}$$"
-        },
-        {
-          "prompt": "En $x = \\dfrac{5}{3}$, on a $\\dfrac{x + 1}{x - 1} = 4$ et $(x - 1)^2 = \\dfrac{4}{9}$. Calculer $g'\\!\\left(\\dfrac{5}{3}\\right)$.",
-          "choices": [
-            "$-\\dfrac{9}{4}$",
-            "$-\\dfrac{9}{8}$",
-            "$\\dfrac{9}{8}$",
-            "$-\\dfrac{9}{2}$"
-          ],
-          "answer": 1,
-          "hints": [
-            "$4^{-1/2} = \\dfrac{1}{2}$ et $\\dfrac{-2}{4/9} = -\\dfrac{9}{2}$.",
-            "$\\dfrac{1}{2} \\cdot \\dfrac{1}{2} \\cdot \\left(-\\dfrac{9}{2}\\right) = -\\dfrac{9}{8}$."
-          ],
-          "solution": "$$g'\\!\\left(\\frac{5}{3}\\right) = \\frac{1}{2}\\cdot\\frac{1}{2}\\cdot\\left(-\\frac{9}{2}\\right) = -\\frac{9}{8}$$"
+          "solution": "Les deux limites latérales et $f(1)$ valent $2$."
         }
       ],
-      "solution": "Domaine de la fonction $g$\n$$\\text{Dom}_g = \\left\\{x \\in \\mathbb{R} \\ / \\ x \\neq 1 \\text{ et } \\frac{x + 1}{x - 1} \\ge 0\\right\\} = (-\\infty, -1] \\cup (1, +\\infty)$$\n$\\dfrac{5}{3} \\in \\text{Dom}_g$, car $\\dfrac{5/3 + 1}{5/3 - 1} = 4 > 0$.\nOn utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n$$\\left(\\frac{x + 1}{x - 1}\\right)' = \\frac{-2}{(x - 1)^2}$$\nOn utilise la formule : $\\left(u^{1/2}\\right)' = \\dfrac{1}{2}u^{-1/2}u'$.\n$$g'(x) = \\frac{1}{2}\\left(\\frac{x + 1}{x - 1}\\right)^{-1/2}\\cdot\\frac{-2}{(x - 1)^2}$$\n$$g'\\!\\left(\\frac{5}{3}\\right) = \\frac{1}{2}\\cdot\\frac{1}{2}\\cdot\\left(-\\frac{9}{2}\\right) = -\\frac{9}{8}$$"
+      "solution": "$1 \\in \\text{Dom}_f$ et $f(1) = \\sqrt{5(1) - 1} = 2$.\n$$\\lim_{x \\to 1^-} (x + 1) = 2, \\qquad \\lim_{x \\to 1^+} \\sqrt{5x - 1} = 2$$\n$$\\lim_{x \\to 1^-} f(x) = \\lim_{x \\to 1^+} f(x) = 2 \\implies \\text{d'où : } \\lim_{x \\to 1} f(x) = 2 \\text{ et } \\lim_{x \\to 1} f(x) = f(1) = 2$$\nLa fonction $f$ est donc continue en $x = 1$."
     },
     {
-      "id": "mat1903-3a-03",
-      "topic": "3.a Differentiation Rules",
+      "id": "mat1903-p2-05",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra A25 · Q2.1",
       "category": "theory",
       "difficulty": 2,
-      "question": "Pour $h(x) = \\dfrac{u(x)}{v(x)}$, quelle écriture est la formule à déclarer avant de dériver ?",
-      "choices": [
-        "$\\dfrac{uv' - u'v}{v^2}$",
-        "$\\dfrac{u'v + uv'}{v^2}$",
-        "$\\dfrac{u'}{v'}$",
-        "On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$."
-      ],
-      "answer": 3,
-      "hints": [
-        "L'ordre du numérateur est « dérivée du haut fois le bas, moins le haut fois la dérivée du bas ».",
-        "$\\dfrac{u'}{v'}$ n'est pas la formule du quotient."
-      ],
-      "solution": "On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\nL'ordre du numérateur compte, car la soustraction n'est pas commutative. Inverser $u'v$ et $uv'$ change le signe de $h'(x)$."
-    },
-    {
-      "id": "mat1903-3a-04",
-      "topic": "3.a Differentiation Rules",
-      "category": "theory",
-      "difficulty": 2,
-      "question": "Dériver $f(x) = \\dfrac{4}{\\sqrt[3]{x}}$.",
-      "choices": [
-        "$-\\dfrac{4}{3}x^{-4/3}$",
-        "$-\\dfrac{4}{3}x^{-2/3}$",
-        "$\\dfrac{4}{3}x^{-2/3}$",
-        "$12x^{2/3}$"
-      ],
-      "answer": 0,
-      "hints": [
-        "Réécrire d'abord $f(x) = 4x^{-1/3}$.",
-        "On utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$. Ici $-\\dfrac{1}{3} - 1 = -\\dfrac{4}{3}$."
-      ],
-      "solution": "Domaine de la fonction $f$\n$$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x \\neq 0\\} = \\mathbb{R} - \\{0\\}$$\nOn utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$f(x) = 4x^{-1/3} \\implies f'(x) = 4\\cdot\\left(-\\frac{1}{3}\\right)x^{-4/3} = -\\frac{4}{3}x^{-4/3}$$"
-    },
-    {
-      "id": "mat1903-3b-01",
-      "topic": "3.b Tangent & Normal Lines",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Déterminer l'équation de la droite tangente au graphe de $f(x) = x^3 - 3x^2 + 2$ au point d'abscisse $x = 1$.",
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{2}{x - 1} & \\text{si } x < 0 \\\\ x + 3 & \\text{si } 0 \\le x < 5 \\\\ 4\\sqrt{x - 1} & \\text{si } x \\ge 5 \\end{cases}$. Étudier la continuité de $f$ en $x = 0$ et en $x = 5$.",
       "steps": [
         {
-          "prompt": "Déterminer le point de tangence $\\left(1, f(1)\\right)$.",
+          "prompt": "En $x = 0$ : valeur de $f(0)$ et limites latérales.",
           "choices": [
-            "$(1, 2)$",
-            "$(1, 0)$",
-            "$(1, -3)$",
-            "$(0, 2)$"
+            "$0 \\in \\text{Dom}_f$, $f(0) = \\dfrac{2}{0 - 1} = -2$ ; $\\displaystyle\\lim_{x \\to 0^-} f(x) = -2$ et $\\displaystyle\\lim_{x \\to 0^+} f(x) = 3$",
+            "$0 \\in \\text{Dom}_f$, $f(0) = 0 + 3 = 3$ ; $\\displaystyle\\lim_{x \\to 0^-} \\frac{2}{x - 1} = -2$ et $\\displaystyle\\lim_{x \\to 0^+} (x + 3) = 3$",
+            "$0 \\in \\text{Dom}_f$, $f(0) = 3$ ; $\\displaystyle\\lim_{x \\to 0^-} \\frac{2}{x - 1} = 2$ et $\\displaystyle\\lim_{x \\to 0^+} (x + 3) = 3$",
+            "$0 \\notin \\text{Dom}_f$ car $\\dfrac{2}{x - 1}$ n'est pas défini en $x = 1$"
           ],
           "answer": 1,
           "hints": [
-            "$f(1) = 1 - 3 + 2$. L'ordonnée est $f(1)$, pas $f'(1)$."
+            "$x = 0$ vérifie $0 \\le x < 5$.",
+            "$\\dfrac{2}{0 - 1} = -2$."
           ],
-          "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$, donc $1 \\in \\text{Dom}_f$.\n$$f(1) = 1 - 3 + 2 = 0$$\nLe point de tangence est $(1, 0)$."
+          "solution": "$$f(0) = 3, \\qquad \\lim_{x \\to 0^-} \\frac{2}{x - 1} = -2, \\qquad \\lim_{x \\to 0^+} (x + 3) = 3$$"
         },
         {
-          "prompt": "La pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à :",
+          "prompt": "Verdict en $x = 0$.",
           "choices": [
-            "$f'(1) = 3$",
-            "$f'(1) = 0$",
-            "$f'(1) = -3$",
-            "$f'(1) = -1$"
-          ],
-          "answer": 2,
-          "hints": [
-            "On utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$, donc $f'(x) = 3x^2 - 6x$."
-          ],
-          "solution": "On utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$f'(x) = 3x^2 - 6x, \\qquad f'(1) = 3 - 6 = -3$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = -3$."
-        },
-        {
-          "prompt": "Écrire l'équation de la tangente sous la forme $y = mx + b$.",
-          "choices": [
-            "$y = -3x - 3$",
-            "$y = 3x - 3$",
-            "$y = -3x$",
-            "L'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = -3x + 3$."
+            "$\\displaystyle\\lim_{x \\to 0^+} f(x) = f(0) = 3$. La fonction $f$ est donc continue en $x = 0$.",
+            "$\\displaystyle\\lim_{x \\to 0} f(x) = \\frac{-2 + 3}{2} = \\frac{1}{2} \\neq f(0)$. La fonction $f$ est discontinue en $x = 0$.",
+            "$0 \\notin \\text{Dom}_f$. La fonction $f$ n'est pas définie en $x = 0$ donc elle n'est pas continue en $x = 0$.",
+            "$\\displaystyle\\lim_{x \\to 0^-} f(x) \\neq \\lim_{x \\to 0^+} f(x) \\implies \\lim_{x \\to 0} f(x)$ n'existe pas. La fonction $f$ est discontinue en $x = 0$."
           ],
           "answer": 3,
           "hints": [
-            "L'équation est de la forme $y = -3x + b$. Sachant que cette tangente passe par $(1, 0)$ : $0 = -3 \\cdot 1 + b$."
+            "La continuité exige les deux limites latérales égales à $f(0)$."
           ],
-          "solution": "L'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ est de la forme : $y = f'(1)x + b = -3x + b$.\nSachant que cette tangente passe par le point $(1, f(1))$, nous avons : $f(1) = -3(1) + b \\implies 0 = -3 + b \\implies b = 3$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = -3x + 3$."
-        }
-      ],
-      "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$, donc $1 \\in \\text{Dom}_f$ et $f(1) = 0$.\nOn utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$f'(x) = 3x^2 - 6x, \\qquad f'(1) = -3$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = -3$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ est de la forme : $y = f'(1)x + b = -3x + b$.\nSachant que cette tangente passe par le point $(1, f(1))$, nous avons : $f(1) = -3(1) + b \\implies b = 3$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = -3x + 3$."
-    },
-    {
-      "id": "mat1903-3b-02",
-      "topic": "3.b Tangent & Normal Lines",
-      "category": "practice",
-      "difficulty": 2,
-      "question": "Déterminer les équations des droites tangentes horizontales au graphe de $f(x) = x^3 - 6x^2 + 9x + 1$.",
-      "steps": [
-        {
-          "prompt": "On utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$. Résoudre $f'(x) = 0$.",
-          "choices": [
-            "$x = -1$ et $x = -3$",
-            "$x = 0$ et $x = 4$",
-            "$x = 1$ et $x = 3$",
-            "$x = 1$ seulement"
-          ],
-          "answer": 2,
-          "hints": [
-            "$f'(x) = 3x^2 - 12x + 9 = 3(x^2 - 4x + 3)$.",
-            "$x^2 - 4x + 3 = (x - 1)(x - 3)$."
-          ],
-          "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$.\nOn utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$f'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)$$\n$$f'(x) = 0 \\implies x = 1 \\quad \\text{ou} \\quad x = 3$$"
+          "solution": "$-2 \\neq 3$, donc la limite en $0$ n'existe pas."
         },
         {
-          "prompt": "Déterminer les points de tangence correspondants.",
+          "prompt": "En $x = 5$ : valeur, limites latérales et verdict.",
           "choices": [
-            "$(1, 0)$ et $(3, 0)$",
-            "$(1, 5)$ et $(3, 1)$",
-            "$(5, 1)$ et $(1, 3)$",
-            "$(1, 4)$ et $(3, 0)$"
+            "$f(5) = 4\\sqrt{5} - 1$ ; $\\displaystyle\\lim_{x \\to 5^-} (x + 3) = 8 \\neq f(5)$. La fonction $f$ est discontinue en $x = 5$.",
+            "$f(5) = 4\\sqrt{4} = 8$ ; $\\displaystyle\\lim_{x \\to 5^-} (x + 3) = 8 = \\lim_{x \\to 5^+} 4\\sqrt{x - 1}$, d'où : $\\displaystyle\\lim_{x \\to 5} f(x) = f(5) = 8$. La fonction $f$ est donc continue en $x = 5$.",
+            "$f(5) = \\sqrt{4 \\cdot 4} = 4$ ; $\\displaystyle\\lim_{x \\to 5^-} (x + 3) = 8 \\neq 4$. La fonction $f$ est discontinue en $x = 5$.",
+            "$\\displaystyle\\lim_{x \\to 5^-} (x + 3) = 8$ et $\\displaystyle\\lim_{x \\to 5^+} 4\\sqrt{x - 1} = 16$. La fonction $f$ est discontinue en $x = 5$."
           ],
           "answer": 1,
           "hints": [
-            "Substituer dans $f$, pas dans $f'$, et conserver le $+1$."
+            "$4\\sqrt{x - 1}$ en $x = 5$ : $4 \\cdot \\sqrt{4} = 4 \\cdot 2$."
           ],
-          "solution": "$$f(1) = 1 - 6 + 9 + 1 = 5, \\qquad f(3) = 27 - 54 + 27 + 1 = 1$$\nLes points sont $(1, 5)$ et $(3, 1)$."
+          "solution": "$$f(5) = 4\\sqrt{5 - 1} = 8, \\qquad \\lim_{x \\to 5^-} (x + 3) = 8, \\qquad \\lim_{x \\to 5^+} 4\\sqrt{x - 1} = 8$$"
+        }
+      ],
+      "solution": "En $x = 0$ : $0 \\in \\text{Dom}_f$ et $f(0) = 3$.\n$$\\lim_{x \\to 0^-} \\frac{2}{x - 1} = -2, \\qquad \\lim_{x \\to 0^+} (x + 3) = 3$$\n$$\\lim_{x \\to 0^-} f(x) \\neq \\lim_{x \\to 0^+} f(x) \\implies \\lim_{x \\to 0} f(x) \\text{ n'existe pas}$$\nLa fonction $f$ est discontinue en $x = 0$.\n\nEn $x = 5$ : $5 \\in \\text{Dom}_f$ et $f(5) = 4\\sqrt{4} = 8$.\n$$\\lim_{x \\to 5^-} (x + 3) = 8, \\qquad \\lim_{x \\to 5^+} 4\\sqrt{x - 1} = 8 \\implies \\text{d'où : } \\lim_{x \\to 5} f(x) = 8 \\text{ et } \\lim_{x \\to 5} f(x) = f(5) = 8$$\nLa fonction $f$ est donc continue en $x = 5$."
+    },
+    {
+      "id": "mat1903-p2-06",
+      "topic": "Pilier 2 · Continuité par morceaux",
+      "source": "Intra H26 · Q2.c",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{-2}{x^2 - 1} & \\text{si } x < 0 \\\\ 2 & \\text{si } x = 0 \\\\ \\sqrt{x + 4} & \\text{si } x > 0 \\end{cases}$. Étudier la continuité de $f$ en $x = 0$.",
+      "steps": [
+        {
+          "prompt": "Étapes 1 et 2 : appartenance au domaine et valeur de $f(0)$.",
+          "choices": [
+            "$0 \\notin \\text{Dom}_f$ car aucune branche ne contient $x \\le 0$",
+            "$0 \\in \\text{Dom}_f$ et $f(0) = -2$",
+            "$0 \\in \\text{Dom}_f$ et $f(0) = 2$",
+            "$0 \\notin \\text{Dom}_f$ car $0^2 - 1 = -1$"
+          ],
+          "answer": 2,
+          "hints": [
+            "La deuxième ligne de la définition donne directement $f(0)$."
+          ],
+          "solution": "$0 \\in \\text{Dom}_f$ et $f(0) = 2$ (branche $x = 0$)."
         },
         {
-          "prompt": "Écrire les équations des tangentes horizontales.",
+          "prompt": "Étape 3 : limites latérales.",
           "choices": [
-            "$y = 0$ et $y = 0$",
-            "$y = 4$ et $y = 0$",
-            "$y = x + 5$ et $y = x + 1$",
-            "L'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = 5$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, f(3))$ s'écrit donc : $y = 1$."
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = \\frac{-2}{-1} = 2$ et $\\displaystyle\\lim_{x \\to 0^+} \\sqrt{x + 4} = 2$",
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = -2$ et $\\displaystyle\\lim_{x \\to 0^+} \\sqrt{x + 4} = 2$",
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = 2$ et $\\displaystyle\\lim_{x \\to 0^+} \\sqrt{x + 4} = 4$",
+            "$\\displaystyle\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = \\frac{-2}{0}$ : la limite n'existe pas"
+          ],
+          "answer": 0,
+          "hints": [
+            "$0^2 - 1 = -1$ : deux signes moins se compensent.",
+            "$\\sqrt{0 + 4} = 2$."
+          ],
+          "solution": "$$\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = \\frac{-2}{-1} = 2, \\qquad \\lim_{x \\to 0^+} \\sqrt{x + 4} = 2$$"
+        },
+        {
+          "prompt": "Étape 4 : déduction et verdict.",
+          "choices": [
+            "$f$ est définie séparément en $x = 0$, donc la fonction $f$ est discontinue en $x = 0$.",
+            "$\\displaystyle\\lim_{x \\to 0} f(x) = 2 \\neq f(0)$. La fonction $f$ est discontinue en $x = 0$.",
+            "$\\displaystyle\\lim_{x \\to 0^-} f(x) = \\lim_{x \\to 0^+} f(x) = 2$, d'où : $\\displaystyle\\lim_{x \\to 0} f(x) = 2$ et $\\displaystyle\\lim_{x \\to 0} f(x) = f(0) = 2$. La fonction $f$ est donc continue en $x = 0$.",
+            "La fonction $f$ est continue en $x = 0$, donc elle est dérivable en $x = 0$."
+          ],
+          "answer": 2,
+          "hints": [
+            "Comparer les deux limites latérales entre elles, puis à $f(0)$."
+          ],
+          "solution": "Les deux limites latérales et $f(0)$ valent $2$."
+        }
+      ],
+      "solution": "$0 \\in \\text{Dom}_f$ et $f(0) = 2$.\n$$\\lim_{x \\to 0^-} \\frac{-2}{x^2 - 1} = 2, \\qquad \\lim_{x \\to 0^+} \\sqrt{x + 4} = 2$$\n$$\\lim_{x \\to 0^-} f(x) = \\lim_{x \\to 0^+} f(x) = 2 \\implies \\text{d'où : } \\lim_{x \\to 0} f(x) = 2 \\text{ et } \\lim_{x \\to 0} f(x) = f(0) = 2$$\nLa fonction $f$ est donc continue en $x = 0$."
+    },
+    {
+      "id": "mat1903-p3-01",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Intra H26 · Q3",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\dfrac{-4}{x + 3}$. Calculer $f'(1)$ à l'aide de la définition, puis l'équation de la droite tangente au point $(1, f(1))$.",
+      "steps": [
+        {
+          "prompt": "Écrire la définition de $f'(1)$ avec $f(1) = -1$.",
+          "choices": [
+            "$f'(1) = \\displaystyle\\lim_{h \\to 0} \\frac{\\frac{-4}{4 + h} - 1}{h}$",
+            "$f'(1) = \\displaystyle\\lim_{h \\to 0} \\frac{\\frac{-4}{h + 3} + 1}{h}$",
+            "$f'(1) = \\displaystyle\\lim_{h \\to 0} \\left(\\frac{-4}{4 + h} - (-1)\\right)$",
+            "$f'(1) = \\displaystyle\\lim_{h \\to 0} \\frac{f(1 + h) - f(1)}{h} = \\lim_{h \\to 0} \\frac{\\frac{-4}{4 + h} - (-1)}{h}$"
           ],
           "answer": 3,
           "hints": [
-            "La pente est nulle, donc l'équation est de la forme $y = b$ avec $b = f(a)$."
+            "$f(1 + h) = \\dfrac{-4}{(1 + h) + 3} = \\dfrac{-4}{4 + h}$ et $f(1) = \\dfrac{-4}{4} = -1$."
           ],
-          "solution": "La pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = 0$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ est de la forme : $y = 0 \\cdot x + b$.\nSachant que cette tangente passe par le point $(1, f(1))$, nous avons : $5 = b$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = 5$.\nDe même, en $x = 3$ : l'équation s'écrit donc $y = 1$."
+          "solution": "$$f'(1) = \\lim_{h \\to 0} \\frac{\\frac{-4}{4 + h} - (-1)}{h}$$"
+        },
+        {
+          "prompt": "Réduire au même dénominateur et simplifier par $h$.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{-4 - 4 - h}{h(4 + h)}$, donc $f'(1) = -\\frac{1}{4}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{-4 + 4 + h}{h(4 + h)} = \\lim_{h \\to 0} \\frac{h}{h(4 + h)} = \\lim_{h \\to 0} \\frac{1}{4 + h}$ pour $h \\neq 0$, donc $f'(1) = \\frac{1}{4}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{h}{h(4 + h)} = \\frac{1}{16}$",
+            "$\\dfrac{0}{0} = 0$, donc $f'(1) = 0$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\dfrac{-4}{4 + h} + 1 = \\dfrac{-4 + (4 + h)}{4 + h}$."
+          ],
+          "solution": "$$f'(1) = \\lim_{h \\to 0} \\frac{-4 + 4 + h}{h(4 + h)} = \\lim_{h \\to 0} \\frac{1}{4 + h} = \\frac{1}{4}$$"
+        },
+        {
+          "prompt": "Équation de la droite tangente au point $(1, -1)$.",
+          "choices": [
+            "$-1 = \\frac{1}{4}(1) + b \\implies b = -\\frac{3}{4}$ ; la tangente s'écrit donc : $y = \\frac{1}{4}x - \\frac{3}{4}$",
+            "$1 = \\frac{1}{4}(1) + b \\implies b = \\frac{3}{4}$ ; la tangente s'écrit donc : $y = \\frac{1}{4}x + \\frac{3}{4}$",
+            "La tangente s'écrit : $y = -x + \\frac{1}{4}$",
+            "$-1 = \\frac{1}{4}(1) + b \\implies b = -\\frac{5}{4}$ ; la tangente s'écrit donc : $y = \\frac{1}{4}x - \\frac{5}{4}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Sachant que cette tangente passe par le point $(1, -1)$ : remplacer $x = 1$ et $y = -1$."
+          ],
+          "solution": "La pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = \\frac{1}{4}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, -1)$ est de la forme : $y = f'(1)x + b = \\frac{1}{4}x + b$.\nSachant que cette tangente passe par le point $(1, -1)$, nous avons : $-1 = \\frac{1}{4}(1) + b \\implies b = -\\frac{5}{4}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, -1)$ s'écrit donc : $y = \\frac{1}{4}x - \\frac{5}{4}$."
         }
       ],
-      "solution": "Domaine de la fonction $f$ : $\\text{Dom}_f = \\mathbb{R}$.\nOn utilise la formule : $\\left(x^n\\right)' = nx^{n-1}$.\n$$f'(x) = 3(x - 1)(x - 3) = 0 \\implies x = 1 \\quad \\text{ou} \\quad x = 3$$\n$$f(1) = 5, \\qquad f(3) = 1$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = 0$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ est de la forme : $y = f'(1)x + b = b$.\nSachant que cette tangente passe par le point $(1, f(1))$, nous avons : $f(1) = b \\implies b = 5$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, f(1))$ s'écrit donc : $y = 5$.\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 3$ est égale à : $f'(3) = 0$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, f(3))$ s'écrit donc : $y = 1$."
+      "solution": "$$f'(1) = \\lim_{h \\to 0} \\frac{f(1 + h) - f(1)}{h} = \\lim_{h \\to 0} \\frac{\\frac{-4}{4 + h} - (-1)}{h}$$\n$$= \\lim_{h \\to 0} \\frac{-4 + 4 + h}{h(4 + h)} = \\lim_{h \\to 0} \\frac{h}{h(4 + h)} = \\lim_{h \\to 0} \\frac{1}{4 + h} \\quad \\text{pour } h \\neq 0 \\quad = \\frac{1}{4}$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 1$ est égale à : $f'(1) = \\frac{1}{4}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, -1)$ est de la forme : $y = f'(1)x + b = \\frac{1}{4}x + b$.\nSachant que cette tangente passe par le point $(1, -1)$, nous avons : $-1 = \\frac{1}{4}(1) + b \\implies b = -\\frac{5}{4}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(1, -1)$ s'écrit donc : $y = \\frac{1}{4}x - \\frac{5}{4}$."
     },
     {
-      "id": "mat1903-3b-03",
-      "topic": "3.b Tangent & Normal Lines",
+      "id": "mat1903-p3-02",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Intra H24 · Q2.d",
       "category": "theory",
       "difficulty": 2,
-      "question": "La droite tangente au graphe d'une fonction $f$ au point $(2, 1)$ a pour équation $y = 4x - 7$. Quelle est l'équation de la droite normale en ce point ?",
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{3}{x^2 - 9} & \\text{si } x < 0 \\\\ x + 1 & \\text{si } 0 \\le x < 1 \\\\ \\sqrt{5x - 1} & \\text{si } x \\ge 1 \\end{cases}$. Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 1$ (on a $f(1) = 2$).",
+      "steps": [
+        {
+          "prompt": "Quotient différentiel à gauche ($h < 0$, branche $x + 1$).",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(1 + h + 1) - 2}{h} = \\lim_{h \\to 0^-} \\frac{h}{h} = 1$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(1 + h + 1) - 2}{h} = 0$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{\\sqrt{4 + 5h} - 2}{h} = \\frac{5}{4}$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(1 + h + 1) - 2}{h} = 2$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Pour $h < 0$, $1 + h < 1$ : on utilise $f(1 + h) = (1 + h) + 1$."
+          ],
+          "solution": "$$\\lim_{h \\to 0^-} \\frac{(1 + h + 1) - 2}{h} = \\lim_{h \\to 0^-} \\frac{h}{h} = 1$$"
+        },
+        {
+          "prompt": "Quotient différentiel à droite ($h > 0$, branche $\\sqrt{5x - 1}$). Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{5}{\\sqrt{4 + 5h}} = \\frac{5}{2}$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{(4 + h) - 4}{h\\left(\\sqrt{4 + 5h} + 2\\right)} = \\frac{1}{4}$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{(4 + 5h) - 4}{h\\left(\\sqrt{4 + 5h} + 2\\right)} = \\lim_{h \\to 0^+} \\frac{5}{\\sqrt{4 + 5h} + 2} = \\frac{5}{4}$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{\\sqrt{4 + 5h} - 2}{h} = \\frac{0}{0} = 0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$f(1 + h) = \\sqrt{5(1 + h) - 1} = \\sqrt{4 + 5h}$.",
+            "$\\left(\\sqrt{4 + 5h} - 2\\right)\\left(\\sqrt{4 + 5h} + 2\\right) = 5h$."
+          ],
+          "solution": "$$\\lim_{h \\to 0^+} \\frac{\\left(\\sqrt{4 + 5h} - 2\\right)\\left(\\sqrt{4 + 5h} + 2\\right)}{h\\left(\\sqrt{4 + 5h} + 2\\right)} = \\lim_{h \\to 0^+} \\frac{5h}{h\\left(\\sqrt{4 + 5h} + 2\\right)} = \\frac{5}{4}$$"
+        },
+        {
+          "prompt": "Comparer et conclure.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{f(1 + h) - f(1)}{h} \\neq \\lim_{h \\to 0^+} \\frac{f(1 + h) - f(1)}{h}$. La fonction $f$ n'est pas dérivable en $x = 1$, $f'(1)$ n'existe pas.",
+            "$f'(1) = \\dfrac{1 + \\frac{5}{4}}{2} = \\dfrac{9}{8}$.",
+            "La fonction $f$ est continue en $x = 1$, donc elle est dérivable et $f'(1) = 1$.",
+            "$f'(1) = \\dfrac{5}{4}$, la valeur à droite, car $f(1)$ est défini par la branche $\\sqrt{5x - 1}$."
+          ],
+          "answer": 0,
+          "hints": [
+            "$1 \\neq \\frac{5}{4}$."
+          ],
+          "solution": "Les deux quotients différentiels latéraux diffèrent : $1 \\neq \\frac{5}{4}$."
+        }
+      ],
+      "solution": "Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 1$.\n$$\\lim_{h \\to 0^-} \\frac{f(1 + h) - f(1)}{h} = \\lim_{h \\to 0^-} \\frac{(1 + h + 1) - 2}{h} = \\lim_{h \\to 0^-} \\frac{h}{h} = 1$$\n$$\\lim_{h \\to 0^+} \\frac{f(1 + h) - f(1)}{h} = \\lim_{h \\to 0^+} \\frac{\\sqrt{4 + 5h} - 2}{h} = \\lim_{h \\to 0^+} \\frac{\\left(\\sqrt{4 + 5h} - 2\\right)\\left(\\sqrt{4 + 5h} + 2\\right)}{h\\left(\\sqrt{4 + 5h} + 2\\right)} = \\lim_{h \\to 0^+} \\frac{5}{\\sqrt{4 + 5h} + 2} = \\frac{5}{4}$$\n$$\\lim_{h \\to 0^-} \\frac{f(1 + h) - f(1)}{h} \\neq \\lim_{h \\to 0^+} \\frac{f(1 + h) - f(1)}{h}$$\nLa fonction $f$ n'est pas dérivable en $x = 1$, $f'(1)$ n'existe pas."
+    },
+    {
+      "id": "mat1903-p3-03",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Intra A25 · Q2.3–4",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\begin{cases} \\dfrac{2}{x - 1} & \\text{si } x < 0 \\\\ x + 3 & \\text{si } 0 \\le x < 5 \\\\ 4\\sqrt{x - 1} & \\text{si } x \\ge 5 \\end{cases}$. Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 5$ (on a $f(5) = 8$), puis donner l'équation de la tangente au point $(5, 8)$.",
+      "steps": [
+        {
+          "prompt": "Quotient différentiel à gauche ($h < 0$, branche $x + 3$).",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(5 + h + 3) - 8}{h} = 0$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(5 + h + 3) - 8}{h} = \\lim_{h \\to 0^-} \\frac{h}{h} = 1$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{(5 + h + 3) - 8}{h} = 8$",
+            "$\\displaystyle\\lim_{h \\to 0^-} \\frac{4\\sqrt{4 + h} - 8}{h} = 1$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Pour $h < 0$, $5 + h < 5$ : branche $x + 3$."
+          ],
+          "solution": "$$\\lim_{h \\to 0^-} \\frac{(5 + h + 3) - 8}{h} = 1$$"
+        },
+        {
+          "prompt": "Quotient différentiel à droite ($h > 0$, branche $4\\sqrt{x - 1}$). Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{16}{4\\sqrt{4 + h}} = 2$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{(4 + h) - 4}{h\\left(4\\sqrt{4 + h} + 8\\right)} = \\frac{1}{16}$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{4\\sqrt{4 + h} - 8}{h} = 16$",
+            "$\\displaystyle\\lim_{h \\to 0^+} \\frac{4\\sqrt{4 + h} - 8}{h} = \\lim_{h \\to 0^+} \\frac{16(4 + h) - 64}{h\\left(4\\sqrt{4 + h} + 8\\right)} = \\lim_{h \\to 0^+} \\frac{16}{4\\sqrt{4 + h} + 8} = \\frac{16}{16} = 1$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$f(5 + h) = 4\\sqrt{(5 + h) - 1} = 4\\sqrt{4 + h}$.",
+            "$\\left(4\\sqrt{4 + h} - 8\\right)\\left(4\\sqrt{4 + h} + 8\\right) = 16(4 + h) - 64 = 16h$."
+          ],
+          "solution": "$$\\lim_{h \\to 0^+} \\frac{16h}{h\\left(4\\sqrt{4 + h} + 8\\right)} = \\frac{16}{16} = 1$$"
+        },
+        {
+          "prompt": "Comparer, conclure et écrire la droite tangente au point $(5, 8)$.",
+          "choices": [
+            "$f$ change de formule en $x = 5$, donc $f'(5)$ n'existe pas.",
+            "$\\displaystyle\\lim_{h \\to 0^-} = \\lim_{h \\to 0^+} = 1 \\implies f'(5) = 1$ ; $8 = 1(5) + b \\implies b = 3$ ; la tangente s'écrit donc : $y = x + 3$",
+            "$f'(5) = 1$ ; la tangente s'écrit donc : $y = x + 8$",
+            "$f'(5) = 1$ ; $8 = 1(5) + b \\implies b = 13$ ; la tangente s'écrit donc : $y = x + 13$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Sachant que cette tangente passe par le point $(5, 8)$ : $8 = 1 \\cdot 5 + b$."
+          ],
+          "solution": "La pente de la droite tangente au graphe de $f(x)$ en $x = 5$ est égale à : $f'(5) = 1$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(5, 8)$ est de la forme : $y = f'(5)x + b = 1x + b$.\nSachant que cette tangente passe par le point $(5, 8)$, nous avons : $8 = 1(5) + b \\implies b = 3$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(5, 8)$ s'écrit donc : $y = x + 3$."
+        }
+      ],
+      "solution": "Utilisons la définition de la dérivée pour étudier la dérivabilité de la fonction $f$ en $x = 5$.\n$$\\lim_{h \\to 0^-} \\frac{f(5 + h) - f(5)}{h} = \\lim_{h \\to 0^-} \\frac{(5 + h + 3) - 8}{h} = 1$$\n$$\\lim_{h \\to 0^+} \\frac{4\\sqrt{4 + h} - 8}{h} = \\lim_{h \\to 0^+} \\frac{\\left(4\\sqrt{4 + h} - 8\\right)\\left(4\\sqrt{4 + h} + 8\\right)}{h\\left(4\\sqrt{4 + h} + 8\\right)} = \\lim_{h \\to 0^+} \\frac{16h}{h\\left(4\\sqrt{4 + h} + 8\\right)} = \\frac{16}{16} = 1$$\n$$\\lim_{h \\to 0^-} \\frac{f(5 + h) - f(5)}{h} = \\lim_{h \\to 0^+} \\frac{f(5 + h) - f(5)}{h} = 1 \\implies f'(5) = 1$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 5$ est égale à : $f'(5) = 1$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(5, 8)$ est de la forme : $y = f'(5)x + b = 1x + b$.\nSachant que cette tangente passe par le point $(5, 8)$, nous avons : $8 = 1(5) + b \\implies b = 3$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(5, 8)$ s'écrit donc : $y = x + 3$."
+    },
+    {
+      "id": "mat1903-p3-04",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Intra H24 · Q3.d",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $r(x) = \\sqrt[3]{3x + 2}$. Calculer $r'(x)$, puis l'équation de la droite tangente au graphe de $r$ au point $(2, r(2))$.",
+      "steps": [
+        {
+          "prompt": "On utilise la formule : $(u^r)' = r\\,u^{r - 1}\\,u'$. Calculer $r'(x)$.",
+          "choices": [
+            "$r'(x) = \\frac{1}{3}(3x + 2)^{-\\frac{2}{3}}$",
+            "$r'(x) = \\frac{1}{3}(3x + 2)^{\\frac{2}{3}} \\cdot 3 = \\sqrt[3]{(3x + 2)^2}$",
+            "$r'(x) = \\frac{1}{3}(3x + 2)^{-\\frac{2}{3}} \\cdot 3 = \\dfrac{1}{\\sqrt[3]{(3x + 2)^2}}$",
+            "$r'(x) = (3x + 2)^{-\\frac{1}{3}}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\sqrt[3]{3x + 2} = (3x + 2)^{\\frac{1}{3}}$ et $\\frac{1}{3} - 1 = -\\frac{2}{3}$.",
+            "Ne pas oublier $u' = 3$."
+          ],
+          "solution": "$$r'(x) = \\frac{1}{3}(3x + 2)^{-\\frac{2}{3}}(3) = \\frac{1}{\\sqrt[3]{(3x + 2)^2}}$$"
+        },
+        {
+          "prompt": "Pente en $x = 2$.",
+          "choices": [
+            "$r'(2) = \\dfrac{1}{\\sqrt[3]{64}} = \\dfrac{1}{4}$",
+            "$r'(2) = \\dfrac{1}{\\sqrt[3]{8}} = \\dfrac{1}{2}$",
+            "$r'(2) = \\dfrac{1}{12}$",
+            "$r'(2) = 4$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$3(2) + 2 = 8$ et $8^2 = 64 = 4^3$."
+          ],
+          "solution": "$$r'(2) = \\frac{1}{\\sqrt[3]{8^2}} = \\frac{1}{\\sqrt[3]{64}} = \\frac{1}{4}$$"
+        },
+        {
+          "prompt": "Équation de la droite tangente au point $(2, 2)$.",
+          "choices": [
+            "$2 = \\frac{1}{4}(2) + b \\implies b = \\frac{5}{2}$ ; la tangente s'écrit donc : $y = \\frac{1}{4}x + \\frac{5}{2}$",
+            "La tangente s'écrit : $y = \\frac{1}{4}x + 2$",
+            "$2 = \\frac{1}{4}(2) + b \\implies b = \\frac{3}{2}$ ; la tangente s'écrit donc : $y = \\frac{1}{4}x + \\frac{3}{2}$",
+            "La tangente s'écrit : $y = 2x + \\frac{1}{4}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$r(2) = \\sqrt[3]{8} = 2$."
+          ],
+          "solution": "La pente de la droite tangente au graphe de $r(x)$ en $x = 2$ est égale à : $r'(2) = \\frac{1}{4}$.\nL'équation de la droite tangente au graphe de $r(x)$ au point $(2, 2)$ est de la forme : $y = r'(2)x + b = \\frac{1}{4}x + b$.\nSachant que cette tangente passe par le point $(2, 2)$, nous avons : $2 = \\frac{1}{4}(2) + b \\implies b = \\frac{3}{2}$.\nL'équation de la droite tangente au graphe de $r(x)$ au point $(2, 2)$ s'écrit donc : $y = \\frac{1}{4}x + \\frac{3}{2}$."
+        }
+      ],
+      "solution": "On utilise la formule : $(u^r)' = r\\,u^{r - 1}\\,u'$.\n$$r'(x) = \\frac{1}{3}(3x + 2)^{-\\frac{2}{3}}(3) = \\frac{1}{\\sqrt[3]{(3x + 2)^2}}, \\qquad r'(2) = \\frac{1}{\\sqrt[3]{64}} = \\frac{1}{4}$$\nLa pente de la droite tangente au graphe de $r(x)$ en $x = 2$ est égale à : $r'(2) = \\frac{1}{4}$.\nL'équation de la droite tangente au graphe de $r(x)$ au point $(2, 2)$ est de la forme : $y = r'(2)x + b = \\frac{1}{4}x + b$.\nSachant que cette tangente passe par le point $(2, 2)$, nous avons : $2 = \\frac{1}{4}(2) + b \\implies b = \\frac{3}{2}$.\nL'équation de la droite tangente au graphe de $r(x)$ au point $(2, 2)$ s'écrit donc : $y = \\frac{1}{4}x + \\frac{3}{2}$."
+    },
+    {
+      "id": "mat1903-p3-05",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Variante calibrée (dérivée rationnelle par définition)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\dfrac{2}{x - 1}$. Calculer $f'(3)$ à l'aide de la définition, puis l'équation de la droite tangente au point $(3, f(3))$.",
+      "steps": [
+        {
+          "prompt": "Écrire la définition de $f'(3)$ avec $f(3) = 1$.",
+          "choices": [
+            "$f'(3) = \\displaystyle\\lim_{h \\to 0} \\frac{\\frac{2}{3 + h} - 1}{h}$",
+            "$f'(3) = \\displaystyle\\lim_{h \\to 0} \\frac{\\frac{2}{2 + h} - 2}{h}$",
+            "$f'(3) = \\displaystyle\\lim_{h \\to 0} \\left(\\frac{2}{2 + h} - 1\\right)$",
+            "$f'(3) = \\displaystyle\\lim_{h \\to 0} \\frac{\\frac{2}{2 + h} - 1}{h}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$f(3 + h) = \\dfrac{2}{(3 + h) - 1} = \\dfrac{2}{2 + h}$."
+          ],
+          "solution": "$$f'(3) = \\lim_{h \\to 0} \\frac{\\frac{2}{2 + h} - 1}{h}$$"
+        },
+        {
+          "prompt": "Réduire au même dénominateur et simplifier par $h$.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{2 - 2 + h}{h(2 + h)} = \\lim_{h \\to 0} \\frac{1}{2 + h}$, donc $f'(3) = \\frac{1}{2}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{2 - (2 + h)}{h(2 + h)} = \\lim_{h \\to 0} \\frac{-1}{2 + h}$ pour $h \\neq 0$, donc $f'(3) = -\\frac{1}{2}$",
+            "$f'(3) = -2$",
+            "$f'(3) = -\\frac{1}{4}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Distribuer le signe moins sur les deux termes de $(2 + h)$."
+          ],
+          "solution": "$$f'(3) = \\lim_{h \\to 0} \\frac{2 - (2 + h)}{h(2 + h)} = \\lim_{h \\to 0} \\frac{-h}{h(2 + h)} = -\\frac{1}{2}$$"
+        },
+        {
+          "prompt": "Équation de la droite tangente au point $(3, 1)$.",
+          "choices": [
+            "$1 = -\\frac{1}{2}(3) + b \\implies b = -\\frac{1}{2}$ ; la tangente s'écrit donc : $y = -\\frac{1}{2}x - \\frac{1}{2}$",
+            "La tangente s'écrit : $y = -\\frac{1}{2}x + 1$",
+            "La tangente s'écrit : $y = \\frac{1}{2}x - \\frac{1}{2}$",
+            "$1 = -\\frac{1}{2}(3) + b \\implies b = \\frac{5}{2}$ ; la tangente s'écrit donc : $y = -\\frac{1}{2}x + \\frac{5}{2}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$-\\frac{1}{2} \\cdot 3 = -\\frac{3}{2}$, donc $b = 1 + \\frac{3}{2}$."
+          ],
+          "solution": "La pente de la droite tangente au graphe de $f(x)$ en $x = 3$ est égale à : $f'(3) = -\\frac{1}{2}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, 1)$ est de la forme : $y = f'(3)x + b = -\\frac{1}{2}x + b$.\nSachant que cette tangente passe par le point $(3, 1)$, nous avons : $1 = -\\frac{1}{2}(3) + b \\implies b = \\frac{5}{2}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, 1)$ s'écrit donc : $y = -\\frac{1}{2}x + \\frac{5}{2}$."
+        }
+      ],
+      "solution": "$$f'(3) = \\lim_{h \\to 0} \\frac{f(3 + h) - f(3)}{h} = \\lim_{h \\to 0} \\frac{\\frac{2}{2 + h} - 1}{h} = \\lim_{h \\to 0} \\frac{2 - (2 + h)}{h(2 + h)} = \\lim_{h \\to 0} \\frac{-1}{2 + h} \\quad \\text{pour } h \\neq 0 \\quad = -\\frac{1}{2}$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 3$ est égale à : $f'(3) = -\\frac{1}{2}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, 1)$ est de la forme : $y = f'(3)x + b = -\\frac{1}{2}x + b$.\nSachant que cette tangente passe par le point $(3, 1)$, nous avons : $1 = -\\frac{1}{2}(3) + b \\implies b = \\frac{5}{2}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(3, 1)$ s'écrit donc : $y = -\\frac{1}{2}x + \\frac{5}{2}$."
+    },
+    {
+      "id": "mat1903-p3-06",
+      "topic": "Pilier 3 · Dérivée par définition et tangentes",
+      "source": "Variante calibrée (dérivée radicale par définition)",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Soit $f(x) = \\sqrt{2x + 1}$. Calculer $f'(4)$ à l'aide de la définition, puis l'équation de la droite tangente au point $(4, f(4))$.",
+      "steps": [
+        {
+          "prompt": "Écrire la définition de $f'(4)$ avec $f(4) = \\sqrt{9} = 3$.",
+          "choices": [
+            "$f'(4) = \\displaystyle\\lim_{h \\to 0} \\frac{\\sqrt{9 + 2h} - 3}{h}$",
+            "$f'(4) = \\displaystyle\\lim_{h \\to 0} \\frac{\\sqrt{9 + h} - 3}{h}$",
+            "$f'(4) = \\displaystyle\\lim_{h \\to 0} \\frac{\\sqrt{9 + 2h} - 9}{h}$",
+            "$f'(4) = \\displaystyle\\lim_{h \\to 0} \\frac{\\sqrt{2h + 1} - 3}{h}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$f(4 + h) = \\sqrt{2(4 + h) + 1} = \\sqrt{9 + 2h}$."
+          ],
+          "solution": "$$f'(4) = \\lim_{h \\to 0} \\frac{\\sqrt{9 + 2h} - 3}{h}$$"
+        },
+        {
+          "prompt": "Levons l'indétermination en multipliant par l'expression conjuguée du numérateur.",
+          "choices": [
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{1}{\\sqrt{9 + 2h} + 3} = \\frac{1}{6}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{2}{\\sqrt{9 + 2h}} = \\frac{2}{3}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{(9 + 2h) - 9}{h\\left(\\sqrt{9 + 2h} + 3\\right)} = \\lim_{h \\to 0} \\frac{2}{\\sqrt{9 + 2h} + 3} = \\frac{2}{6} = \\frac{1}{3}$",
+            "$\\displaystyle\\lim_{h \\to 0} \\frac{2h}{\\sqrt{9 + 2h} + 3} = 0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Numérateur : $(9 + 2h) - 9 = 2h$ ; simplifier par $h$."
+          ],
+          "solution": "$$f'(4) = \\lim_{h \\to 0} \\frac{2h}{h\\left(\\sqrt{9 + 2h} + 3\\right)} = \\frac{2}{3 + 3} = \\frac{1}{3}$$"
+        },
+        {
+          "prompt": "Équation de la droite tangente au point $(4, 3)$.",
+          "choices": [
+            "$3 = \\frac{1}{3}(4) + b \\implies b = \\frac{5}{3}$ ; la tangente s'écrit donc : $y = \\frac{1}{3}x + \\frac{5}{3}$",
+            "$3 = \\frac{1}{3}(4) + b \\implies b = \\frac{13}{3}$ ; la tangente s'écrit donc : $y = \\frac{1}{3}x + \\frac{13}{3}$",
+            "La tangente s'écrit : $y = \\frac{1}{3}x + 3$",
+            "La tangente s'écrit : $y = 3x - 9$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$b = 3 - \\frac{4}{3}$."
+          ],
+          "solution": "La pente de la droite tangente au graphe de $f(x)$ en $x = 4$ est égale à : $f'(4) = \\frac{1}{3}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(4, 3)$ est de la forme : $y = f'(4)x + b = \\frac{1}{3}x + b$.\nSachant que cette tangente passe par le point $(4, 3)$, nous avons : $3 = \\frac{1}{3}(4) + b \\implies b = \\frac{5}{3}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(4, 3)$ s'écrit donc : $y = \\frac{1}{3}x + \\frac{5}{3}$."
+        }
+      ],
+      "solution": "$$f'(4) = \\lim_{h \\to 0} \\frac{\\sqrt{9 + 2h} - 3}{h} = \\frac{0}{0} \\quad \\text{forme indéterminée}$$\nLevons l'indétermination en multipliant par l'expression conjuguée du numérateur.\n$$= \\lim_{h \\to 0} \\frac{(9 + 2h) - 9}{h\\left(\\sqrt{9 + 2h} + 3\\right)} = \\lim_{h \\to 0} \\frac{2}{\\sqrt{9 + 2h} + 3} \\quad \\text{pour } h \\neq 0 \\quad = \\frac{1}{3}$$\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 4$ est égale à : $f'(4) = \\frac{1}{3}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(4, 3)$ est de la forme : $y = f'(4)x + b = \\frac{1}{3}x + b$.\nSachant que cette tangente passe par le point $(4, 3)$, nous avons : $3 = \\frac{1}{3}(4) + b \\implies b = \\frac{5}{3}$.\nL'équation de la droite tangente au graphe de $f(x)$ au point $(4, 3)$ s'écrit donc : $y = \\frac{1}{3}x + \\frac{5}{3}$."
+    },
+    {
+      "id": "mat1903-p4-01",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra H24 · Q3.a",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $f(x) = (x^2 - 4)(2x^3 + x + 1)^{23} + \\pi$.",
+      "steps": [
+        {
+          "prompt": "On utilise les formules : $(u \\cdot v)' = u'v + uv'$, $(u^r)' = r\\,u^{r - 1}\\,u'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. Identifier $u$, $v$, leurs dérivées et la dérivée de $\\pi$.",
+          "choices": [
+            "$u' = 2x$ ; $v' = 23(2x^3 + x + 1)^{22}$ ; $(\\pi)' = 0$",
+            "$u = x^2 - 4$, $u' = 2x$ ; $v = (2x^3 + x + 1)^{23}$, $v' = 23(2x^3 + x + 1)^{22}(6x^2 + 1)$ ; $(\\pi)' = 0$",
+            "$u' = 2x$ ; $v' = 23(2x^3 + x + 1)^{22}(6x^2 + 1)$ ; $(\\pi)' = 1$",
+            "$u' = 2x$ ; $v' = 23(6x^2 + 1)^{22}$ ; $(\\pi)' = 0$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$\\pi$ est une constante (environ $3{,}14$) : sa dérivée est nulle.",
+            "Puissance d'une fonction : multiplier par la dérivée de l'intérieur."
+          ],
+          "solution": "$(\\pi)' = 0$ et $v' = 23(2x^3 + x + 1)^{22}(6x^2 + 1)$."
+        },
+        {
+          "prompt": "Écrire $f'(x)$.",
+          "choices": [
+            "$f'(x) = 2x \\cdot 23(2x^3 + x + 1)^{22}(6x^2 + 1)$",
+            "$f'(x) = 2x(2x^3 + x + 1)^{23} + 23(6x^2 + 1)(x^2 - 4)(2x^3 + x + 1)^{22} + 1$",
+            "$f'(x) = 2x(2x^3 + x + 1)^{23} + 23(x^2 - 4)(2x^3 + x + 1)^{22}$",
+            "$f'(x) = 2x(2x^3 + x + 1)^{23} + 23(6x^2 + 1)(x^2 - 4)(2x^3 + x + 1)^{22}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$(u \\cdot v)' = u'v + uv'$ : deux termes, pas un produit de dérivées."
+          ],
+          "solution": "$$f'(x) = 2x(2x^3 + x + 1)^{23} + (x^2 - 4) \\cdot 23(2x^3 + x + 1)^{22}(6x^2 + 1) + 0$$"
+        }
+      ],
+      "solution": "On utilise les formules : $(u \\cdot v)' = u'v + uv'$, $(u^r)' = r\\,u^{r - 1}\\,u'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n$$f'(x) = 2x(2x^3 + x + 1)^{23} + (x^2 - 4) \\cdot 23(2x^3 + x + 1)^{22}(6x^2 + 1) + 0$$\n$$= 2x(2x^3 + x + 1)^{23} + 23(6x^2 + 1)(x^2 - 4)(2x^3 + x + 1)^{22}$$"
+    },
+    {
+      "id": "mat1903-p4-02",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra A25 · Q3.1",
+      "category": "theory",
+      "difficulty": 2,
+      "question": "Dériver $f(x) = 8x^{\\pi} - \\dfrac{x^3}{7} + 10\\sqrt{x^3} - \\dfrac{2}{x^2} + 5^{12}$.",
       "choices": [
-        "$y - 1 = 4(x - 2)$",
-        "$y = \\dfrac{1}{4}x + \\dfrac{1}{2}$",
-        "$y = -4x + 9$",
-        "L'équation de la droite normale au graphe de $f(x)$ au point $(2, f(2))$ s'écrit donc : $y = -\\dfrac{1}{4}x + \\dfrac{3}{2}$."
+        "$f'(x) = 8\\pi x^{\\pi - 1} - \\dfrac{3}{7}x^2 + 15\\sqrt{x} + \\dfrac{4}{x^3} + 12 \\cdot 5^{11}$",
+        "$f'(x) = -\\dfrac{3}{7}x^2 + 15\\sqrt{x} + \\dfrac{4}{x^3}$",
+        "$f'(x) = 8\\pi x^{\\pi - 1} - \\dfrac{3}{7}x^2 + 15\\sqrt{x} + \\dfrac{4}{x^3}$",
+        "$f'(x) = 8\\pi x^{\\pi - 1} - \\dfrac{3}{7}x^2 + 15\\sqrt{x} - \\dfrac{4}{x^3}$"
       ],
-      "answer": 3,
+      "answer": 2,
       "hints": [
-        "La pente de la tangente est $4$. Deux droites perpendiculaires ont des pentes de produit $-1$.",
-        "La forme est $y = -\\dfrac{1}{4}x + b$. Sachant que la normale passe par $(2, 1)$ : $1 = -\\dfrac{1}{4}\\cdot 2 + b$."
+        "$x^{\\pi}$ est une puissance de $x$ (règle $nx^{n-1}$ avec $n = \\pi$) ; $5^{12}$ est un nombre (dérivée nulle).",
+        "$\\sqrt{x^3} = x^{\\frac{3}{2}}$ et $\\dfrac{2}{x^2} = 2x^{-2}$."
       ],
-      "solution": "Le point $(2, 1)$ est sur le graphe, donc $2 \\in \\text{Dom}_f$ et $f(2) = 1$.\nLa pente de la droite tangente au graphe de $f(x)$ en $x = 2$ est égale à : $f'(2) = 4$.\nLa pente de la normale est $-\\dfrac{1}{4}$, car $4 \\cdot \\left(-\\dfrac{1}{4}\\right) = -1$.\nL'équation de la droite normale au graphe de $f(x)$ au point $(2, f(2))$ est de la forme : $y = -\\dfrac{1}{4}x + b$.\nSachant que cette normale passe par le point $(2, f(2))$, nous avons : $1 = -\\dfrac{1}{4}(2) + b \\implies b = \\dfrac{3}{2}$.\nL'équation de la droite normale au graphe de $f(x)$ au point $(2, f(2))$ s'écrit donc : $y = -\\dfrac{1}{4}x + \\dfrac{3}{2}$."
+      "solution": "On réécrit : $f(x) = 8x^{\\pi} - \\frac{1}{7}x^3 + 10x^{\\frac{3}{2}} - 2x^{-2} + 5^{12}$.\n$$f'(x) = 8\\pi x^{\\pi - 1} - \\frac{3}{7}x^2 + 10 \\cdot \\frac{3}{2}x^{\\frac{1}{2}} - 2(-2)x^{-3} + 0 = 8\\pi x^{\\pi - 1} - \\frac{3}{7}x^2 + 15\\sqrt{x} + \\frac{4}{x^3}$$\nPièges : $(x^{\\pi})' = \\pi x^{\\pi - 1}$ (puissance de $x$) mais $(5^{12})' = 0$ (constante)."
+    },
+    {
+      "id": "mat1903-p4-03",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra H26 · Q4.a",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $f(x) = (x^2 + \\pi)(2x^3 + 5x)$.",
+      "steps": [
+        {
+          "prompt": "On utilise la formule : $(u \\cdot v)' = u'v + uv'$. Calculer $u'$ pour $u = x^2 + \\pi$.",
+          "choices": [
+            "$u' = 2x + 1$",
+            "$u' = 2x + \\pi$",
+            "$u' = 2x + \\pi x^{\\pi - 1}$",
+            "$u' = 2x + 0 = 2x$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$\\pi$ est une constante additive."
+          ],
+          "solution": "$(x^2 + \\pi)' = 2x + 0 = 2x$."
+        },
+        {
+          "prompt": "Écrire $f'(x)$ sous forme développée.",
+          "choices": [
+            "$f'(x) = 10x^4 + 15x^2 + 5\\pi$",
+            "$f'(x) = 2x(2x^3 + 5x) + (x^2 + \\pi)(6x^2 + 5) = 10x^4 + (6\\pi + 15)x^2 + 5\\pi$",
+            "$f'(x) = 2x(6x^2 + 5) = 12x^3 + 10x$",
+            "$f'(x) = 10x^4 + (6\\pi + 15)x^2$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$2x(2x^3 + 5x) = 4x^4 + 10x^2$ et $(x^2 + \\pi)(6x^2 + 5) = 6x^4 + 5x^2 + 6\\pi x^2 + 5\\pi$."
+          ],
+          "solution": "$$4x^4 + 10x^2 + 6x^4 + 5x^2 + 6\\pi x^2 + 5\\pi = 10x^4 + (6\\pi + 15)x^2 + 5\\pi$$"
+        }
+      ],
+      "solution": "On utilise la formule : $(u \\cdot v)' = u'v + uv'$.\n$$f'(x) = (2x + 0)(2x^3 + 5x) + (x^2 + \\pi)(6x^2 + 5) = 4x^4 + 10x^2 + 6x^4 + 5x^2 + 6\\pi x^2 + 5\\pi = 10x^4 + (6\\pi + 15)x^2 + 5\\pi$$"
+    },
+    {
+      "id": "mat1903-p4-04",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra H24 · Q3.b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $g(x) = \\left(\\dfrac{11x^5 - 2x}{\\sqrt{7x} + x}\\right)^6$.",
+      "steps": [
+        {
+          "prompt": "Dériver le dénominateur $v = \\sqrt{7x} + x$.",
+          "choices": [
+            "$v' = \\dfrac{7}{2\\sqrt{7x}} + 1$",
+            "$v' = \\dfrac{1}{2\\sqrt{7x}} + 1$",
+            "$v' = \\dfrac{7}{2\\sqrt{x}} + 1$",
+            "$v' = \\dfrac{1}{2\\sqrt{7x}}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$\\sqrt{7x} = (7x)^{\\frac{1}{2}}$ : la dérivée de l'intérieur vaut $7$."
+          ],
+          "solution": "$$\\left(\\sqrt{7x}\\right)' = \\frac{1}{2}(7x)^{-\\frac{1}{2}} \\cdot 7 = \\frac{7}{2\\sqrt{7x}}$$"
+        },
+        {
+          "prompt": "On utilise les formules : $(u \\cdot v)' = u'v + uv'$, $(u^r)' = r\\,u^{r - 1}\\,u'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. Écrire $g'(x)$.",
+          "choices": [
+            "$g'(x) = 6\\left(\\dfrac{11x^5 - 2x}{\\sqrt{7x} + x}\\right)^5 \\cdot \\dfrac{(11x^5 - 2x)\\left(\\frac{7}{2\\sqrt{7x}} + 1\\right) - (55x^4 - 2)(\\sqrt{7x} + x)}{(\\sqrt{7x} + x)^2}$",
+            "$g'(x) = 6\\left(\\dfrac{11x^5 - 2x}{\\sqrt{7x} + x}\\right)^5$",
+            "$g'(x) = 6\\left(\\dfrac{11x^5 - 2x}{\\sqrt{7x} + x}\\right)^5 \\cdot \\dfrac{(55x^4 - 2)(\\sqrt{7x} + x) - (11x^5 - 2x)\\left(\\frac{7}{2\\sqrt{7x}} + 1\\right)}{(\\sqrt{7x} + x)^2}$",
+            "$g'(x) = \\dfrac{(55x^4 - 2)(\\sqrt{7x} + x) - (11x^5 - 2x)\\left(\\frac{7}{2\\sqrt{7x}} + 1\\right)}{(\\sqrt{7x} + x)^2}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Puissance extérieure d'abord, puis multiplier par la dérivée du quotient.",
+            "Quotient : $u'v - uv'$, dans cet ordre."
+          ],
+          "solution": "$(u^6)' = 6u^5 u'$ avec $u'$ obtenu par la règle du quotient."
+        }
+      ],
+      "solution": "On utilise les formules : $(u \\cdot v)' = u'v + uv'$, $(u^r)' = r\\,u^{r - 1}\\,u'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n$$g'(x) = 6\\left(\\dfrac{11x^5 - 2x}{\\sqrt{7x} + x}\\right)^5 \\cdot \\frac{(55x^4 - 2)(\\sqrt{7x} + x) - (11x^5 - 2x)\\left(\\frac{7}{2\\sqrt{7x}} + 1\\right)}{(\\sqrt{7x} + x)^2}$$"
+    },
+    {
+      "id": "mat1903-p4-05",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra H26 · Q4.b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $g(x) = \\left(\\dfrac{x^2 - 1}{x^2 + 1}\\right)^6$.",
+      "steps": [
+        {
+          "prompt": "On utilise la formule : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. Dériver le quotient intérieur.",
+          "choices": [
+            "$\\dfrac{2x(x^2 + 1) - (x^2 - 1)(2x)}{(x^2 + 1)^2} = 0$",
+            "$\\dfrac{2x(x^2 + 1) - (x^2 - 1)(2x)}{(x^2 + 1)^2} = \\dfrac{4x}{(x^2 + 1)^2}$",
+            "$\\dfrac{(x^2 - 1)(2x) - 2x(x^2 + 1)}{(x^2 + 1)^2} = \\dfrac{-4x}{(x^2 + 1)^2}$",
+            "$\\dfrac{2x}{2x} = 1$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$-(x^2 - 1)(2x) = -2x^3 + 2x$ : le signe moins porte sur les deux termes."
+          ],
+          "solution": "$$\\frac{2x^3 + 2x - 2x^3 + 2x}{(x^2 + 1)^2} = \\frac{4x}{(x^2 + 1)^2}$$"
+        },
+        {
+          "prompt": "On utilise la formule : $(u^r)' = r\\,u^{r - 1}\\,u'$. Écrire $g'(x)$.",
+          "choices": [
+            "$g'(x) = \\dfrac{24x(x^2 - 1)^5}{(x^2 + 1)^6}$",
+            "$g'(x) = 6\\left(\\dfrac{x^2 - 1}{x^2 + 1}\\right)^5$",
+            "$g'(x) = \\dfrac{4x(x^2 - 1)^5}{(x^2 + 1)^7}$",
+            "$g'(x) = 6\\left(\\dfrac{x^2 - 1}{x^2 + 1}\\right)^5 \\cdot \\dfrac{4x}{(x^2 + 1)^2} = \\dfrac{24x(x^2 - 1)^5}{(x^2 + 1)^7}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$(x^2 + 1)^5 \\cdot (x^2 + 1)^2 = (x^2 + 1)^7$."
+          ],
+          "solution": "$$g'(x) = 6\\frac{(x^2 - 1)^5}{(x^2 + 1)^5} \\cdot \\frac{4x}{(x^2 + 1)^2} = \\frac{24x(x^2 - 1)^5}{(x^2 + 1)^7}$$"
+        }
+      ],
+      "solution": "On utilise les formules : $(u \\cdot v)' = u'v + uv'$, $(u^r)' = r\\,u^{r - 1}\\,u'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n$$g'(x) = 6\\left(\\frac{x^2 - 1}{x^2 + 1}\\right)^5 \\cdot \\frac{2x(x^2 + 1) - (x^2 - 1)(2x)}{(x^2 + 1)^2} = 6\\left(\\frac{x^2 - 1}{x^2 + 1}\\right)^5 \\cdot \\frac{4x}{(x^2 + 1)^2} = \\frac{24x(x^2 - 1)^5}{(x^2 + 1)^7}$$"
+    },
+    {
+      "id": "mat1903-p4-06",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra H24 · Q3.c · Intra H26 · Q4.c",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $h(x) = \\sqrt[3]{\\sqrt{x} + 3x^7}$.",
+      "steps": [
+        {
+          "prompt": "Dériver l'expression intérieure $u = \\sqrt{x} + 3x^7$.",
+          "choices": [
+            "$u' = \\dfrac{1}{2}\\sqrt{x} + 21x^6$",
+            "$u' = \\dfrac{1}{2\\sqrt{x}} + 21x^7$",
+            "$u' = \\dfrac{1}{2\\sqrt{x}} + 21x^6$",
+            "$u' = 2\\sqrt{x} + 21x^6$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$\\sqrt{x} = x^{\\frac{1}{2}}$, donc $(\\sqrt{x})' = \\frac{1}{2}x^{-\\frac{1}{2}}$."
+          ],
+          "solution": "$$u' = \\frac{1}{2}x^{-\\frac{1}{2}} + 21x^6 = \\frac{1}{2\\sqrt{x}} + 21x^6$$"
+        },
+        {
+          "prompt": "On utilise la formule : $(u^r)' = r\\,u^{r - 1}\\,u'$ avec $r = \\frac{1}{3}$. Écrire $h'(x)$.",
+          "choices": [
+            "$h'(x) = \\frac{1}{3}\\left(\\sqrt{x} + 3x^7\\right)^{-\\frac{2}{3}}\\left(\\dfrac{1}{2\\sqrt{x}} + 21x^6\\right) = \\dfrac{\\frac{1}{2\\sqrt{x}} + 21x^6}{3\\sqrt[3]{\\left(\\sqrt{x} + 3x^7\\right)^2}}$",
+            "$h'(x) = \\frac{1}{3}\\left(\\sqrt{x} + 3x^7\\right)^{\\frac{2}{3}}\\left(\\dfrac{1}{2\\sqrt{x}} + 21x^6\\right)$",
+            "$h'(x) = \\dfrac{\\frac{1}{2\\sqrt{x}} + 21x^6}{3\\sqrt[3]{\\sqrt{x} + 3x^7}}$",
+            "$h'(x) = \\frac{1}{3}\\left(\\sqrt{x} + 3x^7\\right)^{-\\frac{2}{3}}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$\\frac{1}{3} - 1 = -\\frac{2}{3}$ : l'exposant négatif envoie le facteur au dénominateur, avec un carré sous la racine cubique."
+          ],
+          "solution": "$$h'(x) = \\frac{1}{3}\\left(\\sqrt{x} + 3x^7\\right)^{-\\frac{2}{3}}\\left(\\frac{1}{2\\sqrt{x}} + 21x^6\\right)$$"
+        }
+      ],
+      "solution": "On utilise la formule : $(u^r)' = r\\,u^{r - 1}\\,u'$, avec $u = \\sqrt{x} + 3x^7$ et $r = \\frac{1}{3}$.\n$$h'(x) = \\frac{1}{3}\\left(\\sqrt{x} + 3x^7\\right)^{-\\frac{2}{3}}\\left(\\frac{1}{2\\sqrt{x}} + 21x^6\\right) = \\frac{\\frac{1}{2\\sqrt{x}} + 21x^6}{3\\sqrt[3]{\\left(\\sqrt{x} + 3x^7\\right)^2}}$$"
+    },
+    {
+      "id": "mat1903-p4-07",
+      "topic": "Pilier 4 · Règles de dérivation",
+      "source": "Intra A25 · Q3.2",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $g(x) = (4x^3)\\sqrt{3x - 4}$.",
+      "steps": [
+        {
+          "prompt": "Dériver $v = \\sqrt{3x - 4}$.",
+          "choices": [
+            "$v' = \\dfrac{1}{2\\sqrt{3x - 4}}$",
+            "$v' = \\dfrac{3}{\\sqrt{3x - 4}}$",
+            "$v' = \\dfrac{3}{2}\\sqrt{3x - 4}$",
+            "$v' = \\dfrac{3}{2\\sqrt{3x - 4}}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "$(u^{\\frac{1}{2}})' = \\frac{1}{2}u^{-\\frac{1}{2}}u'$ avec $u' = 3$."
+          ],
+          "solution": "$$\\left(\\sqrt{3x - 4}\\right)' = \\frac{1}{2}(3x - 4)^{-\\frac{1}{2}} \\cdot 3 = \\frac{3}{2\\sqrt{3x - 4}}$$"
+        },
+        {
+          "prompt": "On utilise la formule : $(u \\cdot v)' = u'v + uv'$. Écrire $g'(x)$.",
+          "choices": [
+            "$g'(x) = 12x^2 \\cdot \\dfrac{3}{2\\sqrt{3x - 4}} = \\dfrac{18x^2}{\\sqrt{3x - 4}}$",
+            "$g'(x) = 12x^2\\sqrt{3x - 4} + \\dfrac{6x^3}{\\sqrt{3x - 4}}$",
+            "$g'(x) = 12x^2\\sqrt{3x - 4} + \\dfrac{2x^3}{\\sqrt{3x - 4}}$",
+            "$g'(x) = 12x^2\\sqrt{3x - 4} + \\dfrac{12x^3}{\\sqrt{3x - 4}}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "$4x^3 \\cdot \\dfrac{3}{2\\sqrt{3x - 4}} = \\dfrac{12x^3}{2\\sqrt{3x - 4}}$."
+          ],
+          "solution": "$$g'(x) = 12x^2\\sqrt{3x - 4} + 4x^3 \\cdot \\frac{3}{2\\sqrt{3x - 4}} = 12x^2\\sqrt{3x - 4} + \\frac{6x^3}{\\sqrt{3x - 4}}$$"
+        }
+      ],
+      "solution": "On utilise la formule : $(u \\cdot v)' = u'v + uv'$, avec $u = 4x^3$ et $v = \\sqrt{3x - 4}$.\n$$g'(x) = 12x^2\\sqrt{3x - 4} + 4x^3 \\cdot \\frac{3}{2\\sqrt{3x - 4}} = 12x^2\\sqrt{3x - 4} + \\frac{6x^3}{\\sqrt{3x - 4}}$$"
     }
   ]
 }

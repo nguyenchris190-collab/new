@@ -265,6 +265,7 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
               <article className="card p-4 sm:p-6" aria-label={`Question ${(viewIndex ?? 0) + 1}`}>
                 <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
                   <span className="rounded border border-border px-2 py-0.5 font-medium">{qProps.question.topic}</span>
+                  {qProps.question.source && <span className="text-muted">{qProps.question.source}</span>}
                   <span className="text-muted">{qProps.question.category === 'theory' ? 'Theory' : 'Practice'}</span>
                   {qProps.question.kind === 'sequential' && <span className="text-muted">· {qProps.question.steps.length} steps</span>}
                   {qProps.item.reported && (

@@ -23,6 +23,8 @@ export interface Question {
   /** Full derivation shown once the whole question is solved. */
   solution?: string;
   difficulty?: number;
+  /** Where the problem comes from, e.g. "Intra H24 · Q1.a". */
+  source?: string;
 }
 
 export interface CheatSection {

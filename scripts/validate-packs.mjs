@@ -68,7 +68,7 @@ for (const file of readdirSync(DIR).filter((f) => f.endsWith('.json'))) {
     checkMath(`${where} question`, q.question);
     checkMath(`${where} solution`, q.solution);
     if (Array.isArray(q.steps)) {
-      if (q.steps.length < 2 || q.steps.length > 3) fail(where, `multi-step questions use 2–3 steps (has ${q.steps.length})`);
+      if (q.steps.length < 2 || q.steps.length > 4) fail(where, `multi-step questions use 2–4 steps (has ${q.steps.length})`);
       q.steps.forEach((s, i) => checkStep(`${where} step ${i + 1}`, s));
     } else checkStep(where, q);
   }
