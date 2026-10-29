@@ -6,7 +6,8 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import katex from 'katex';
 
-const DIR = new URL('../src/data/packs/', import.meta.url).pathname;
+import { fileURLToPath } from 'node:url';
+const DIR = fileURLToPath(new URL('../src/data/packs/', import.meta.url));
 let errors = 0;
 const fail = (where, msg) => {
   errors++;

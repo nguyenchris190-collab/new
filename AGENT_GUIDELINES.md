@@ -119,7 +119,7 @@ Choice order is shuffled in every session, so the position of the correct answer
 - The validator renders every math segment with `throwOnError: true` and `strict: "error"`. If it fails, the pack fails the build.
 
 ### 2.4 Distractor design
-Every wrong option must be a **real student failure mode** that leads to a specific wrong answer. Never use filler. Common patterns:
+Every wrong option must be a **real student failure mode** that leads to a specific wrong answer. Never use filler. All options must satisfy the **Rule of Distractor Parity** (§2.8), matching in visual length, clause structure, and LaTeX density. Common patterns:
 - Evaluating $\frac00$ directly and calling it $0$, or saying "does not exist", before simplifying.
 - **Conjugate errors:** multiplying only the numerator, using the wrong conjugate sign, or forgetting to square the constant ($x+5-3$ instead of $x+5-9$).
 - **Sign distribution:** $(x-1)-(x+1)$ written as $x-1-x+1$. Swapping the order of the quotient-rule numerator. A wrong sign inside a factored binomial.
@@ -169,6 +169,16 @@ The three official intras (Hiver 2024, Automne 2025, Hiver 2026) reuse one bluep
 | Pilier 4 · Règles de dérivation | 7 (`p4-01`…`p4-07`) | Product, power and quotient rules on recycled expressions such as $\sqrt[3]{\sqrt{x} + 3x^7}$ and $\left(\frac{x^2 - 1}{x^2 + 1}\right)^6$ | $(\pi)' = 0$ vs. $(x^{\pi})' = \pi x^{\pi - 1}$; dropping the inner derivative; reversing the quotient numerator |
 
 Each question carries a `source` tag (for example `Intra H24 · Q1.a (1)`). Questions marked `Variante calibrée` are calibrated variants of an exam archetype, not verbatim exam items. When a new intra is released: map each of its questions to a pillar, add or update a question with the same corrigé phrasing (§2.6), verify the key with a CAS, bump `BUNDLED_VERSION`, and keep the pillar topics unchanged.
+
+---
+
+### 2.8 Rule of distractor parity (anti-length-bias)
+To prevent test-wiseness cues where a student identifies the correct option purely through visual formatting or length without calculating, all choices in every question and step must satisfy **strict structural parity**:
+- **Strict structural parity rule:** Every option (A, B, C, D) within a question or step MUST have matching visual length, line count, and grammatical scaffolding. Distractors must NEVER be lazy fragments or truncated shorthand summaries of the correct option.
+- **Strictly mathematical divergence:** The difference between choices must be **strictly mathematical** (e.g., an algebraic sign flip, misapplying a limit rule, inverted lateral conditions, or wrong theorem deduction), NEVER visual formatting.
+- **Identical sentence scaffolding:** Where the correct option uses full French justification sentences (e.g., *« On distingue 2 cas : ... »*, *« La droite d'équation x = a est... »*, or piecewise continuity proofs), all 3 distractors must employ the **exact same sentence templates, clause structure, and line breaks**.
+- **Realistic student misconceptions:** Embed authentic student failure modes inside distractors (e.g., for continuity: asserting the function is continuous because lateral limits exist even when $f(a)$ is undefined; for asymptotes: swapping horizontal vs. vertical labels such as $x = L$ vs. $y = L$, or dropping the sign split on $|x|$ or $\sqrt{x^2}$ at $-\infty$).
+- **Intermediate step parity (accordions):** In multi-step questions, every intermediate choice must exhibit equivalent algebraic complexity, LaTeX density, and notation length as the correct step line.
 
 ---
 
