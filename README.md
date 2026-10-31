@@ -11,7 +11,7 @@ npm run validate:packs   # KaTeX + schema check for src/data/packs/*.json
 
 **Read [`AGENT_GUIDELINES.md`](AGENT_GUIDELINES.md) before changing code or authoring packs.** It covers the core principles, the pack schema, the KaTeX escaping rule, distractor design, the quote tiers, and the maintenance checklist.
 
-The bundled course is **MAT1903 Differential Calculus** (`src/data/packs/mat1903-calc.json`): 27 calculator-free questions built from the three official UdeM intras (H24, A25, H26). They are grouped into 4 pillars (domain, asymptotes and limits; piecewise continuity; derivative by definition and tangents; differentiation rules) and written in the corrigé's French phrasing. Every distractor is a classic exam slip-up, and each question is tagged with its exam source. See `AGENT_GUIDELINES.md` §2.6–2.7.
+The bundled course is **MAT1903 Differential Calculus** (`src/data/packs/mat1903-calc.json`): 52 calculator-free questions built from the three official UdeM intras (H24, A25, H26) and the final-exam extension (H25, H24, A23). They are grouped into 8 pillars: the original intra pillars (domain/asymptotes/limits, piecewise continuity, derivative by definition/tangents, differentiation rules) and the final pillars (transcendental derivatives/differentiability, complete rational studies, interval/exponential studies, optimization). Every distractor is a classic exam slip-up, and each question is tagged with its exam source. See `AGENT_GUIDELINES.md` §2.6–2.7.
 
 ## Deploying (Render, GitHub Pages, any static host)
 

@@ -1,7 +1,7 @@
 import mat1903 from './packs/mat1903-calc.json';
 
 /** Bump whenever a bundled pack changes so existing installs pick up the new content. */
-export const BUNDLED_VERSION = 6;
+export const BUNDLED_VERSION = 7;
 
 /** Packs installed automatically on first launch and refreshed on upgrade. */
 export const BUNDLED_PACKS: unknown[] = [mat1903];
