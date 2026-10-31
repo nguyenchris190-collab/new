@@ -3,8 +3,8 @@
   "code": "MAT1903",
   "title": "Differential Calculus",
   "icon": "calculus",
-  "version": 5,
-  "description": "Les quatre piliers des intras de MAT1903 (H24, A25, H26), rédigés selon le corrigé de l'Université de Montréal.",
+  "version": 6,
+  "description": "Les piliers des intras de MAT1903 (H24, A25, H26) et la première question de finale, rédigés selon le corrigé de l'Université de Montréal.",
   "cheatSheetMarkdown": "## Domaine de la fonction\n- $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ \\text{dénominateur} \\neq 0\\}$, puis la condition factorisée, puis $\\mathbb{R} - \\{a, b\\}$\n- Le domaine se lit **avant** toute simplification.\n- Racine carrée : le radicande doit être $\\geq 0$.\n\n## Recherche des asymptotes verticales\n- Substitution directe : $\\frac{0}{0}$ forme indéterminée, on simplifie **pour** $x \\neq a$.\n- Limite finie : la droite d'équation $x = a$ n'est pas une asymptote verticale.\n- Forme $\\left(\\frac{c}{0^+}\\right)$ ou $\\left(\\frac{c}{0^-}\\right)$ avec $c \\neq 0$ : la droite d'équation $x = a$ est une asymptote verticale.\n\n## Recherche des asymptotes horizontales\n- Calculer $\\displaystyle\\lim_{x \\to -\\infty}$ **et** $\\displaystyle\\lim_{x \\to +\\infty}$ séparément, en factorisant la plus haute puissance.\n- Car pour $x < 0$ : $\\sqrt{x^2} = |x| = -x$ et $|x^3| = -x^3$.\n- Car pour $x > 0$ : $\\sqrt{x^2} = |x| = x$ et $|x^3| = x^3$.\n\n## Lever une indétermination\n- Levons l'indétermination en réduisant au même dénominateur.\n- Levons l'indétermination en multipliant par l'expression conjuguée du numérateur : $\\left(\\sqrt{A} - B\\right)\\left(\\sqrt{A} + B\\right) = A - B^2$\n- On distingue 2 cas : lorsque $x \\to a^-$ et $x \\to a^+$.\n\n## Continuité en $x = a$\n- (1) $a \\in \\text{Dom}_f$ ? Sinon : la fonction $f$ n'est pas définie en $x = a$ donc elle n'est pas continue en $x = a$.\n- (2) $f(a)$. (3) $\\displaystyle\\lim_{x \\to a^-} f(x)$ et $\\displaystyle\\lim_{x \\to a^+} f(x)$. (4) Verdict.\n- Non continue en $x = a$ $\\implies$ non dérivable en $x = a$.\n\n## Dérivée par définition\n$$f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}$$\n- Point de raccord : $\\displaystyle\\lim_{h \\to 0^-}$ et $\\displaystyle\\lim_{h \\to 0^+}$ séparément ; s'ils diffèrent, $f'(a)$ n'existe pas.\n\n## Règles de dérivation\n$$(u \\cdot v)' = u'v + uv' \\qquad (u^r)' = r\\,u^{r - 1}\\,u' \\qquad \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}$$\n- $(\\pi)' = 0$, $(5^{12})' = 0$, mais $(x^{\\pi})' = \\pi x^{\\pi - 1}$.\n\n## Droite tangente en $x = a$\n- Pente : $f'(a) = m$. Forme : $y = mx + b$.\n- Sachant que cette tangente passe par $(a, f(a))$ : $f(a) = m(a) + b$, d'où $b$.\n",
   "questions": [
     {
@@ -1365,6 +1365,235 @@
         }
       ],
       "solution": "On utilise la formule : $(u \\cdot v)' = u'v + uv'$, avec $u = 4x^3$ et $v = \\sqrt{3x - 4}$.\n$$g'(x) = 12x^2\\sqrt{3x - 4} + 4x^3 \\cdot \\frac{3}{2\\sqrt{3x - 4}} = 12x^2\\sqrt{3x - 4} + \\frac{6x^3}{\\sqrt{3x - 4}}$$"
+    },
+    {
+    "id": "q-h25-q2",
+    "topic": "Pilier 6 · Étude complète d'une fonction rationnelle",
+    "source": "Final H25 · Q2",
+    "category": "practice",
+    "difficulty": 3,
+    "question": "Soit la fonction $$f(x) = \\frac{x^2}{(x+1)^2} \\quad \\text{avec} \\quad f'(x) = \\frac{2x}{(x+1)^3} \\quad \\text{et} \\quad f''(x) = \\frac{2-4x}{(x+1)^4}.$$ Faire l'étude complète de $f$.",
+    "methodRefs": [
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14"
+    ],
+    "steps": [
+      {
+        "prompt": "Étape 1 : Déterminer le domaine de $f$.",
+        "choices": [
+          "$(x+1)^2 = 0 \\iff x = 1$, donc $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x-1 \\neq 0\\} = \\mathbb{R} - \\{1\\}$.",
+          "$x^2 = 0$ et $(x+1)^2 = 0$, donc $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x \\neq 0, \\ x \\neq -1\\} = \\mathbb{R} - \\{0, -1\\}$.",
+          "$(x+1)^2 = 0 \\iff x = -1$, donc $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x+1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$.",
+          "$(x+1)^2 \\geq 0$ pour tout $x$, donc $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ (x+1)^2 \\geq 0\\} = \\mathbb{R}$."
+        ],
+        "answer": 2,
+        "hints": [],
+        "solution": "Le dénominateur s'annule si $(x+1)^2 = 0 \\iff x = -1$. $$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x+1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$",
+        "feedback": [
+          "Erreur de signe : $x + 1 = 0 \\iff x = -1$, et non $x = 1$.",
+          "Un numérateur nul ne pose aucun problème : $\\frac{0}{1} = 0$. Seul le dénominateur exclut des valeurs.",
+          "Exact. Seule la valeur qui annule le dénominateur est exclue.",
+          "Un carré est $\\geq 0$, mais il peut valoir $0$ : en $x = -1$, le dénominateur est nul."
+        ],
+        "methodRefs": [
+          "M8",
+          "A1"
+        ]
+      },
+      {
+        "prompt": "Étape 2 : Trouver les équations des asymptotes verticales et horizontales.",
+        "choices": [
+          "$\\lim_{x \\to -1^-} f(x) = \\lim_{x \\to -1^+} f(x) = \\frac{1}{0^+} = +\\infty$ : $x = -1$ est une A.V. $\\lim_{x \\to \\pm\\infty} f(x) = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2} = 1$ : $y = 1$ est une A.H. en $\\pm\\infty$.",
+          "$\\lim_{x \\to -1^-} f(x) = \\frac{1}{0^-} = -\\infty$ et $\\lim_{x \\to -1^+} f(x) = \\frac{1}{0^+} = +\\infty$ : $x = -1$ est une A.V. $\\lim_{x \\to \\pm\\infty} f(x) = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2} = 1$ : $y = 1$ est une A.H. en $\\pm\\infty$.",
+          "$\\lim_{x \\to -1^-} f(x) = \\lim_{x \\to -1^+} f(x) = \\frac{1}{0^+} = +\\infty$ : $x = -1$ est une A.V. $\\lim_{x \\to \\pm\\infty} f(x) = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^3} = 0$ : $y = 0$ est une A.H. en $\\pm\\infty$.",
+          "$\\lim_{x \\to -1^-} f(x) = \\lim_{x \\to -1^+} f(x) = \\frac{1}{0^+} = +\\infty$ : $x = -1$ est une A.V. $\\lim_{x \\to +\\infty} f(x) = 1$ et $\\lim_{x \\to -\\infty} f(x) = -1$ : A.H. $y = 1$ et $y = -1$."
+        ],
+        "answer": 0,
+        "hints": [
+          "Un carré au dénominateur, comme $(x+1)^2$, est $0^+$ des deux côtés de $-1$."
+        ],
+        "solution": "En $x = -1$ : numérateur $(-1)^2 = 1$, dénominateur $(x+1)^2 \\to 0^+$ des deux côtés. $$\\lim_{x \\to -1^\\pm} f(x) = \\frac{1}{0^+} = +\\infty$$ Donc la droite d'équation $x = -1$ est une asymptote verticale. $$\\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2 + 2x + 1} = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2} = 1$$ Donc la droite d'équation $y = 1$ est une asymptote horizontale en $-\\infty$ et en $+\\infty$.",
+        "feedback": [
+          "Parfait : le carré $(x+1)^2$ est $0^+$ des deux côtés, et les degrés sont égaux.",
+          "$(x+1)^2$ est un carré : il est $0^+$ à gauche comme à droite, jamais $0^-$.",
+          "Développez : $(x+1)^2 = x^2 + 2x + 1$ est de degré 2, comme le numérateur. Le rapport des coefficients donne $1$.",
+          "Aucune valeur absolue ni racine ici : $\\frac{x^2}{x^2} = 1$ des deux côtés, donc une seule A.H. $y = 1$."
+        ],
+        "methodRefs": [
+          "M9",
+          "M10",
+          "A7",
+          "A8"
+        ]
+      },
+      {
+        "prompt": "Étape 3 : Déterminer les nombres critiques de $f$, sachant que $f'(x) = \\frac{2x}{(x+1)^3}$.",
+        "choices": [
+          "$f'(x) = 0 \\iff 2x = 0 \\iff x = 0 \\in \\text{Dom}_f$. $f'$ n'existe pas en $x = -1$. Nombres critiques : $x = 0$ et $x = -1$.",
+          "$f'(x) = 0 \\iff 2x = 0 \\iff x = 0 \\in \\text{Dom}_f$. $f'$ n'existe pas en $x = -1 \\notin \\text{Dom}_f$. Nombre critique : $x = 0$.",
+          "$f'(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2} \\in \\text{Dom}_f$. $f'$ n'existe pas en $x = -1 \\notin \\text{Dom}_f$. Nombre critique : $x = \\frac{1}{2}$.",
+          "$f'(x)$ n'existe pas si $(x+1)^3 = 0 \\iff x = -1$. $f'(x) = 0$ n'a pas de solution. Nombre critique : $x = -1$."
+        ],
+        "answer": 1,
+        "hints": [
+          "Une valeur exclue du domaine n'est jamais un nombre critique, mais elle apparaît dans le tableau avec $\\nexists$."
+        ],
+        "solution": "$f'(x) = 0 \\iff 2x = 0 \\iff x = 0$, et $0 \\in \\text{Dom}_f$. $f'$ est définie pour tout $x \\in \\text{Dom}_f$ (elle n'existe pas seulement en $x = -1 \\notin \\text{Dom}_f$). Le seul nombre critique est $x = 0$, avec $f(0) = 0$.",
+        "feedback": [
+          "Un nombre critique doit appartenir au domaine. $-1 \\notin \\text{Dom}_f$ : on le garde pour le tableau, mais ce n'est pas un nombre critique.",
+          "Exact : $-1$ n'est pas dans le domaine, ce n'est donc pas un nombre critique.",
+          "Vous avez utilisé le numérateur de $f''$. Les nombres critiques de $f$ viennent de $f'(x) = \\frac{2x}{(x+1)^3}$.",
+          "Le numérateur $2x$ s'annule en $x = 0$. Et $-1 \\notin \\text{Dom}_f$ ne peut pas être un nombre critique."
+        ],
+        "methodRefs": [
+          "M11"
+        ]
+      },
+      {
+        "prompt": "Étape 4 : Déterminer les valeurs de $x \\in \\text{Dom}_f$ pour lesquelles $f''(x) = 0$ ou $f''(x)$ n'existe pas, sachant que $f''(x) = \\frac{2-4x}{(x+1)^4}$.",
+        "choices": [
+          "$f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = 2 \\in \\text{Dom}_f$. $f''$ n'existe pas en $x = -1 \\notin \\text{Dom}_f$. Valeur : $x = 2$.",
+          "$f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2} \\in \\text{Dom}_f$. $f''$ n'existe pas en $x = -1$. Valeurs : $x = \\frac{1}{2}$ et $x = -1$.",
+          "$f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = -\\frac{1}{2} \\in \\text{Dom}_f$. $f''$ n'existe pas en $x = -1 \\notin \\text{Dom}_f$. Valeur : $x = -\\frac{1}{2}$.",
+          "$f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2} \\in \\text{Dom}_f$. $f''$ n'existe pas en $x = -1 \\notin \\text{Dom}_f$. Valeur : $x = \\frac{1}{2}$."
+        ],
+        "answer": 3,
+        "hints": [],
+        "solution": "$f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2}$, et $\\frac{1}{2} \\in \\text{Dom}_f$. $f''$ n'existe pas seulement en $x = -1 \\notin \\text{Dom}_f$. Valeur retenue : $x = \\frac{1}{2}$, avec $f\\left(\\frac{1}{2}\\right) = \\frac{1}{9}$.",
+        "feedback": [
+          "$2 - 4x = 0 \\iff 4x = 2 \\iff x = \\frac{2}{4} = \\frac{1}{2}$.",
+          "La question demande les $x$ du domaine : $-1 \\notin \\text{Dom}_f$.",
+          "Erreur de signe : $-4x = -2 \\iff x = \\frac{1}{2}$ (positif).",
+          "Exact, et $f\\left(\\frac{1}{2}\\right) = \\frac{1/4}{9/4} = \\frac{1}{9}$."
+        ],
+        "methodRefs": [
+          "M12"
+        ]
+      },
+      {
+        "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
+        "choices": [
+          "$$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & - & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\searrow\\cap & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Min. abs. $(0, 0)$, P.I. $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
+          "$$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\nearrow\\cup & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Min. abs. $(0, 0)$, P.I. $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
+          "$$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\nearrow\\cup & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Min. rel. $(0, 0)$, P.I. $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
+          "$$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & - & \\nexists & - & - & - & 0 & + & \\\\ f & 1 & \\nearrow\\cap & \\nexists & \\searrow\\cap & 0 & \\nearrow\\cap & \\tfrac{1}{9} & \\nearrow\\cup & 1 \\end{array}$$Min. abs. $(0, 0)$, P.I. $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$."
+        ],
+        "answer": 1,
+        "hints": [],
+        "solution": "$(x+1)^4 > 0$ et $(x+1)^2 > 0$ partout, $(x+1)^3$ a le signe de $x+1$. Signe de $f'$ : celui de $\\frac{2x}{x+1}$. Signe de $f''$ : celui de $2 - 4x$. $$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\nearrow\\cup & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Minimum absolu $(0,0)$, point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
+        "feedback": [
+          "Pour $x < -1$ : $2x < 0$ et $(x+1)^3 < 0$ (puissance impaire), donc $f' = \\frac{-}{-} > 0$.",
+          "Parfait. $f(x) \\geq 0$ partout (carré sur carré), donc le minimum en $(0,0)$ est absolu.",
+          "Le tableau est juste, mais $f(x) = \\frac{x^2}{(x+1)^2} \\geq 0$ pour tout $x$ : aucune valeur n'est plus basse que $0$, le minimum est absolu.",
+          "Signe de $f''$ : le dénominateur $(x+1)^4$ est toujours positif, donc tout dépend de $2 - 4x$. En $x = 0$, $2 - 4(0) = 2 > 0$."
+        ],
+        "methodRefs": [
+          "M13",
+          "A6"
+        ]
+      },
+      {
+        "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
+        "choices": [
+          "Graphe 1",
+          "Graphe 2",
+          "Graphe 3",
+          "Graphe 4"
+        ],
+        "answer": 2,
+        "hints": [],
+        "solution": "Tracer les asymptotes $x = -1$ et $y = 1$ en pointillés, placer $(0,0)$ et $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$, puis suivre les flèches et la concavité du tableau.",
+        "feedback": [
+          "À gauche de $-1$, $f \\to +\\infty$ (pas $-\\infty$) : le carré au dénominateur est $0^+$.",
+          "L'asymptote horizontale est $y = 1$, pas $y = 0$ : les degrés du haut et du bas sont égaux.",
+          "Exact : A.V. $x=-1$ ($+\\infty$ des deux côtés), A.H. $y=1$, min. abs. $(0,0)$, P.I. $\\left(\\frac{1}{2},\\frac{1}{9}\\right)$.",
+          "Ce graphe n'a pas de minimum en $(0,0)$ et la branche droite part de $-\\infty$ : $f \\geq 0$ partout."
+        ],
+        "images": [
+          {
+            "src": "packs/mat1903-calc/img/h25-q2-sketch-B.svg",
+            "alt": "Branche gauche qui descend vers −∞ près de x = −1."
+          },
+          {
+            "src": "packs/mat1903-calc/img/h25-q2-sketch-C.svg",
+            "alt": "Courbe qui revient vers y = 0 aux deux extrémités."
+          },
+          {
+            "src": "packs/mat1903-calc/img/h25-q2-sketch-A.svg",
+            "alt": "Deux branches qui montent vers +∞ de chaque côté de x = −1, tendent vers y = 1, minimum en (0,0)."
+          },
+          {
+            "src": "packs/mat1903-calc/img/h25-q2-sketch-D.svg",
+            "alt": "Branche droite qui monte depuis −∞, sans minimum en (0,0)."
+          }
+        ],
+        "methodRefs": [
+          "M14"
+        ]
+      }
+    ],
+    "solution": "1. Domaine : $(x+1)^2 = 0 \\iff x = -1$. $$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x+1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$\n\n2. Asymptotes : $$\\lim_{x \\to -1^\\pm} \\frac{x^2}{(x+1)^2} = \\frac{1}{0^+} = +\\infty$$ donc la droite d'équation $x = -1$ est une asymptote verticale. $$\\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2+2x+1} = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2} = 1$$ donc la droite d'équation $y = 1$ est une asymptote horizontale en $-\\infty$ et en $+\\infty$.\n\n3. Nombres critiques : $f'(x) = 0 \\iff 2x = 0 \\iff x = 0 \\in \\text{Dom}_f$. $f'$ est définie pour tout $x \\in \\text{Dom}_f$. Nombre critique : $x = 0$, $f(0) = 0$.\n\n4. $f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2} \\in \\text{Dom}_f$, $f\\left(\\frac{1}{2}\\right) = \\frac{1}{9}$.\n\n5. Tableau de variation : $$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\nearrow\\cup & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Minimum absolu $(0,0)$ ; point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.\n\n6. Esquisse : asymptotes $x = -1$ et $y = 1$ en pointillés, minimum absolu $(0,0)$, point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
+    "scenario": {
+      "prompt": "Un modèle d'apprentissage donne le taux de maîtrise d'une compétence après $x$ heures de pratique : $$R(x) = \\frac{x^2}{(x+1)^2}$$ ($0$ = aucune maîtrise, $1$ = maîtrise totale). On étudie d'abord la fonction mathématiquement sur tout son domaine, puis on interprète le résultat pour $x \\geq 0$.",
+      "instructions": [
+        "Étape 1 : Domaine de $R$ (étude mathématique complète, pas seulement $x \\geq 0$).",
+        "Étape 2 : Asymptotes. L'une d'elles décrit le niveau atteint après très longtemps.",
+        "Étape 3 : Nombres critiques, sachant que $R'(x) = \\frac{2x}{(x+1)^3}$ (la vitesse d'apprentissage).",
+        "Étape 4 : Valeurs où $R''(x) = 0$ ou n'existe pas, sachant que $R''(x) = \\frac{2-4x}{(x+1)^4}$.",
+        "Étape 5 : Tableau de variation complet.",
+        "Étape 6 : Esquisse du graphe."
+      ],
+      "extraSteps": [
+        {
+          "prompt": "Interprétation : que représente le point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$ ?",
+          "choices": [
+            "Après 30 minutes, la progression est la plus rapide ; ensuite, on continue de progresser, mais de plus en plus lentement.",
+            "Après 30 minutes, la maîtrise atteint son maximum ; ensuite, elle commence à diminuer jusqu'à la fin de l'apprentissage.",
+            "Après 30 minutes, l'apprentissage commence vraiment ; avant ce moment, la maîtrise reste exactement nulle.",
+            "Après 30 minutes, la maîtrise atteint $\\frac{1}{9}$ et cesse d'augmenter ; elle reste ensuite stable pour toujours."
+          ],
+          "answer": 0,
+          "hints": [],
+          "solution": "Au P.I., $R''$ change de signe de $+$ à $-$ : la vitesse d'apprentissage $R'$ atteint son maximum en $x = \\frac{1}{2}$ heure. Avant, on accélère ; après, on progresse toujours, mais moins vite.",
+          "feedback": [
+            "Exact : $R''$ passe de $+$ à $-$, donc $R'$ (la vitesse) est maximale en $x = \\frac{1}{2}$.",
+            "$R' > 0$ pour $x > 0$ : la maîtrise augmente toujours. Un P.I. change la concavité, pas le sens de variation.",
+            "Le départ est en $(0,0)$, le minimum. Pour $0 < x < \\frac{1}{2}$, $R(x) > 0$ déjà.",
+            "$R'(x) = \\frac{2x}{(x+1)^3} > 0$ pour tout $x > 0$ : la maîtrise ne cesse jamais d'augmenter."
+          ],
+          "methodRefs": [
+            "M13"
+          ]
+        },
+        {
+          "prompt": "Interprétation : que représente l'asymptote horizontale $y = 1$ ?",
+          "choices": [
+            "La maîtrise totale est atteinte exactement après une heure de pratique, puis elle reste égale à 1.",
+            "Après beaucoup de pratique, la maîtrise retombe vers zéro, comme si tout était oublié.",
+            "La maîtrise dépasse la maîtrise totale pendant un moment, puis redescend lentement vers 1.",
+            "La maîtrise s'approche de plus en plus de la maîtrise totale avec la pratique, sans jamais l'atteindre exactement."
+          ],
+          "answer": 3,
+          "hints": [],
+          "solution": "$\\lim_{x \\to +\\infty} R(x) = 1$ et $R(x) < 1$ pour $x \\geq 0$ : la courbe s'approche de la maîtrise totale sans jamais l'atteindre.",
+          "feedback": [
+            "$R(1) = \\frac{1}{4}$, loin de $1$. Une asymptote est approchée, pas atteinte.",
+            "C'est l'erreur $y = 0$ de l'étape 2 : $\\lim_{x \\to +\\infty} R(x) = 1$.",
+            "$R(x) = \\left(\\frac{x}{x+1}\\right)^2$ et $\\frac{x}{x+1} < 1$ pour $x \\geq 0$ : $R$ reste sous $1$.",
+            "Exact : $R(x) < 1$ pour tout $x \\geq 0$, mais $R(x) \\to 1$."
+          ],
+          "methodRefs": [
+            "M10"
+          ]
+        }
+      ],
+      "interpretation": "Pour $x \\geq 0$ : la maîtrise part de $0$ (minimum absolu), augmente toujours, avec une progression la plus rapide après 30 minutes (P.I.), puis ralentit en s'approchant de la maîtrise totale ($y = 1$). L'A.V. $x = -1$ est hors du contexte ($x \\geq 0$) : elle fait partie de l'étude mathématique seulement."
     }
+  }
   ]
 }
