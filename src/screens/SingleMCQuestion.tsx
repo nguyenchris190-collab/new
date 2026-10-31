@@ -1,11 +1,14 @@
 import { MathText } from '../components/MathText';
 import { ChoiceStep } from './ChoiceStep';
+import { SequentialQuestion } from './SequentialQuestion';
 import { MethodRefChips, outcomeOf, PromptFigure, QuestionModeToggle, SolvedPanel, type QuestionViewProps } from './questionShared';
 
-export function SingleMCQuestion({ question, item, mode, onModeChange, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
+export function SingleMCQuestion(props: QuestionViewProps) {
+  const { question, item, mode, onModeChange, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak } = props;
+  const context = mode === 'context' && !!question.scenario;
+  if (context && question.scenario?.extraSteps?.length) return <SequentialQuestion {...props} />;
   const step = question.steps[0];
   const st = item.steps[0];
-  const context = mode === 'context' && !!question.scenario;
   const modeLocked = item.steps.some((s) => s.tries > 0 || s.hintsShown > 0 || s.revealed || s.solved);
   if (!st) return null;
   return (

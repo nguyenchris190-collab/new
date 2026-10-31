@@ -85,8 +85,8 @@ function checkScenario(where, q) {
   if (scenario === undefined) return;
   if (!scenario || typeof scenario !== 'object') return fail(where, 'scenario must be an object');
   checkMath(`${where} scenario prompt`, scenario.prompt);
-  if (Array.isArray(scenario.instructions) && scenario.instructions.length !== q.steps.length) {
-    fail(where, `scenario has ${scenario.instructions.length} instructions for ${q.steps.length} shared steps`);
+  if (Array.isArray(scenario.instructions) && (!Array.isArray(q.steps) || scenario.instructions.length !== q.steps.length)) {
+    fail(where, `scenario has ${scenario.instructions.length} instructions for ${Array.isArray(q.steps) ? q.steps.length : 0} shared steps`);
   }
   (scenario.instructions ?? []).forEach((t, i) => checkMath(`${where} scenario instruction ${i}`, t));
   const extra = scenario.extraSteps ?? [];

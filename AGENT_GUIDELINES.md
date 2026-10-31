@@ -97,19 +97,30 @@ This is the permanent developer manual for any AI agent (or human) working on Dr
       "choices": ["…", "…", "…", "…"], // REQUIRED, ≥ 2, unique
       "answer": 0,                   // REQUIRED: index (letter "A" or exact choice text also accepted)
       "hints": ["…"],                // optional, progressive
-      "solution": "…"                // optional, full derivation
+      "solution": "…",                // optional, full derivation
+      "methodRefs": ["M1"],           // optional question/step refs (A1–A11, M1–M17)
+      "promptImage": { "src": "packs/course/img/figure.svg", "alt": "…" }, // optional figure under the stem
+      "feedback": ["…", "…", "…", "…"] // optional per-choice feedback, parallel to choices
     },
     {
       "id": "…", "topic": "…", "category": "practice", "question": "…",
       "steps": [                      // presence of steps ⇒ sequential accordion question
-        { "prompt": "…", "choices": ["…"], "answer": 1, "hints": ["…"], "solution": "…" }
+        { "prompt": "…", "choices": ["…"], "answer": 1, "hints": ["…"], "solution": "…", "feedback": ["…"], "methodRefs": ["M1"] }
       ],
-      "solution": "full derivation shown after the last step"
+      "solution": "full derivation shown after the last step",
+      "scenario": {                   // optional Examen / Contexte learning skin
+        "prompt": "Contexte stem",    // replaces question.prompt in Contexte
+        "instructions": ["…"],        // parallel to shared steps; omit for single questions
+        "extraSteps": [ { "prompt": "…", "choices": ["…"], "answer": 1, "feedback": ["…"] } ], // max 2, Contexte only
+        "interpretation": "…"         // shown under the derivation in Contexte
+      }
     }
   ]
 }
 ```
 Choice order is shuffled in every session, so the position of the correct answer in the JSON does not matter. Still, vary it so the raw file doesn't leak a pattern.
+
+Finals-only optional fields stay additive: old packs remain valid without them. When `feedback` or `images` is present on a step, the step must have exactly four choices and the parallel array must have length four. `images` entries are `{ "src": "packs/<course>/img/file.svg", "alt": "…" }`; local paths are resolved from `public/`. `methodRefs` values are limited to `A1`–`A11` and `M1`–`M17`. `scenario.instructions.length` must equal the shared-step count, and `scenario.extraSteps` is capped at two.
 
 ### 2.3 KaTeX escaping contract (the double-backslash rule)
 - In JSON, a backslash must be escaped. **Every LaTeX command is written with two backslashes**: `"\\lim_{x \\to 2}"`, `"\\frac{a}{b}"`, `"\\sqrt{x}"`. A single `\f` or `\t` silently becomes a form feed or a tab and breaks rendering.
@@ -132,7 +143,7 @@ Every wrong option must be a **real student failure mode** that leads to a speci
 - **Formal definition:** dropping the $h$ in the denominator, or plugging in $h=0$ before cancelling.
 
 ### 2.5 Multi-step accordion decomposition
-- Use 2–4 steps. Each step is one atomic decision whose result the next step builds on. A full asymptote study (domain, each root of the denominator, horizontal asymptotes) uses all 4; most other problems need 2–3.
+- Use 2–4 steps for intra-style questions and up to 6 shared steps for finals studies. Each step is one atomic decision whose result the next step builds on. A full asymptote study (domain, each root of the denominator, horizontal asymptotes) uses all 4; most other intra problems need 2–3, while complete finals studies may need 5–6.
 - For MAT1903, the three steps are usually: formal domain, intermediate indeterminate form or conjugate expansion, then the formal conclusion sentence (§2.6). The choices are those sentences. The prompt names the step; it does not reveal the line.
 - A step prompt states what to do, not the answer. Official transition phrases are allowed as the prompt, for example « Levons l'indétermination en multipliant par l'expression conjuguée du numérateur ».
 - The step `solution` shows that step's algebra. The question-level `solution` shows the whole derivation in display math, with the headers and conclusion sentences from §2.6.
