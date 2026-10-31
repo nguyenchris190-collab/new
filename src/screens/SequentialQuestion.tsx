@@ -1,28 +1,37 @@
 import { useState } from 'react';
 import { MathText } from '../components/MathText';
 import { IconCheck, IconChevronDown } from '../components/icons';
+import { runtimeSteps } from '../lib/session';
 import { ChoiceStep } from './ChoiceStep';
-import { outcomeOf, SolvedPanel, type QuestionViewProps } from './questionShared';
+import { MethodRefChips, outcomeOf, PromptFigure, QuestionModeToggle, SolvedPanel, type QuestionViewProps } from './questionShared';
 
 /**
  * Progressive multi-step question. Only the current step is shown; each
  * verified step collapses into a summary pill and the next one reveals beneath it.
  */
-export function SequentialQuestion({ question, item, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
+export function SequentialQuestion({ question, item, mode, onModeChange, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
   const [expanded, setExpanded] = useState<number | null>(null);
-  const total = question.steps.length;
+  const context = mode === 'context' && !!question.scenario;
+  const scenario = context ? question.scenario : undefined;
+  const steps = runtimeSteps(question, context);
+  const total = steps.length;
   const current = Math.min(item.step, total - 1);
+  const modeLocked = item.steps.some((s) => s.tries > 0 || s.hintsShown > 0 || s.revealed || s.solved);
 
   return (
     <div>
+      {question.scenario && <QuestionModeToggle mode={mode} locked={modeLocked || item.done} onChange={onModeChange} />}
       <div className="mb-4 text-[17px] leading-relaxed">
-        <MathText text={question.prompt} />
+        <MethodRefChips refs={question.methodRefs} className="mb-2" />
+        <MathText text={scenario?.prompt ?? question.prompt} />
       </div>
+      <PromptFigure image={question.promptImage} />
 
       <ol className="space-y-2.5" aria-label="Steps">
-        {question.steps.map((step, i) => {
+        {steps.map((step, i) => {
           const st = item.steps[i];
-          if (i > current) return null; // future steps stay hidden
+          if (!st || i > current) return null; // future steps stay hidden
+          const stepPrompt = scenario?.instructions?.[i] ?? step.prompt;
           if (st.solved && (i < current || item.done)) {
             const open = expanded === i;
             return (
@@ -47,9 +56,9 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
                 </button>
                 {open && (
                   <div className="mx-3 mt-1 rounded-b-md border border-t-0 border-border px-4 py-3 text-sm leading-relaxed animate-reveal">
-                    {step.prompt && (
+                    {stepPrompt && (
                       <div className="mb-2 text-muted">
-                        <MathText text={step.prompt} />
+                        <MathText text={stepPrompt} />
                       </div>
                     )}
                     <MathText text={step.solution ?? step.choices[step.answer]} autoMath />
@@ -64,7 +73,7 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
                 Step {i + 1} of {total}
               </p>
               <ChoiceStep
-                step={step}
+                step={{ ...step, prompt: stepPrompt }}
                 state={st}
                 order={item.orders[i]}
                 confidence={item.confidence}
@@ -84,7 +93,14 @@ export function SequentialQuestion({ question, item, disabled, onStepChange, onC
       </ol>
 
       {item.done && (
-        <SolvedPanel title="All steps verified" outcome={outcomeOf(item.steps)} solution={question.solution} streak={streak} />
+        <SolvedPanel
+          title="All steps verified"
+          outcome={outcomeOf(item.steps)}
+          solution={question.solution}
+          interpretation={scenario?.interpretation}
+          methodRefs={question.methodRefs}
+          streak={streak}
+        />
       )}
     </div>
   );

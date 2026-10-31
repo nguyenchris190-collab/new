@@ -24,7 +24,7 @@ export function topicStats(course: CoursePack, attempts: Attempt[]): { stats: To
     byTopic.set(q.topic, s);
   }
   for (const a of attempts) {
-    if (a.courseId !== course.id) continue;
+    if (a.courseId !== course.id || a.contextMode) continue;
     const s = byTopic.get(a.topic);
     if (!s) continue;
     s.attempts++;
@@ -99,7 +99,7 @@ export function lastActive(sessions: SessionRecord[], attempts: Attempt[]): numb
 export function lastResultByQuestion(attempts: Attempt[], courseId: string): Map<string, Attempt> {
   const m = new Map<string, Attempt>();
   for (const a of attempts) {
-    if (a.courseId !== courseId) continue;
+    if (a.courseId !== courseId || a.contextMode) continue;
     const prev = m.get(a.questionId);
     if (!prev || prev.ts < a.ts) m.set(a.questionId, a);
   }
@@ -127,13 +127,13 @@ export function pacingDropped(active: ActiveSession): boolean {
  * session, and whether that attempt hit a Captain's Log daily milestone.
  */
 export function cleanStreakAt(attempts: Attempt[], sessionId: string, questionId: string, milestones: number[]): { count: number; milestone: boolean } | null {
-  const mine = attempts.filter((a) => a.sessionId === sessionId).sort((a, b) => a.ts - b.ts);
+  const mine = attempts.filter((a) => a.sessionId === sessionId && !a.contextMode).sort((a, b) => a.ts - b.ts);
   const idx = mine.findIndex((a) => a.questionId === questionId);
   if (idx < 0 || !mine[idx].correct) return null;
   let count = 0;
   for (let i = idx; i >= 0 && mine[i].correct; i--) count++;
   const at = mine[idx].ts;
   const day = startOfDay(at);
-  const solvedToday = attempts.filter((a) => a.ts <= at && startOfDay(a.ts) === day).length;
+  const solvedToday = attempts.filter((a) => !a.contextMode && a.ts <= at && startOfDay(a.ts) === day).length;
   return { count, milestone: milestones.includes(solvedToday) };
 }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ActiveSession, Confidence, ItemState, StepState } from '../types';
+import type { ActiveSession, Confidence, ItemState, QuestionMode, StepState } from '../types';
 import { cleanStreakAt, liveElapsed, pacingDropped } from '../lib/analytics';
+import { newItem, runtimeSteps } from '../lib/session';
 import { DAILY_MILESTONES, fatigueQuote, quoteById, streakQuote } from '../lib/quotes';
 import { formatClock } from '../lib/util';
 import { useStore } from '../state/StoreContext';
@@ -18,7 +19,7 @@ const BURNOUT_MS = 45 * 60 * 1000;
 const AWAY_PAUSE_MS = 5 * 60 * 1000;
 
 export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
-  const { state, courseById, patchActive, completeQuestion, setPaused, finishSession, closeSession } = useStore();
+  const { state, courseById, patchActive, completeQuestion, setPaused, finishSession, closeSession, setLastQuestionMode } = useStore();
   const active = state.active;
   const course = active ? courseById(active.courseId) : undefined;
   const [navOpen, setNavOpen] = useState(false);
@@ -113,14 +114,43 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
     updateItem(qid, (it) => ({ ...it, steps: it.steps.map((s, i) => (i === step ? { ...s, ...patch } : s)) }));
   };
 
+  const hasProgress = (it: ItemState) => it.done || it.steps.some((s) => s.tries > 0 || s.hintsShown > 0 || s.revealed || s.solved);
+
+  const changeQuestionMode = (mode: QuestionMode) => {
+    if (!active || !course) return;
+    setLastQuestionMode(mode);
+    patchActive((a) => {
+      const items = { ...a.items };
+      for (const [id, it] of Object.entries(a.items)) {
+        if (hasProgress(it)) continue;
+        const q = course.questions.find((x) => x.id === id);
+        if (!q?.scenario) continue;
+        const fresh = newItem(q, mode === 'context');
+        items[id] = {
+          ...fresh,
+          reported: it.reported,
+          viewedAtMs: it.viewedAtMs,
+          confidence: it.confidence,
+          steps: fresh.steps.map((s, i) => ({
+            ...s,
+            selected: it.steps[i]?.selected ?? null,
+            struck: it.steps[i]?.struck ?? [],
+          })),
+        };
+      }
+      return { ...a, items };
+    });
+  };
+
   const check = (stepIdx: number) => {
     if (!qid || !question || !item) return;
     const st = item.steps[stepIdx];
-    if (st.selected === null || st.solved) return;
-    const ok = st.selected === question.steps[stepIdx].answer;
-    const last = stepIdx === question.steps.length - 1;
+    if (!st || st.selected === null || st.solved) return;
+    const steps = runtimeSteps(question, item.contextMode === true);
+    const ok = st.selected === steps[stepIdx]?.answer;
+    const last = stepIdx === steps.length - 1;
     updateItem(qid, (it) => {
-      const steps = it.steps.map((s, i) =>
+      const nextSteps = it.steps.map((s, i) =>
         i !== stepIdx
           ? s
           : {
@@ -131,19 +161,20 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
               wrong: ok || s.selected === null || s.wrong.includes(s.selected) ? s.wrong : [...s.wrong, s.selected],
             },
       );
-      return { ...it, steps, step: ok && !last ? stepIdx + 1 : it.step };
+      return { ...it, steps: nextSteps, step: ok && !last ? stepIdx + 1 : it.step };
     });
     if (ok && last) completeQuestion(qid);
   };
 
   /** Voluntary "Reveal Full Derivation": solves this and every remaining step, marked as revealed. */
   const reveal = (stepIdx: number) => {
-    if (!qid || !question) return;
+    if (!qid || !question || !item) return;
+    const steps = runtimeSteps(question, item.contextMode === true);
     updateItem(qid, (it) => ({
       ...it,
-      step: question.steps.length - 1,
+      step: steps.length - 1,
       steps: it.steps.map((s, i) =>
-        i < stepIdx || s.solved ? s : { ...s, solved: true, revealed: true, firstTry: s.firstTry ?? false, selected: question.steps[i].answer },
+        i < stepIdx || s.solved ? s : { ...s, solved: true, revealed: true, firstTry: s.firstTry ?? false, selected: steps[i].answer },
       ),
     }));
     completeQuestion(qid);
@@ -169,7 +200,20 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   const isLast = viewIndex === total - 1;
   const qProps =
     question && item && qid
-      ? { question, item, disabled: paused || active.finished, onStepChange: setStep, onCheck: check, onReveal: reveal, onConfidence: setConfidence, onSkip: skip, quoteSeed, streak }
+      ? {
+          question,
+          item,
+          mode: (item.contextMode ? 'context' : 'exam') as QuestionMode,
+          onModeChange: changeQuestionMode,
+          disabled: paused || active.finished,
+          onStepChange: setStep,
+          onCheck: check,
+          onReveal: reveal,
+          onConfidence: setConfidence,
+          onSkip: skip,
+          quoteSeed,
+          streak,
+        }
       : null;
 
   return (

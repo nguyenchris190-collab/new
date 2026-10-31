@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { ActiveSession, AppState, Attempt, CourseConfig, CoursePack, Question, SessionMode, SessionRecord, SyncSettings } from '../types';
+import type { ActiveSession, AppState, Attempt, CourseConfig, CoursePack, Question, QuestionMode, SessionMode, SessionRecord, SyncSettings } from '../types';
 import { liveElapsed } from '../lib/analytics';
 import { createSession, DEFAULT_CONFIG, isCleanSolve } from '../lib/session';
 import { clearState, initialState, loadState, saveState } from '../lib/storage';
@@ -33,6 +33,7 @@ interface Store {
   finishSession: () => void;
   closeSession: () => void;
   setSync: (patch: Partial<SyncSettings>) => void;
+  setLastQuestionMode: (mode: QuestionMode) => void;
   syncNow: () => Promise<void>;
   replaceAll: (state: AppState) => void;
   resetAll: () => void;
@@ -284,6 +285,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         }),
 
       setSync: (patch) => update((s) => ({ ...s, sync: { ...s.sync, ...patch } }), false),
+      setLastQuestionMode: (mode) => update((s) => ({ ...s, lastQuestionMode: mode }), false),
       syncNow,
       replaceAll: (next) => update(() => ({ ...initialState(), ...next, bundledVersion: BUNDLED_VERSION })),
       resetAll: () => {

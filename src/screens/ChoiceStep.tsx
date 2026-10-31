@@ -4,6 +4,7 @@ import { MathText } from '../components/MathText';
 import { Dot, IconBulb, IconCheck, IconEye } from '../components/icons';
 import { QuoteLine } from '../components/QuoteLine';
 import { errorQuote } from '../lib/quotes';
+import { MethodRefChips } from './questionShared';
 
 const CONFIDENCE: { id: Confidence; label: string; tone: 'success' | 'warn' | 'muted' }[] = [
   { id: 'confident', label: 'Confident', tone: 'success' },
@@ -106,6 +107,7 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
     <div>
       {step.prompt && (
         <div className="mb-4 text-[17px] leading-relaxed">
+          <MethodRefChips refs={step.methodRefs} className="mb-1" />
           <MathText text={step.prompt} />
         </div>
       )}
