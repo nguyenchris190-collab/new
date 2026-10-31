@@ -101,3 +101,62 @@
 - [ ] Inspect the built output for the four SVG assets.
 - [ ] Check `git diff --stat` and ensure existing question JSON is untouched apart from allowed top-level metadata and the appended question.
 - [ ] Report any visual/browser checks that could not be performed.
+
+### Task 6: Author derivative and piecewise finals questions
+
+**Files:**
+- Modify: `src/data/packs/mat1903-calc.json`
+
+- [ ] Append `q-h25-1a` … `q-h25-1e`, `q-h24-1a` … `q-h24-1e`, and `q-a23-1a` … `q-a23-1e` under `Pilier 5 · Dérivées transcendantes & dérivabilité` as single questions with exactly four choices and one correct answer.
+- [ ] Use the verified key’s correct derivatives and ready-made mistakes; add one catalog-based distractor where the key supplies only two.
+- [ ] Give each item concise hints, per-choice feedback, and the key’s method references.
+- [ ] Append `q-a23-1-2` as a four-step piecewise/dérivabilité question using the verified piecewise, continuity, one-sided derivative and point-anguleux answers.
+- [ ] Run `npm run validate:packs`; expected PASS.
+
+### Task 7: Author rational-study questions and sketch assets
+
+**Files:**
+- Create: `public/packs/mat1903-calc/img/h24-q2-sketch-{A,B,C,D}.svg`
+- Create: `public/packs/mat1903-calc/img/a23-q2-sketch-{A,B,C,D}.svg`
+- Modify: `src/data/packs/mat1903-calc.json`
+
+- [ ] Append `q-h24-q2` and `q-a23-q2` under `Pilier 6 · Étude complète d'une fonction rationnelle` with six shared steps: domain, asymptotes, critical numbers, second-derivative values, tableau, sketch.
+- [ ] Use the verified key’s exact values; for A23, include the requested “Montrez que” algebra for $f'$ and $f''$.
+- [ ] Author four parity-matched sketch SVGs for each question, differing only in asymptote side/position, horizontal asymptote, extremum or concavity.
+- [ ] Use neutral `Graphe 1`–`Graphe 4` labels with parallel image metadata and feedback.
+- [ ] Run `npm run validate:packs`; expected PASS.
+
+### Task 8: Author interval-study questions and sketch assets
+
+**Files:**
+- Create: `public/packs/mat1903-calc/img/h25-q3-sketch-{A,B,C,D}.svg`
+- Create: `public/packs/mat1903-calc/img/a23-q3-sketch-{A,B,C,D}.svg`
+- Create: `public/packs/mat1903-calc/img/h24-q3-sketch-{A,B,C,D}.svg`
+- Modify: `src/data/packs/mat1903-calc.json`
+
+- [ ] Append `q-h25-q3`, `q-a23-q3`, and `q-h24-q3` under `Pilier 7 · Étude sur un intervalle & fonctions exponentielles` with the verified endpoint, critical-number and concavity conventions.
+- [ ] Add the supplied natural scenarios to H25 Q3 and H24 Q3, including Contexte-only interpretation steps and interpretation text; do not add a scenario to A23 Q3.
+- [ ] Author four parity-matched sketch SVGs for each question.
+- [ ] Use neutral `Graphe 1`–`Graphe 4` labels with parallel image metadata and feedback.
+- [ ] Run `npm run validate:packs`; expected PASS.
+
+### Task 9: Author optimization questions and prompt figures
+
+**Files:**
+- Create: `public/packs/mat1903-calc/img/h25-q4-triangle.svg`
+- Create: `public/packs/mat1903-calc/img/a23-q4-rectangle.svg`
+- Modify: `src/data/packs/mat1903-calc.json`
+
+- [ ] Append `q-h25-q4`, `q-h24-q4`, and `q-a23-q4` under `Pilier 8 · Optimisation` with five shared steps following M17.
+- [ ] Use the verified key’s functions, domains, derivatives, critical numbers, tests and contextual final answers.
+- [ ] Include the H25 triangle and A23 rectangle prompt images; no scenario field is needed because the exam prompts are already contextual.
+- [ ] Highlight closed-interval endpoint comparison for A23 Q4, including the two maximum points.
+- [ ] Run `npm run validate:packs`; expected PASS.
+
+### Task 10: Full-pack verification and handoff
+
+- [ ] Bump the pack and bundled refresh versions for the completed inventory.
+- [ ] Run `npm run validate:packs` and `npm run build`; both PASS.
+- [ ] Inspect built output for every new SVG asset.
+- [ ] Run a headless-browser smoke check that reaches representative new questions and image options without page errors.
+- [ ] Check the final diff confirms the original 27 intra questions remain semantically untouched.

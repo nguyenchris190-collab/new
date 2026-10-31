@@ -1594,6 +1594,581 @@
       ],
       "interpretation": "Pour $x \\geq 0$ : la maîtrise part de $0$ (minimum absolu), augmente toujours, avec une progression la plus rapide après 30 minutes (P.I.), puis ralentit en s'approchant de la maîtrise totale ($y = 1$). L'A.V. $x = -1$ est hors du contexte ($x \\geq 0$) : elle fait partie de l'étude mathématique seulement."
     }
-  }
+    },
+    {
+      "id": "q-h25-1a",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H25 · Q1a",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $4^{2x+1}+\\log_4(16-x^2)$.",
+      "methodRefs": [
+        "M3",
+        "M4"
+      ],
+      "choices": [
+        "$f'(x)=\\frac{2\\cdot 4^{2x+1}}{\\ln 4}-\\frac{2x}{16-x^2}$",
+        "$f'(x)=(2x+1)4^{2x}-\\frac{2x}{(16-x^2)\\ln 4}$",
+        "$f'(x)=2\\ln 4\\cdot 4^{2x+1}-\\frac{2x}{(16-x^2)\\ln 4}$",
+        "$f'(x)=2\\cdot 4^{2x+1}-\\frac{2x}{(16-x^2)\\ln 4}$"
+      ],
+      "answer": 2,
+      "hints": [
+        "$(a^u)'=\\ln a\\cdot a^u u'$ et $(\\log_a u)'=\\frac{u'}{u\\ln a}$.",
+        "La dérivée de $2x+1$ est $2$."
+      ],
+      "solution": "On applique les règles indiquées : $$f'(x)=2\\ln 4\\cdot 4^{2x+1}-\\frac{2x}{(16-x^2)\\ln 4}$$",
+      "feedback": [
+        "Pour $4^u$, le facteur $\\ln 4$ multiplie $4^u u'$; pour $\\log_4 u$, il apparaît au dénominateur.",
+        "La dérivée de $2x+1$ est $2$ : le facteur $(2x+1)$ ne reste pas devant $4^{2x}$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Le terme $4^{2x+1}$ exige le facteur $\\ln 4$ en plus de la dérivée interne $2$."
+      ]
+    },
+    {
+      "id": "q-h25-1b",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H25 · Q1b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\ln(\\sec x)+\\sec(\\ln x)$.",
+      "methodRefs": [
+        "M4",
+        "M5"
+      ],
+      "choices": [
+        "$g'(x)=\\tan x+\\frac{\\sec(\\ln x)\\tan(\\ln x)}{x}$",
+        "$g'(x)=\\sec x\\tan x+\\sec(\\ln x)\\tan(\\ln x)$",
+        "$g'(x)=\\frac{1}{\\sec x}+\\frac{\\sec(\\ln x)\\tan(\\ln x)}{x}$",
+        "$g'(x)=\\tan x+\\sec(\\ln x)\\tan(\\ln x)$"
+      ],
+      "answer": 0,
+      "hints": [
+        "$(\\ln(\\sec x))'=\\tan x$.",
+        "Pour $\\sec(\\ln x)$, dérivez l'extérieur puis multipliez par $\\frac1x$."
+      ],
+      "solution": "On applique les règles indiquées : $$g'(x)=\\tan x+\\frac{\\sec(\\ln x)\\tan(\\ln x)}{x}$$",
+      "feedback": [
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "$(\\ln(\\sec x))'=\\tan x$, et non $\\sec x\\tan x$.",
+        "La dérivée de $\\sec x$ est $\\sec x\\tan x$; après simplification, $(\\ln(\\sec x))'=\\tan x$.",
+        "La dérivée de $\\ln x$ est $\\frac1x$ : il manque ce facteur dans le second terme."
+      ]
+    },
+    {
+      "id": "q-h25-1c",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H25 · Q1c",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\sin(\\arctan x)$.",
+      "methodRefs": [
+        "M5",
+        "M6"
+      ],
+      "choices": [
+        "$h'(x)=\\cos(\\arctan x)$",
+        "$h'(x)=\\frac{\\cos x}{1+x^2}$",
+        "$h'(x)=\\frac{\\cos(\\arctan x)}{\\sqrt{1+x^2}}$",
+        "$h'(x)=\\frac{\\cos(\\arctan x)}{1+x^2}$"
+      ],
+      "answer": 3,
+      "hints": [
+        "$(\\sin u)'=\\cos u\\,u'$.",
+        "$(\\arctan x)'=\\frac{1}{1+x^2}$."
+      ],
+      "solution": "On applique les règles indiquées : $$h'(x)=\\frac{\\cos(\\arctan x)}{1+x^2}$$",
+      "feedback": [
+        "La dérivée de $\\arctan x$ est $\\frac{1}{1+x^2}$ : elle ne doit pas disparaître.",
+        "L'intérieur reste $\\arctan x$ : la dérivée extérieure est donc $\\cos(\\arctan x)$, pas $\\cos x$.",
+        "Le dénominateur de $(\\arctan x)'$ est $1+x^2$, sans racine.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
+      ]
+    },
+    {
+      "id": "q-h25-1d",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H25 · Q1d",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $2\\tan^2(5x+1)$.",
+      "methodRefs": [
+        "M1",
+        "M2",
+        "M5"
+      ],
+      "choices": [
+        "$u'(x)=10\\tan(5x+1)\\sec^2(5x+1)$",
+        "$u'(x)=20\\tan(5x+1)\\sec^2(5x+1)$",
+        "$u'(x)=4\\tan(5x+1)\\sec^2(5x+1)$",
+        "$u'(x)=2\\sec^4(5x+1)\\cdot 5$"
+      ],
+      "answer": 1,
+      "hints": [
+        "$(u^2)'=2u\\,u'$ et $(\\tan u)'=\\sec^2u\\,u'$.",
+        "Le facteur complet est $2\\cdot 2\\cdot 5$."
+      ],
+      "solution": "On applique les règles indiquées : $$u'(x)=20\\tan(5x+1)\\sec^2(5x+1)$$",
+      "feedback": [
+        "C'est la valeur du corrigé officiel : $2\\cdot 2\\cdot 5=20$, et non $10$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "La dérivée interne $5$ est ici omise.",
+        "$(\\tan^2 u)'=2\\tan u\\sec^2u\\,u'$, et non $2\\sec^4u\\,u'$."
+      ]
+    },
+    {
+      "id": "q-h25-1e",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H25 · Q1e",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $e^{\\sin x}+(\\sin x)^{e}$.",
+      "methodRefs": [
+        "M2",
+        "M3"
+      ],
+      "choices": [
+        "$v'(x)=\\cos x\\left(e^{\\sin x}+(\\sin x)^{e}\\right)$",
+        "$v'(x)=\\sin x\\,e^{\\sin x-1}\\cos x+e(\\sin x)^{e-1}\\cos x$",
+        "$v'(x)=\\cos x\\left(e^{\\sin x}+e(\\sin x)^{e-1}\\right)$",
+        "$v'(x)=\\cos x\\left(e^{\\sin x}+e(\\sin x)^{e}\\right)$"
+      ],
+      "answer": 2,
+      "hints": [
+        "$e^{\\sin x}$ est une exponentielle; $(\\sin x)^e$ est une puissance.",
+        "Les deux termes contiennent le facteur $\\cos x$."
+      ],
+      "solution": "On applique les règles indiquées : $$v'(x)=\\cos x\\left(e^{\\sin x}+e(\\sin x)^{e-1}\\right)$$",
+      "feedback": [
+        "Pour $(\\sin x)^e$, la puissance devient $e-1$ après dérivation.",
+        "$e^{\\sin x}$ est une exponentielle : sa dérivée est $\\cos x\\,e^{\\sin x}$, pas une règle de puissance.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Le second terme dérivé est $e(\\sin x)^{e-1}\\cos x$, avec l'exposant $e-1$."
+      ]
+    },
+    {
+      "id": "q-h24-1a",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H24 · Q1a",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\sin^2 x+2^{\\sin x}$.",
+      "methodRefs": [
+        "M2",
+        "M3",
+        "M5"
+      ],
+      "choices": [
+        "$f'(x)=\\cos x\\left(2\\sin x+\\ln 2\\cdot 2^{\\sin x}\\right)$",
+        "$f'(x)=\\cos x\\left(2\\sin x+2^{\\sin x}\\right)$",
+        "$f'(x)=2\\cos x+\\ln 2\\cdot 2^{\\sin x}\\cos x$",
+        "$f'(x)=2\\sin x\\cos x+\\ln 2\\cdot 2^{\\sin x}$"
+      ],
+      "answer": 0,
+      "hints": [
+        "$(\\sin^2x)'=2\\sin x\\cos x$.",
+        "Pour $2^{\\sin x}$, utilisez $(a^u)'=\\ln a\\,a^u u'$."
+      ],
+      "solution": "On applique les règles indiquées : $$f'(x)=\\cos x\\left(2\\sin x+\\ln 2\\cdot 2^{\\sin x}\\right)$$",
+      "feedback": [
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Pour $2^{\\sin x}$, la dérivée contient le facteur $\\ln 2$.",
+        "Le facteur commun est $\\cos x$ : le terme $2^{\\sin x}$ doit aussi être multiplié par $\\cos x$.",
+        "Il manque le facteur $\\cos x$ dans la dérivée de $2^{\\sin x}$."
+      ]
+    },
+    {
+      "id": "q-h24-1b",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H24 · Q1b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\frac{\\tan(\\pi x)}{1+\\sec(3x)}$.",
+      "methodRefs": [
+        "M5",
+        "M7",
+        "A5"
+      ],
+      "choices": [
+        "$g'(x)=\\frac{\\sec^2(\\pi x)\\left(1+\\sec(3x)\\right)-\\tan(\\pi x)\\sec(3x)\\tan(3x)}{\\left(1+\\sec(3x)\\right)^2}$",
+        "$g'(x)=\\frac{\\pi\\sec^2(\\pi x)\\sec(3x)\\tan(3x)}{\\left(1+\\sec(3x)\\right)^2}$",
+        "$g'(x)=\\frac{3\\tan(\\pi x)\\sec(3x)\\tan(3x)-\\pi\\sec^2(\\pi x)\\left(1+\\sec(3x)\\right)}{\\left(1+\\sec(3x)\\right)^2}$",
+        "$g'(x)=\\frac{\\pi\\sec^2(\\pi x)\\left(1+\\sec(3x)\\right)-3\\tan(\\pi x)\\sec(3x)\\tan(3x)}{\\left(1+\\sec(3x)\\right)^2}$"
+      ],
+      "answer": 3,
+      "hints": [
+        "Écrivez $u'v-uv'$ au numérateur.",
+        "Les dérivées internes sont $\\pi$ et $3$."
+      ],
+      "solution": "On applique les règles indiquées : $$g'(x)=\\frac{\\pi\\sec^2(\\pi x)\\left(1+\\sec(3x)\\right)-3\\tan(\\pi x)\\sec(3x)\\tan(3x)}{\\left(1+\\sec(3x)\\right)^2}$$",
+      "feedback": [
+        "Les dérivées internes $\\pi$ et $3$ doivent apparaître dans les deux termes du numérateur.",
+        "Le numérateur de la règle du quotient est $u'v-uv'$, avec $u=\\tan(\\pi x)$ et $v=1+\\sec(3x)$.",
+        "L'ordre du numérateur est inversé : on doit lire $u'v-uv'$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
+      ]
+    },
+    {
+      "id": "q-h24-1c",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H24 · Q1c",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\left(y-\\arctan(y^2)\\right)^4$.",
+      "methodRefs": [
+        "M2",
+        "M6"
+      ],
+      "choices": [
+        "$h'(y)=4\\left(y-\\arctan(y^2)\\right)^3\\left(1-\\frac{1}{1+y^4}\\right)$",
+        "$h'(y)=4\\left(y-\\arctan(y^2)\\right)^3\\left(1-\\frac{2y}{1+y^4}\\right)$",
+        "$h'(y)=4\\left(1-\\frac{2y}{1+y^4}\\right)^3$",
+        "$h'(y)=4\\left(y-\\arctan(y^2)\\right)^3\\left(1-\\frac{2y}{1+y^2}\\right)$"
+      ],
+      "answer": 1,
+      "hints": [
+        "Commencez par la règle de la puissance.",
+        "$(\\arctan(y^2))'=\\frac{2y}{1+y^4}$."
+      ],
+      "solution": "On applique les règles indiquées : $$h'(y)=4\\left(y-\\arctan(y^2)\\right)^3\\left(1-\\frac{2y}{1+y^4}\\right)$$",
+      "feedback": [
+        "La dérivée de $\\arctan(y^2)$ est $\\frac{2y}{1+y^4}$, pas $\\frac{1}{1+y^4}$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "La puissance $3$ s'applique à $y-\\arctan(y^2)$, pas au second facteur seulement.",
+        "Le dénominateur vient de $(y^2)^2=y^4$."
+      ]
+    },
+    {
+      "id": "q-h24-1d",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H24 · Q1d",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\arcsin\\!\\left(e^{3x}\\right)$.",
+      "methodRefs": [
+        "M3",
+        "M6"
+      ],
+      "choices": [
+        "$l'(x)=\\frac{3e^{3x}}{\\sqrt{1-e^{3x}}}$",
+        "$l'(x)=\\frac{e^{3x}}{\\sqrt{1-e^{6x}}}$",
+        "$l'(x)=\\frac{3e^{3x}}{\\sqrt{1-e^{6x}}}$",
+        "$l'(x)=\\frac{3e^{3x}}{\\sqrt{1+e^{6x}}}$"
+      ],
+      "answer": 2,
+      "hints": [
+        "$(\\arcsin u)'=\\frac{u'}{\\sqrt{1-u^2}}$.",
+        "Ici $u^2=e^{6x}$."
+      ],
+      "solution": "On applique les règles indiquées : $$l'(x)=\\frac{3e^{3x}}{\\sqrt{1-e^{6x}}}$$",
+      "feedback": [
+        "$(e^{3x})^2=e^{6x}$, pas $e^{3x}$.",
+        "La dérivée de $3x$ donne le facteur $3$ au numérateur.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Le radicande est $1-(e^{3x})^2=1-e^{6x}$, avec un signe moins."
+      ]
+    },
+    {
+      "id": "q-h24-1e",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final H24 · Q1e",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $e^{\\cos x}\\log_7(x^5-x)$.",
+      "methodRefs": [
+        "M3",
+        "M4",
+        "M5",
+        "M7"
+      ],
+      "choices": [
+        "$t'(x)=-\\sin x\\,e^{\\cos x}\\log_7(x^5-x)+e^{\\cos x}\\frac{5x^4-1}{(x^5-x)\\ln 7}$",
+        "$t'(x)=\\sin x\\,e^{\\cos x}\\log_7(x^5-x)+e^{\\cos x}\\frac{5x^4-1}{(x^5-x)\\ln 7}$",
+        "$t'(x)=-\\sin x\\,e^{\\cos x}\\frac{5x^4-1}{(x^5-x)\\ln 7}$",
+        "$t'(x)=-\\sin x\\,e^{\\cos x}\\log_7(x^5-x)$"
+      ],
+      "answer": 0,
+      "hints": [
+        "Appliquez la règle du produit avant de dériver chaque facteur.",
+        "La dérivée de $e^{\\cos x}$ change de signe."
+      ],
+      "solution": "On applique les règles indiquées : $$t'(x)=-\\sin x\\,e^{\\cos x}\\log_7(x^5-x)+e^{\\cos x}\\frac{5x^4-1}{(x^5-x)\\ln 7}$$",
+      "feedback": [
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "La dérivée de $e^{\\cos x}$ est $-\\sin x\\,e^{\\cos x}$ : le signe moins est essentiel.",
+        "La règle du produit donne deux termes : le facteur logarithmique ne disparaît pas.",
+        "Le second terme vient de la dérivée de $\\log_7(x^5-x)$."
+      ]
+    },
+    {
+      "id": "q-a23-1a",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1a",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\sqrt{-x^2+1}\\cdot\\arctan(\\pi+x^5)$.",
+      "methodRefs": [
+        "M2",
+        "M6",
+        "M7",
+        "A5"
+      ],
+      "choices": [
+        "$f'(x)=\\frac{-x\\arctan(\\pi+x^5)}{\\sqrt{1-x^2}}+\\frac{5x^4\\sqrt{1-x^2}}{1+x^{10}}$",
+        "$f'(x)=\\frac{-x\\arctan(\\pi+x^5)}{\\sqrt{1-x^2}}+\\frac{(1+5x^4)\\sqrt{1-x^2}}{1+(\\pi+x^5)^2}$",
+        "$f'(x)=\\frac{-x\\arctan(\\pi+x^5)}{\\sqrt{1-x^2}}+\\frac{5x^4}{1+(\\pi+x^5)^2}$",
+        "$f'(x)=\\frac{-x\\arctan(\\pi+x^5)}{\\sqrt{1-x^2}}+\\frac{5x^4\\sqrt{1-x^2}}{1+(\\pi+x^5)^2}$"
+      ],
+      "answer": 3,
+      "hints": [
+        "Appliquez $(uv)'=u'v+uv'$.",
+        "Pour $\\arctan(\\pi+x^5)$, la dérivée interne est $5x^4$."
+      ],
+      "solution": "On applique les règles indiquées : $$f'(x)=\\frac{-x\\arctan(\\pi+x^5)}{\\sqrt{1-x^2}}+\\frac{5x^4\\sqrt{1-x^2}}{1+(\\pi+x^5)^2}$$",
+      "feedback": [
+        "$(\\pi+x^5)^2$ contient le terme croisé $2\\pi x^5$ : il ne se réduit pas à $x^{10}$.",
+        "La dérivée de $\\pi+x^5$ est $5x^4$, et non $1+5x^4$.",
+        "La dérivée de $\\arctan(\\pi+x^5)$ conserve le facteur $\\sqrt{1-x^2}$ du produit.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
+      ]
+    },
+    {
+      "id": "q-a23-1b",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1b",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\frac{10^{x^2}}{8\\tan(3x+1)}-\\sqrt{15}$.",
+      "methodRefs": [
+        "M3",
+        "M5",
+        "M7",
+        "A5"
+      ],
+      "choices": [
+        "$g'(x)=\\frac{10^{x^2}\\left(2x\\ln 10\\,\\tan(3x+1)-3\\sec^2(3x+1)\\right)}{8\\tan^2(3x+1)}-\\frac{1}{2\\sqrt{15}}$",
+        "$g'(x)=\\frac{10^{x^2}\\left(2x\\ln 10\\,\\tan(3x+1)-3\\sec^2(3x+1)\\right)}{8\\tan^2(3x+1)}$",
+        "$g'(x)=\\frac{10^{x^2}\\left(2x\\tan(3x+1)-3\\sec^2(3x+1)\\right)}{8\\tan^2(3x+1)}$",
+        "$g'(x)=\\frac{10^{x^2}\\left(3\\sec^2(3x+1)-2x\\ln 10\\,\\tan(3x+1)\\right)}{8\\tan^2(3x+1)}$"
+      ],
+      "answer": 1,
+      "hints": [
+        "$\\sqrt{15}$ est une constante.",
+        "Appliquez la règle du quotient au premier terme."
+      ],
+      "solution": "On applique les règles indiquées : $$g'(x)=\\frac{10^{x^2}\\left(2x\\ln 10\\,\\tan(3x+1)-3\\sec^2(3x+1)\\right)}{8\\tan^2(3x+1)}$$",
+      "feedback": [
+        "$\\sqrt{15}$ est une constante : sa dérivée est $0$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Pour $10^{x^2}$, la dérivée contient $2x\\ln 10$.",
+        "L'ordre du numérateur de la règle du quotient est inversé."
+      ]
+    },
+    {
+      "id": "q-a23-1c",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1c",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\arccos\\!\\left(\\sqrt{-y^2+2y+1}\\right)$.",
+      "methodRefs": [
+        "M2",
+        "M6",
+        "A3"
+      ],
+      "choices": [
+        "$h'(y)=\\frac{1-y}{\\sqrt{-y^2+2y+1}\\,\\sqrt{y^2-2y}}$",
+        "$h'(y)=\\frac{y-1}{\\sqrt{-y^2+2y+1}\\,\\sqrt{-y^2+2y}}$",
+        "$h'(y)=\\frac{y-1}{\\sqrt{-y^2+2y+1}\\,\\sqrt{y^2-2y}}$",
+        "$h'(y)=\\frac{y-1}{\\sqrt{-y^2+2y+1}\\,\\sqrt{1-y^2}}$"
+      ],
+      "answer": 2,
+      "hints": [
+        "$(\\arccos u)'=-\\frac{u'}{\\sqrt{1-u^2}}$.",
+        "Calculez $1-u^2$ après avoir mis $u^2$ en facteur."
+      ],
+      "solution": "On applique les règles indiquées : $$h'(y)=\\frac{y-1}{\\sqrt{-y^2+2y+1}\\,\\sqrt{y^2-2y}}$$",
+      "feedback": [
+        "La dérivée de $\\arccos u$ commence par $-\\frac{u'}{\\sqrt{1-u^2}}$.",
+        "Avec $u^2=-y^2+2y+1$, on obtient $1-u^2=y^2-2y$ sous la seconde racine.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "La seconde radicande est $y^2-2y$, et non $1-y^2$."
+      ]
+    },
+    {
+      "id": "q-a23-1d",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1d",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\log_7(16-x^2)-e^{-1/\\sqrt{x}}$.",
+      "methodRefs": [
+        "M3",
+        "M4",
+        "A2"
+      ],
+      "choices": [
+        "$i'(x)=\\frac{-2x}{(16-x^2)\\ln 7}-\\frac{e^{-1/\\sqrt{x}}}{2x\\sqrt{x}}$",
+        "$i'(x)=\\frac{-2x}{(16-x^2)\\ln 7}+\\frac{e^{-1/\\sqrt{x}}}{2x\\sqrt{x}}$",
+        "$i'(x)=\\frac{-2x}{(16-x^2)\\ln 7}-e^{-1/\\sqrt{x}}$",
+        "$i'(x)=\\frac{-2x}{(16-x^2)\\ln 7}-\\frac{e^{-1/\\sqrt{x}}}{2\\sqrt{x}}$"
+      ],
+      "answer": 0,
+      "hints": [
+        "$(\\log_7 u)'=\\frac{u'}{u\\ln7}$.",
+        "Dérivez l'exposant $-1/\\sqrt{x}$ avec la règle des puissances."
+      ],
+      "solution": "On applique les règles indiquées : $$i'(x)=\\frac{-2x}{(16-x^2)\\ln 7}-\\frac{e^{-1/\\sqrt{x}}}{2x\\sqrt{x}}$$",
+      "feedback": [
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
+        "Le signe moins devant $e^{-1/\\sqrt{x}}$ reste présent après dérivation.",
+        "La dérivée de $-1/\\sqrt{x}$ fournit le dénominateur $2x\\sqrt{x}$.",
+        "Il manque un facteur $x$ au dénominateur du second terme."
+      ]
+    },
+    {
+      "id": "q-a23-1e",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1e",
+      "category": "practice",
+      "difficulty": 2,
+      "question": "Dériver $\\ln\\!\\left(\\cos(3x)-\\sin^3(2x)\\right)$.",
+      "methodRefs": [
+        "M1",
+        "M2",
+        "M4",
+        "M5"
+      ],
+      "choices": [
+        "$t'(x)=\\frac{-\\sin(3x)-3\\sin^2(2x)\\cos(2x)}{\\cos(3x)-\\sin^3(2x)}$",
+        "$t'(x)=\\frac{-3\\sin(3x)-6\\sin^2(2x)}{\\cos(3x)-\\sin^3(2x)}$",
+        "$t'(x)=\\frac{-3\\sin(3x)-3\\sin^2(2x)\\cos(2x)}{\\cos(3x)-\\sin^3(2x)}$",
+        "$t'(x)=\\frac{-3\\sin(3x)-6\\sin^2(2x)\\cos(2x)}{\\cos(3x)-\\sin^3(2x)}$"
+      ],
+      "answer": 3,
+      "hints": [
+        "Dérivez d'abord le logarithme, puis le dénominateur.",
+        "La dérivée de $\\sin^3(2x)$ exige deux dérivées internes."
+      ],
+      "solution": "On applique les règles indiquées : $$t'(x)=\\frac{-3\\sin(3x)-6\\sin^2(2x)\\cos(2x)}{\\cos(3x)-\\sin^3(2x)}$$",
+      "feedback": [
+        "Les coefficients $3$ et $6$ viennent des dérivées internes $3x$ et $2x$.",
+        "La dérivée de $\\sin^3(2x)$ contient encore $\\cos(2x)$.",
+        "Il manque le facteur $2$ de la dérivée interne de $\\sin^3(2x)$.",
+        "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
+      ]
+    },
+    {
+      "id": "q-a23-1-2",
+      "topic": "Pilier 5 · Dérivées transcendantes & dérivabilité",
+      "source": "Final A23 · Q1.2",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit $|x|\\arctan(x+1)$. Étudier la continuité et la dérivabilité en $0$, puis classifier le point $(0,0)$.",
+      "methodRefs": [
+        "A11",
+        "M15",
+        "M16"
+      ],
+      "steps": [
+        {
+          "prompt": "Écrire $f$ sous forme par morceaux.",
+          "choices": [
+            "$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<0\\\\ x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$",
+            "$f(x)=\\begin{cases}x\\arctan(x+1)&\\text{si }x<0\\\\ -x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$",
+            "$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<-1\\\\ x\\arctan(x+1)&\\text{si }x\\geq -1\\end{cases}$",
+            "$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x\\leq 0\\\\ x\\arctan(x+1)&\\text{si }x>0\\end{cases}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Pour $x<0$, $|x|=-x$; pour $x\\geq0$, $|x|=x$.",
+            "Le changement de formule se fait en $0$, pas en $-1$."
+          ],
+          "solution": "$$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<0\\\\ x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$$",
+          "feedback": [
+            "Exact. La valeur absolue change de signe en $0$.",
+            "Les deux branches sont interverties : pour $x<0$, $|x|=-x$.",
+            "La valeur absolue change de signe en $0$, pas en $-1$.",
+            "À $x=0$, la définition de $|x|$ donne la branche $x\\arctan(x+1)$."
+          ],
+          "methodRefs": [
+            "A11"
+          ]
+        },
+        {
+          "prompt": "Vérifier la continuité de $f$ en $0$.",
+          "choices": [
+            "$f(0)=1,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ discontinue en }0$",
+            "$f(0)=0,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ continue en }0$",
+            "$f(0)=0\\Rightarrow f\\text{ continue en }0$",
+            "$\\lim_{x\\to 0^-}f(x)=-\\frac{\\pi}{4}\\neq\\lim_{x\\to 0^+}f(x)=\\frac{\\pi}{4}\\Rightarrow f\\text{ discontinue en }0$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Calculez d'abord $f(0)$.",
+            "Ensuite comparez les deux limites latérales."
+          ],
+          "solution": "$$f(0)=0,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ continue en }0$$",
+          "feedback": [
+            "$f(0)=0\\cdot\\arctan(1)=0$, et non $1$.",
+            "Exact. La valeur et les deux limites latérales valent $0$.",
+            "La continuité exige aussi l'égalité des limites latérales à $f(0)$.",
+            "Ces valeurs sont les dérivées latérales de l'étape suivante, pas les limites de $f(x)$."
+          ],
+          "methodRefs": [
+            "M15"
+          ]
+        },
+        {
+          "prompt": "Utiliser la définition pour étudier $f'(0)$.",
+          "choices": [
+            "$f'_-(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4}\\Rightarrow f'(0)=\\frac{\\pi}{4}$",
+            "$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=-\\arctan 1=-\\frac{\\pi}{4}\\Rightarrow f'(0)=-\\frac{\\pi}{4}$",
+            "$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_-(0)\\neq f'_+(0)\\Rightarrow f\\text{ non dérivable en }0$",
+            "$f'_-(0)=0=f'_+(0)\\Rightarrow f'(0)=0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Pour $h<0$, $f(0+h)=-h\\arctan(1+h)$.",
+            "Divisez par $h$, puis faites tendre $h$ vers $0^-$ et $0^+$."
+          ],
+          "solution": "$$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_-(0)\\neq f'_+(0)\\Rightarrow f\\text{ non dérivable en }0$$",
+          "feedback": [
+            "Pour $h<0$, $|h|=-h$ : le quotient latéral gauche change de signe.",
+            "La dérivée latérale droite est positive ; c'est la gauche qui est négative.",
+            "Exact. Les dérivées latérales sont opposées et différentes.",
+            "Les quotients différentiels ne tendent pas vers $0$."
+          ],
+          "methodRefs": [
+            "M16"
+          ]
+        },
+        {
+          "prompt": "Classer le point $(0,0)$.",
+          "choices": [
+            "$\\text{point anguleux}$",
+            "$\\text{point de tangente horizontale}$",
+            "$\\text{point de discontinuité}$",
+            "$\\text{point lisse, car }f\\text{ est continue en }0$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Une fonction continue peut avoir un point anguleux.",
+            "Que font les deux dérivées latérales ?"
+          ],
+          "solution": "$$\\text{point anguleux}$$",
+          "feedback": [
+            "Exact. Les dérivées latérales existent mais sont différentes.",
+            "Il n'y a pas de tangente horizontale : les pentes latérales sont $\\pm\\frac{\\pi}{4}$.",
+            "$f$ est continue en $0$.",
+            "La continuité ne suffit pas pour la dérivabilité."
+          ],
+          "methodRefs": [
+            "M16"
+          ]
+        }
+      ],
+      "solution": "$$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<0\\\\ x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$$\n\n$$f(0)=0,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ continue en }0$$\n\n$$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_-(0)\\neq f'_+(0)\\Rightarrow f\\text{ non dérivable en }0$$\n\nConclusion : $$\\text{point anguleux}$$"
+    }
   ]
 }
