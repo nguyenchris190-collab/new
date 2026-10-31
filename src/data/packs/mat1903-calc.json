@@ -3105,6 +3105,419 @@
         ],
         "interpretation": "Pour $x\\leq2$ : avant le lancement ($x<0$), le modèle mathématique tend vers $0$; au lancement $(0,2)$, la croissance cesse d'accélérer; au pic $(1,e)$, la popularité est maximale; à $x=2$, la tendance est morte. Les valeurs $x>2$ sont hors du contexte."
       }
+    },
+    {
+      "id": "q-h25-q4",
+      "topic": "Pilier 8 · Optimisation",
+      "source": "Final H25 · Q4",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit $B(x,y)$ un point de la courbe $$y=\\frac{x}{x-2},\\qquad x\\in\\,]2,+\\infty[,$$ et soit $A(x,0)$. Déterminer l'aire minimale du triangle $OAB$, où $O=(0,0)$.",
+      "promptImage": {
+        "src": "packs/mat1903-calc/img/h25-q4-triangle.svg",
+        "alt": "Triangle OAB avec A sur l’axe des x et B sur la courbe y égale x sur x moins 2."
+      },
+      "methodRefs": [
+        "M17"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Nommer les variables et écrire la fonction à optimiser.",
+          "choices": [
+            "$A(x)=xy=\\frac{x^2}{x-2}$",
+            "$A(x)=\\frac12xy=\\frac{x^2}{2(x-2)}$",
+            "$A(x)=2xy=\\frac{2x^2}{x-2}$",
+            "$A(x)=x+y=\\frac{x^2-2}{x-2}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "La base est $OA=x$.",
+            "La hauteur est $y$."
+          ],
+          "solution": "$$A(x)=\\frac12xy=\\frac{x^2}{2(x-2)}$$",
+          "feedback": [
+            "L'aire d'un triangle est $\\frac12\\times\\text{base}\\times\\text{hauteur}$.",
+            "Exact. La base est $x$ et la hauteur est $y$.",
+            "Le facteur est $\\frac12$, pas $2$.",
+            "On optimise une aire, pas une somme de longueurs."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer la contrainte et le domaine de l'optimisation.",
+          "choices": [
+            "$x\\in[2,+\\infty[$",
+            "$x\\in\\,]0,+\\infty[$",
+            "$x\\in\\,]2,+\\infty[$",
+            "$x\\in\\,]-\\infty,2[$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Repérez la valeur interdite de la contrainte."
+          ],
+          "solution": "$$x\\in\\,]2,+\\infty[$$",
+          "feedback": [
+            "En $x=2$, la fonction n'existe pas : l'intervalle est ouvert en $2$.",
+            "La contrainte impose $x>2$.",
+            "Exact.",
+            "La figure impose $x>2$."
+          ],
+          "methodRefs": [
+            "M17",
+            "M8"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Dériver et déterminer les nombres critiques dans le domaine.",
+          "choices": [
+            "$A'(x)=\\frac{x(x-4)}{2(x-2)^2};\\ \\text{nombre critique : }x=4$",
+            "$A'(x)=\\frac{x(x-4)}{2(x-2)^2};\\ \\text{nombres critiques : }x=0,4$",
+            "$A'(x)=\\frac{x(4-x)}{2(x-2)^2};\\ \\text{nombre critique : }x=4$",
+            "$A'(x)=\\frac{x^2-4x+4}{2(x-2)^2};\\ \\text{aucun nombre critique}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Appliquez la règle du quotient.",
+            "Rejetez les valeurs hors de $]2,+\\infty[$."
+          ],
+          "solution": "$$A'(x)=\\frac{x(x-4)}{2(x-2)^2}$$",
+          "feedback": [
+            "Exact. $x=0$ est hors du domaine.",
+            "Seules les valeurs du domaine comptent.",
+            "Le facteur $x-4$ change de signe en $4$.",
+            "Dérivez le quotient : le numérateur obtenu est $x(x-4)$."
+          ],
+          "methodRefs": [
+            "M17",
+            "M7",
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Choisir le test justifiant le minimum.",
+          "choices": [
+            "$A'<0\\text{ sur }(2,4),\\quad A'>0\\text{ sur }(4,+\\infty):\\ \\text{minimum absolu en }x=4$",
+            "$A'>0\\text{ sur }(2,4),\\quad A'<0\\text{ sur }(4,+\\infty):\\ \\text{maximum absolu en }x=4$",
+            "$A'>0\\text{ sur }(2,+\\infty):\\ \\text{aucun minimum}$",
+            "$A'\\text{ n'existe pas en }x=2:\\ \\text{minimum en }x=2$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Testez le signe de $x-4$ sur les deux intervalles."
+          ],
+          "solution": "$$A'<0\\text{ sur }(2,4),\\qquad A'>0\\text{ sur }(4,+\\infty)$$",
+          "feedback": [
+            "Exact. La fonction descend, puis remonte.",
+            "Les signes sont inversés.",
+            "$x-4$ est négatif entre $2$ et $4$.",
+            "$2$ est hors du domaine : il ne peut pas donner de minimum."
+          ],
+          "methodRefs": [
+            "M17",
+            "A6"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Formuler la réponse dans le contexte.",
+          "choices": [
+            "$x=2,\\ y=2,\\ A_{\\min}=2\\ \\text{unités d'aire}$",
+            "$x=4,\\ y=1,\\ A_{\\min}=4\\ \\text{unités d'aire}$",
+            "$x=4,\\ y=2,\\ A_{\\min}=8\\ \\text{unités d'aire}$",
+            "$x=4,\\ y=2,\\ A_{\\min}=4\\ \\text{unités d'aire}$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Calculez $y$ avec la contrainte, puis $\\frac12xy$."
+          ],
+          "solution": "$$x=4,\\qquad y=2,\\qquad A_{\\min}=4\\ \\text{unités d'aire}$$",
+          "feedback": [
+            "$x=2$ est interdit.",
+            "Quand $x=4$, $y=\\frac{4}{2}=2$.",
+            "Calculez $\\frac12(4)(2)=4$.",
+            "Exact. La base vaut $4$, la hauteur $2$ et l'aire minimale $4$."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        }
+      ],
+      "solution": "1. $$A(x)=\\frac12xy=\\frac{x^2}{2(x-2)},\\qquad x\\in\\,]2,+\\infty[.$$\n\n2. $$A'(x)=\\frac{x(x-4)}{2(x-2)^2}.$$\n\n3. Nombre critique dans le domaine : $x=4$.\n\n4. $A'<0$ sur $(2,4)$ et $A'>0$ sur $(4,+\\infty)$ : minimum absolu en $x=4$.\n\n5. $$y=\\frac{4}{4-2}=2,\\qquad A_{\\min}=\\frac12(4)(2)=4\\ \\text{unités d'aire}.$$"
+    },
+    {
+      "id": "q-h24-q4",
+      "topic": "Pilier 8 · Optimisation",
+      "source": "Final H24 · Q4",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Un terrain rectangulaire de $20\\ \\text{m}^2$ doit être clôturé. Trois côtés coûtent $10$ dollars le mètre et le quatrième, en métal, coûte $6$ dollars le mètre. Le côté opposé au côté métal coûte aussi $10$ dollars le mètre. Si $x$ est la longueur du côté métal et $y$ la longueur de chacun des deux autres côtés, minimiser le coût.",
+      "methodRefs": [
+        "M17"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Nommer les variables et écrire la fonction de coût.",
+          "choices": [
+            "$C(x)=10(x+2y)+6x=16x+20y$",
+            "$C(x)=10(2x+2y)=20x+20y$",
+            "$C(x)=6x+10y$",
+            "$C(x)=16x+\\frac{400}{x}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Comptez les quatre côtés et leurs tarifs."
+          ],
+          "solution": "$$C(x)=10(x+2y)+6x=16x+20y$$",
+          "feedback": [
+            "La contrainte $xy=20$ donne $20y=400/x$, pas $20y$ seul.",
+            "Le côté métal coûte $6$ dollars le mètre, pas $10$.",
+            "Il y a un côté métal, un côté opposé en bois et deux autres côtés en bois.",
+            "C'est bien la fonction après substitution, mais l'étape demande d'abord d'écrire les deux variables."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Écrire la contrainte, substituer et donner le domaine.",
+          "choices": [
+            "$xy=20\\Rightarrow y=20x,\\qquad x\\in\\mathbb{R}$",
+            "$xy=20\\Rightarrow y=\\frac{20}{x},\\qquad C(x)=16x+\\frac{400}{x},\\qquad x>0$",
+            "$xy=20\\Rightarrow y=\\frac{x}{20},\\qquad x>0$",
+            "$x+y=20\\Rightarrow C(x)=16x+\\frac{400}{x}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Aire du rectangle : $xy=20$.",
+            "Une longueur strictement positive donne $x>0$."
+          ],
+          "solution": "$$xy=20\\Rightarrow y=\\frac{20}{x},\\qquad C(x)=16x+\\frac{400}{x},\\qquad x>0$$",
+          "feedback": [
+            "La division par $x$ donne $y=20/x$, et une longueur est positive.",
+            "Exact.",
+            "On isole $y$ en divisant par $x$.",
+            "La contrainte porte sur l'aire : $xy=20$."
+          ],
+          "methodRefs": [
+            "M17",
+            "M8"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Dériver et déterminer le nombre critique.",
+          "choices": [
+            "$C'(x)=16-\\frac{400}{x};\\ \\text{nombre critique : }x=25$",
+            "$C'(x)=16-\\frac{400}{x^2}=\\frac{16(x-5)(x+5)}{x^2};\\ \\text{nombre critique : }x=5$",
+            "$C'(x)=16+\\frac{400}{x^2};\\ \\text{aucun nombre critique}$",
+            "$C'(x)=16-\\frac{400}{x^2};\\ \\text{nombres critiques : }x=\\pm5$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Dérivez $400x^{-1}$.",
+            "Gardez seulement les valeurs positives."
+          ],
+          "solution": "$$C'(x)=\\frac{16(x-5)(x+5)}{x^2}$$",
+          "feedback": [
+            "La dérivée de $400/x$ est $-400/x^2$.",
+            "Exact. $x=-5$ est hors du domaine.",
+            "Le signe moins de la puissance est essentiel.",
+            "Le domaine est $x>0$."
+          ],
+          "methodRefs": [
+            "M17",
+            "M2",
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Choisir le test justifiant le minimum.",
+          "choices": [
+            "$C'<0\\text{ sur }(0,5),\\ C'>0\\text{ sur }(5,+\\infty):\\ \\text{maximum en }x=5$",
+            "$C'>0\\text{ partout}: \\text{minimum en }x=5$",
+            "$C'<0\\text{ sur }(0,5),\\ C'>0\\text{ sur }(5,+\\infty):\\ \\text{minimum absolu en }x=5$",
+            "$C'\\text{ n'existe pas en }x=0:\\ \\text{minimum en }x=0$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Sur $x>0$, seul le facteur $x-5$ change de signe."
+          ],
+          "solution": "$$C'<0\\text{ sur }(0,5),\\qquad C'>0\\text{ sur }(5,+\\infty)$$",
+          "feedback": [
+            "La fonction diminue puis augmente : c'est un minimum.",
+            "$C'$ est négatif avant $5$.",
+            "Exact.",
+            "$0$ est hors du domaine ouvert."
+          ],
+          "methodRefs": [
+            "M17",
+            "A6"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Formuler toutes les dimensions et le coût minimal.",
+          "choices": [
+            "$x=4\\ \\text{m},\\ y=5\\ \\text{m},\\ C_{\\min}=154\\ \\text{dollars}$",
+            "$x=5\\ \\text{m},\\ y=4\\ \\text{m},\\ C_{\\min}=140\\ \\text{dollars}$",
+            "$x=5\\ \\text{m},\\ y=4\\ \\text{m},\\ C_{\\min}=160\\ \\text{dollars}$",
+            "$x=5\\ \\text{m},\\ y=4\\ \\text{m},\\ C_{\\min}=164\\ \\text{dollars}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Calculez $y=20/x$, puis $C(5)$."
+          ],
+          "solution": "$$x=5\\ \\text{m},\\qquad y=4\\ \\text{m},\\qquad C_{\\min}=160\\ \\text{dollars}$$",
+          "feedback": [
+            "La contrainte donne $y=20/5=4$ lorsque $x=5$.",
+            "Calculez $16(5)+400/5=160$.",
+            "Exact. Les côtés de $5$ m sont le côté métal et le côté opposé en bois.",
+            "Utilisez la fonction $C(x)=16x+400/x$."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        }
+      ],
+      "solution": "1. $$C(x)=10(x+2y)+6x=16x+20y.$$\n\n2. $$xy=20\\Rightarrow y=\\frac{20}{x},\\qquad C(x)=16x+\\frac{400}{x},\\qquad x>0.$$\n\n3. $$C'(x)=16-\\frac{400}{x^2}=\\frac{16(x-5)(x+5)}{x^2}.$$\n\n4. Nombre critique : $x=5$; $C'<0$ sur $(0,5)$ et $C'>0$ sur $(5,+\\infty)$.\n\n5. $$y=4\\ \\text{m},\\qquad C_{\\min}=C(5)=160\\ \\text{dollars}.$$"
+    },
+    {
+      "id": "q-a23-q4",
+      "topic": "Pilier 8 · Optimisation",
+      "source": "Final A23 · Q4",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit la parabole $y=x^2+1$ pour $0\\leq x\\leq2$. Un rectangle a un coin en $(2,0)$ et le coin opposé $P(x,y)$ sur la parabole. Déterminer l'aire maximale du rectangle.",
+      "promptImage": {
+        "src": "packs/mat1903-calc/img/a23-q4-rectangle.svg",
+        "alt": "Rectangle sous la parabole y égale x carré plus 1, avec P sur la courbe et un coin en (2,0)."
+      },
+      "methodRefs": [
+        "M17"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Nommer les variables et écrire la fonction à optimiser.",
+          "choices": [
+            "$A(x)=x(x^2+1)=x^3+x$",
+            "$A(x)=(2+x)(x^2+1)$",
+            "$A(x)=(2-x)(x^2+1)=-x^3+2x^2-x+2$",
+            "$A(x)=2-x+x^2+1=x^2-x+3$"
+          ],
+          "answer": 2,
+          "hints": [
+            "La largeur horizontale est $2-x$.",
+            "La hauteur est $y=x^2+1$."
+          ],
+          "solution": "$$A(x)=(2-x)(x^2+1)=-x^3+2x^2-x+2$$",
+          "feedback": [
+            "La largeur est $2-x$, pas $x$.",
+            "Le coin $(2,0)$ rend la largeur $2-x$.",
+            "Exact.",
+            "L'aire est un produit de longueurs, pas une somme."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer le domaine de l'optimisation.",
+          "choices": [
+            "$x\\in\\,]0,2[$",
+            "$x\\in\\mathbb{R}$",
+            "$x\\in[0,1]$",
+            "$x\\in[0,2]$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Relisez les bornes imposées à $P$."
+          ],
+          "solution": "$$x\\in[0,2]$$",
+          "feedback": [
+            "Les deux extrémités sont permises par l'énoncé.",
+            "Le point $P$ est restreint à l'arc de parabole $0\\leq x\\leq2$.",
+            "Le point $P$ peut aller jusqu'à $x=2$.",
+            "Exact. C'est un intervalle fermé : les extrémités devront être comparées."
+          ],
+          "methodRefs": [
+            "M17",
+            "M8"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Dériver et déterminer tous les nombres critiques dans le domaine.",
+          "choices": [
+            "$A'(x)=-3x^2+4x-1;\\ \\text{nombres critiques : }x=1$",
+            "$A'(x)=-(3x-1)(x-1);\\ \\text{nombres critiques : }x=\\frac13,1$",
+            "$A'(x)=(3x-1)(x-1);\\ \\text{nombres critiques : }x=\\frac13,1$",
+            "$A'(x)=-3x^2+2x-1;\\ \\text{aucun nombre critique}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Dérivez le polynôme développé.",
+            "Factorisez $-3x^2+4x-1$."
+          ],
+          "solution": "$$A'(x)=-(3x-1)(x-1)$$",
+          "feedback": [
+            "Le trinôme se factorise avec deux racines dans $[0,2]$.",
+            "Exact.",
+            "Le coefficient dominant de $A$ est $-1$ : la dérivée change de signe globalement.",
+            "Dérivez $-x^3+2x^2-x+2$ terme à terme."
+          ],
+          "methodRefs": [
+            "M17",
+            "M2",
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Comparer toutes les valeurs candidates sur le domaine fermé.",
+          "choices": [
+            "$A(0)=0,\\ A\\left(\\frac13\\right)=\\frac{50}{27},\\ A(1)=2,\\ A(2)=0$",
+            "$A(0)=2,\\ A\\left(\\frac13\\right)=\\frac{50}{27},\\ A(1)=2$",
+            "$A(0)=2,\\ A\\left(\\frac13\\right)=\\frac{50}{27},\\ A(1)=2,\\ A(2)=2$",
+            "$A(0)=2,\\ A\\left(\\frac13\\right)=\\frac{50}{27},\\ A(1)=2,\\ A(2)=0$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Sur $[0,2]$, comparez les extrémités et les nombres critiques."
+          ],
+          "solution": "$$A(0)=2,\\quad A\\left(\\frac13\\right)=\\frac{50}{27},\\quad A(1)=2,\\quad A(2)=0$$",
+          "feedback": [
+            "$A(0)=(2-0)(0^2+1)=2$.",
+            "Sur un intervalle fermé, comparez aussi l'extrémité $x=2$.",
+            "$A(2)=(2-2)(2^2+1)=0$.",
+            "Exact. Le maximum vaut $2$."
+          ],
+          "methodRefs": [
+            "M17",
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Formuler la réponse dans le contexte, sans oublier les deux maxima.",
+          "choices": [
+            "Aire maximale $2$ unités d'aire, uniquement à $P(1,2)$",
+            "Aire maximale $\\frac{50}{27}$ unités d'aire, en $P(\\frac13,\\frac{10}{9})$",
+            "Aire maximale $2$ unités d'aire, uniquement à $P(0,1)$",
+            "Aire maximale $2$ unités d'aire, atteinte aux deux points $P(0,1)$ et $P(1,2)$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Relisez toutes les valeurs candidates maximales."
+          ],
+          "solution": "Aire maximale $2$ unités d'aire, atteinte à $P(0,1)$ et $P(1,2)$.",
+          "feedback": [
+            "Le maximum est aussi atteint à l'extrémité $P(0,1)$.",
+            "$\\frac{50}{27}<2$.",
+            "Le maximum est aussi atteint en $P(1,2)$.",
+            "Exact. Les deux points donnent $(2-x)(x^2+1)=2$."
+          ],
+          "methodRefs": [
+            "M17"
+          ]
+        }
+      ],
+      "solution": "1. $$A(x)=(2-x)(x^2+1)=-x^3+2x^2-x+2,\\qquad x\\in[0,2].$$\n\n2. $$A'(x)=-(3x-1)(x-1).$$\n\n3. Nombres critiques : $x=\\frac13$ et $x=1$.\n\n4. $$A(0)=2,\\quad A\\left(\\frac13\\right)=\\frac{50}{27},\\quad A(1)=2,\\quad A(2)=0.$$\n\n5. Aire maximale : $2$ unités d'aire, atteinte aux deux points $P(0,1)$ et $P(1,2)$."
     }
   ]
 }
