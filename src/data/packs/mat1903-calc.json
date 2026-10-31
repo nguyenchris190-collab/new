@@ -2169,6 +2169,942 @@
         }
       ],
       "solution": "$$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<0\\\\ x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$$\n\n$$f(0)=0,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ continue en }0$$\n\n$$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_-(0)\\neq f'_+(0)\\Rightarrow f\\text{ non dérivable en }0$$\n\nConclusion : $$\\text{point anguleux}$$"
+    },
+    {
+      "id": "q-h24-q2",
+      "topic": "Pilier 6 · Étude complète d'une fonction rationnelle",
+      "source": "Final H24 · Q2",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit la fonction $$f(x) = \\frac{2x^2-3x}{(x-1)^2} \\quad \\text{avec} \\quad f'(x)=\\frac{3-x}{(x-1)^3} \\quad \\text{et} \\quad f''(x)=\\frac{2x-8}{(x-1)^4}.$$ Faire l'étude complète de $f$.",
+      "methodRefs": [
+        "M8",
+        "M9",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Déterminer le domaine de $f$.",
+          "choices": [
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ x-1\\neq0\\}=\\mathbb{R}-\\{-1\\}$",
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ (x-1)^2\\geq0\\}=\\mathbb{R}$",
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ x-1\\neq0\\}=\\mathbb{R}-\\{1\\}$",
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ 2x^2-3x\\neq0\\}=\\mathbb{R}-\\left\\{0,\\frac32\\right\\}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Factoriser le dénominateur : $(x-1)^2=0$ équivaut à $x=1$.",
+            "Ne simplifiez pas avant d'avoir lu le domaine."
+          ],
+          "solution": "$$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ x-1\\neq0\\}=\\mathbb{R}-\\{1\\}$$",
+          "feedback": [
+            "Le dénominateur s'annule en $x=1$, et non en $x=-1$.",
+            "Un carré peut être nul : en $x=1$, le dénominateur vaut $0$.",
+            "Exact. Seule la valeur qui annule le dénominateur est exclue.",
+            "Un numérateur nul donne $f(x)=0$ et n'exclut aucune valeur."
+          ],
+          "methodRefs": [
+            "M8",
+            "A1"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer les équations des asymptotes.",
+          "choices": [
+            "$\\lim_{x\\to1^-}f(x)=+\\infty,\\ \\lim_{x\\to1^+}f(x)=-\\infty:\\ x=1\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=0:\\ y=0\\text{ est une A.H.}$",
+            "$\\lim_{x\\to1^{\\pm}}f(x)=-\\infty:\\ x=1\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=2:\\ y=2\\text{ est une A.H.}$",
+            "$\\lim_{x\\to1^-}f(x)=-\\infty,\\ \\lim_{x\\to1^+}f(x)=+\\infty:\\ x=1\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=2:\\ y=2\\text{ est une A.H.}$",
+            "$\\lim_{x\\to1^{\\pm}}f(x)=-\\infty:\\ x=1\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=\\pm\\infty:\\ \\text{aucune A.H.}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Près de $1$, le numérateur vaut $-1$.",
+            "À l'infini, comparez les termes de plus haut degré."
+          ],
+          "solution": "$$\\lim_{x\\to1^{\\pm}}\\frac{2x^2-3x}{(x-1)^2}=\\frac{-1}{0^+}=-\\infty$$",
+          "feedback": [
+            "Les deux côtés donnent $-\\infty$, et les degrés égaux donnent $y=2$.",
+            "Exact. Le numérateur tend vers $-1$ et le dénominateur vers $0^+$.",
+            "Le dénominateur est un carré : il est $0^+$ des deux côtés de $1$.",
+            "Les deux polynômes sont de degré $2$ : divisez par $x^2$ pour trouver $2$."
+          ],
+          "methodRefs": [
+            "M9",
+            "M10",
+            "A7",
+            "A8"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Déterminer les nombres critiques de $f$, sachant que $f'(x)=\\frac{3-x}{(x-1)^3}$.",
+          "choices": [
+            "$f'(x)=0\\iff3-x=0\\iff x=3\\in\\text{Dom}_f.\\ f'\\text{ n'existe pas en }x=1\\notin\\text{Dom}_f.\\ \\text{Nombre critique : }x=3.$",
+            "$f'(x)=0\\iff3-x=0\\iff x=3.\\ f'\\text{ n'existe pas en }x=1.\\ \\text{Nombres critiques : }x=1,3.$",
+            "$f'(x)=0\\iff2x-8=0\\iff x=4.\\ \\text{Nombre critique : }x=4.$",
+            "$f'\\text{ n'existe pas si }(x-1)^3=0\\iff x=1.\\ f'(x)=0\\text{ n'a pas de solution.}\\ \\text{Nombre critique : }x=1.$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Un nombre critique doit appartenir au domaine.",
+            "Résolvez $f'(x)=0$ avec le numérateur $3-x$."
+          ],
+          "solution": "$$f'(x)=0\\iff x=3\\in\\text{Dom}_f$$",
+          "feedback": [
+            "Exact. Une valeur hors du domaine n'est pas un nombre critique.",
+            "$1$ est hors du domaine : on le garde pour le tableau, mais ce n'est pas un nombre critique.",
+            "Vous avez utilisé le numérateur de $f''$, pas celui de $f'$.",
+            "Le numérateur $3-x$ s'annule en $x=3$."
+          ],
+          "methodRefs": [
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Déterminer les valeurs de $x\\in\\text{Dom}_f$ pour lesquelles $f''(x)=0$ ou $f''(x)$ n'existe pas, sachant que $f''(x)=\\frac{2x-8}{(x-1)^4}$.",
+          "choices": [
+            "$f''(x)=0\\iff2x-8=0\\iff x=4\\notin\\text{Dom}_f.\\ \\text{Aucune valeur.}$",
+            "$f''(x)=0\\iff2x-8=0\\iff x=4.\\ f''\\text{ n'existe pas en }x=1.\\ \\text{Valeurs : }x=1,4.$",
+            "$f''(x)=0\\iff2x-8=0\\iff x=4\\in\\text{Dom}_f.\\ f''\\text{ n'existe pas en }x=1\\notin\\text{Dom}_f.\\ \\text{Valeur : }x=4.$",
+            "$f''(x)=0\\iff x-4=0\\iff x=-4.\\ \\text{Valeur : }x=-4.$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Résolvez $2x-8=0$.",
+            "Gardez seulement les solutions du domaine."
+          ],
+          "solution": "$$f''(x)=0\\iff x=4\\in\\text{Dom}_f$$",
+          "feedback": [
+            "$4$ appartient bien au domaine : seul $1$ est exclu.",
+            "La question demande les valeurs dans le domaine : $1$ est exclu.",
+            "Exact, avec $f(4)=\\frac{20}{9}$.",
+            "Erreur de signe : $2x-8=0$ donne $x=4$."
+          ],
+          "methodRefs": [
+            "M12"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
+          "choices": [
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\searrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$Min. rel. $(3,\\frac94)$, P.I. $(4,\\frac{20}{9})$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&+&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\nearrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$Max. abs. $(3,\\frac94)$, P.I. $(4,\\frac{20}{9})$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\searrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$Max. abs. $(3,\\frac94)$, P.I. $(4,\\frac{20}{9})$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&2&\\searrow\\cup&\\nexists&\\nearrow\\cup&\\frac94&\\searrow\\cup&\\frac{20}{9}&\\searrow\\cap&2\\end{array}$$Max. abs. $(3,\\frac94)$, P.I. $(4,\\frac{20}{9})$."
+          ],
+          "answer": 2,
+          "hints": [
+            "Le signe de $f'$ dépend de $\\frac{3-x}{x-1}$.",
+            "Le signe de $f''$ dépend de $2x-8$."
+          ],
+          "solution": "$$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\searrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$",
+          "feedback": [
+            "Le tableau est juste, mais $f(x)-2=\\frac{-4x+2}{(x-1)^2}<0$ pour $x>\\frac12$ : aucune valeur ne dépasse le maximum.",
+            "Pour $x<1$, $3-x>0$ et $(x-1)^3<0$, donc $f'<0$.",
+            "Parfait. Le maximum est absolu parce que la courbe reste sous son asymptote $y=2$ pour $x>1$.",
+            "Le signe de $f''$ dépend de $2x-8$, car $(x-1)^4>0$."
+          ],
+          "methodRefs": [
+            "M13",
+            "A6"
+          ]
+        },
+        {
+          "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
+          "choices": [
+            "Graphe 1",
+            "Graphe 2",
+            "Graphe 3",
+            "Graphe 4"
+          ],
+          "answer": 2,
+          "hints": [
+            "Comparez les asymptotes, les valeurs remarquables et la concavité."
+          ],
+          "solution": "Tracer $x=1$ et $y=2$ en pointillés, puis placer $(3,\\frac94)$ et $(4,\\frac{20}{9})$.",
+          "feedback": [
+            "L'asymptote horizontale est $y=2$, pas $y=0$.",
+            "Le maximum absolu en $(3,\\frac94)$ doit être visible.",
+            "Exact : A.V. $x=1$ vers $-\\infty$, A.H. $y=2$, max. abs. et P.I. sont conformes.",
+            "Près de $x=1$, les deux branches doivent descendre vers $-\\infty$ : le dénominateur est un carré."
+          ],
+          "images": [
+            {
+              "src": "packs/mat1903-calc/img/h24-q2-sketch-C.svg",
+              "alt": "Esquisse 1"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q2-sketch-D.svg",
+              "alt": "Esquisse 2"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q2-sketch-A.svg",
+              "alt": "Esquisse 3"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q2-sketch-B.svg",
+              "alt": "Esquisse 4"
+            }
+          ],
+          "methodRefs": [
+            "M14"
+          ]
+        }
+      ],
+      "solution": "1. Domaine : $\\text{Dom}_f=\\mathbb{R}-\\{1\\}$.\n\n2. Asymptotes : $$\\lim_{x\\to1^{\\pm}}f(x)=-\\infty$$ donc $x=1$ est une A.V.; $$\\lim_{x\\to\\pm\\infty}f(x)=2$$ donc $y=2$ est une A.H. en $-\\infty$ et $+\\infty$.\n\n3. Nombre critique : $x=3$, $f(3)=\\frac94$.\n\n4. $f''(x)=0$ pour $x=4$, $f(4)=\\frac{20}{9}$.\n\n5. Tableau : $$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\searrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$\n\n6. Esquisse conforme : maximum absolu $(3,\\frac94)$ et P.I. $(4,\\frac{20}{9})$."
+    },
+    {
+      "id": "q-a23-q2",
+      "topic": "Pilier 6 · Étude complète d'une fonction rationnelle",
+      "source": "Final A23 · Q2",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit la fonction $$f(x)=\\frac{2-2x}{x^2}.$$ Faire l'étude complète de $f$.",
+      "methodRefs": [
+        "M7",
+        "M8",
+        "M9",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "A4"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Déterminer le domaine de $f$.",
+          "choices": [
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ 2-2x\\neq0\\}=\\mathbb{R}-\\{1\\}$",
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ x^2\\neq0\\}=\\mathbb{R}-\\{0\\}$",
+            "$\\text{Dom}_f=\\{x\\in\\mathbb{R}\\ /\\ x\\neq0,\\ x\\neq1\\}=\\mathbb{R}-\\{0,1\\}$",
+            "$\\text{Dom}_f=\\mathbb{R}$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Le domaine se lit sur le dénominateur avant toute simplification."
+          ],
+          "solution": "$$\\text{Dom}_f=\\mathbb{R}-\\{0\\}$$",
+          "feedback": [
+            "Un numérateur nul ne pose pas problème : $f(1)=0$.",
+            "Exact. Seul le dénominateur exclut une valeur.",
+            "$x=1$ annule le numérateur, pas le dénominateur.",
+            "En $x=0$, le dénominateur est nul."
+          ],
+          "methodRefs": [
+            "M8"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer les équations des asymptotes.",
+          "choices": [
+            "$\\lim_{x\\to0^-}f(x)=-\\infty,\\ \\lim_{x\\to0^+}f(x)=+\\infty:\\ x=0\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=1:\\ y=1\\text{ est une A.H.}$",
+            "$\\lim_{x\\to0^-}f(x)=+\\infty,\\ \\lim_{x\\to0^+}f(x)=-\\infty:\\ x=0\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=0:\\ y=0\\text{ est une A.H.}$",
+            "$\\lim_{x\\to0^{\\pm}}f(x)=+\\infty:\\ x=0\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=0:\\ y=0\\text{ est une A.H.}$",
+            "$\\lim_{x\\to0^{\\pm}}f(x)=+\\infty:\\ x=0\\text{ est une A.V.}\\quad \\lim_{x\\to\\pm\\infty}f(x)=2:\\ y=2\\text{ est une A.H.}$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Le numérateur tend vers $2$ en $0$.",
+            "Le degré du dénominateur dépasse celui du numérateur."
+          ],
+          "solution": "$$\\lim_{x\\to0^{\\pm}}\\frac{2-2x}{x^2}=+\\infty,\\qquad \\lim_{x\\to\\pm\\infty}f(x)=0$$",
+          "feedback": [
+            "Le numérateur tend vers $2$ positif des deux côtés; le degré du bas domine, donc $y=0$.",
+            "Près de $0$, $2-2x>0$ et $x^2>0$ : la limite est $+\\infty$ des deux côtés.",
+            "Exact.",
+            "Pour $x\\to\\pm\\infty$, $f(x)\\sim\\frac{-2x}{x^2}=\\frac{-2}{x}\\to0$."
+          ],
+          "methodRefs": [
+            "M9",
+            "M10",
+            "A7",
+            "A8"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Montrer que $f'(x)=\\frac{2x-4}{x^3}$.",
+          "choices": [
+            "$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^4}=\\frac{2x^2-4x}{x^4}=\\frac{x(2x-4)}{x^4}=\\frac{2x-4}{x^3}\\ \\ (x\\neq0)$",
+            "$f'(x)=\\frac{-2x^2+(2-2x)(2x)}{x^4}=\\frac{4x-6x^2}{x^4}=\\frac{4-6x}{x^3}$",
+            "$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^2}=\\frac{2x^2-4x}{x^2}=2x-4$",
+            "$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^4}=\\frac{-6x^2}{x^4}=\\frac{-6}{x^2}$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Posez $u=2-2x$ et $v=x^2$, puis appliquez $(u/v)'=(u'v-uv')/v^2$.",
+            "Simplifiez par le facteur commun $x$."
+          ],
+          "solution": "$$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^4}=\\frac{2x^2-4x}{x^4}=\\frac{2x-4}{x^3}$$",
+          "feedback": [
+            "Exact. On réduit au même dénominateur, puis on simplifie par $x$.",
+            "La règle du quotient donne $u'v-uv'$, avec un signe moins entre les deux produits.",
+            "Le dénominateur de $u/v$ est $v^2=x^4$, pas $x^2$.",
+            "$-2x^2-4x+4x^2=2x^2-4x$, pas $-6x^2$."
+          ],
+          "methodRefs": [
+            "M7",
+            "A4"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Montrer que $f''(x)=\\frac{12-4x}{x^4}$.",
+          "choices": [
+            "$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^6}=\\frac{-10x^3+12x^2}{x^6}=\\frac{12-10x}{x^4}$",
+            "$f''(x)=\\frac{2x^3+(2x-4)(3x^2)}{x^6}=\\frac{8x^3-12x^2}{x^6}=\\frac{8x-12}{x^4}$",
+            "$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^4}=\\frac{-4x^3+12x^2}{x^4}=-4x+12$",
+            "$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^6}=\\frac{-4x^3+12x^2}{x^6}=\\frac{12-4x}{x^4}\\ \\ (x\\neq0)$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Dérivez $u=2x-4$ et $v=x^3$.",
+            "Le dénominateur final est $(x^3)^2=x^6$."
+          ],
+          "solution": "$$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^6}=\\frac{12-4x}{x^4}$$",
+          "feedback": [
+            "Développez soigneusement : $2x^3-6x^3+12x^2=-4x^3+12x^2$.",
+            "Le numérateur de la règle du quotient est $u'v-uv'$.",
+            "Le dénominateur est $(x^3)^2=x^6$.",
+            "Exact. On simplifie par $x^2$."
+          ],
+          "methodRefs": [
+            "M7",
+            "A4"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
+          "choices": [
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\nearrow\\cup&\\nexists&\\searrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$Min. abs. $(2,-\\frac12)$, P.I. $(3,-\\frac49)$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\nearrow\\cup&\\nexists&\\searrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$Min. rel. $(2,-\\frac12)$, P.I. $(3,-\\frac49)$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\searrow\\cup&\\nexists&\\nearrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$Min. abs. $(2,-\\frac12)$, P.I. $(3,-\\frac49)$.",
+            "$$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&0&\\nearrow\\cap&\\nexists&\\searrow\\cap&-\\frac12&\\nearrow\\cap&-\\frac49&\\nearrow\\cup&0\\end{array}$$Min. abs. $(2,-\\frac12)$, P.I. $(3,-\\frac49)$."
+          ],
+          "answer": 0,
+          "hints": [
+            "Le signe de $f'$ dépend de $\\frac{2x-4}{x}$.",
+            "Le signe de $f''$ dépend de $12-4x$."
+          ],
+          "solution": "$$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\nearrow\\cup&\\nexists&\\searrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$",
+          "feedback": [
+            "Parfait. Le minimum est absolu : la courbe repart vers $0$ sans redescendre.",
+            "La courbe reste au-dessus de $-\\frac12$ sur tout le domaine : le minimum est absolu.",
+            "Pour $x<0$, $2x-4<0$ et $x^3<0$, donc $f'=\\frac{-}{-}>0$.",
+            "$x^4>0$ : le signe de $f''$ est celui de $12-4x$."
+          ],
+          "methodRefs": [
+            "M13",
+            "A6"
+          ]
+        },
+        {
+          "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
+          "choices": [
+            "Graphe 1",
+            "Graphe 2",
+            "Graphe 3",
+            "Graphe 4"
+          ],
+          "answer": 1,
+          "hints": [
+            "Comparez les asymptotes, les valeurs remarquables et la concavité."
+          ],
+          "solution": "Tracer $x=0$ et $y=0$ en pointillés, puis placer $(2,-\\frac12)$ et $(3,-\\frac49)$.",
+          "feedback": [
+            "Le minimum absolu en $(2,-\\frac12)$ doit être visible.",
+            "Exact : A.V. $x=0$ vers $+\\infty$, A.H. $y=0$, minimum et P.I. conformes.",
+            "Près de $x=0$, les deux branches montent vers $+\\infty$ : le numérateur tend vers $2$ positif.",
+            "L'asymptote horizontale est $y=0$, pas $y=1$."
+          ],
+          "images": [
+            {
+              "src": "packs/mat1903-calc/img/a23-q2-sketch-D.svg",
+              "alt": "Esquisse 1"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q2-sketch-A.svg",
+              "alt": "Esquisse 2"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q2-sketch-B.svg",
+              "alt": "Esquisse 3"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q2-sketch-C.svg",
+              "alt": "Esquisse 4"
+            }
+          ],
+          "methodRefs": [
+            "M14"
+          ]
+        }
+      ],
+      "solution": "1. Domaine : $\\text{Dom}_f=\\mathbb{R}-\\{0\\}$.\n\n2. Asymptotes : $$\\lim_{x\\to0^{\\pm}}f(x)=+\\infty,\\qquad \\lim_{x\\to\\pm\\infty}f(x)=0.$$\n\n3. $$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^4}=\\frac{2x-4}{x^3}.$$\n\n4. $$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^6}=\\frac{12-4x}{x^4}.$$\n\n5. Tableau : $$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\nearrow\\cup&\\nexists&\\searrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$\n\n6. Esquisse conforme : minimum absolu $(2,-\\frac12)$ et P.I. $(3,-\\frac49)$."
+    },
+    {
+      "id": "q-h25-q3",
+      "topic": "Pilier 7 · Étude sur un intervalle & fonctions exponentielles",
+      "source": "Final H25 · Q3",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Sur l'intervalle $[0,\\pi]$, soit $$g(x)=1+\\sin x+\\cos x \\quad \\text{avec} \\quad g'(x)=\\cos x-\\sin x \\quad \\text{et} \\quad g''(x)=-\\sin x-\\cos x.$$ Étudier $g$ sur $[0,\\pi]$.",
+      "methodRefs": [
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "A10"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Déterminer tous les nombres critiques de $g$ sur $[0,\\pi]$, sachant que $g'(x)=\\cos x-\\sin x$.",
+          "choices": [
+            "$g'(x)=0\\iff\\cos x=\\sin x\\iff x=\\frac{\\pi}{4}.\\ \\text{Nombre critique : }x=\\frac{\\pi}{4}.$",
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}.\\ g'(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.\\ \\text{Nombres critiques : }0,\\frac{\\pi}{4},\\pi.$",
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}\\text{ ou }x=\\frac{3\\pi}{4}.\\ \\text{Nombres critiques : }x=\\frac{\\pi}{4},\\frac{3\\pi}{4}.$",
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}.\\ \\text{Nombres critiques : }0,\\frac{\\pi}{4},\\frac{3\\pi}{4},\\pi.$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Sur $[a,b]$, testez $g'(x)=0$ et les deux extrémités.",
+            "Résolvez $\\cos x=\\sin x$ sur $[0,\\pi]$."
+          ],
+          "solution": "$$g'(x)=0\\iff x=\\frac{\\pi}{4};\\qquad g'(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.$$",
+          "feedback": [
+            "Sur un intervalle fermé, les extrémités sont aussi des nombres critiques : $g'$ n'existe pas si $x=0$ ou $x=\\pi$.",
+            "Exact. Les trois valeurs appartiennent à $[0,\\pi]$.",
+            "$3\\pi/4$ annule $g''$, pas $g'$.",
+            "Les extrémités comptent, mais $3\\pi/4$ ne vient pas de $g'$."
+          ],
+          "methodRefs": [
+            "M11",
+            "A10"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer les valeurs de $x\\in[0,\\pi]$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-\\sin x-\\cos x$.",
+          "choices": [
+            "$g''(x)=0\\iff\\tan x=-1\\iff x=\\frac{3\\pi}{4}.\\ \\text{Valeur : }x=\\frac{3\\pi}{4}.$",
+            "$g''(x)=0\\iff x=\\frac{\\pi}{4}.\\ \\text{Valeur : }x=\\frac{\\pi}{4}.$",
+            "$g''(x)=0\\iff x=\\frac{3\\pi}{4}\\text{ ou }x=\\frac{\\pi}{4}.\\ \\text{Valeurs : }\\frac{\\pi}{4},\\frac{3\\pi}{4}.$",
+            "$g''(x)=0\\iff x=\\frac{3\\pi}{4}.\\ g''(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.\\ \\text{Valeurs : }0,\\frac{3\\pi}{4},\\pi.$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Résolvez $-\\sin x-\\cos x=0$.",
+            "Gardez les extrémités de l'intervalle."
+          ],
+          "solution": "$$g''(x)=0\\iff x=\\frac{3\\pi}{4};\\qquad x=0,\\pi\\text{ sont aussi retenus sur }[0,\\pi].$$",
+          "feedback": [
+            "Sur le domaine de l'étude, les extrémités comptent aussi : $g''$ s'annule ou n'existe pas aux extrémités selon la formulation du corrigé.",
+            "Cette valeur annule $g'$, pas $g''$.",
+            "Seule la seconde annule $-\\sin x-\\cos x$.",
+            "Exact, conformément à la convention du corrigé sur intervalle fermé."
+          ],
+          "methodRefs": [
+            "M12"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Choisir le tableau de variation complet et ses conclusions.",
+          "choices": [
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&2&\\nearrow\\cap&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$Min. rel. $(0,2)$, max. abs. $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, min. abs. $(\\pi,0)$.",
+            "$$\\begin{array}{c|ccccc}x&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&0&-&-&-&\\\\g''&-&-&0&+&\\\\g&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$Max. abs. $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, min. abs. $(\\pi,0)$.",
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&+&+&+&0&-&\\\\g&2&\\nearrow\\cup&1+\\sqrt2&\\searrow\\cup&1&\\searrow\\cap&0\\end{array}$$Min. rel. $(0,2)$, max. abs. $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, min. abs. $(\\pi,0)$.",
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&2&\\nearrow\\cap&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$Min. rel. $(0,2)$, max. rel. $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, min. abs. $(\\pi,0)$."
+          ],
+          "answer": 0,
+          "hints": [
+            "Testez le signe de $g'$ avant et après $\\pi/4$.",
+            "Testez le signe de $g''$ avant et après $3\\pi/4$."
+          ],
+          "solution": "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&2&\\nearrow\\cap&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$",
+          "feedback": [
+            "Parfait. Les extrémités et le changement de concavité apparaissent tous.",
+            "Les extrémités $0$ et $\\pi$ doivent figurer dans le tableau d'un intervalle fermé.",
+            "$g''=-\\sin x-\\cos x$ : elle est négative avant $3\\pi/4$, puis positive.",
+            "Le maximum en $\\pi/4$ dépasse toutes les autres valeurs sur $[0,\\pi]$ : il est absolu."
+          ],
+          "methodRefs": [
+            "M13"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Choisir l'esquisse de $g$ sur $[0,\\pi]$.",
+          "choices": [
+            "Graphe 1",
+            "Graphe 2",
+            "Graphe 3",
+            "Graphe 4"
+          ],
+          "answer": 1,
+          "hints": [
+            "Comparez les asymptotes, les valeurs remarquables et la concavité."
+          ],
+          "solution": "Placer $(0,2)$, $(\\pi/4,1+\\sqrt2)$, $(3\\pi/4,1)$ et $(\\pi,0)$, puis suivre le tableau.",
+          "feedback": [
+            "La concavité change en $3\\pi/4$, pas avant.",
+            "Exact : maximum en $\\pi/4$, P.I. en $3\\pi/4$, minimum absolu en $\\pi$.",
+            "Le maximum est en $\\pi/4$, pas en $3\\pi/4$.",
+            "Sur $[0,\\pi]$, les deux extrémités doivent être des points fermés."
+          ],
+          "images": [
+            {
+              "src": "packs/mat1903-calc/img/h25-q3-sketch-D.svg",
+              "alt": "Esquisse 1"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h25-q3-sketch-A.svg",
+              "alt": "Esquisse 2"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h25-q3-sketch-B.svg",
+              "alt": "Esquisse 3"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h25-q3-sketch-C.svg",
+              "alt": "Esquisse 4"
+            }
+          ],
+          "methodRefs": [
+            "M14"
+          ]
+        }
+      ],
+      "solution": "1. Nombres critiques : $0,\\frac{\\pi}{4},\\pi$.\n\n2. Valeurs retenues pour $g''$ : $0,\\frac{3\\pi}{4},\\pi$.\n\n3. Tableau : $$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&2&\\nearrow\\cap&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$\n\n4. Esquisse conforme : maximum absolu $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, minimum absolu $(\\pi,0)$.",
+      "scenario": {
+        "prompt": "Le niveau d'eau d'un port est modélisé sur une demi-marée par $$g(x)=1+\\sin x+\\cos x$$ mètres, où $x\\in[0,\\pi]$ représente un temps réduit. On garde l'étude mathématique complète sur l'intervalle fermé avant d'interpréter les points remarquables.",
+        "instructions": [
+          "Étape 1 : Nombres critiques sur $[0,\\pi]$, extrémités incluses.",
+          "Étape 2 : Valeurs où $g''$ est nulle ou n'existe pas.",
+          "Étape 3 : Tableau de variation complet.",
+          "Étape 4 : Esquisse sur $[0,\\pi]$."
+        ],
+        "extraSteps": [
+          {
+            "prompt": "Interprétation : que représente le point d'inflexion $(\\frac{3\\pi}{4},1)$ ?",
+            "choices": [
+              "C'est le moment où le niveau descend le plus rapidement ; la pente est minimale.",
+              "C'est le moment où le niveau est le plus haut.",
+              "C'est le moment où le niveau cesse de descendre.",
+              "C'est le moment où le port est vide."
+            ],
+            "answer": 0,
+            "hints": [
+              "Que fait le signe de $g''$ autour de $3\\pi/4$ ?"
+            ],
+            "solution": "Le P.I. marque le changement de concavité : $g'$ y passe par son minimum.",
+            "feedback": [
+              "Exact. La concavité change de $-$ à $+$, donc $g'$ atteint son minimum.",
+              "Le maximum est en $x=\\pi/4$, pas au point d'inflexion.",
+              "Le niveau continue de descendre après $3\\pi/4$ jusqu'à $x=\\pi$.",
+              "Le niveau vaut $1$ mètre au P.I.; le port est vide en $x=\\pi$."
+            ],
+            "methodRefs": [
+              "M13"
+            ]
+          },
+          {
+            "prompt": "Interprétation : quelles valeurs décrivent la marée ?",
+            "choices": [
+              "La marée monte toujours et atteint son maximum à $x=\\pi$.",
+              "La pleine mer est $(\\frac{\\pi}{4},1+\\sqrt2)$ et le port est vide à $(\\pi,0)$.",
+              "La pleine mer est $(0,2)$ et le port est vide à $(\\frac{3\\pi}{4},1)$.",
+              "Le niveau descend sans interruption pendant toute la demi-marée."
+            ],
+            "answer": 1,
+            "hints": [
+              "Relisez les conclusions du tableau de variation."
+            ],
+            "solution": "Maximum absolu : $(\\frac{\\pi}{4},1+\\sqrt2)$; minimum absolu : $(\\pi,0)$.",
+            "feedback": [
+              "$g'$ devient négative après $\\pi/4$ : le niveau redescend.",
+              "Exact. Ce sont le maximum absolu et le minimum absolu du modèle.",
+              "$(0,2)$ est un minimum relatif, pas la pleine mer.",
+              "Il monte d'abord de $x=0$ à $x=\\pi/4$."
+            ],
+            "methodRefs": [
+              "M13"
+            ]
+          }
+        ],
+        "interpretation": "Pour $x\\in[0,\\pi]$ : le niveau part de $2$ m, monte jusqu'à la pleine mer $1+\\sqrt2$ m à $x=\\pi/4$, redescend ensuite. La descente est la plus rapide au P.I. $(3\\pi/4,1)$, puis le port atteint son niveau minimal $0$ à $x=\\pi$."
+      }
+    },
+    {
+      "id": "q-a23-q3",
+      "topic": "Pilier 7 · Étude sur un intervalle & fonctions exponentielles",
+      "source": "Final A23 · Q3",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Sur l'intervalle $[0,\\pi]$, soit $$g(x)=\\sin x+\\cos x \\quad \\text{avec} \\quad g'(x)=\\cos x-\\sin x \\quad \\text{et} \\quad g''(x)=-\\sin x-\\cos x.$$ Étudier $g$ sur $[0,\\pi]$.",
+      "methodRefs": [
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "A10"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Déterminer tous les nombres critiques de $g$ sur $[0,\\pi]$, sachant que $g'(x)=\\cos x-\\sin x$.",
+          "choices": [
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}.\\ g'(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.\\ \\text{Nombres critiques : }0,\\frac{\\pi}{4},\\pi.$",
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}.\\ \\text{Nombre critique : }x=\\frac{\\pi}{4}.$",
+            "$g'(x)=0\\iff x=\\frac{\\pi}{4}\\text{ ou }x=\\frac{3\\pi}{4}.\\ \\text{Nombres critiques : }x=\\frac{\\pi}{4},\\frac{3\\pi}{4}.$",
+            "$g'(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.\\ \\text{Nombres critiques : }0,\\pi.$"
+          ],
+          "answer": 0,
+          "hints": [
+            "Sur $[a,b]$, testez $g'(x)=0$ et les deux extrémités."
+          ],
+          "solution": "$$g'(x)=0\\iff x=\\frac{\\pi}{4};\\qquad g'(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.$$",
+          "feedback": [
+            "Exact. Les extrémités d'un intervalle fermé comptent.",
+            "Il manque les deux extrémités de $[0,\\pi]$.",
+            "$3\\pi/4$ vient de $g''$, pas de $g'$.",
+            "La solution de $g'(x)=0$ est omise."
+          ],
+          "methodRefs": [
+            "M11",
+            "A10"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer les valeurs de $x\\in[0,\\pi]$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-\\sin x-\\cos x$.",
+          "choices": [
+            "$g''(x)=0\\iff x=\\frac{\\pi}{4}.\\ \\text{Valeur : }x=\\frac{\\pi}{4}.$",
+            "$g''(x)=0\\iff x=\\frac{3\\pi}{4}.\\ \\text{Valeur : }x=\\frac{3\\pi}{4}.$",
+            "$g''(x)=0\\iff x=\\frac{3\\pi}{4}.\\ g''(x)\\text{ n'existe pas si }x=0\\text{ ou }x=\\pi.\\ \\text{Valeurs : }0,\\frac{3\\pi}{4},\\pi.$",
+            "$g''(x)=0\\iff x=\\frac{\\pi}{4}\\text{ ou }x=\\frac{3\\pi}{4}.\\ \\text{Valeurs : }\\frac{\\pi}{4},\\frac{3\\pi}{4}.$"
+          ],
+          "answer": 2,
+          "hints": [
+            "Résolvez $\\tan x=-1$ sur $[0,\\pi]$.",
+            "Gardez les extrémités."
+          ],
+          "solution": "$$g''(x)=0\\iff x=\\frac{3\\pi}{4};\\qquad x=0,\\pi\\text{ sont aussi retenus sur }[0,\\pi].$$",
+          "feedback": [
+            "Cette valeur annule $g'$, pas $g''$.",
+            "Il manque les extrémités retenues par la convention sur $[0,\\pi]$.",
+            "Exact.",
+            "Seule $3\\pi/4$ annule $-\\sin x-\\cos x$."
+          ],
+          "methodRefs": [
+            "M12"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Choisir le tableau de variation complet et ses conclusions.",
+          "choices": [
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&1&\\nearrow\\cap&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$Min. rel. $(0,1)$, max. rel. $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, min. abs. $(\\pi,-1)$.",
+            "$$\\begin{array}{c|ccccc}x&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&0&-&-&-&\\\\g''&-&-&0&+&\\\\g&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$Max. abs. $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, min. abs. $(\\pi,-1)$.",
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&1&\\nearrow\\cap&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$Min. rel. $(0,1)$, max. abs. $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, min. abs. $(\\pi,-1)$.",
+            "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&+&+&+&0&-&\\\\g&1&\\nearrow\\cup&\\sqrt2&\\searrow\\cup&0&\\searrow\\cap&-1\\end{array}$$Min. rel. $(0,1)$, max. abs. $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, min. abs. $(\\pi,-1)$."
+          ],
+          "answer": 2,
+          "hints": [
+            "Comparez $\\cos x$ et $\\sin x$ avant et après $\\pi/4$.",
+            "Le signe de $g''$ change en $3\\pi/4$."
+          ],
+          "solution": "$$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&1&\\nearrow\\cap&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$",
+          "feedback": [
+            "Le maximum $\\sqrt2$ dépasse toutes les autres valeurs : il est absolu.",
+            "L'extrémité $0$ doit être présente dans le tableau.",
+            "Parfait.",
+            "Le signe de $g''$ est négatif avant $3\\pi/4$, positif après."
+          ],
+          "methodRefs": [
+            "M13"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Choisir l'esquisse de $g$ sur $[0,\\pi]$.",
+          "choices": [
+            "Graphe 1",
+            "Graphe 2",
+            "Graphe 3",
+            "Graphe 4"
+          ],
+          "answer": 2,
+          "hints": [
+            "Comparez les asymptotes, les valeurs remarquables et la concavité."
+          ],
+          "solution": "Placer $(0,1)$, $(\\pi/4,\\sqrt2)$, $(3\\pi/4,0)$ et $(\\pi,-1)$.",
+          "feedback": [
+            "Le maximum en $\\pi/4$ n'est pas une extrémité.",
+            "Les rôles des extrémités sont inversés : $0$ donne un minimum relatif et $\\pi$ le minimum absolu.",
+            "Exact : maximum en $\\pi/4$, P.I. en $3\\pi/4$, minimum absolu en $\\pi$.",
+            "La courbe est décalée verticalement : les valeurs $1$, $\\sqrt2$, $0$ et $-1$ doivent être respectées."
+          ],
+          "images": [
+            {
+              "src": "packs/mat1903-calc/img/a23-q3-sketch-B.svg",
+              "alt": "Esquisse 1"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q3-sketch-C.svg",
+              "alt": "Esquisse 2"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q3-sketch-A.svg",
+              "alt": "Esquisse 3"
+            },
+            {
+              "src": "packs/mat1903-calc/img/a23-q3-sketch-D.svg",
+              "alt": "Esquisse 4"
+            }
+          ],
+          "methodRefs": [
+            "M14"
+          ]
+        }
+      ],
+      "solution": "1. Nombres critiques : $0,\\frac{\\pi}{4},\\pi$.\n\n2. Valeurs retenues pour $g''$ : $0,\\frac{3\\pi}{4},\\pi$.\n\n3. Tableau : $$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&1&\\nearrow\\cap&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$\n\n4. Esquisse conforme : maximum absolu $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, minimum absolu $(\\pi,-1)$."
+    },
+    {
+      "id": "q-h24-q3",
+      "topic": "Pilier 7 · Étude sur un intervalle & fonctions exponentielles",
+      "source": "Final H24 · Q3",
+      "category": "practice",
+      "difficulty": 3,
+      "question": "Soit $$g(x)=(2-x)e^x \\quad \\text{avec} \\quad g'(x)=(1-x)e^x \\quad \\text{et} \\quad g''(x)=-xe^x.$$ On donne $$\\lim_{x\\to-\\infty}xe^x=0.$$ Étudier $g$.",
+      "methodRefs": [
+        "A9",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14"
+      ],
+      "steps": [
+        {
+          "prompt": "Étape 1 : Déterminer $\\lim_{x\\to-\\infty}g(x)$ et l'asymptote horizontale associée.",
+          "choices": [
+            "$\\lim_{x\\to-\\infty}(2-x)e^x=2(+\\infty)=+\\infty:\\ \\text{aucune A.H. en }-\\infty$",
+            "$\\lim_{x\\to-\\infty}(2-x)e^x=\\lim_{x\\to-\\infty}(2e^x-xe^x)=0:\\ y=0\\text{ est une A.H. en }-\\infty$",
+            "$\\lim_{x\\to-\\infty}(2-x)e^x=2:\\ y=2\\text{ est une A.H. en }-\\infty$",
+            "$\\lim_{x\\to-\\infty}(2-x)e^x=-\\infty:\\ \\text{aucune A.H. en }-\\infty$"
+          ],
+          "answer": 1,
+          "hints": [
+            "Distribuez : $(2-x)e^x=2e^x-xe^x$.",
+            "Utilisez $\\lim_{x\\to-\\infty}xe^x=0$."
+          ],
+          "solution": "$$\\lim_{x\\to-\\infty}(2-x)e^x=\\lim_{x\\to-\\infty}(2e^x-xe^x)=0$$",
+          "feedback": [
+            "Mettez $e^x$ en facteur : $xe^x\\to0$, donc le terme dominant tend vers $0$.",
+            "Exact, en utilisant la limite donnée.",
+            "Le facteur $(2-x)$ tend vers $+\\infty$, mais $e^x$ tend vers $0$ plus vite.",
+            "Le produit tend vers $0^+$, pas vers $-\\infty$."
+          ],
+          "methodRefs": [
+            "M10",
+            "A9"
+          ]
+        },
+        {
+          "prompt": "Étape 2 : Déterminer le comportement de $g$ en $+\\infty$.",
+          "choices": [
+            "$\\lim_{x\\to+\\infty}(2-x)e^x=0:\\ y=0\\text{ est aussi une A.H. en }+\\infty$",
+            "$\\lim_{x\\to+\\infty}(2-x)e^x=e^2:\\ \\text{limite finie}$",
+            "$\\lim_{x\\to+\\infty}(2-x)e^x=+\\infty$",
+            "$\\lim_{x\\to+\\infty}(2-x)e^x=-\\infty:\\ \\text{aucune A.H. en }+\\infty$"
+          ],
+          "answer": 3,
+          "hints": [
+            "Séparez les signes de $2-x$ et de $e^x$."
+          ],
+          "solution": "$$\\lim_{x\\to+\\infty}(2-x)e^x=-\\infty$$",
+          "feedback": [
+            "Ici $2-x\\to-\\infty$ et $e^x\\to+\\infty$ : le produit tend vers $-\\infty$.",
+            "Il n'y a pas de forme indéterminée : c'est le produit de $-\\infty$ et $+\\infty$.",
+            "Le facteur $2-x$ est négatif pour $x>2$.",
+            "Exact."
+          ],
+          "methodRefs": [
+            "M10",
+            "A9"
+          ]
+        },
+        {
+          "prompt": "Étape 3 : Déterminer les nombres critiques de $g$, sachant que $g'(x)=(1-x)e^x$.",
+          "choices": [
+            "$g'(x)=0\\iff1-x=0\\iff x=1.\\ \\text{Nombre critique : }x=1.$",
+            "$g'(x)=0\\iff x=0.\\ \\text{Nombre critique : }x=0.$",
+            "$g'(x)=0\\iff x=2.\\ \\text{Nombre critique : }x=2.$",
+            "$g'(x)\\text{ n'existe pas si }x=0.\\ \\text{Nombre critique : }x=0.$"
+          ],
+          "answer": 0,
+          "hints": [
+            "$e^x$ ne s'annule jamais.",
+            "Résolvez $1-x=0$."
+          ],
+          "solution": "$$g'(x)=0\\iff x=1$$",
+          "feedback": [
+            "Exact.",
+            "$x=0$ annule $g''$, pas $g'$.",
+            "$x=2$ annule $g(x)$, pas $g'(x)$.",
+            "$(1-x)e^x$ existe pour tout $x$ réel."
+          ],
+          "methodRefs": [
+            "M11"
+          ]
+        },
+        {
+          "prompt": "Étape 4 : Déterminer les valeurs de $x$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-xe^x$.",
+          "choices": [
+            "$g''(x)=0\\iff x=1.\\ \\text{Valeur : }x=1.$",
+            "$g''(x)\\text{ n'existe pas si }x=0.\\ \\text{Valeur : }x=0.$",
+            "$g''(x)=0\\iff x=0.\\ g''\\text{ existe pour tout }x\\in\\mathbb{R}.\\ \\text{Valeur : }x=0.$",
+            "$g''(x)=0\\iff x=-1.\\ \\text{Valeur : }x=-1.$"
+          ],
+          "answer": 2,
+          "hints": [
+            "$e^x>0$ pour tout $x$.",
+            "Résolvez $-x=0$."
+          ],
+          "solution": "$$g''(x)=0\\iff x=0$$",
+          "feedback": [
+            "$1$ annule $g'$, pas $g''$.",
+            "$-xe^x$ existe pour tout $x$ réel.",
+            "Exact.",
+            "Résolvez $-x=0$, pas $e^x=0$."
+          ],
+          "methodRefs": [
+            "M12"
+          ]
+        },
+        {
+          "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
+          "choices": [
+            "$$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&-\\infty\\end{array}$$P.I. $(0,2)$, max. abs. $(1,e)$.",
+            "$$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&-&-&0&+&+&\\\\g&0&\\nearrow\\cap&2&\\nearrow\\cup&e&\\searrow\\cup&-\\infty\\end{array}$$P.I. $(0,2)$, max. abs. $(1,e)$.",
+            "$$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&0\\end{array}$$P.I. $(0,2)$, max. abs. $(1,e)$.",
+            "$$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&-\\infty\\end{array}$$P.I. $(0,2)$, max. rel. $(1,e)$."
+          ],
+          "answer": 0,
+          "hints": [
+            "$g'$ change de signe en $1$.",
+            "$g''$ change de signe en $0$."
+          ],
+          "solution": "$$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&-\\infty\\end{array}$$",
+          "feedback": [
+            "Parfait. La courte croissance concave vers le haut change en $x=0$.",
+            "$g''=-xe^x$ : elle est positive pour $x<0$, négative pour $x>0$.",
+            "En $+\\infty$, $g(x)\\to-\\infty$ : le tableau ne peut pas se terminer à $0$.",
+            "Le maximum vaut $e$ alors que $g(x)\\to-\\infty$ des deux côtés extérieurs à l'intervalle pertinent : il est absolu."
+          ],
+          "methodRefs": [
+            "M13"
+          ]
+        },
+        {
+          "prompt": "Étape 6 : Choisir l'esquisse du graphe de $g$.",
+          "choices": [
+            "Graphe 1",
+            "Graphe 2",
+            "Graphe 3",
+            "Graphe 4"
+          ],
+          "answer": 3,
+          "hints": [
+            "Comparez les asymptotes, les valeurs remarquables et la concavité."
+          ],
+          "solution": "Tracer $y=0$ à gauche, puis placer $(0,2)$ et $(1,e)$; la courbe croise $y=0$ en $x=2$ avant de descendre.",
+          "feedback": [
+            "Le maximum est en $x=1$, pas en $x=0$.",
+            "Le point d'inflexion doit être en $x=0$, avec maximum en $x=1$.",
+            "À $+\\infty$, la courbe descend vers $-\\infty$ : l'asymptote $y=0$ n'est qu'en $-\\infty$.",
+            "Exact : A.H. $y=0$ à $-\\infty$, P.I. $(0,2)$ et maximum absolu $(1,e)$."
+          ],
+          "images": [
+            {
+              "src": "packs/mat1903-calc/img/h24-q3-sketch-C.svg",
+              "alt": "Esquisse 1"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q3-sketch-D.svg",
+              "alt": "Esquisse 2"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q3-sketch-B.svg",
+              "alt": "Esquisse 3"
+            },
+            {
+              "src": "packs/mat1903-calc/img/h24-q3-sketch-A.svg",
+              "alt": "Esquisse 4"
+            }
+          ],
+          "methodRefs": [
+            "M14"
+          ]
+        }
+      ],
+      "solution": "1. $$\\lim_{x\\to-\\infty}g(x)=0$$ donc $y=0$ est une A.H. en $-\\infty$.\n\n2. $$\\lim_{x\\to+\\infty}g(x)=-\\infty.$$\n\n3. Nombre critique : $x=1$, $g(1)=e$.\n\n4. $g''(x)=0$ pour $x=0$, $g(0)=2$.\n\n5. Tableau : $$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&-\\infty\\end{array}$$\n\n6. Esquisse conforme : P.I. $(0,2)$ et maximum absolu $(1,e)$.",
+      "scenario": {
+        "prompt": "La popularité d'une tendance est modélisée par $$g(x)=(2-x)e^x$$ milliers de vues par jour, où $x$ est le nombre de semaines depuis le lancement. L'histoire n'a de sens que pour $x\\leq2$, mais on étudie d'abord la fonction mathématiquement sur $\\mathbb{R}$.",
+        "instructions": [
+          "Étape 1 : Comportement en $-\\infty$ et asymptote horizontale.",
+          "Étape 2 : Comportement en $+\\infty$.",
+          "Étape 3 : Nombres critiques.",
+          "Étape 4 : Valeurs où $g''$ est nulle ou n'existe pas.",
+          "Étape 5 : Tableau de variation complet.",
+          "Étape 6 : Esquisse du graphe."
+        ],
+        "extraSteps": [
+          {
+            "prompt": "Interprétation : que représente le point d'inflexion $(0,2)$ ?",
+            "choices": [
+              "Le jour où la tendance atteint son maximum de popularité.",
+              "Le jour du lancement, où la croissance cesse d'accélérer et commence à ralentir.",
+              "Le jour où la tendance devient nulle.",
+              "Le jour où la tendance disparaît définitivement."
+            ],
+            "answer": 1,
+            "hints": [
+              "Observez le signe de $g''$ autour de $0$."
+            ],
+            "solution": "Au P.I., $g'$ passe par son maximum : la croissance est la plus rapide au lancement.",
+            "feedback": [
+              "Le maximum est en $x=1$, pas au P.I.",
+              "Exact. La concavité change de $+$ à $-$ en $x=0$.",
+              "$g(0)=2$ milliers de vues, loin de zéro.",
+              "La valeur $0$ est atteinte en $x=2$."
+            ],
+            "methodRefs": [
+              "M13"
+            ]
+          },
+          {
+            "prompt": "Interprétation : que représentent le maximum et $g(2)=0$ ?",
+            "choices": [
+              "La tendance atteint $e$ mille vues au début, puis remonte à $2$ mille vues.",
+              "La tendance atteint son maximum à $x=0$ et disparaît à $x=1$.",
+              "Le pic est $e$ mille vues à la semaine $1$; à la semaine $2$, la tendance est morte.",
+              "La tendance dépasse $e$ mille vues après la semaine $2$."
+            ],
+            "answer": 2,
+            "hints": [
+              "Relisez les conclusions du tableau."
+            ],
+            "solution": "Maximum absolu $(1,e)$; $g(2)=0$ marque la fin de la tendance dans le contexte.",
+            "feedback": [
+              "Après le maximum, $g$ diminue jusqu'à $0$.",
+              "Les deux valeurs de $x$ sont inversées.",
+              "Exact.",
+              "Le modèle n'a pas de sens au-delà de $x=2$ et $g(2)=0$."
+            ],
+            "methodRefs": [
+              "M13"
+            ]
+          }
+        ],
+        "interpretation": "Pour $x\\leq2$ : avant le lancement ($x<0$), le modèle mathématique tend vers $0$; au lancement $(0,2)$, la croissance cesse d'accélérer; au pic $(1,e)$, la popularité est maximale; à $x=2$, la tendance est morte. Les valeurs $x>2$ sont hors du contexte."
+      }
     }
   ]
 }
