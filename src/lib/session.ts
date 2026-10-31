@@ -43,16 +43,24 @@ export function pickQuestions(pool: Question[], count: number, attempts: Attempt
   return shuffle(chosen);
 }
 
-export function newItem(q: Question): ItemState {
+/** Steps shown for an item: shared steps, plus scenario interpretation steps in Contexte mode. */
+export function runtimeSteps(q: Question, contextMode = false): Question['steps'] {
+  const extra = contextMode ? (q.scenario?.extraSteps ?? []) : [];
+  return extra.length ? [...q.steps, ...extra] : q.steps;
+}
+
+export function newItem(q: Question, contextMode = false): ItemState {
+  const steps = runtimeSteps(q, contextMode);
   return {
     reported: false,
     step: 0,
-    steps: q.steps.map(() => ({ selected: null, struck: [], wrong: [], tries: 0, hintsShown: 0, solved: false, revealed: false, firstTry: null })),
-    orders: q.steps.map((s) => shuffle(s.choices.map((_, i) => i))),
+    steps: steps.map(() => ({ selected: null, struck: [], wrong: [], tries: 0, hintsShown: 0, solved: false, revealed: false, firstTry: null })),
+    orders: steps.map((s) => shuffle(s.choices.map((_, i) => i))),
     confidence: 'confident',
     done: false,
     viewedAtMs: null,
     completedAtMs: null,
+    ...(contextMode && q.scenario ? { contextMode: true } : {}),
   };
 }
 
@@ -61,10 +69,10 @@ export function isCleanSolve(item: ItemState): boolean {
   return item.done && item.steps.every((s) => s.firstTry === true && !s.revealed && s.hintsShown === 0);
 }
 
-export function createSession(course: CoursePack, questions: Question[], mode: SessionMode): ActiveSession {
+export function createSession(course: CoursePack, questions: Question[], mode: SessionMode, contextMode = false): ActiveSession {
   const now = Date.now();
   const items: Record<string, ItemState> = {};
-  for (const q of questions) items[q.id] = newItem(q);
+  for (const q of questions) items[q.id] = newItem(q, contextMode);
   const first = questions[0];
   if (first) items[first.id].viewedAtMs = 0;
   return {

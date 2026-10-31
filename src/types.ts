@@ -1,6 +1,12 @@
 export type ThemeName = 'canvas' | 'sepia' | 'slate' | 'contrast';
 
 export type Category = 'theory' | 'practice';
+export type QuestionMode = 'exam' | 'context';
+
+export interface ImageRef {
+  src: string;
+  alt: string;
+}
 export type SessionMode = 'balanced' | 'theory' | 'practice';
 export type Confidence = 'confident' | 'guess' | 'low';
 
@@ -11,6 +17,22 @@ export interface Step {
   answer: number;
   hints: string[];
   solution?: string;
+  /** Per-choice feedback, parallel to `choices`. */
+  feedback?: string[];
+  /** Per-choice image metadata, parallel to `choices`. */
+  images?: ImageRef[];
+  /** Printed Methods & Algebra sheet references. */
+  methodRefs?: string[];
+}
+
+/** Optional real-world skin shown by the Examen / Contexte toggle. */
+export interface Scenario {
+  prompt: string;
+  /** Instructions parallel to the shared `Question.steps`. */
+  instructions?: string[];
+  /** Contexte-only interpretation steps appended after the shared steps. */
+  extraSteps?: Step[];
+  interpretation?: string;
 }
 
 export interface Question {
@@ -25,6 +47,11 @@ export interface Question {
   difficulty?: number;
   /** Where the problem comes from, e.g. "Intra H24 · Q1.a". */
   source?: string;
+  /** Figure shown under the prompt in both modes. */
+  promptImage?: ImageRef;
+  /** Printed Methods & Algebra sheet references. */
+  methodRefs?: string[];
+  scenario?: Scenario;
 }
 
 export interface CheatSection {
@@ -59,6 +86,8 @@ export interface Attempt {
   confidence: Confidence;
   durationMs: number;
   ts: number;
+  /** True when the attempt was solved in Contexte mode; Examen stats ignore it. */
+  contextMode?: boolean;
 }
 
 export interface SessionRecord {
@@ -98,6 +127,8 @@ export interface ItemState {
   done: boolean;
   viewedAtMs: number | null;
   completedAtMs: number | null;
+  /** Whether this item was initialized for Contexte mode. */
+  contextMode?: boolean;
 }
 
 export interface ActiveSession {
@@ -151,6 +182,8 @@ export interface AppState {
   sync: SyncSettings;
   /** Version of the bundled course packs last installed into this state. */
   bundledVersion: number;
+  /** Last Examen / Contexte choice, remembered globally. */
+  lastQuestionMode: QuestionMode;
   /** Ids of courses the user removed, so sync does not resurrect them. */
   removed: string[];
   updatedAt: number;

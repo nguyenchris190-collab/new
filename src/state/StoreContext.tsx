@@ -189,7 +189,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       startSession: (course, questions, mode) =>
         update((s) => {
           const lastAt = s.sessions.reduce<number | null>((t, r) => (r.answered > 0 && (t === null || r.endedAt > t) ? r.endedAt : t), null);
-          const created = createSession(course, questions, mode);
+          const created = createSession(course, questions, mode, s.lastQuestionMode === 'context');
           const active: ActiveSession = { ...created, startQuoteId: sessionStartQuote(lastAt, created.startedAt, created.id).id };
           const record: SessionRecord = {
             id: active.id,
@@ -237,6 +237,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             confidence: item.confidence,
             durationMs: Math.max(0, elapsed - (item.viewedAtMs ?? elapsed)),
             ts: now,
+            contextMode: item.contextMode === true,
           };
           const active: ActiveSession = { ...a, breakQuoteId: null, items: { ...a.items, [qid]: { ...item, done: true, completedAtMs: elapsed } } };
           const rec = s.sessions.find((r) => r.id === a.id);

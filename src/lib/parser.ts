@@ -1,4 +1,4 @@
-import type { Category, CheatSection, CoursePack, Question, Step } from '../types';
+import type { Category, CheatSection, CoursePack, ImageRef, Question, Scenario, Step } from '../types';
 import { hash, isRecord } from './util';
 
 /**
@@ -40,6 +40,19 @@ const strList = (v: unknown): string[] => {
   if (v === undefined || v === null) return [];
   const arr = Array.isArray(v) ? v : [v];
   return arr.map(textOf).filter((s): s is string => !!s);
+};
+
+const imageOf = (v: unknown): ImageRef | undefined => {
+  if (!isRecord(v)) return undefined;
+  const src = str(pick(v, ['src', 'url', 'href']));
+  if (!src) return undefined;
+  return { src, alt: str(pick(v, ['alt', 'description'])) ?? '' };
+};
+
+const imageList = (v: unknown): ImageRef[] | undefined => {
+  if (v === undefined || v === null) return undefined;
+  const images = (Array.isArray(v) ? v : [v]).map(imageOf).filter((img): img is ImageRef => !!img);
+  return images.length ? images : undefined;
 };
 
 const PROMPT_KEYS = ['prompt', 'question', 'stem', 'text', 'body', 'q', 'title'];
@@ -105,7 +118,35 @@ function parseStep(o: Obj, fallbackPrompt?: string): Step | string {
   if (prompt) step.prompt = prompt;
   const sol = textOf(pick(o, SOLUTION_KEYS));
   if (sol) step.solution = sol;
+  const feedback = strList(pick(o, ['feedback', 'feedbacks', 'choiceFeedback']));
+  if (feedback.length) step.feedback = feedback;
+  const images = imageList(pick(o, ['images', 'imageRefs', 'imageOptions']));
+  if (images) step.images = images;
+  const methodRefs = strList(pick(o, ['methodRefs', 'methods', 'refs']));
+  if (methodRefs.length) step.methodRefs = methodRefs;
   return step;
+}
+
+function parseScenario(raw: unknown): Scenario | undefined {
+  if (!isRecord(raw)) return undefined;
+  const prompt = textOf(pick(raw, ['prompt', 'question', 'story']));
+  if (!prompt) return undefined;
+  const scenario: Scenario = { prompt };
+  const instructions = strList(pick(raw, ['instructions', 'steps', 'stepPrompts']));
+  if (instructions.length) scenario.instructions = instructions;
+  const extraRaw = pick(raw, ['extraSteps', 'additionalSteps', 'interpretationSteps']);
+  if (Array.isArray(extraRaw)) {
+    const extraSteps: Step[] = [];
+    for (const s of extraRaw) {
+      if (!isRecord(s)) continue;
+      const parsed = parseStep(s);
+      if (typeof parsed !== 'string') extraSteps.push(parsed);
+    }
+    if (extraSteps.length) scenario.extraSteps = extraSteps;
+  }
+  const interpretation = textOf(pick(raw, ['interpretation', 'meaning']));
+  if (interpretation) scenario.interpretation = interpretation;
+  return scenario;
 }
 
 function parseCategory(o: Obj): Category {
@@ -154,6 +195,12 @@ function parseQuestion(o: Obj, _index: number, defaultTopic: string): Question |
   if (Number.isFinite(diff)) q.difficulty = diff;
   const source = str(pick(o, ['source', 'exam', 'ref', 'reference']));
   if (source) q.source = source;
+  const methodRefs = strList(pick(o, ['methodRefs', 'methods', 'refs']));
+  if (methodRefs.length) q.methodRefs = methodRefs;
+  const promptImage = imageOf(pick(o, ['promptImage', 'figure', 'diagram']));
+  if (promptImage) q.promptImage = promptImage;
+  const scenario = parseScenario(pick(o, ['scenario', 'context']));
+  if (scenario) q.scenario = scenario;
   return q;
 }
 

@@ -12,6 +12,7 @@ export const initialState = (): AppState => ({
   active: null,
   sync: { enabled: false, provider: 'supabase', url: '', apiKey: '', syncKey: '', lastSyncedAt: null },
   bundledVersion: 0,
+  lastQuestionMode: 'exam',
   removed: [],
   updatedAt: 0,
 });
