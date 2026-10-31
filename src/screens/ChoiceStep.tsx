@@ -64,6 +64,7 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
   const stepMisses = state.wrong.length;
   const misses = priorMisses + stepMisses;
   const err = stepMisses > 0 ? errorQuote(misses, `${quoteSeed}:${misses}`) : null;
+  const hasImages = !!step.images?.length;
 
   const select = (idx: number) => {
     if (state.solved || disabled) return;
@@ -112,7 +113,7 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
         </div>
       )}
 
-      <ul className="space-y-2.5" role="radiogroup" aria-label="Answer choices">
+      <ul className={hasImages ? 'grid grid-cols-1 gap-2.5 sm:grid-cols-2' : 'space-y-2.5'} role="radiogroup" aria-label="Answer choices">
         {order.map((idx, pos) => {
           const selected = state.selected === idx;
           const struck = state.struck.includes(idx);
@@ -167,18 +168,27 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
                 }}
                 onTouchEnd={clearTimer}
                 onTouchCancel={clearTimer}
-                className={`no-callout group flex w-full min-h-[56px] items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors disabled:cursor-default hc-thick ${cls}`}
+                className={`no-callout group relative w-full min-h-[56px] overflow-hidden rounded-lg border text-left transition-colors disabled:cursor-default hc-thick ${
+                  hasImages ? 'flex flex-col items-stretch gap-2 p-3' : 'flex items-center gap-3 px-3 py-2'
+                } ${cls}`}
                 data-choice={correct ? 'correct' : wrong ? 'wrong' : selected ? 'selected' : undefined}
               >
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-semibold ${
-                    correct ? 'border-success bg-success text-bg' : selected && wrong ? 'border-danger bg-danger text-bg' : selected ? 'border-accent bg-accent text-on-accent' : 'border-strong text-muted'
+                  className={`${
+                    hasImages ? 'absolute left-2 top-2 z-10' : 'flex shrink-0'
+                  } h-8 w-8 items-center justify-center rounded-full border text-sm font-semibold ${
+                    correct ? 'border-success bg-success text-bg' : selected && wrong ? 'border-danger bg-danger text-bg' : selected ? 'border-accent bg-accent text-on-accent' : 'border-strong bg-bg text-muted'
                   }`}
                   aria-hidden="true"
                 >
                   {correct ? <IconCheck size={16} /> : String.fromCharCode(65 + pos)}
                 </span>
-                <span className="min-w-0 flex-1 py-1">
+                {hasImages && step.images?.[idx] && (
+                  <span className="block overflow-hidden rounded border border-border bg-bg">
+                    <img src={step.images[idx].src} alt={step.images[idx].alt} className="mx-auto h-auto max-h-56 w-full object-contain" />
+                  </span>
+                )}
+                <span className={`min-w-0 flex-1 py-1${hasImages ? ' pl-10' : ''}`}>
                   <span className={`choice-label${struck ? ' struck' : ''}`}>
                     <MathText text={step.choices[idx]} autoMath />
                   </span>
@@ -188,6 +198,18 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
           );
         })}
       </ul>
+
+      {!state.solved && state.wrong.length > 0 && step.feedback && (
+        <div className="mt-4 space-y-2" aria-live="polite">
+          {state.wrong.map((idx) =>
+            step.feedback?.[idx] ? (
+              <div key={idx} className="rounded-md border border-danger/40 bg-danger-bg px-3 py-2 text-sm leading-relaxed" role="status">
+                <MathText text={step.feedback[idx]} />
+              </div>
+            ) : null,
+          )}
+        </div>
+      )}
 
       {!state.solved && !disabled && (
         <div className="mt-5 flex flex-col items-start gap-2">
