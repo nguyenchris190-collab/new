@@ -3,10 +3,10 @@ import type { ActiveSession, Confidence, ItemState, QuestionMode, StepState } fr
 import { cleanStreakAt, liveElapsed, pacingDropped } from '../lib/analytics';
 import { newItem, runtimeSteps } from '../lib/session';
 import { DAILY_MILESTONES, fatigueQuote, quoteById, streakQuote } from '../lib/quotes';
-import { formatClock } from '../lib/util';
+import { formatClock, parseClockInput } from '../lib/util';
 import { useStore } from '../state/StoreContext';
 import { ThemeToggle } from '../components/ThemeToggle';
-import { IconChevronLeft, IconChevronRight, IconClose, IconDoc, IconGrid, IconPause, IconPlay, IconWarn, IconWrench } from '../components/icons';
+import { IconCheck, IconChevronLeft, IconChevronRight, IconClose, IconDoc, IconGrid, IconPause, IconPlay, IconWarn, IconWrench } from '../components/icons';
 import { QuoteLine } from '../components/QuoteLine';
 import { ReportModal } from './ReportModal';
 import { CheatSheetDrawer } from './CheatSheetDrawer';
@@ -19,7 +19,7 @@ const BURNOUT_MS = 45 * 60 * 1000;
 const AWAY_PAUSE_MS = 5 * 60 * 1000;
 
 export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
-  const { state, courseById, patchActive, completeQuestion, setPaused, finishSession, closeSession, setLastQuestionMode } = useStore();
+  const { state, courseById, patchActive, completeQuestion, setPaused, setSessionElapsed, finishSession, closeSession, setLastQuestionMode } = useStore();
   const active = state.active;
   const course = active ? courseById(active.courseId) : undefined;
   const [navOpen, setNavOpen] = useState(false);
@@ -27,6 +27,9 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   const [reportOpen, setReportOpen] = useState(false);
   const [review, setReview] = useState<number | null>(null);
   const [now, setNow] = useState(Date.now());
+  const [editingTime, setEditingTime] = useState(false);
+  const [timeDraft, setTimeDraft] = useState('');
+  const timeInputRef = useRef<HTMLInputElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
   const running = !!active?.runningSince && !active.finished;
@@ -198,6 +201,24 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
   };
 
   const isLast = viewIndex === total - 1;
+  const openTimeEditor = () => {
+    setTimeDraft(formatClock(elapsed));
+    setEditingTime(true);
+    window.setTimeout(() => {
+      timeInputRef.current?.focus();
+      timeInputRef.current?.select();
+    }, 0);
+  };
+
+  const commitTimeEdit = () => {
+    const parsed = parseClockInput(timeDraft);
+    if (parsed !== null) {
+      setSessionElapsed(parsed);
+      setNow(Date.now());
+    }
+    setEditingTime(false);
+  };
+
   const qProps =
     question && item && qid
       ? {
@@ -205,7 +226,7 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
           item,
           mode: (item.contextMode ? 'context' : 'exam') as QuestionMode,
           onModeChange: changeQuestionMode,
-          disabled: paused || active.finished,
+          disabled: active.finished,
           onStepChange: setStep,
           onCheck: check,
           onReveal: reveal,
@@ -233,14 +254,59 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
             </p>
           </div>
           {!active.finished && (
-            <button
-              className={`btn-icon gap-1.5 px-2 tabular-nums ${paused ? 'text-accent' : ''}`}
-              onClick={() => setPaused(!paused)}
-              aria-label={paused ? 'Resume timer' : 'Pause timer'}
-            >
-              {paused ? <IconPlay size={18} /> : <IconPause size={18} />}
-              <span className="text-sm font-medium">{formatClock(elapsed)}</span>
-            </button>
+            <div className="flex items-center">
+              <button
+                type="button"
+                className={`btn-icon px-2 ${paused ? 'text-accent' : ''}`}
+                onClick={() => setPaused(!paused)}
+                aria-label={paused ? 'Resume timer' : 'Pause timer'}
+                title={paused ? 'Resume timer' : 'Pause timer'}
+              >
+                {paused ? <IconPlay size={18} /> : <IconPause size={18} />}
+              </button>
+              {editingTime ? (
+                <form
+                  className="flex items-center gap-1"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    commitTimeEdit();
+                  }}
+                >
+                  <input
+                    ref={timeInputRef}
+                    type="text"
+                    inputMode="text"
+                    value={timeDraft}
+                    onChange={(e) => setTimeDraft(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Escape') {
+                        e.preventDefault();
+                        setEditingTime(false);
+                      }
+                    }}
+                    placeholder="MM:SS"
+                    aria-label="Set elapsed time (MM:SS or minutes)"
+                    className="w-20 rounded border border-accent bg-bg px-1.5 py-1 text-center font-mono text-base tabular-nums text-ink focus:outline-none"
+                  />
+                  <button type="submit" className="btn-icon text-success" aria-label="Save time" title="Save time">
+                    <IconCheck size={18} />
+                  </button>
+                  <button type="button" className="btn-icon text-muted" onClick={() => setEditingTime(false)} aria-label="Cancel time edit" title="Cancel">
+                    <IconClose size={16} />
+                  </button>
+                </form>
+              ) : (
+                <button
+                  type="button"
+                  className={`btn-icon px-2 tabular-nums ${paused ? 'text-accent' : ''}`}
+                  onClick={openTimeEditor}
+                  aria-label={`Elapsed time ${formatClock(elapsed)}${paused ? ' (paused)' : ''}. Tap to edit time.`}
+                  title="Tap to edit time (e.g. 12:30 or 15)"
+                >
+                  <span className="text-sm font-medium">{formatClock(elapsed)}</span>
+                </button>
+              )}
+            </div>
           )}
           {course.cheatSheet.length > 0 && (
             <button className="btn-icon" onClick={() => setSheetOpen(true)} aria-label="Open formula cheat sheet">
@@ -296,22 +362,23 @@ export function QuizRunner({ goWorkspace }: { goWorkspace: () => void }) {
               </button>
             )}
 
-            {paused ? (
-              <div className="card flex flex-col items-center gap-4 px-6 py-16 text-center">
-                <IconPause size={32} className="text-muted" />
-                <p className="font-serif text-xl font-semibold">Session paused</p>
-                <p className="text-sm text-muted">The question is hidden while the clock is stopped.</p>
-                <button className="btn-primary" onClick={() => setPaused(false)}>
-                  <IconPlay size={18} /> Resume
-                </button>
-              </div>
-            ) : qProps ? (
+            {qProps ? (
               <article className="card p-4 sm:p-6" aria-label={`Question ${(viewIndex ?? 0) + 1}`}>
                 <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
                   <span className="rounded border border-border px-2 py-0.5 font-medium">{qProps.question.topic}</span>
                   {qProps.question.source && <span className="text-muted">{qProps.question.source}</span>}
                   <span className="text-muted">{qProps.question.category === 'theory' ? 'Theory' : 'Practice'}</span>
                   {qProps.question.kind === 'sequential' && <span className="text-muted">· {qProps.question.steps.length} steps</span>}
+                  {paused && (
+                    <button
+                      type="button"
+                      onClick={() => setPaused(false)}
+                      className="rounded border border-accent/50 bg-accent/10 px-2 py-0.5 font-medium text-accent hover:bg-accent/20"
+                      title="Timer paused — tap to resume"
+                    >
+                      Timer paused
+                    </button>
+                  )}
                   {qProps.item.reported && (
                     <span className="ml-auto inline-flex items-center gap-1 font-medium text-accent">
                       <IconWrench size={14} /> Reported

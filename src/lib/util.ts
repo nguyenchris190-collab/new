@@ -64,5 +64,54 @@ export function formatClock(ms: number): string {
   return h ? `${h}:${pad(m)}:${pad(sec)}` : `${pad(m)}:${pad(sec)}`;
 }
 
+/**
+ * Parse a user-entered time string into milliseconds.
+ * Accepts:
+ *  - "MM:SS" (e.g. "12:30" -> 12m 30s)
+ *  - "HH:MM:SS" (e.g. "1:05:00" -> 1h 5m)
+ *  - plain number "M" (e.g. "15" -> 15 minutes)
+ *  - unit suffixes like "1h 20m", "15m", "90s"
+ */
+export function parseClockInput(raw: string): number | null {
+  const s = raw.trim().toLowerCase();
+  if (!s) return null;
+
+  if (s.includes(':')) {
+    const parts = s.split(':').map((p) => p.trim());
+    if (parts.some((p) => !/^\d+$/.test(p))) return null;
+    const nums = parts.map((p) => parseInt(p, 10));
+    if (nums.length === 2) {
+      const [m, sec] = nums;
+      return (m * 60 + sec) * 1000;
+    }
+    if (nums.length === 3) {
+      const [h, m, sec] = nums;
+      return (h * 3600 + m * 60 + sec) * 1000;
+    }
+    return null;
+  }
+
+  const unitRe = /(\d+(?:\.\d+)?)\s*(h|hr|hrs|m|min|mins|s|sec|secs)/g;
+  let match: RegExpExecArray | null;
+  let totalSec = 0;
+  let matchedUnits = false;
+  while ((match = unitRe.exec(s)) !== null) {
+    matchedUnits = true;
+    const val = parseFloat(match[1]);
+    const unit = match[2][0];
+    if (unit === 'h') totalSec += val * 3600;
+    else if (unit === 'm') totalSec += val * 60;
+    else totalSec += val;
+  }
+  if (matchedUnits) return Math.max(0, Math.round(totalSec * 1000));
+
+  if (/^\d+(?:\.\d+)?$/.test(s)) {
+    const mins = parseFloat(s);
+    return Math.max(0, Math.round(mins * 60 * 1000));
+  }
+
+  return null;
+}
+
 export const isRecord = (v: unknown): v is Record<string, unknown> =>
   typeof v === 'object' && v !== null && !Array.isArray(v);

@@ -30,6 +30,7 @@ interface Store {
   patchActive: (fn: (a: ActiveSession) => ActiveSession) => void;
   completeQuestion: (questionId: string) => void;
   setPaused: (paused: boolean, at?: number) => void;
+  setSessionElapsed: (ms: number) => void;
   finishSession: () => void;
   closeSession: () => void;
   setSync: (patch: Partial<SyncSettings>) => void;
@@ -281,6 +282,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             return { ...s, active: { ...a, runningSince: now, pausedAt: null, breakQuoteId } };
           }
           return s;
+        }),
+
+      setSessionElapsed: (ms) =>
+        update((s) => {
+          const a = s.active;
+          if (!a || a.finished) return s;
+          const now = Date.now();
+          const clamped = Math.max(0, Math.round(ms));
+          const items = Object.fromEntries(
+            Object.entries(a.items).map(([id, it]) => [
+              id,
+              {
+                ...it,
+                viewedAtMs: it.viewedAtMs !== null ? Math.min(it.viewedAtMs, clamped) : null,
+                completedAtMs: it.completedAtMs !== null ? Math.min(it.completedAtMs, clamped) : null,
+              },
+            ]),
+          );
+          const underBurnout = clamped <= 45 * 60 * 1000;
+          const active: ActiveSession = {
+            ...a,
+            elapsedMs: clamped,
+            runningSince: a.runningSince !== null ? now : null,
+            items,
+            ...(underBurnout ? { fatigueFired: false, warningDismissed: false } : {}),
+          };
+          return { ...s, active, sessions: syncRecord(s, active, now) };
         }),
 
       finishSession: () =>
