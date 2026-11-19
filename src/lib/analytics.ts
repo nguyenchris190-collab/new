@@ -18,14 +18,17 @@ export const UNEXPLORED_RATIO = 0.5;
 
 export function topicStats(course: CoursePack, attempts: Attempt[]): { stats: TopicStat[]; median: number } {
   const byTopic = new Map<string, TopicStat>();
+  const qTopicById = new Map<string, string>();
   for (const q of course.questions) {
+    qTopicById.set(q.id, q.topic);
     const s = byTopic.get(q.topic) ?? { topic: q.topic, available: 0, attempts: 0, correct: 0, accuracy: null, status: 'unexplored' as TopicStatus };
     s.available++;
     byTopic.set(q.topic, s);
   }
   for (const a of attempts) {
     if (a.courseId !== course.id || a.contextMode) continue;
-    const s = byTopic.get(a.topic);
+    const topic = qTopicById.get(a.questionId) ?? a.topic;
+    const s = byTopic.get(topic);
     if (!s) continue;
     s.attempts++;
     if (a.correct) s.correct++;

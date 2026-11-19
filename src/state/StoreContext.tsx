@@ -57,16 +57,31 @@ function seed(s: AppState): AppState {
       removed.add(r.id);
     }
   }
+  const configs = { ...s.configs };
   for (const raw of BUNDLED_PACKS) {
     for (const pack of parseCoursePacks(raw).courses) {
       if (removed.has(pack.id)) continue;
       const i = courses.findIndex((c) => c.id === pack.id);
       if (i >= 0) courses = courses.map((c, j) => (j === i ? { ...pack, installedAt: c.installedAt, updatedAt: now } : c));
       else courses = [...courses, pack];
+      const cfg = configs[pack.id];
+      if (cfg) {
+        const validTopics = new Set(pack.questions.map((q) => q.topic));
+        configs[pack.id] = {
+          ...cfg,
+          count: Math.max(1, Math.min(cfg.count, pack.questions.length || 1)),
+          excluded: cfg.excluded.filter((t) => validTopics.has(t)),
+        };
+      }
     }
   }
-  const active = s.active && courses.some((c) => c.id === s.active?.courseId) ? s.active : null;
-  return { ...s, courses, active, removed: [...removed], bundledVersion: BUNDLED_VERSION };
+  const activeCourse = s.active ? courses.find((c) => c.id === s.active?.courseId) : undefined;
+  const activeValid =
+    activeCourse &&
+    s.active!.questionIds.length > 0 &&
+    s.active!.questionIds.every((qid) => activeCourse.questions.some((q) => q.id === qid));
+  const active = activeValid ? s.active : null;
+  return { ...s, courses, configs, active, removed: [...removed], bundledVersion: BUNDLED_VERSION };
 }
 
 /** Write the active session's running totals back into its SessionRecord. */
