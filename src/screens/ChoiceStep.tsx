@@ -4,7 +4,7 @@ import { MathText } from '../components/MathText';
 import { Dot, IconBulb, IconCheck, IconEye } from '../components/icons';
 import { QuoteLine } from '../components/QuoteLine';
 import { errorQuote } from '../lib/quotes';
-import { MethodRefChips } from './questionShared';
+import { AlgebraAssistPanel, MethodRefChips } from './questionShared';
 
 const CONFIDENCE: { id: Confidence; label: string; tone: 'success' | 'warn' | 'muted' }[] = [
   { id: 'confident', label: 'Confident', tone: 'success' },
@@ -48,11 +48,14 @@ interface Props {
   quoteSeed: string;
   /** Failed checks on earlier steps of the same question (error tiers count per question). */
   priorMisses?: number;
+  /** Whether the unpenalized "Reveal Algebra" panel is toggled open. */
+  algebraOpen?: boolean;
+  onToggleAlgebra?: () => void;
 }
 
 const LONG_PRESS_MS = 450;
 
-export function ChoiceStep({ step, state, order, confidence, disabled, onChange, onCheck, onReveal, onConfidence, onSkip, checkLabel, quoteSeed, priorMisses = 0 }: Props) {
+export function ChoiceStep({ step, state, order, confidence, disabled, onChange, onCheck, onReveal, onConfidence, onSkip, checkLabel, quoteSeed, priorMisses = 0, algebraOpen = false, onToggleAlgebra }: Props) {
   const pressTimer = useRef<number | null>(null);
   const suppressClick = useRef(false);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -112,6 +115,8 @@ export function ChoiceStep({ step, state, order, confidence, disabled, onChange,
           <MathText text={step.prompt} />
         </div>
       )}
+
+      {onToggleAlgebra && <AlgebraAssistPanel algebra={step.algebra} open={algebraOpen} onToggle={onToggleAlgebra} />}
 
       <ul className={hasImages ? 'grid grid-cols-1 gap-2.5 sm:grid-cols-2' : 'space-y-2.5'} role="radiogroup" aria-label="Answer choices">
         {order.map((idx, pos) => {

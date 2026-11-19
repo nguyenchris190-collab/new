@@ -20,6 +20,7 @@ export function questionToPackJson(q: Question): Record<string, unknown> {
       answer: s.answer,
       hints: s.hints,
       ...(s.solution ? { solution: s.solution } : {}),
+      ...(s.algebra ? { algebra: s.algebra } : {}),
     }));
     if (q.solution) base.solution = q.solution;
   } else {
@@ -28,6 +29,7 @@ export function questionToPackJson(q: Question): Record<string, unknown> {
     base.answer = s.answer;
     base.hints = s.hints;
     if (s.solution) base.solution = s.solution;
+    if (s.algebra) base.algebra = s.algebra;
   }
   return base;
 }

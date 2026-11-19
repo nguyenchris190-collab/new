@@ -77,6 +77,14 @@ function checkStep(where, s) {
     s.images.forEach((img, i) => checkImageRef(`${where} image ${i}`, img));
   }
   checkMethodRefs(where, s.methodRefs);
+  if (s.algebra !== undefined) {
+    if (!s.algebra || typeof s.algebra !== 'object' || !Array.isArray(s.algebra.steps) || s.algebra.steps.length === 0) {
+      fail(where, 'algebra must be an object with non-empty steps[]');
+    } else {
+      s.algebra.steps.forEach((t, i) => checkMath(`${where} algebra step ${i + 1}`, t));
+      if (s.algebra.hint !== undefined) checkMath(`${where} algebra hint`, s.algebra.hint);
+    }
+  }
   [s.prompt, s.solution, ...(s.choices ?? []), ...(s.hints ?? [])].forEach((t, i) => checkMath(`${where}#${i}`, t));
 }
 

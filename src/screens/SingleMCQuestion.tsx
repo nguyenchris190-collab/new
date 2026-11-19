@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { MathText } from '../components/MathText';
 import { ChoiceStep } from './ChoiceStep';
 import { SequentialQuestion } from './SequentialQuestion';
@@ -5,6 +6,10 @@ import { MethodRefChips, outcomeOf, PromptFigure, QuestionModeToggle, SolvedPane
 
 export function SingleMCQuestion(props: QuestionViewProps) {
   const { question, item, mode, onModeChange, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak } = props;
+  const [algebraOpen, setAlgebraOpen] = useState(false);
+  useEffect(() => {
+    setAlgebraOpen(false);
+  }, [question.id]);
   const context = mode === 'context' && !!question.scenario;
   if (context && question.scenario?.extraSteps?.length) return <SequentialQuestion {...props} />;
   const step = question.steps[0];
@@ -32,6 +37,8 @@ export function SingleMCQuestion(props: QuestionViewProps) {
         onSkip={onSkip}
         checkLabel="Check Answer"
         quoteSeed={`${quoteSeed}:0`}
+        algebraOpen={algebraOpen}
+        onToggleAlgebra={() => setAlgebraOpen((o) => !o)}
       />
       {st.solved && (
         <SolvedPanel

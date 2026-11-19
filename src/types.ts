@@ -10,6 +10,13 @@ export interface ImageRef {
 export type SessionMode = 'balanced' | 'theory' | 'practice';
 export type Confidence = 'confident' | 'guess' | 'low';
 
+export interface AlgebraAssist {
+  /** Intermediate algebra, factoring, root/power manipulation, and setup steps before the final answer. */
+  steps: string[];
+  /** Methodology-only final hint to reach the choice without giving away the answer. */
+  hint?: string;
+}
+
 /** One answerable stage. A single multiple-choice question is a question with one step. */
 export interface Step {
   prompt?: string;
@@ -23,6 +30,8 @@ export interface Step {
   images?: ImageRef[];
   /** Printed Methods & Algebra sheet references. */
   methodRefs?: string[];
+  /** Unpenalized algebra setup & intermediate steps + methodology final hint. */
+  algebra?: AlgebraAssist;
 }
 
 /** Optional real-world skin shown by the Examen / Contexte toggle. */

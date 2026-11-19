@@ -3,7 +3,7 @@
   "code": "MAT1903",
   "title": "Differential Calculus",
   "icon": "calculus",
-  "version": 8,
+  "version": 9,
   "description": "Les quatre piliers de l'examen final de MAT1903 (H25, H24, A23), rédigés selon le corrigé de l'Université de Montréal.",
   "cheatSheetMarkdown": "## Algèbre et limites (A1–A11)\n- **A1 · Factorisation :** mettre d'abord le facteur commun en évidence ($2x^2 - 4x = 2x(x - 2)$) ; pour $ax^2 + bx + c$, utiliser $\\Delta = b^2 - 4ac$ et $x_{1,2} = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}$.\n- **A2 · Puissances et racines :** $\\sqrt{u} = u^{1/2}$, $\\dfrac{1}{\\sqrt{x}} = x^{-1/2}$, $x\\sqrt{x} = x^{3/2}$, $(e^{3x})^2 = e^{6x}$, $\\dfrac{1}{2}x^{-3/2} = \\dfrac{1}{2x\\sqrt{x}}$.\n- **A3 · Parenthèses et signes :** un signe moins devant une parenthèse inverse chaque terme : $1 - (-y^2 + 2y + 1) = y^2 - 2y$ et $-(1 - y) = y - 1$.\n- **A4 · Simplification de fractions :** seuls les **facteurs** se simplifient, en précisant la restriction « car $x \\neq 0$ » (ou « car $h \\neq 0$ »).\n- **A5 · Constantes :** $\\pi, e, \\sqrt{15}, \\ln 4, \\ln 7$ sont des nombres : isolées, leur dérivée vaut $0$ ; en facteur, elles restent devant la dérivée.\n- **A6 · Signe d'un facteur :** puissance paire $(x + 1)^2 \\geq 0$ ; puissance impaire $(x + 1)^3$ du même signe que $x + 1$ ; $e^u > 0$ pour tout $u \\in \\mathbb{R}$.\n- **A7 · Signe d'un zéro ($k/0^{\\pm}$) :** $\\dfrac{k > 0}{0^+} = +\\infty$, $\\dfrac{k > 0}{0^-} = -\\infty$, $\\dfrac{k < 0}{0^+} = -\\infty$, $\\dfrac{k < 0}{0^-} = +\\infty$.\n- **A8 · Plus haute puissance en $\\pm\\infty$ :** pour une fraction rationnelle, conserver les termes de plus haut degré au numérateur et au dénominateur.\n- **A9 · Limites exponentielles :** $\\displaystyle\\lim_{x \\to -\\infty} e^x = 0$, $\\displaystyle\\lim_{x \\to +\\infty} e^x = +\\infty$, et $\\displaystyle\\lim_{x \\to -\\infty} xe^x = 0$ (limite admise).\n- **A10 · Valeurs trigonométriques sur $[0, \\pi]$ :** $\\cos x = \\sin x \\iff x = \\dfrac{\\pi}{4}$ ($\\sin\\dfrac{\\pi}{4} = \\cos\\dfrac{\\pi}{4} = \\dfrac{\\sqrt{2}}{2}$) ; $\\sin x = -\\cos x \\iff x = \\dfrac{3\\pi}{4}$ ; $\\arctan(1) = \\dfrac{\\pi}{4}$.\n- **A11 · Valeur absolue :** $|x| = x$ si $x \\geq 0$ et $|x| = -x$ si $x < 0$.\n\n## Règles de dérivation (M1–M7)\n- **M1 · Dérivée en chaîne :** $\\left(f(u)\\right)' = f'(u) \\cdot u'$.\n- **M2 · Puissance (exposant constant) :** $(u^n)' = n\\,u^{n - 1}\\,u'$ et $\\left(\\sqrt{u}\\right)' = \\dfrac{u'}{2\\sqrt{u}}$. Pour $\\tan^2 u = (\\tan u)^2$, dériver le carré d'abord.\n- **M3 · Exponentielles (variable à l'exposant) :** $(e^u)' = e^u\\,u'$ et $(a^u)' = \\ln a \\cdot a^u \\cdot u'$.\n- **M4 · Logarithmes :** $(\\ln u)' = \\dfrac{u'}{u}$ et $(\\log_a u)' = \\dfrac{u'}{u\\ln a}$.\n- **M5 · Trigonométriques :** $(\\sin u)' = u'\\cos u$, $(\\cos u)' = -u'\\sin u$, $(\\tan u)' = u'\\sec^2 u$, $(\\sec u)' = u'\\sec u\\tan u$.\n- **M6 · Trigonométriques inverses :**\n$$(\\arcsin u)' = \\frac{u'}{\\sqrt{1 - u^2}} \\qquad (\\arccos u)' = \\frac{-u'}{\\sqrt{1 - u^2}} \\qquad (\\arctan u)' = \\frac{u'}{1 + u^2}$$\n- **M7 · Produit et quotient :** $(uv)' = u'v + uv'$ et $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$.\n\n## Étude complète d'une courbe (M8–M14)\n- **M8 · Domaine :** dénominateur $\\neq 0$, radicande $\\geq 0$, ou intervalle fermé donné $[a, b]$. Écriture : $\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x + 1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$.\n- **M9 · Asymptotes verticales :** évaluer $\\displaystyle\\lim_{x \\to a^-} f(x)$ et $\\displaystyle\\lim_{x \\to a^+} f(x)$ en chaque valeur exclue ; si $\\pm\\infty$, la droite d'équation $x = a$ est une asymptote verticale.\n- **M10 · Asymptotes horizontales :** calculer $\\displaystyle\\lim_{x \\to -\\infty} f(x)$ et $\\displaystyle\\lim_{x \\to +\\infty} f(x)$ ; si la limite vaut $L$, la droite d'équation $y = L$ est une asymptote horizontale.\n- **M11 · Nombres critiques de $f$ :** valeurs $c \\in \\text{Dom}_f$ où $f'(c) = 0$ ou $f'(c)$ n'existe pas. Sur un intervalle fermé $[a, b]$, les bornes $a$ et $b$ sont incluses car $f'$ n'y existe pas.\n- **M12 · Concavité et points d'inflexion ($f''$) :** valeurs $c \\in \\text{Dom}_f$ où $f''(c) = 0$ ou $f''(c)$ n'existe pas (y compris les bornes sur $[a, b]$). Il y a point d'inflexion si $f''$ change de signe en $c \\in \\text{Dom}_f$.\n- **M13 · Tableau de variation :** lignes $x$, $f'(x)$, $f''(x)$, $f(x)$ et conclusion ($f' > 0 \\implies \\nearrow$, $f' < 0 \\implies \\searrow$, $f'' > 0 \\implies \\cup$, $f'' < 0 \\implies \\cap$).\n- **M14 · Esquisse :** tracer les asymptotes en pointillés, placer les extrema et points d'inflexion, puis respecter croissance et concavité.\n\n## Continuité, dérivabilité et optimisation (M15–M17)\n- **M15 · Continuité en $x = a$ :** $f(a)$ existe et $\\displaystyle\\lim_{x \\to a^-} f(x) = \\lim_{x \\to a^+} f(x) = f(a)$.\n- **M16 · Dérivabilité et point anguleux :**\n$$f'_-(a) = \\lim_{h \\to 0^-} \\frac{f(a + h) - f(a)}{h} \\qquad f'_+(a) = \\lim_{h \\to 0^+} \\frac{f(a + h) - f(a)}{h}$$\nSi $f$ est continue en $a$ mais $f'_-(a) \\neq f'_+(a)$ (finies), $f$ n'est pas dérivable en $a$ et $(a, f(a))$ est un **point anguleux**.\n- **M17 · Optimisation :** (1) définir les variables et la fonction à optimiser, (2) utiliser la contrainte pour obtenir une fonction d'une seule variable et donner son domaine, (3) calculer la dérivée et les nombres critiques dans le domaine, (4) justifier l'extremum absolu (tableau de signes sur un intervalle ouvert, ou comparaison avec les bornes sur un intervalle fermé $[a, b]$), (5) formuler la réponse complète dans le contexte avec les unités.\n",
   "questions": [
@@ -35,7 +35,15 @@
         "La dérivée de $2x+1$ est $2$ : le facteur $(2x+1)$ ne reste pas devant $4^{2x}$.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "Le terme $4^{2x+1}$ exige le facteur $\\ln 4$ en plus de la dérivée interne $2$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Décomposition et règles ($M3, M4$) :** $f(x)$ est une somme de $u(x) = 4^{2x+1}$ (exponentielle de base $a = 4$) et $v(x) = \\log_4(16 - x^2)$ (logarithme de base $a = 4$).",
+          "**Mise en place avec dérivées internes ($M1$) :** $$f'(x) = \\ln 4 \\cdot 4^{2x+1} \\cdot (2x + 1)' + \\frac{(16 - x^2)'}{(16 - x^2)\\ln 4}$$",
+          "**Calcul des dérivées internes ($M2, A5$) :** $(2x + 1)' = 2$ et $(16 - x^2)' = 0 - 2x = -2x$."
+        ],
+        "hint": "Remplacer $(2x + 1)'$ par $2$ devant $\\ln 4 \\cdot 4^{2x+1}$ et $(16 - x^2)'$ par $-2x$ au numérateur du second terme en conservant $\\ln 4$ au bon endroit pour chaque règle."
+      }
     },
     {
       "id": "q-h25-1b",
@@ -65,7 +73,15 @@
         "$(\\ln(\\sec x))'=\\tan x$, et non $\\sec x\\tan x$.",
         "La dérivée de $\\sec x$ est $\\sec x\\tan x$; après simplification, $(\\ln(\\sec x))'=\\tan x$.",
         "La dérivée de $\\ln x$ est $\\frac1x$ : il manque ce facteur dans le second terme."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Identification des couches ($M1, M4, M5$) :** premier terme $\\ln(u)$ avec $u = \\sec x$ ; second terme $\\sec(v)$ avec $v = \\ln x$.",
+          "**Application des formules avant simplification :** $$g'(x) = \\frac{(\\sec x)'}{\\sec x} + \\sec(\\ln x)\\tan(\\ln x) \\cdot (\\ln x)'$$",
+          "**Dérivées internes :** $(\\sec x)' = \\sec x\\tan x$ et $(\\ln x)' = \\dfrac{1}{x}$, ce qui donne : $$g'(x) = \\frac{\\sec x\\tan x}{\\sec x} + \\sec(\\ln x)\\tan(\\ln x) \\cdot \\frac{1}{x}$$"
+        ],
+        "hint": "Simplifier le facteur commun $\\sec x$ au numérateur et au dénominateur du premier terme ($A4$), puis écrire le second terme sous forme d'une seule fraction sur $x$."
+      }
     },
     {
       "id": "q-h25-1c",
@@ -95,7 +111,15 @@
         "L'intérieur reste $\\arctan x$ : la dérivée extérieure est donc $\\cos(\\arctan x)$, pas $\\cos x$.",
         "Le dénominateur de $(\\arctan x)'$ est $1+x^2$, sans racine.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Couches de la fonction composée ($M1$) :** fonction extérieure $\\sin(u)$ avec l'argument intérieur $u = \\arctan x$.",
+          "**Dérivation de la couche extérieure ($M5$) :** $$h'(x) = \\cos(\\arctan x) \\cdot (\\arctan x)'$$",
+          "**Dérivée de l'intérieur ($M6$) :** $(\\arctan x)' = \\dfrac{1}{1 + x^2}$."
+        ],
+        "hint": "Multiplier $\\cos(\\arctan x)$ par la fraction $\\dfrac{1}{1 + x^2}$ en gardant l'argument intérieur $\\arctan x$ intact dans le cosinus."
+      }
     },
     {
       "id": "q-h25-1d",
@@ -126,7 +150,15 @@
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "La dérivée interne $5$ est ici omise.",
         "$(\\tan^2 u)'=2\\tan u\\sec^2u\\,u'$, et non $2\\sec^4u\\,u'$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Réécriture de la puissance trigonométrique ($M2, A5$) :** $$u(x) = 2\\tan^2(5x + 1) = 2\\left(\\tan(5x + 1)\\right)^2$$ (trois couches : carré $\\to \\tan \\to 5x + 1$, avec la constante $2$ en facteur).",
+          "**Dérivation de la puissance extérieure ($M2$) :** $$u'(x) = 2 \\cdot 2\\left(\\tan(5x + 1)\\right)^{2 - 1} \\cdot \\left(\\tan(5x + 1)\\right)'$$",
+          "**Dérivation de la tangente et de l'intérieur ($M5, M1$) :** $$\\left(\\tan(5x + 1)\\right)' = \\sec^2(5x + 1) \\cdot (5x + 1)' = 5\\sec^2(5x + 1)$$"
+        ],
+        "hint": "Regrouper et multiplier les trois facteurs numériques constants ($2 \\times 2 \\times 5$) devant le produit $\\tan(5x + 1)\\sec^2(5x + 1)$."
+      }
     },
     {
       "id": "q-h25-1e",
@@ -156,7 +188,15 @@
         "$e^{\\sin x}$ est une exponentielle : sa dérivée est $\\cos x\\,e^{\\sin x}$, pas une règle de puissance.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "Le second terme dérivé est $e(\\sin x)^{e-1}\\cos x$, avec l'exposant $e-1$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Distinction exponentielle vs puissance ($M3, M2, A5$) :** dans $e^{\\sin x}$, la variable est à l'exposant (règle $e^u$) ; dans $(\\sin x)^e$, la variable est dans la base et $e$ est une constante (règle $u^n$ avec $n = e$).",
+          "**Dérivation terme à terme ($M1$) :** $$v'(x) = e^{\\sin x} \\cdot (\\sin x)' + e(\\sin x)^{e - 1} \\cdot (\\sin x)'$$",
+          "**Calcul de la dérivée interne ($M5$) :** $(\\sin x)' = \\cos x$ dans chacun des deux termes : $$v'(x) = \\cos x \\cdot e^{\\sin x} + \\cos x \\cdot e(\\sin x)^{e - 1}$$"
+        ],
+        "hint": "Mettre le facteur commun $\\cos x$ en évidence devant la parenthèse ($A1$) tout en conservant l'exposant $e - 1$ sur le second terme."
+      }
     },
     {
       "id": "q-h24-1a",
@@ -187,7 +227,15 @@
         "Pour $2^{\\sin x}$, la dérivée contient le facteur $\\ln 2$.",
         "Le facteur commun est $\\cos x$ : le terme $2^{\\sin x}$ doit aussi être multiplié par $\\cos x$.",
         "Il manque le facteur $\\cos x$ dans la dérivée de $2^{\\sin x}$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Réécriture des deux termes ($M2, M3$) :** $\\sin^2 x = (\\sin x)^2$ est une puissance d'exposant $2$, tandis que $2^{\\sin x}$ est une exponentielle de base $a = 2$.",
+          "**Mise en place des règles ($M1$) :** $$f'(x) = 2(\\sin x)^{2 - 1} \\cdot (\\sin x)' + \\ln 2 \\cdot 2^{\\sin x} \\cdot (\\sin x)'$$",
+          "**Dérivée interne ($M5$) :** $(\\sin x)' = \\cos x$, d'où : $$f'(x) = 2\\sin x \\cdot \\cos x + \\ln 2 \\cdot 2^{\\sin x} \\cdot \\cos x$$"
+        ],
+        "hint": "Factoriser le terme commun $\\cos x$ devant la somme des deux termes ($A1$) en vérifiant la présence du facteur $\\ln 2$ sur l'exponentielle de base $2$."
+      }
     },
     {
       "id": "q-h24-1b",
@@ -218,7 +266,14 @@
         "Le numérateur de la règle du quotient est $u'v-uv'$, avec $u=\\tan(\\pi x)$ et $v=1+\\sec(3x)$.",
         "L'ordre du numérateur est inversé : on doit lire $u'v-uv'$.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Structure de quotient ($M7$) :** on pose $\\text{haut} = \\tan(\\pi x)$ et $\\text{bas} = 1 + \\sec(3x)$.",
+          "**Dérivation séparée du numérateur et du dénominateur ($M5, M1, A5$) :** $$\\text{haut}' = \\sec^2(\\pi x) \\cdot (\\pi x)' = \\pi\\sec^2(\\pi x)$$ $$\\text{bas}' = 0 + \\sec(3x)\\tan(3x) \\cdot (3x)' = 3\\sec(3x)\\tan(3x)$$"
+        ],
+        "hint": "Assembler dans la formule du quotient $\\dfrac{\\text{haut}' \\cdot \\text{bas} - \\text{haut} \\cdot \\text{bas}'}{\\text{bas}^2}$ ($M7$) en respectant l'ordre de soustraction au numérateur."
+      }
     },
     {
       "id": "q-h24-1c",
@@ -248,7 +303,14 @@
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "La puissance $3$ s'applique à $y-\\arctan(y^2)$, pas au second facteur seulement.",
         "Le dénominateur vient de $(y^2)^2=y^4$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Couche extérieure ($M2, M1$) :** puissance d'exposant $4$ appliquée à la parenthèse $u(y) = y - \\arctan(y^2)$ : $$h'(y) = 4\\left(y - \\arctan(y^2)\\right)^{4 - 1} \\cdot \\left(y - \\arctan(y^2)\\right)'$$",
+          "**Dérivée de l'intérieur terme à terme ($M6, A2$) :** $$(y)' = 1 \\qquad \\text{et} \\qquad \\left(\\arctan(y^2)\\right)' = \\frac{(y^2)'}{1 + (y^2)^2} = \\frac{2y}{1 + y^4}$$"
+        ],
+        "hint": "Multiplier le facteur extérieur $4\\left(y - \\arctan(y^2)\\right)^3$ par la dérivée interne $\\left(1 - \\dfrac{2y}{1 + y^4}\\right)$."
+      }
     },
     {
       "id": "q-h24-1d",
@@ -278,7 +340,15 @@
         "La dérivée de $3x$ donne le facteur $3$ au numérateur.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "Le radicande est $1-(e^{3x})^2=1-e^{6x}$, avec un signe moins."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Couche extérieure ($M6, M1$) :** $\\arcsin(u)$ avec $u = e^{3x}$ : $$l'(x) = \\frac{(e^{3x})'}{\\sqrt{1 - (e^{3x})^2}}$$",
+          "**Dérivée du numérateur ($M3$) :** $(e^{3x})' = e^{3x} \\cdot (3x)' = 3e^{3x}$.",
+          "**Simplification des puissances sous la racine ($A2$) :** $(e^{3x})^2 = e^{3x \\cdot 2} = e^{6x}$."
+        ],
+        "hint": "Substituer le numérateur $3e^{3x}$ et le radicande simplifié $1 - e^{6x}$ dans la fraction issue de $(\\arcsin u)'$."
+      }
     },
     {
       "id": "q-h24-1e",
@@ -310,7 +380,14 @@
         "La dérivée de $e^{\\cos x}$ est $-\\sin x\\,e^{\\cos x}$ : le signe moins est essentiel.",
         "La règle du produit donne deux termes : le facteur logarithmique ne disparaît pas.",
         "La dérivée de $\\log_7(x^5-x)$ exige le facteur $\\ln 7$ au dénominateur."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Structure de produit ($M7$) :** $t(x) = u(x) \\cdot v(x)$ avec $u(x) = e^{\\cos x}$ et $v(x) = \\log_7(x^5 - x)$.",
+          "**Dérivée de chaque facteur ($M3, M5, M4$) :** $$u'(x) = e^{\\cos x} \\cdot (\\cos x)' = -\\sin x\\,e^{\\cos x}$$ $$v'(x) = \\frac{(x^5 - x)'}{(x^5 - x)\\ln 7} = \\frac{5x^4 - 1}{(x^5 - x)\\ln 7}$$"
+        ],
+        "hint": "Appliquer la règle du produit $t'(x) = u'v + uv'$ ($M7$) en veillant au signe négatif de $u'(x)$ et au facteur $\\ln 7$ au dénominateur de $v'(x)$."
+      }
     },
     {
       "id": "q-a23-1a",
@@ -342,7 +419,15 @@
         "La dérivée de $\\pi+x^5$ est $5x^4$, et non $1+5x^4$.",
         "La dérivée de $\\arctan(\\pi+x^5)$ conserve le facteur $\\sqrt{1-x^2}$ du produit.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Structure de produit et réécriture de la racine ($M7, A2$) :** $u(x) = \\sqrt{-x^2 + 1} = (-x^2 + 1)^{1/2}$ et $v(x) = \\arctan(\\pi + x^5)$.",
+          "**Dérivée de la racine et simplification par $2$ ($M2, A4$) :** $$u'(x) = \\frac{(-x^2 + 1)'}{2\\sqrt{-x^2 + 1}} = \\frac{-2x}{2\\sqrt{1 - x^2}} = \\frac{-x}{\\sqrt{1 - x^2}}$$",
+          "**Dérivée de l'arctangente ($M6, A5$) :** comme $(\\pi)' = 0$, $$v'(x) = \\frac{(\\pi + x^5)'}{1 + (\\pi + x^5)^2} = \\frac{5x^4}{1 + (\\pi + x^5)^2}$$"
+        ],
+        "hint": "Combiner les morceaux selon la formule du produit $f'(x) = u'v + uv'$ ($M7$)."
+      }
     },
     {
       "id": "q-a23-1b",
@@ -374,7 +459,15 @@
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "Pour $10^{x^2}$, la dérivée contient $2x\\ln 10$.",
         "L'ordre du numérateur de la règle du quotient est inversé."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Analyse de la constante et du quotient ($A5, M7$) :** $\\sqrt{15}$ est une constante donc $(\\sqrt{15})' = 0$. On dérive le quotient avec $\\text{haut} = 10^{x^2}$ et $\\text{bas} = 8\\tan(3x + 1)$.",
+          "**Dérivées du numérateur et du dénominateur ($M3, M5$) :** $$\\text{haut}' = \\ln 10 \\cdot 10^{x^2} \\cdot (x^2)' = 2x\\ln 10 \\cdot 10^{x^2}$$ $$\\text{bas}' = 8\\sec^2(3x + 1) \\cdot (3x + 1)' = 24\\sec^2(3x + 1)$$",
+          "**Mise en facteur au numérateur du quotient ($A1, A4$) :** $$g'(x) = \\frac{2x\\ln 10 \\cdot 10^{x^2} \\cdot 8\\tan(3x + 1) - 10^{x^2} \\cdot 24\\sec^2(3x + 1)}{64\\tan^2(3x + 1)} = \\frac{8 \\cdot 10^{x^2}\\left(2x\\ln 10\\,\\tan(3x + 1) - 3\\sec^2(3x + 1)\\right)}{64\\tan^2(3x + 1)}$$"
+        ],
+        "hint": "Simplifier le facteur commun $8$ entre le numérateur et $64 = 8 \\times 8$ au dénominateur ($A4$)."
+      }
     },
     {
       "id": "q-a23-1c",
@@ -405,7 +498,15 @@
         "Avec $u^2=-y^2+2y+1$, on obtient $1-u^2=y^2-2y$ sous la seconde racine.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement.",
         "La seconde radicande est $y^2-2y$, et non $1-y^2$."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Structure $(\\arccos u)'$ ($M6$) :** $h'(y) = \\dfrac{-u'}{\\sqrt{1 - u^2}}$ avec $u = \\sqrt{-y^2 + 2y + 1}$.",
+          "**Calcul et simplification de $u'$ ($M2, A1, A4$) :** $$u' = \\frac{(-y^2 + 2y + 1)'}{2\\sqrt{-y^2 + 2y + 1}} = \\frac{-2y + 2}{2\\sqrt{-y^2 + 2y + 1}} = \\frac{2(1 - y)}{2\\sqrt{-y^2 + 2y + 1}} = \\frac{1 - y}{\\sqrt{-y^2 + 2y + 1}}$$",
+          "**Simplification de $1 - u^2$ sous la racine ($A2, A3$) :** $$1 - u^2 = 1 - \\left(\\sqrt{-y^2 + 2y + 1}\\right)^2 = 1 - (-y^2 + 2y + 1) = 1 + y^2 - 2y - 1 = y^2 - 2y$$"
+        ],
+        "hint": "Remplacer $u'$ et $\\sqrt{1 - u^2} = \\sqrt{y^2 - 2y}$ dans $\\dfrac{-u'}{\\sqrt{1 - u^2}}$, puis distribuer le signe moins sur le numérateur $-(1 - y)$ ($A3$)."
+      }
     },
     {
       "id": "q-a23-1d",
@@ -436,7 +537,15 @@
         "Le signe moins devant $e^{-1/\\sqrt{x}}$ reste présent après dérivation.",
         "La dérivée de $-1/\\sqrt{x}$ fournit le dénominateur $2x\\sqrt{x}$.",
         "Il manque un facteur $x$ au dénominateur du second terme."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Réécriture de l'exposant radical en puissance négative ($A2$) :** $$-\\frac{1}{\\sqrt{x}} = -x^{-1/2} \\implies i(x) = \\log_7(16 - x^2) - e^{-x^{-1/2}}$$",
+          "**Dérivée du premier terme ($M4$) :** $$\\left(\\log_7(16 - x^2)\\right)' = \\frac{(16 - x^2)'}{(16 - x^2)\\ln 7} = \\frac{-2x}{(16 - x^2)\\ln 7}$$",
+          "**Dérivée de l'exposant $-x^{-1/2}$ et retour en radicaux ($M2, A2$) :** $$\\left(-x^{-1/2}\\right)' = -\\left(-\\frac{1}{2}\\right)x^{-1/2 - 1} = \\frac{1}{2}x^{-3/2} = \\frac{1}{2x\\sqrt{x}}$$"
+        ],
+        "hint": "Multiplier l'exponentielle $e^{-1/\\sqrt{x}}$ par sa dérivée interne $\\dfrac{1}{2x\\sqrt{x}}$ ($M3$) et soustraire ce résultat du premier terme."
+      }
     },
     {
       "id": "q-a23-1e",
@@ -468,7 +577,15 @@
         "La dérivée de $\\sin^3(2x)$ contient encore $\\cos(2x)$.",
         "Il manque le facteur $2$ de la dérivée interne de $\\sin^3(2x)$.",
         "Exact. Chaque règle et chaque dérivée interne est appliquée correctement."
-      ]
+      ],
+      "algebra": {
+        "steps": [
+          "**Couche extérieure logarithmique ($M4$) :** $\\ln(u)$ avec $u(x) = \\cos(3x) - (\\sin(2x))^3$, ce qui donne $t'(x) = \\dfrac{u'(x)}{u(x)}$.",
+          "**Dérivée de $\\cos(3x)$ ($M5, M1$) :** $$\\left(\\cos(3x)\\right)' = -\\sin(3x) \\cdot (3x)' = -3\\sin(3x)$$",
+          "**Dérivée de $(\\sin(2x))^3$ en trois couches ($M2, M5, M1$) :** $$\\left((\\sin(2x))^3\\right)' = 3\\sin^2(2x) \\cdot (\\sin(2x))' = 3\\sin^2(2x) \\cdot \\cos(2x) \\cdot 2 = 6\\sin^2(2x)\\cos(2x)$$"
+        ],
+        "hint": "Placer la différence des deux dérivées internes au numérateur au-dessus de l'argument original $\\cos(3x) - \\sin^3(2x)$."
+      }
     },
     {
       "id": "q-f-rate-01",
@@ -503,6 +620,13 @@
       "scenario": {
         "prompt": "Une tasse de café refroidit dans une pièce à $20\\,^\\circ\\text{C}$. Sa température (en $^\\circ\\text{C}$) après $t$ minutes est modélisée par $T(t) = 20 + 70e^{-0{,}1t}$. Déterminer la vitesse instantanée de variation de la température $T'(t)$ (en $^\\circ\\text{C}/\\text{min}$).",
         "interpretation": "Le signe négatif de $T'(t) = -7e^{-0{,}1t}\\,^\\circ\\text{C}/\\text{min}$ indique que la température diminue : à $t = 0$, le café refroidit à raison de $7\\,^\\circ\\text{C}/\\text{min}$, puis ce refroidissement ralentit à mesure qu'il s'approche de la température ambiante de $20\\,^\\circ\\text{C}$."
+      },
+      "algebra": {
+        "steps": [
+          "**Analyse des termes ($A5, M3$) :** $T(t) = 20 + 70e^{-0{,}1t}$ est composé d'une constante isolée $20$ et d'un multiple constant $70$ devant l'exponentielle $e^u$ où $u = -0{,}1t$.",
+          "**Dérivation de chaque partie ($M1$) :** $$(20)' = 0 \\qquad \\text{et} \\qquad \\left(e^{-0{,}1t}\\right)' = e^{-0{,}1t} \\cdot (-0{,}1t)' = -0{,}1\\,e^{-0{,}1t}$$"
+        ],
+        "hint": "Multiplier le coefficient $70$ par la dérivée interne $-0{,}1$ devant $e^{-0{,}1t}$."
       }
     },
     {
@@ -536,6 +660,13 @@
       "scenario": {
         "prompt": "Sur une échelle sismique simplifiée, la magnitude $M$ d'un séisme en fonction de l'énergie relâchée $E > 0$ (en unités d'énergie réduites) est donnée par $M(E) = \\log_{10}(E)$. Déterminer le taux de variation instantané $M'(E)$ de la magnitude par rapport à l'énergie.",
         "interpretation": "Comme $M'(E) = \\dfrac{1}{E\\ln 10}$ est inversement proportionnel à $E$, une même hausse d'énergie augmente beaucoup la magnitude pour un petit séisme, mais très peu pour un séisme déjà très énergétique."
+      },
+      "algebra": {
+        "steps": [
+          "**Formule du logarithme de base $a$ ($M4$) :** pour $M(E) = \\log_a(u)$, la dérivée par rapport à $E$ s'écrit $$M'(E) = \\frac{u'}{u\\ln a}$$",
+          "**Identification des éléments :** la base est $a = 10$ et l'argument est $u = E$, dont la dérivée par rapport à $E$ est $E' = 1$."
+        ],
+        "hint": "Remplacer $u$ par $E$, $u'$ par $1$, et $a$ par $10$ dans la formule en gardant $\\ln 10$ au dénominateur."
       }
     },
     {
@@ -573,7 +704,14 @@
           ],
           "methodRefs": [
             "A11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Définition de la valeur absolue ($A11$) :** $$|x| = \\begin{cases} -x & \\text{si } x < 0 \\\\ x & \\text{si } x \\geq 0 \\end{cases}$$",
+              "**Substitution dans $f(x) = |x|\\arctan(x + 1)$ :** on remplace $|x|$ sur chaque sous-intervalle tout en gardant le facteur $\\arctan(x + 1)$ inchangé."
+            ],
+            "hint": "Associer la branche $-x\\arctan(x + 1)$ à l'intervalle strictement négatif $x < 0$ et $x\\arctan(x + 1)$ à $x \\geq 0$."
+          }
         },
         {
           "prompt": "Vérifier la continuité de $f$ en $0$.",
@@ -597,7 +735,14 @@
           ],
           "methodRefs": [
             "M15"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Valeur en $x = 0$ ($M15$) :** on utilise la branche $x \\geq 0$ : $$f(0) = 0 \\cdot \\arctan(0 + 1) = 0 \\cdot \\frac{\\pi}{4} = 0$$",
+              "**Limites latérales en $0^-$ et $0^+$ ($A10$) :** $$\\lim_{x \\to 0^-} (-x\\arctan(x + 1)) = 0 \\cdot \\frac{\\pi}{4} = 0 \\qquad \\text{et} \\qquad \\lim_{x \\to 0^+} (x\\arctan(x + 1)) = 0 \\cdot \\frac{\\pi}{4} = 0$$"
+            ],
+            "hint": "Comparer $\\lim_{x \\to 0^-} f(x)$, $\\lim_{x \\to 0^+} f(x)$ et $f(0)$ pour conclure sur la continuité en $0$ ($M15$)."
+          }
         },
         {
           "prompt": "Utiliser la définition pour étudier $f'(0)$.",
@@ -621,7 +766,15 @@
           ],
           "methodRefs": [
             "M16"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Quotient différentiel à gauche ($h \\to 0^-$, branche $x < 0$) ($M16, A4$) :** $$f'_-(0) = \\lim_{h \\to 0^-} \\frac{-h\\arctan(h + 1) - 0}{h} = \\lim_{h \\to 0^-} (-\\arctan(h + 1)) \\quad (\\text{car } h \\neq 0)$$",
+              "**Quotient différentiel à droite ($h \\to 0^+$, branche $x \\geq 0$) ($M16, A4$) :** $$f'_+(0) = \\lim_{h \\to 0^+} \\frac{h\\arctan(h + 1) - 0}{h} = \\lim_{h \\to 0^+} \\arctan(h + 1) \\quad (\\text{car } h \\neq 0)$$",
+              "**Valeur remarquable ($A10$) :** $\\arctan(1) = \\dfrac{\\pi}{4}$."
+            ],
+            "hint": "Évaluer les deux limites en $h = 0$ avec $\\arctan(1) = \\dfrac{\\pi}{4}$, puis comparer $f'_-(0)$ et $f'_+(0)$ pour conclure sur l'existence de $f'(0)$."
+          }
         },
         {
           "prompt": "Classer le point $(0,0)$.",
@@ -645,7 +798,13 @@
           ],
           "methodRefs": [
             "M16"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Bilan des étapes 2 et 3 ($M15, M16$) :** la fonction $f$ est continue en $x = 0$, et elle admet deux dérivées latérales finies mais distinctes ($f'_-(0) = -\\dfrac{\\pi}{4}$ et $f'_+(0) = \\dfrac{\\pi}{4}$)."
+            ],
+            "hint": "Identifier la nature géométrique d'un point où la courbe est continue mais forme un coin avec deux demi-tangentes de pentes finies différentes ($M16$)."
+          }
         }
       ],
       "solution": "$$f(x)=\\begin{cases}-x\\arctan(x+1)&\\text{si }x<0\\\\ x\\arctan(x+1)&\\text{si }x\\geq 0\\end{cases}$$\n\n$$f(0)=0,\\ \\lim_{x\\to 0^-}f(x)=0=\\lim_{x\\to 0^+}f(x)\\Rightarrow f\\text{ continue en }0$$\n\n$$f'_-(0)=-\\arctan 1=-\\frac{\\pi}{4},\\ \\ f'_+(0)=\\arctan 1=\\frac{\\pi}{4},\\ \\ f'_-(0)\\neq f'_+(0)\\Rightarrow f\\text{ non dérivable en }0$$\n\nConclusion : $$\\text{point anguleux}$$"
@@ -687,7 +846,13 @@
           "methodRefs": [
             "M8",
             "A1"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Condition d'existence d'une fraction rationnelle ($M8$) :** le dénominateur ne doit pas s'annuler : $$(x + 1)^2 \\neq 0 \\iff x + 1 \\neq 0$$"
+            ],
+            "hint": "Isoler la valeur interdite de $x$ et écrire le domaine sous la forme $\\mathbb{R} - \\{a\\}$."
+          }
         },
         {
           "prompt": "Étape 2 : Trouver les équations des asymptotes verticales et horizontales.",
@@ -713,7 +878,14 @@
             "M10",
             "A7",
             "A8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Limite en la valeur exclue $x = -1$ ($M9, A7$) :** au numérateur, $(-1)^2 = 1 > 0$. Au dénominateur, $(x + 1)^2$ est un carré donc toujours strictement positif ($0^+$) à gauche comme à droite de $-1$.",
+              "**Limite en $\\pm\\infty$ ($M10, A8$) :** en développant le dénominateur $(x + 1)^2 = x^2 + 2x + 1$, les termes de plus haut degré sont $\\dfrac{x^2}{x^2}$."
+            ],
+            "hint": "Déduire le signe de $\\dfrac{1}{0^+}$ pour l'asymptote verticale $x = -1$, puis la limite du rapport $\\dfrac{x^2}{x^2}$ pour l'asymptote horizontale $y = L$."
+          }
         },
         {
           "prompt": "Étape 3 : Déterminer les nombres critiques de $f$, sachant que $f'(x) = \\frac{2x}{(x+1)^3}$.",
@@ -736,7 +908,14 @@
           ],
           "methodRefs": [
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $f'(x) = 0$ ($M11$) :** une fraction est nulle si et seulement si son numérateur est nul : $$\\frac{2x}{(x + 1)^3} = 0 \\iff 2x = 0$$",
+              "**Points où $f'$ n'existe pas ($M11$) :** le dénominateur $(x + 1)^3$ s'annule en $x = -1$, mais $-1 \\notin \\text{Dom}_f$."
+            ],
+            "hint": "Retenir uniquement la solution qui appartient au domaine $\\text{Dom}_f = \\mathbb{R} - \\{-1\\}$ comme nombre critique."
+          }
         },
         {
           "prompt": "Étape 4 : Déterminer les valeurs de $x \\in \\text{Dom}_f$ pour lesquelles $f''(x) = 0$ ou $f''(x)$ n'existe pas, sachant que $f''(x) = \\frac{2-4x}{(x+1)^4}$.",
@@ -757,7 +936,14 @@
           ],
           "methodRefs": [
             "M12"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $f''(x) = 0$ ($M12$) :** on annule le numérateur de $f''(x) = \\dfrac{2 - 4x}{(x + 1)^4}$ : $$2 - 4x = 0 \\iff 4x = 2$$",
+              "**Points où $f''$ n'existe pas :** $(x + 1)^4 = 0 \\iff x = -1 \\notin \\text{Dom}_f$."
+            ],
+            "hint": "Simplifier la fraction $x = \\dfrac{2}{4}$ et vérifier son appartenance à $\\text{Dom}_f$."
+          }
         },
         {
           "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
@@ -779,7 +965,15 @@
           "methodRefs": [
             "M13",
             "A6"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Signe de $f'(x) = \\dfrac{2x}{(x + 1)^3}$ ($A6$) :** $(x + 1)^3$ est une puissance impaire (négative si $x < -1$, positive si $x > -1$). Donc : pour $x < -1$, $\\dfrac{-}{-} = +$ ; pour $-1 < x < 0$, $\\dfrac{-}{+} = -$ ; pour $x > 0$, $\\dfrac{+}{+} = +$.",
+              "**Signe de $f''(x) = \\dfrac{2 - 4x}{(x + 1)^4}$ ($A6$) :** $(x + 1)^4 > 0$ partout sur $\\text{Dom}_f$, donc $f''$ a le signe de $2 - 4x$ ($+$ avant $\\frac{1}{2}$, $-$ après $\\frac{1}{2}$).",
+              "**Ordonnées des points remarquables :** $$f(0) = \\frac{0^2}{(0 + 1)^2} = 0 \\qquad \\text{et} \\qquad f\\left(\\frac{1}{2}\\right) = \\frac{(1/2)^2}{(3/2)^2} = \\frac{1/4}{9/4} = \\frac{1}{9}$$"
+            ],
+            "hint": "Associer les signes de $f'$ et $f''$ aux flèches $\\nearrow / \\searrow$ et concavités $\\cup / \\cap$ ($M13$), en notant que $f(x) \\geq 0$ partout donc $(0, 0)$ est un minimum absolu."
+          }
         },
         {
           "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
@@ -818,7 +1012,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Éléments géométriques à repérer ($M14$) :** asymptote verticale $x = -1$ avec les deux branches partant vers $+\\infty$ ; asymptote horizontale $y = 1$ en $\\pm\\infty$ ; minimum absolu touchant l'axe en $(0, 0)$ et point d'inflexion en $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$."
+            ],
+            "hint": "Choisir le graphe dont les deux branches près de $x = -1$ montent vers $+\\infty$ et où la branche de droite descend jusqu'à $(0, 0)$ avant de remonter sous $y = 1$."
+          }
         }
       ],
       "solution": "1. Domaine : $(x+1)^2 = 0 \\iff x = -1$. $$\\text{Dom}_f = \\{x \\in \\mathbb{R} \\ / \\ x+1 \\neq 0\\} = \\mathbb{R} - \\{-1\\}$$\n\n2. Asymptotes : $$\\lim_{x \\to -1^\\pm} \\frac{x^2}{(x+1)^2} = \\frac{1}{0^+} = +\\infty$$ donc la droite d'équation $x = -1$ est une asymptote verticale. $$\\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2+2x+1} = \\lim_{x \\to \\pm\\infty} \\frac{x^2}{x^2} = 1$$ donc la droite d'équation $y = 1$ est une asymptote horizontale en $-\\infty$ et en $+\\infty$.\n\n3. Nombres critiques : $f'(x) = 0 \\iff 2x = 0 \\iff x = 0 \\in \\text{Dom}_f$. $f'$ est définie pour tout $x \\in \\text{Dom}_f$. Nombre critique : $x = 0$, $f(0) = 0$.\n\n4. $f''(x) = 0 \\iff 2 - 4x = 0 \\iff x = \\frac{1}{2} \\in \\text{Dom}_f$, $f\\left(\\frac{1}{2}\\right) = \\frac{1}{9}$.\n\n5. Tableau de variation : $$\\begin{array}{c|ccccccccc} x & -\\infty & & -1 & & 0 & & \\tfrac{1}{2} & & +\\infty \\\\ \\hline f' & & + & \\nexists & - & 0 & + & + & + & \\\\ f'' & & + & \\nexists & + & + & + & 0 & - & \\\\ f & 1 & \\nearrow\\cup & \\nexists & \\searrow\\cup & 0 & \\nearrow\\cup & \\tfrac{1}{9} & \\nearrow\\cap & 1 \\end{array}$$Minimum absolu $(0,0)$ ; point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.\n\n6. Esquisse : asymptotes $x = -1$ et $y = 1$ en pointillés, minimum absolu $(0,0)$, point d'inflexion $\\left(\\frac{1}{2}, \\frac{1}{9}\\right)$.",
@@ -852,7 +1052,13 @@
             ],
             "methodRefs": [
               "M13"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Conversion et lecture de la concavité :** $x = \\dfrac{1}{2}\\text{ h} = 30\\text{ min}$. En ce point, $R''$ passe de $+$ (concave vers le haut, taux $R'$ croissant) à $-$ (concave vers le bas, taux $R'$ décroissant)."
+              ],
+              "hint": "Interpréter le passage de $\\cup$ à $\\cap$ comme l'instant où la vitesse d'apprentissage $R'(x)$ atteint son maximum avant de ralentir."
+            }
           },
           {
             "prompt": "Interprétation : que représente l'asymptote horizontale $y = 1$ ?",
@@ -873,7 +1079,13 @@
             ],
             "methodRefs": [
               "M10"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Comportement asymptotique :** lorsque $x \\to +\\infty$, $R(x) = \\dfrac{x^2}{(x + 1)^2} < 1$ et $\\displaystyle\\lim_{x \\to +\\infty} R(x) = 1$ ($100\\%$ de maîtrise)."
+              ],
+              "hint": "Traduire la limite $y = 1$ avec $R(x) < 1$ comme un plafond théorique dont on s'approche indéfiniment sans l'atteindre."
+            }
           }
         ],
         "interpretation": "Pour $x \\geq 0$ : la maîtrise part de $0$ (minimum absolu), augmente toujours, avec une progression la plus rapide après 30 minutes (P.I.), puis ralentit en s'approchant de la maîtrise totale ($y = 1$). L'A.V. $x = -1$ est hors du contexte ($x \\geq 0$) : elle fait partie de l'étude mathématique seulement."
@@ -919,7 +1131,13 @@
           "methodRefs": [
             "M8",
             "A1"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Condition sur le dénominateur ($M8$) :** $$(x - 1)^2 \\neq 0 \\iff x - 1 \\neq 0$$"
+            ],
+            "hint": "Isoler la valeur exclue de $x$ et écrire le domaine sous la forme $\\mathbb{R} - \\{a\\}$."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer les équations des asymptotes.",
@@ -946,7 +1164,14 @@
             "M10",
             "A7",
             "A8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Limite en $x = 1$ ($M9, A7$) :** au numérateur, $2(1)^2 - 3(1) = 2 - 3 = -1 < 0$. Au dénominateur, $(x - 1)^2$ est un carré donc $0^+$ des deux côtés : forme $\\dfrac{-1}{0^+}$.",
+              "**Limite en $\\pm\\infty$ ($M10, A8$) :** $(x - 1)^2 = x^2 - 2x + 1$, donc le rapport des termes de plus haut degré est $\\dfrac{2x^2}{x^2}$."
+            ],
+            "hint": "Évaluer $\\dfrac{-1}{0^+}$ pour l'asymptote verticale en $x = 1$, et simplifier $\\dfrac{2x^2}{x^2}$ pour l'asymptote horizontale."
+          }
         },
         {
           "prompt": "Étape 3 : Déterminer les nombres critiques de $f$, sachant que $f'(x)=\\frac{3-x}{(x-1)^3}$.",
@@ -970,7 +1195,14 @@
           ],
           "methodRefs": [
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Annulation du numérateur de $f'(x) = \\dfrac{3 - x}{(x - 1)^3}$ ($M11$) :** $$3 - x = 0 \\iff x = 3$$",
+              "**Valeur hors domaine :** le dénominateur $(x - 1)^3$ s'annule en $x = 1 \\notin \\text{Dom}_f$."
+            ],
+            "hint": "Conserver uniquement la valeur qui appartient à $\\text{Dom}_f = \\mathbb{R} - \\{1\\}$ comme nombre critique."
+          }
         },
         {
           "prompt": "Étape 4 : Déterminer les valeurs de $x\\in\\text{Dom}_f$ pour lesquelles $f''(x)=0$ ou $f''(x)$ n'existe pas, sachant que $f''(x)=\\frac{2x-8}{(x-1)^4}$.",
@@ -994,7 +1226,14 @@
           ],
           "methodRefs": [
             "M12"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Annulation du numérateur de $f''(x) = \\dfrac{2x - 8}{(x - 1)^4}$ ($M12$) :** $$2x - 8 = 0 \\iff 2x = 8$$",
+              "**Valeur hors domaine :** $(x - 1)^4 = 0 \\iff x = 1 \\notin \\text{Dom}_f$."
+            ],
+            "hint": "Résoudre $2x = 8$ et retenir uniquement la valeur située dans $\\text{Dom}_f$."
+          }
         },
         {
           "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
@@ -1019,7 +1258,15 @@
           "methodRefs": [
             "M13",
             "A6"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Signe de $f'(x) = \\dfrac{3 - x}{(x - 1)^3}$ ($A6$) :** pour $x < 1$, $\\dfrac{+}{-} = -$ ; pour $1 < x < 3$, $\\dfrac{+}{+} = +$ ; pour $x > 3$, $\\dfrac{-}{+} = -$.",
+              "**Signe de $f''(x) = \\dfrac{2x - 8}{(x - 1)^4}$ ($A6$) :** $(x - 1)^4 > 0$, donc du signe de $2x - 8$ ($-$ avant $4$, $+$ après $4$).",
+              "**Valeurs de $f$ :** $$f(3) = \\frac{2(9) - 9}{(3 - 1)^2} = \\frac{9}{4} \\qquad \\text{et} \\qquad f(4) = \\frac{2(16) - 12}{(4 - 1)^2} = \\frac{20}{9}$$"
+            ],
+            "hint": "Sélectionner le tableau présentant les signes $- \\ | \\ + \\ 0 \\ - \\ -$ pour $f'$ et $- \\ | \\ - \\ - \\ 0 \\ +$ pour $f''$ ($M13$)."
+          }
         },
         {
           "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
@@ -1060,7 +1307,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Repères graphiques ($M14$) :** A.V. $x = 1$ où les deux branches plongent vers $-\\infty$ ; A.H. $y = 2$ ; maximum absolu en $\\left(3, \\frac{9}{4}\\right)$ au-dessus de $y = 2$, puis point d'inflexion en $\\left(4, \\frac{20}{9}\\right)$ avant de redescendre vers $y = 2$."
+            ],
+            "hint": "Repérer l'esquisse dont les deux branches plongent vers $-\\infty$ en $x = 1$ et qui dépasse l'asymptote $y = 2$ en $x = 3$."
+          }
         }
       ],
       "solution": "1. Domaine : $\\text{Dom}_f=\\mathbb{R}-\\{1\\}$.\n\n2. Asymptotes : $$\\lim_{x\\to1^{\\pm}}f(x)=-\\infty$$ donc $x=1$ est une A.V.; $$\\lim_{x\\to\\pm\\infty}f(x)=2$$ donc $y=2$ est une A.H. en $-\\infty$ et $+\\infty$.\n\n3. Nombre critique : $x=3$, $f(3)=\\frac94$.\n\n4. $f''(x)=0$ pour $x=4$, $f(4)=\\frac{20}{9}$.\n\n5. Tableau : $$\\begin{array}{c|ccccccccc}x&-\\infty&&1&&3&&4&&+\\infty\\\\\\hline f'&&-&\\nexists&+&0&-&-&-&\\\\f''&&-&\\nexists&-&-&-&0&+&\\\\f&2&\\searrow\\cap&\\nexists&\\nearrow\\cap&\\frac94&\\searrow\\cap&\\frac{20}{9}&\\searrow\\cup&2\\end{array}$$\n\n6. Esquisse conforme : maximum absolu $(3,\\frac94)$ et P.I. $(4,\\frac{20}{9})$."
@@ -1105,7 +1358,13 @@
           ],
           "methodRefs": [
             "M8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Condition sur le dénominateur ($M8$) :** $$x^2 \\neq 0 \\iff x \\neq 0$$ (le numérateur $2 - 2x$ peut s'annuler sans exclure de valeur)."
+            ],
+            "hint": "Exclure uniquement la racine du dénominateur $x^2 = 0$ de $\\mathbb{R}$."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer les équations des asymptotes.",
@@ -1132,7 +1391,14 @@
             "M10",
             "A7",
             "A8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Limite en $x = 0$ ($M9, A7$) :** numérateur $2 - 2(0) = 2 > 0$ et dénominateur $x^2 = 0^+$ des deux côtés : forme $\\dfrac{2}{0^+}$.",
+              "**Limite en $\\pm\\infty$ ($M10, A8$) :** $$\\lim_{x \\to \\pm\\infty} \\frac{-2x + 2}{x^2} = \\lim_{x \\to \\pm\\infty} \\frac{-2x}{x^2} = \\lim_{x \\to \\pm\\infty} \\frac{-2}{x}$$"
+            ],
+            "hint": "Conclure sur l'A.V. $x = 0$ à partir de $\\dfrac{2}{0^+}$ et sur l'A.H. $y = 0$ à partir de $\\displaystyle\\lim_{x \\to \\pm\\infty} \\frac{-2}{x}$."
+          }
         },
         {
           "prompt": "Étape 3 : Montrer que $f'(x)=\\frac{2x-4}{x^3}$.",
@@ -1157,7 +1423,15 @@
           "methodRefs": [
             "M7",
             "A4"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Règle du quotient sur $f(x) = \\dfrac{2 - 2x}{x^2}$ ($M7$) :** $\\text{haut}' = -2$ et $\\text{bas}' = 2x$ : $$f'(x) = \\frac{(-2)(x^2) - (2 - 2x)(2x)}{(x^2)^2}$$",
+              "**Développement et réduction du numérateur ($A3$) :** $$-2x^2 - (4x - 4x^2) = -2x^2 - 4x + 4x^2 = 2x^2 - 4x$$",
+              "**Factorisation par $x$ ($A1$) :** $2x^2 - 4x = x(2x - 4)$ au-dessus de $x^4$."
+            ],
+            "hint": "Simplifier le facteur commun $x$ entre $x(2x - 4)$ et $x^4$ pour $x \\neq 0$ ($A4$)."
+          }
         },
         {
           "prompt": "Étape 4 : Montrer que $f''(x)=\\frac{12-4x}{x^4}$.",
@@ -1182,7 +1456,15 @@
           "methodRefs": [
             "M7",
             "A4"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Règle du quotient sur $f'(x) = \\dfrac{2x - 4}{x^3}$ ($M7$) :** $\\text{haut}' = 2$ et $\\text{bas}' = 3x^2$ : $$f''(x) = \\frac{2(x^3) - (2x - 4)(3x^2)}{(x^3)^2}$$",
+              "**Développement et réduction du numérateur ($A3$) :** $$2x^3 - (6x^3 - 12x^2) = 2x^3 - 6x^3 + 12x^2 = -4x^3 + 12x^2$$",
+              "**Factorisation par $x^2$ ($A1$) :** $-4x^3 + 12x^2 = x^2(12 - 4x)$ au-dessus de $x^6$."
+            ],
+            "hint": "Simplifier le facteur commun $x^2$ entre $x^2(12 - 4x)$ et $x^6$ pour $x \\neq 0$ ($A4$)."
+          }
         },
         {
           "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
@@ -1207,7 +1489,15 @@
           "methodRefs": [
             "M13",
             "A6"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Valeurs remarquables ($M11, M12$) :** $f'(x) = 0 \\iff 2x - 4 = 0 \\iff x = 2$ avec $f(2) = \\dfrac{-2}{4} = -\\dfrac{1}{2}$ ; $f''(x) = 0 \\iff 12 - 4x = 0 \\iff x = 3$ avec $f(3) = \\dfrac{-4}{9}$.",
+              "**Signe de $f'(x) = \\dfrac{2x - 4}{x^3}$ ($A6$) :** pour $x < 0$, $\\dfrac{-}{-} = +$ ; pour $0 < x < 2$, $\\dfrac{-}{+} = -$ ; pour $x > 2$, $\\dfrac{+}{+} = +$.",
+              "**Signe de $f''(x) = \\dfrac{12 - 4x}{x^4}$ ($A6$) :** $x^4 > 0$, donc du signe de $12 - 4x$ ($+$ avant $3$, $-$ après $3$)."
+            ],
+            "hint": "Identifier le tableau ayant les signes $+ \\ | \\ - \\ 0 \\ + \\ +$ pour $f'$ et $+ \\ | \\ + \\ + \\ 0 \\ -$ pour $f''$ ($M13$)."
+          }
         },
         {
           "prompt": "Étape 6 : Choisir l'esquisse du graphe de $f$.",
@@ -1248,7 +1538,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Repères graphiques ($M14$) :** A.V. $x = 0$ avec les deux branches vers $+\\infty$ ; A.H. $y = 0$ ; à droite de $0$, la courbe coupe l'axe en $(1, 0)$, descend au minimum absolu $\\left(2, -\\frac{1}{2}\\right)$, passe par le P.I. $\\left(3, -\\frac{4}{9}\\right)$ puis remonte vers $y = 0$ par en dessous."
+            ],
+            "hint": "Choisir le graphe où les deux branches près de $x = 0$ montent vers $+\\infty$ et où la branche de droite passe sous l'axe des $x$ jusqu'à $\\left(2, -\\frac{1}{2}\\right)$."
+          }
         }
       ],
       "solution": "1. Domaine : $\\text{Dom}_f=\\mathbb{R}-\\{0\\}$.\n\n2. Asymptotes : $$\\lim_{x\\to0^{\\pm}}f(x)=+\\infty,\\qquad \\lim_{x\\to\\pm\\infty}f(x)=0.$$\n\n3. $$f'(x)=\\frac{-2x^2-(2-2x)(2x)}{x^4}=\\frac{2x-4}{x^3}.$$\n\n4. $$f''(x)=\\frac{2x^3-(2x-4)(3x^2)}{x^6}=\\frac{12-4x}{x^4}.$$\n\n5. Tableau : $$\\begin{array}{c|ccccccccc}x&-\\infty&&0&&2&&3&&+\\infty\\\\\\hline f'&&+&\\nexists&-&0&+&+&+&\\\\f''&&+&\\nexists&+&+&+&0&-&\\\\f&0&\\nearrow\\cup&\\nexists&\\searrow\\cup&-\\frac12&\\nearrow\\cup&-\\frac49&\\nearrow\\cap&0\\end{array}$$\n\n6. Esquisse conforme : minimum absolu $(2,-\\frac12)$ et P.I. $(3,-\\frac49)$."
@@ -1291,7 +1587,14 @@
           "methodRefs": [
             "M11",
             "A10"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $g'(x) = 0$ sur $[0, \\pi]$ ($M11, A10$) :** $$\\cos x - \\sin x = 0 \\iff \\cos x = \\sin x \\iff x = \\frac{\\pi}{4} \\in [0, \\pi]$$",
+              "**Convention des bornes sur un intervalle fermé ($M11$) :** la fonction étant restreinte à $[0, \\pi]$, $g'(x)$ n'existe pas aux bornes $x = 0$ et $x = \\pi$."
+            ],
+            "hint": "Réunir la solution intérieure $x = \\dfrac{\\pi}{4}$ et les deux bornes $0$ et $\\pi$ de l'intervalle fermé."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer les valeurs de $x\\in[0,\\pi]$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-\\sin x-\\cos x$.",
@@ -1315,7 +1618,14 @@
           ],
           "methodRefs": [
             "M12"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $g''(x) = 0$ sur $[0, \\pi]$ ($M12, A10$) :** $$-\\sin x - \\cos x = 0 \\iff \\sin x = -\\cos x \\iff x = \\frac{3\\pi}{4} \\in [0, \\pi]$$",
+              "**Bornes de l'intervalle fermé ($M12$) :** $g''(x)$ n'existe pas aux extrémités $x = 0$ et $x = \\pi$."
+            ],
+            "hint": "Rassembler la valeur intérieure $x = \\dfrac{3\\pi}{4}$ et les deux extrémités $0$ et $\\pi$."
+          }
         },
         {
           "prompt": "Étape 3 : Choisir le tableau de variation complet et ses conclusions.",
@@ -1339,7 +1649,14 @@
           ],
           "methodRefs": [
             "M13"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Évaluation aux quatre points ($A10$) :** $$g(0) = 1 + 0 + 1 = 2, \\quad g\\left(\\frac{\\pi}{4}\\right) = 1 + \\frac{\\sqrt{2}}{2} + \\frac{\\sqrt{2}}{2} = 1 + \\sqrt{2}, \\quad g\\left(\\frac{3\\pi}{4}\\right) = 1 + \\frac{\\sqrt{2}}{2} - \\frac{\\sqrt{2}}{2} = 1, \\quad g(\\pi) = 1 + 0 - 1 = 0$$",
+              "**Signes sur $[0, \\pi]$ ($A6$) :** $g'(x) = \\cos x - \\sin x$ est $+$ sur $]0, \\frac{\\pi}{4}[$ et $-$ sur $]\\frac{\\pi}{4}, \\pi[$. $g''(x) = -\\sin x - \\cos x$ est $-$ sur $]0, \\frac{3\\pi}{4}[$ et $+$ sur $]\\frac{3\\pi}{4}, \\pi[$."
+            ],
+            "hint": "Comparer les quatre ordonnées ($0 < 1 < 2 < 1 + \\sqrt{2}$) pour distinguer le minimum relatif $(0, 2)$ du minimum absolu $(\\pi, 0)$ ($M13$)."
+          }
         },
         {
           "prompt": "Étape 4 : Choisir l'esquisse de $g$ sur $[0,\\pi]$.",
@@ -1380,7 +1697,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Allure sur $[0, \\pi]$ ($M14$) :** départ en $(0, 2)$, montée concave vers le bas jusqu'au sommet $\\left(\\frac{\\pi}{4}, 1 + \\sqrt{2}\\right)$, descente passant par le P.I. $\\left(\\frac{3\\pi}{4}, 1\\right)$ jusqu'à l'extrémité $(\\pi, 0)$."
+            ],
+            "hint": "Choisir la courbe tracée sur $[0, \\pi]$ qui part de l'ordonnée $2$, culmine en $x = \\dfrac{\\pi}{4}$ et termine en $(\\pi, 0)$."
+          }
         }
       ],
       "solution": "1. Nombres critiques : $0,\\frac{\\pi}{4},\\pi$.\n\n2. Valeurs retenues pour $g''$ : $0,\\frac{3\\pi}{4},\\pi$.\n\n3. Tableau : $$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&2&\\nearrow\\cap&1+\\sqrt2&\\searrow\\cap&1&\\searrow\\cup&0\\end{array}$$\n\n4. Esquisse conforme : maximum absolu $(\\frac{\\pi}{4},1+\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},1)$, minimum absolu $(\\pi,0)$.",
@@ -1414,7 +1737,13 @@
             ],
             "methodRefs": [
               "M13"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Variation de la pente $g'(x)$ en $x = \\dfrac{3\\pi}{4}$ :** sur $]\\frac{\\pi}{4}, \\pi[$, $g'(x) < 0$ (le niveau baisse) et $g''\\left(\\frac{3\\pi}{4}\\right) = 0$ avec passage de $g'' < 0$ à $g'' > 0$."
+              ],
+              "hint": "Interpréter le minimum de la dérivée $g'(x)$ (valeur la plus négative) comme l'instant où la baisse du niveau d'eau est la plus rapide."
+            }
           },
           {
             "prompt": "Interprétation : quelles valeurs décrivent la marée ?",
@@ -1437,7 +1766,13 @@
             ],
             "methodRefs": [
               "M13"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Lecture des extrema absolus du tableau :** la valeur maximale de $g$ est $g\\left(\\frac{\\pi}{4}\\right) = 1 + \\sqrt{2}$ et la valeur minimale est $g(\\pi) = 0$."
+              ],
+              "hint": "Associer le maximum absolu à la pleine mer et le minimum nul au port vide."
+            }
           }
         ],
         "interpretation": "Pour $x\\in[0,\\pi]$ : le niveau part de $2$ m, monte jusqu'à la pleine mer $1+\\sqrt2$ m à $x=\\pi/4$, redescend ensuite. La descente est la plus rapide au P.I. $(3\\pi/4,1)$, puis le port atteint son niveau minimal $0$ à $x=\\pi$."
@@ -1480,7 +1815,14 @@
           "methodRefs": [
             "M11",
             "A10"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $g'(x) = 0$ sur $[0, \\pi]$ ($M11, A10$) :** $$\\cos x - \\sin x = 0 \\iff \\cos x = \\sin x \\iff x = \\frac{\\pi}{4} \\in [0, \\pi]$$",
+              "**Bornes de l'intervalle fermé ($M11$) :** sur $[0, \\pi]$, $g'(x)$ n'existe pas en $x = 0$ et en $x = \\pi$."
+            ],
+            "hint": "Inclure la racine intérieure $\\dfrac{\\pi}{4}$ ainsi que les deux bornes $0$ et $\\pi$."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer les valeurs de $x\\in[0,\\pi]$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-\\sin x-\\cos x$.",
@@ -1504,7 +1846,14 @@
           ],
           "methodRefs": [
             "M12"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Résolution de $g''(x) = 0$ sur $[0, \\pi]$ ($M12, A10$) :** $$-\\sin x - \\cos x = 0 \\iff \\sin x = -\\cos x \\iff x = \\frac{3\\pi}{4} \\in [0, \\pi]$$",
+              "**Bornes de l'intervalle fermé ($M12$) :** $g''(x)$ n'existe pas aux bornes $x = 0$ et $x = \\pi$."
+            ],
+            "hint": "Inclure la valeur intérieure $\\dfrac{3\\pi}{4}$ et les deux extrémités $0$ et $\\pi$."
+          }
         },
         {
           "prompt": "Étape 3 : Choisir le tableau de variation complet et ses conclusions.",
@@ -1528,7 +1877,14 @@
           ],
           "methodRefs": [
             "M13"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Évaluation aux quatre points ($A10$) :** $$g(0) = 0 + 1 = 1, \\quad g\\left(\\frac{\\pi}{4}\\right) = \\frac{\\sqrt{2}}{2} + \\frac{\\sqrt{2}}{2} = \\sqrt{2}, \\quad g\\left(\\frac{3\\pi}{4}\\right) = \\frac{\\sqrt{2}}{2} - \\frac{\\sqrt{2}}{2} = 0, \\quad g(\\pi) = 0 - 1 = -1$$",
+              "**Signes ($A6$) :** $g'$ est $+$ avant $\\frac{\\pi}{4}$ et $-$ après ; $g''$ est $-$ avant $\\frac{3\\pi}{4}$ et $+$ après."
+            ],
+            "hint": "Ordonner les valeurs ($-1 < 0 < 1 < \\sqrt{2}$) pour identifier $(0, 1)$ comme minimum relatif, $(\\frac{\\pi}{4}, \\sqrt{2})$ comme maximum absolu, $(\\frac{3\\pi}{4}, 0)$ comme P.I. et $(\\pi, -1)$ comme minimum absolu."
+          }
         },
         {
           "prompt": "Étape 4 : Choisir l'esquisse de $g$ sur $[0,\\pi]$.",
@@ -1569,7 +1925,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Repères sur $[0, \\pi]$ ($M14$) :** départ en $(0, 1)$, sommet en $\\left(\\frac{\\pi}{4}, \\sqrt{2}\\right)$, passage par l'axe avec inflexion en $\\left(\\frac{3\\pi}{4}, 0\\right)$, arrivée en $(\\pi, -1)$."
+            ],
+            "hint": "Choisir la courbe qui part de $(0, 1)$, monte à $\\sqrt{2}$, traverse l'axe en $\\dfrac{3\\pi}{4}$ et finit à $-1$."
+          }
         }
       ],
       "solution": "1. Nombres critiques : $0,\\frac{\\pi}{4},\\pi$.\n\n2. Valeurs retenues pour $g''$ : $0,\\frac{3\\pi}{4},\\pi$.\n\n3. Tableau : $$\\begin{array}{c|ccccccc}x&0&&\\frac{\\pi}{4}&&\\frac{3\\pi}{4}&&\\pi\\\\\\hline g'&&+&0&-&-&-&\\\\g''&&-&-&-&0&+&\\\\g&1&\\nearrow\\cap&\\sqrt2&\\searrow\\cap&0&\\searrow\\cup&-1\\end{array}$$\n\n4. Esquisse conforme : maximum absolu $(\\frac{\\pi}{4},\\sqrt2)$, P.I. $(\\frac{3\\pi}{4},0)$, minimum absolu $(\\pi,-1)$."
@@ -1613,7 +1975,14 @@
           "methodRefs": [
             "M10",
             "A9"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Développement pour utiliser la limite admise ($A9, M10$) :** $$(2 - x)e^x = 2e^x - xe^x$$",
+              "**Évaluation terme à terme en $-\\infty$ ($A9$) :** $\\displaystyle\\lim_{x \\to -\\infty} e^x = 0$ et $\\displaystyle\\lim_{x \\to -\\infty} xe^x = 0$ (admise), donc $2(0) - 0 = 0$."
+            ],
+            "hint": "Conclure sur l'équation de l'asymptote horizontale $y = L$ du côté $-\\infty$ ($M10$)."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer le comportement de $g$ en $+\\infty$.",
@@ -1637,7 +2006,13 @@
           "methodRefs": [
             "M10",
             "A9"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Analyse des facteurs en $+\\infty$ ($A9$) :** lorsque $x \\to +\\infty$, le premier facteur $(2 - x) \\to -\\infty$ et le second facteur $e^x \\to +\\infty$."
+            ],
+            "hint": "Effectuer la règle des signes sur le produit $(-\\infty) \\times (+\\infty)$ et en déduire l'absence d'asymptote horizontale en $+\\infty$."
+          }
         },
         {
           "prompt": "Étape 3 : Déterminer les nombres critiques de $g$, sachant que $g'(x)=(1-x)e^x$.",
@@ -1661,7 +2036,13 @@
           ],
           "methodRefs": [
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Factorisation de $g'(x) = (1 - x)e^x$ ($M11, A6$) :** comme $e^x > 0$ pour tout $x \\in \\mathbb{R}$, le facteur exponentiel ne s'annule jamais : $$(1 - x)e^x = 0 \\iff 1 - x = 0$$"
+            ],
+            "hint": "Isoler $x$ dans $1 - x = 0$ sachant que $g'$ est définie sur tout $\\mathbb{R}$."
+          }
         },
         {
           "prompt": "Étape 4 : Déterminer les valeurs de $x$ pour lesquelles $g''(x)=0$ ou $g''(x)$ n'existe pas, sachant que $g''(x)=-xe^x$.",
@@ -1685,7 +2066,13 @@
           ],
           "methodRefs": [
             "M12"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Factorisation de $g''(x) = -xe^x$ ($M12, A6$) :** comme $e^x > 0$ pour tout $x \\in \\mathbb{R}$, $$-xe^x = 0 \\iff -x = 0$$"
+            ],
+            "hint": "Résoudre $-x = 0$ en notant que $g''$ existe pour tout $x \\in \\mathbb{R}$."
+          }
         },
         {
           "prompt": "Étape 5 : Choisir le tableau de variation complet et ses conclusions.",
@@ -1709,7 +2096,14 @@
           ],
           "methodRefs": [
             "M13"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Signes de $g'$ et $g''$ ($A6$) :** $e^x > 0$ toujours, donc $g'(x) = (1 - x)e^x$ a le signe de $1 - x$ ($+$ avant $1$, $-$ après $1$), et $g''(x) = -xe^x$ a le signe de $-x$ ($+$ avant $0$, $-$ après $0$).",
+              "**Ordonnées :** $g(0) = (2 - 0)e^0 = 2$ et $g(1) = (2 - 1)e^1 = e$."
+            ],
+            "hint": "Sélectionner le tableau où $g''$ s'annule en $0$ (P.I. $(0, 2)$) et $g'$ s'annule en $1$ (maximum absolu $(1, e)$) ($M13$)."
+          }
         },
         {
           "prompt": "Étape 6 : Choisir l'esquisse du graphe de $g$.",
@@ -1750,7 +2144,13 @@
           ],
           "methodRefs": [
             "M14"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Allure de la courbe ($M14$) :** longe $y = 0^+$ à gauche en $-\\infty$, monte avec inflexion en $(0, 2)$, atteint son maximum absolu en $(1, e)$, coupe l'axe en $(2, 0)$ puis plonge vers $-\\infty$."
+            ],
+            "hint": "Choisir l'esquisse qui monte depuis $y = 0$ à gauche jusqu'au sommet $(1, e)$ avant de plonger vers $-\\infty$ après $x = 2$."
+          }
         }
       ],
       "solution": "1. $$\\lim_{x\\to-\\infty}g(x)=0$$ donc $y=0$ est une A.H. en $-\\infty$.\n\n2. $$\\lim_{x\\to+\\infty}g(x)=-\\infty.$$\n\n3. Nombre critique : $x=1$, $g(1)=e$.\n\n4. $g''(x)=0$ pour $x=0$, $g(0)=2$.\n\n5. Tableau : $$\\begin{array}{c|ccccccc}x&-\\infty&&0&&1&&+\\infty\\\\\\hline g'&&+&+&+&0&-&\\\\g''&&+&+&0&-&-&\\\\g&0&\\nearrow\\cup&2&\\nearrow\\cap&e&\\searrow\\cap&-\\infty\\end{array}$$\n\n6. Esquisse conforme : P.I. $(0,2)$ et maximum absolu $(1,e)$.",
@@ -1786,7 +2186,13 @@
             ],
             "methodRefs": [
               "M13"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Changement de concavité en $x = 0$ :** avant $x = 0$, $g'' > 0$ (la vitesse de croissance $g'$ augmente) ; après $x = 0$, $g'' < 0$ (la vitesse de croissance $g'$ diminue bien que $g$ continue de monter jusqu'à $x = 1$)."
+              ],
+              "hint": "Relier $x = 0$ (jour du lancement) au moment où la croissance est la plus rapide et commence à décélérer."
+            }
           },
           {
             "prompt": "Interprétation : que représentent le maximum et $g(2)=0$ ?",
@@ -1809,7 +2215,13 @@
             ],
             "methodRefs": [
               "M13"
-            ]
+            ],
+            "algebra": {
+              "steps": [
+                "**Valeurs clés du modèle :** le sommet est atteint en $x = 1$ avec $g(1) = e$ milliers de vues/jour, et la fonction s'annule en $x = 2$ car $(2 - 2)e^2 = 0$."
+              ],
+              "hint": "Associer $(1, e)$ au pic d'audience après $1$ semaine et $g(2) = 0$ à la fin de la tendance à la semaine $2$."
+            }
           }
         ],
         "interpretation": "Pour $x\\leq2$ : avant le lancement ($x<0$), le modèle mathématique tend vers $0$; au lancement $(0,2)$, la croissance cesse d'accélérer; au pic $(1,e)$, la popularité est maximale; à $x=2$, la tendance est morte. Les valeurs $x>2$ sont hors du contexte."
@@ -1852,7 +2264,14 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Géométrie du triangle rectangle $OAB$ ($M17$) :** la base sur l'axe des $x$ mesure $x$ et la hauteur verticale mesure $y$, donc l'aire vaut $A = \\dfrac{1}{2}xy$.",
+              "**Substitution de la contrainte $y = \\dfrac{x}{x - 2}$ :** $$A(x) = \\frac{1}{2} \\cdot x \\cdot \\frac{x}{x - 2}$$"
+            ],
+            "hint": "Multiplier les numérateurs et les dénominateurs pour exprimer $A(x)$ en fonction de la seule variable $x$."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer la contrainte et le domaine de l'optimisation.",
@@ -1876,7 +2295,13 @@
           "methodRefs": [
             "M17",
             "M8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Condition imposée par l'énoncé ($M8, M17$) :** le point $B(x, y)$ appartient à la branche de courbe définie pour $x > 2$ (ce qui garantit $x - 2 > 0$ et $y > 0$)."
+            ],
+            "hint": "Sélectionner l'intervalle ouvert donné dans l'énoncé pour la variable $x$."
+          }
         },
         {
           "prompt": "Étape 3 : Dériver et déterminer les nombres critiques dans le domaine.",
@@ -1902,7 +2327,14 @@
             "M17",
             "M7",
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Dérivation par la règle du quotient sur $A(x) = \\dfrac{1}{2} \\cdot \\dfrac{x^2}{x - 2}$ ($M7$) :** $$A'(x) = \\frac{1}{2} \\cdot \\frac{2x(x - 2) - x^2(1)}{(x - 2)^2} = \\frac{2x^2 - 4x - x^2}{2(x - 2)^2} = \\frac{x^2 - 4x}{2(x - 2)^2}$$",
+              "**Factorisation du numérateur ($A1, M11$) :** $$x^2 - 4x = x(x - 4) = 0 \\iff x = 0 \\text{ ou } x = 4$$"
+            ],
+            "hint": "Écarter la racine $x = 0 \\notin \\,]2, +\\infty[$ et retenir uniquement le nombre critique situé dans $]2, +\\infty[$."
+          }
         },
         {
           "prompt": "Étape 4 : Choisir le test justifiant le minimum.",
@@ -1926,7 +2358,13 @@
           "methodRefs": [
             "M17",
             "A6"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Signe de $A'(x) = \\dfrac{x(x - 4)}{2(x - 2)^2}$ sur $]2, +\\infty[$ ($A6$) :** sur $]2, +\\infty[$, on a $x > 0$ et $2(x - 2)^2 > 0$. Le signe de $A'(x)$ dépend donc uniquement du facteur $(x - 4)$."
+            ],
+            "hint": "Déterminer le signe de $x - 4$ sur $]2, 4[$ puis sur $]4, +\\infty[$ pour justifier que $x = 4$ donne un minimum absolu."
+          }
         },
         {
           "prompt": "Étape 5 : Formuler la réponse dans le contexte.",
@@ -1949,7 +2387,13 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Calcul de la hauteur $y$ et de l'aire minimale ($M17$) :** pour $x = 4$ : $$y = \\frac{4}{4 - 2} = \\frac{4}{2} = 2 \\qquad \\text{et} \\qquad A(4) = \\frac{4^2}{2(4 - 2)} = \\frac{16}{4}$$"
+            ],
+            "hint": "Simplifier $A(4) = \\dfrac{16}{4}$ et rassembler la base $x$, la hauteur $y$ et l'aire minimale avec ses unités."
+          }
         }
       ],
       "solution": "1. $$A(x)=\\frac12xy=\\frac{x^2}{2(x-2)},\\qquad x\\in\\,]2,+\\infty[.$$\n\n2. $$A'(x)=\\frac{x(x-4)}{2(x-2)^2}.$$\n\n3. Nombre critique dans le domaine : $x=4$.\n\n4. $A'<0$ sur $(2,4)$ et $A'>0$ sur $(4,+\\infty)$ : minimum absolu en $x=4$.\n\n5. $$y=\\frac{4}{4-2}=2,\\qquad A_{\\min}=\\frac12(4)(2)=4\\ \\text{unités d'aire}.$$"
@@ -1986,7 +2430,16 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Décompte des quatre côtés du rectangle ($M17$) :**",
+              "- $1$ côté en métal de longueur $x$ à $6\\,\\$/\\text{m} \\implies 6x$",
+              "- $1$ côté opposé en bois de longueur $x$ à $10\\,\\$/\\text{m} \\implies 10x$",
+              "- $2$ autres côtés en bois de longueur $y$ à $10\\,\\$/\\text{m} \\implies 10(2y) = 20y$"
+            ],
+            "hint": "Additionner les coûts en bois $10(x + 2y)$ et le coût en métal $6x$, puis regrouper les termes en $x$."
+          }
         },
         {
           "prompt": "Étape 2 : Écrire la contrainte, substituer et donner le domaine.",
@@ -2011,7 +2464,14 @@
           "methodRefs": [
             "M17",
             "M8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Contrainte d'aire ($M17$) :** l'aire du rectangle vaut $20\\text{ m}^2$, donc $xy = 20 \\implies y = \\dfrac{20}{x}$.",
+              "**Substitution dans $C(x, y) = 16x + 20y$ :** $$C(x) = 16x + 20\\left(\\frac{20}{x}\\right)$$"
+            ],
+            "hint": "Effectuer le produit $20 \\times 20$ au numérateur et préciser le domaine géométrique $x > 0$."
+          }
         },
         {
           "prompt": "Étape 3 : Dériver et déterminer le nombre critique.",
@@ -2037,7 +2497,14 @@
             "M17",
             "M2",
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Dérivation avec $\\dfrac{400}{x} = 400x^{-1}$ ($A2, M2$) :** $$C'(x) = 16 - 400x^{-2} = 16 - \\frac{400}{x^2}$$",
+              "**Mise au même dénominateur et factorisation ($A1$) :** $$C'(x) = \\frac{16x^2 - 400}{x^2} = \\frac{16(x^2 - 25)}{x^2} = \\frac{16(x - 5)(x + 5)}{x^2}$$"
+            ],
+            "hint": "Résoudre $C'(x) = 0$ et ne conserver que la racine strictement positive appartenant au domaine $x > 0$ ($M11$)."
+          }
         },
         {
           "prompt": "Étape 4 : Choisir le test justifiant le minimum.",
@@ -2061,7 +2528,13 @@
           "methodRefs": [
             "M17",
             "A6"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Signe de $C'(x) = \\dfrac{16(x - 5)(x + 5)}{x^2}$ sur $]0, +\\infty[$ ($A6$) :** pour $x > 0$, les facteurs $16$, $(x + 5)$ et $x^2$ sont tous strictement positifs. Le signe de $C'(x)$ est donc celui de $(x - 5)$."
+            ],
+            "hint": "Observer le changement de signe de $(x - 5)$ avant et après $x = 5$ pour justifier le minimum absolu sur $]0, +\\infty[$."
+          }
         },
         {
           "prompt": "Étape 5 : Formuler toutes les dimensions et le coût minimal.",
@@ -2084,7 +2557,13 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Calcul de l'autre dimension $y$ et du coût $C(5)$ ($M17$) :** $$y = \\frac{20}{5} = 4\\text{ m} \\qquad \\text{et} \\qquad C(5) = 16(5) + \\frac{400}{5} = 80 + 80$$"
+            ],
+            "hint": "Additionner $80 + 80$ et formuler les dimensions $x$, $y$ ainsi que le coût minimal en dollars."
+          }
         }
       ],
       "solution": "1. $$C(x)=10(x+2y)+6x=16x+20y.$$\n\n2. $$xy=20\\Rightarrow y=\\frac{20}{x},\\qquad C(x)=16x+\\frac{400}{x},\\qquad x>0.$$\n\n3. $$C'(x)=16-\\frac{400}{x^2}=\\frac{16(x-5)(x+5)}{x^2}.$$\n\n4. Nombre critique : $x=5$; $C'<0$ sur $(0,5)$ et $C'>0$ sur $(5,+\\infty)$.\n\n5. $$y=4\\ \\text{m},\\qquad C_{\\min}=C(5)=160\\ \\text{dollars}.$$"
@@ -2126,7 +2605,14 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Dimensions du rectangle en fonction de $x$ ($M17$) :** le rectangle s'étend horizontalement de $x$ jusqu'à $2$, donc sa largeur vaut $2 - x$. Sa hauteur va de $0$ jusqu'au point $P(x, y)$ de la parabole $y = x^2 + 1$.",
+              "**Développement du produit $A(x) = (2 - x)(x^2 + 1)$ ($A3$) :** $$(2 - x)(x^2 + 1) = 2x^2 + 2 - x^3 - x$$"
+            ],
+            "hint": "Ordonner le polynôme obtenu par puissances décroissantes de $x$."
+          }
         },
         {
           "prompt": "Étape 2 : Déterminer le domaine de l'optimisation.",
@@ -2150,7 +2636,13 @@
           "methodRefs": [
             "M17",
             "M8"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Bornes géométriques de l'énoncé ($M8, M17$) :** l'abscisse $x$ du coin $P(x, y)$ varie sur l'arc de parabole défini pour $0 \\leq x \\leq 2$."
+            ],
+            "hint": "Sélectionner l'intervalle fermé $[0, 2]$ correspondant aux contraintes de l'énoncé."
+          }
         },
         {
           "prompt": "Étape 3 : Dériver et déterminer tous les nombres critiques dans le domaine.",
@@ -2176,7 +2668,14 @@
             "M17",
             "M2",
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Dérivation polynomiale et mise en facteur du signe moins ($M2, A3$) :** $$A'(x) = -3x^2 + 4x - 1 = -(3x^2 - 4x + 1)$$",
+              "**Factorisation de $3x^2 - 4x + 1$ par le discriminant ($A1$) :** $$\\Delta = (-4)^2 - 4(3)(1) = 16 - 12 = 4 \\implies x_{1,2} = \\frac{4 \\pm 2}{6}$$"
+            ],
+            "hint": "Calculer les deux racines issues de $\\dfrac{4 \\pm 2}{6}$ et écrire la forme factorisée $-(3x - 1)(x - 1)$ sur $[0, 2]$ ($M11$)."
+          }
         },
         {
           "prompt": "Étape 4 : Comparer toutes les valeurs candidates sur le domaine fermé.",
@@ -2200,7 +2699,17 @@
           "methodRefs": [
             "M17",
             "M11"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Évaluation de $A(x) = (2 - x)(x^2 + 1)$ aux points critiques et aux bornes ($M17$) :**",
+              "- En $x = 0$ (borne) : $A(0) = (2 - 0)(0^2 + 1) = 2 \\cdot 1$",
+              "- En $x = \\dfrac{1}{3}$ : $A\\left(\\dfrac{1}{3}\\right) = \\left(2 - \\dfrac{1}{3}\\right)\\left(\\dfrac{1}{9} + 1\\right) = \\dfrac{5}{3} \\cdot \\dfrac{10}{9}$",
+              "- En $x = 1$ : $A(1) = (2 - 1)(1^2 + 1) = 1 \\cdot 2$",
+              "- En $x = 2$ (borne) : $A(2) = (2 - 2)(2^2 + 1) = 0 \\cdot 5$"
+            ],
+            "hint": "Calculer chacune des quatre valeurs pour comparer les candidats sur l'intervalle fermé $[0, 2]$."
+          }
         },
         {
           "prompt": "Étape 5 : Formuler la réponse dans le contexte, sans oublier les deux maxima.",
@@ -2223,7 +2732,15 @@
           ],
           "methodRefs": [
             "M17"
-          ]
+          ],
+          "algebra": {
+            "steps": [
+              "**Repérage du maximum et ordonnées $y = x^2 + 1$ ($M17$) :** la plus grande valeur de $A(x)$ dans la liste $\\left\\{2,\\ \\dfrac{50}{27} \\approx 1{,}85,\\ 2,\\ 0\\right\\}$ est atteinte **deux fois** (en $x = 0$ et en $x = 1$).",
+              "- Pour $x = 0$ : $y = 0^2 + 1 = 1 \\implies P(0, 1)$",
+              "- Pour $x = 1$ : $y = 1^2 + 1 = 2 \\implies P(1, 2)$"
+            ],
+            "hint": "Conclure avec la valeur de l'aire maximale et mentionner explicitement les deux points $P(0, 1)$ et $P(1, 2)$ où ce maximum est atteint."
+          }
         }
       ],
       "solution": "1. $$A(x)=(2-x)(x^2+1)=-x^3+2x^2-x+2,\\qquad x\\in[0,2].$$\n\n2. $$A'(x)=-(3x-1)(x-1).$$\n\n3. Nombres critiques : $x=\\frac13$ et $x=1$.\n\n4. $$A(0)=2,\\quad A\\left(\\frac13\\right)=\\frac{50}{27},\\quad A(1)=2,\\quad A(2)=0.$$\n\n5. Aire maximale : $2$ unités d'aire, atteinte aux deux points $P(0,1)$ et $P(1,2)$."

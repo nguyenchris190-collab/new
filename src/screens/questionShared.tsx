@@ -1,8 +1,8 @@
-import type { Confidence, ImageRef, ItemState, Question, QuestionMode, StepState } from '../types';
+import type { AlgebraAssist, Confidence, ImageRef, ItemState, Question, QuestionMode, StepState } from '../types';
 import type { Quote, QuoteTier } from '../lib/quotes';
 import { MathText } from '../components/MathText';
 import { QuoteLine } from '../components/QuoteLine';
-import { IconCheck, IconEye } from '../components/icons';
+import { IconCheck, IconChevronDown, IconEye } from '../components/icons';
 
 export interface QuestionViewProps {
   question: Question;
@@ -68,6 +68,78 @@ export function PromptFigure({ image, className = '' }: { image?: ImageRef; clas
     <figure className={`my-3 rounded-md border border-border bg-bg p-2 ${className}`}>
       <img src={image.src} alt={image.alt} className="mx-auto h-auto max-h-72 w-full max-w-xl object-contain" />
     </figure>
+  );
+}
+
+/**
+ * Unpenalized "Reveal Algebra" toggle + collapsible breakdown showing all intermediate
+ * algebra/factoring/root steps up to the final answer, plus a methodology-only final hint.
+ */
+export function AlgebraAssistPanel({
+  algebra,
+  open,
+  onToggle,
+}: {
+  algebra?: AlgebraAssist;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  if (!algebra || (!algebra.steps.length && !algebra.hint)) return null;
+  return (
+    <div className="mb-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-pressed={open}
+          aria-expanded={open}
+          className={`inline-flex w-full sm:w-auto min-h-touch items-center justify-between sm:justify-start gap-2.5 rounded-md border px-3.5 py-2 text-sm font-medium transition-colors ${
+            open ? 'border-accent bg-accent/10 text-ink' : 'border-border bg-bg text-ink hover:bg-surface'
+          }`}
+        >
+          <span className="inline-flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M4 12h2.5l2.5 6 4-12h7" />
+              <path className="ic-accent" d="M15 11l5 5M20 11l-5 5" />
+            </svg>
+            <span>{open ? 'Hide Algebra' : 'Reveal Algebra'}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+            <span className="rounded border border-border bg-surface px-1.5 py-0.5 font-normal">No penalty</span>
+            <IconChevronDown size={16} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+          </span>
+        </button>
+      </div>
+      {open && (
+        <div className="mt-2.5 rounded-lg border border-border bg-surface p-3.5 sm:p-4 text-sm leading-relaxed animate-reveal" role="region" aria-label="Algebra and intermediate steps">
+          {algebra.steps.length > 0 && (
+            <>
+              <p className="label-xs mb-2.5">Intermediate Steps & Algebra</p>
+              <ol className="space-y-2.5">
+                {algebra.steps.map((line, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border bg-bg font-mono text-xs font-semibold text-muted">
+                      {i + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <MathText text={line} rich />
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
+          {algebra.hint && (
+            <div className="mt-3.5 rounded-md border border-accent/40 bg-bg px-3.5 py-2.5">
+              <p className="label-xs mb-1 text-accent">Final Hint · Methodology Only</p>
+              <div className="leading-relaxed">
+                <MathText text={algebra.hint} rich />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MathText } from '../components/MathText';
 import { IconCheck, IconChevronDown } from '../components/icons';
 import { runtimeSteps } from '../lib/session';
@@ -11,6 +11,11 @@ import { MethodRefChips, outcomeOf, PromptFigure, QuestionModeToggle, SolvedPane
  */
 export function SequentialQuestion({ question, item, mode, onModeChange, disabled, onStepChange, onCheck, onReveal, onConfidence, onSkip, quoteSeed, streak }: QuestionViewProps) {
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [algebraOpen, setAlgebraOpen] = useState(false);
+  useEffect(() => {
+    setExpanded(null);
+    setAlgebraOpen(false);
+  }, [question.id]);
   const context = mode === 'context' && !!question.scenario;
   const scenario = context ? question.scenario : undefined;
   const steps = runtimeSteps(question, context);
@@ -86,6 +91,8 @@ export function SequentialQuestion({ question, item, mode, onModeChange, disable
                 checkLabel={i === total - 1 ? 'Check Answer' : 'Check Step'}
                 quoteSeed={`${quoteSeed}:${i}`}
                 priorMisses={item.steps.slice(0, i).reduce((n, x) => n + x.wrong.length, 0)}
+                algebraOpen={algebraOpen}
+                onToggleAlgebra={() => setAlgebraOpen((o) => !o)}
               />
             </li>
           );

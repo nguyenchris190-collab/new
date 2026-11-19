@@ -1,4 +1,4 @@
-import type { Category, CheatSection, CoursePack, ImageRef, Question, Scenario, Step } from '../types';
+import type { AlgebraAssist, Category, CheatSection, CoursePack, ImageRef, Question, Scenario, Step } from '../types';
 import { hash, isRecord } from './util';
 
 /**
@@ -104,6 +104,25 @@ function resolveAnswer(raw: unknown, choices: string[], flagged: number): number
   return -1;
 }
 
+function parseAlgebra(raw: unknown): AlgebraAssist | undefined {
+  if (!raw) return undefined;
+  if (typeof raw === 'string') {
+    const s = raw.trim();
+    return s ? { steps: [s] } : undefined;
+  }
+  if (Array.isArray(raw)) {
+    const steps = strList(raw);
+    return steps.length ? { steps } : undefined;
+  }
+  if (isRecord(raw)) {
+    const steps = strList(pick(raw, ['steps', 'lines', 'moves', 'items']));
+    const hint = textOf(pick(raw, ['hint', 'finalHint', 'methodology', 'methodHint']));
+    if (!steps.length && !hint) return undefined;
+    return { steps, ...(hint ? { hint } : {}) };
+  }
+  return undefined;
+}
+
 function parseStep(o: Obj, fallbackPrompt?: string): Step | string {
   const { choices, flagged } = parseChoices(pick(o, CHOICE_KEYS));
   if (choices.length < 2) return 'fewer than 2 choices';
@@ -124,6 +143,8 @@ function parseStep(o: Obj, fallbackPrompt?: string): Step | string {
   if (images) step.images = images;
   const methodRefs = strList(pick(o, ['methodRefs', 'methods', 'refs']));
   if (methodRefs.length) step.methodRefs = methodRefs;
+  const algebra = parseAlgebra(pick(o, ['algebra', 'algebraSteps', 'revealAlgebra']));
+  if (algebra) step.algebra = algebra;
   return step;
 }
 
